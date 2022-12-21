@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "baseUrl": ".",
+        "moduleResolution": "Node",
+        "esModuleInterop": true,
+        "allowJs": true,
+        "target": "ESNext",
+        "module": "ESNext",
+        "skipLibCheck": true,
+        "declaration": true,
+        "sourceMap": true,
+        "lib": [
+            "es2021",
+            "dom"
+        ]
+    }
+}

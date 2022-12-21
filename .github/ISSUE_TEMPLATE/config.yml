@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 🤔 Questions & Discussions
+    url: https://github.com/1aron/techor/discussions
+    about: Use GitHub discussions for forum-like discussions and questions.

@@ -1,0 +1,54 @@
+{
+    "name": "techor",
+    "scripts": {
+        "build": "aron pack --platform=node",
+        "dev": "npm run build -- --watch",
+        "test": "jest",
+        "type-check": "tsc --noEmit",
+        "lint": "eslint src"
+    },
+    "license": "MIT",
+    "description": "Author technology like a top leader",
+    "author": {
+        "name": "Aron",
+        "email": "i@aron.tw",
+        "url": "https://aron.tw"
+    },
+    "homepage": "https://github.com/1aron/techor",
+    "bugs": {
+        "url": "https://github.com/1aron/techor/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/1aron/techor.git",
+        "directory": "packages/techor"
+    },
+    "keywords": [
+        "author",
+        "technology",
+        "creator",
+        "config",
+        "opensource",
+        "plugin",
+        "package",
+        "framework",
+        "tool",
+        "software"
+    ],
+    "sideEffects": false,
+    "main": "./dist/index.cjs",
+    "jsnext:main": "./dist/index.mjs",
+    "esnext": "./dist/index.mjs",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "require": "./dist/index.cjs",
+            "import": "./dist/index.mjs",
+            "types": "./dist/index.d.ts"
+        }
+    },
+    "files": [
+        "dist"
+    ]
+}

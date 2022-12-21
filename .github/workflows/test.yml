@@ -1,0 +1,30 @@
+name: Test
+on:
+    push:
+        branches:
+            - '**'
+    pull_request_target:
+        types:
+            - opened
+            - reopened
+            - edited
+            - synchronize
+
+jobs:
+    test:
+        timeout-minutes: 15
+        runs-on: ${{ matrix.os }}
+        strategy:
+            matrix:
+                node-version: [18.12.1]
+                os: [ubuntu-latest, windows-latest]
+
+        steps:
+            - uses: actions/checkout@v3
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: 'npm'
+            - run: npm ci
+            - run: npm run build
+            - run: npm run test
