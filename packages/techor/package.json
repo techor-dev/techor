@@ -53,6 +53,7 @@
     "sideEffects": false,
     "dependencies": {
         "cross-import": "^1.4.6",
-        "to-extend": "^1.4.6"
+        "to-extend": "^1.4.6",
+        "@techor/log": ""
     }
 }
