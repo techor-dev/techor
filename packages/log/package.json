@@ -45,6 +45,9 @@
         "dist"
     ],
     "sideEffects": false,
+    "publishConfig": {
+        "access": "public"
+    },
     "devDependencies": {
         "chalk": "^5.1.2",
         "dedent": "^0.7.0",
