@@ -1,5 +1,6 @@
 {
-    "name": "techor",
+    "name": "@techor/log",
+    "license": "MIT",
     "scripts": {
         "build": "aron pack --platform=node",
         "dev": "npm run build -- --watch",
@@ -7,8 +8,7 @@
         "type-check": "tsc --noEmit",
         "lint": "eslint src"
     },
-    "license": "MIT",
-    "description": "Author technology like a top leader",
+    "description": "A set of human-friendly and beautiful console log syntax",
     "author": {
         "name": "Aron",
         "email": "i@aron.tw",
@@ -21,19 +21,13 @@
     "repository": {
         "type": "git",
         "url": "https://github.com/1aron/techor.git",
-        "directory": "packages/techor"
+        "directory": "packages/log"
     },
     "keywords": [
-        "author",
-        "technology",
-        "creator",
-        "config",
-        "opensource",
-        "plugin",
-        "package",
-        "framework",
-        "tool",
-        "software"
+        "console",
+        "log",
+        "chalk",
+        "semantic"
     ],
     "main": "./dist/index.cjs",
     "jsnext:main": "./dist/index.mjs",
@@ -51,8 +45,9 @@
         "dist"
     ],
     "sideEffects": false,
-    "dependencies": {
-        "cross-import": "^1.4.6",
-        "to-extend": "^1.4.6"
+    "devDependencies": {
+        "chalk": "^5.1.2",
+        "dedent": "^0.7.0",
+        "object-treeify": "^3.3.1"
     }
 }

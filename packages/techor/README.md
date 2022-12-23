@@ -41,3 +41,59 @@
 ```bash
 npm i techor
 ```
+
+First, define your `Options` and `Config`:
+```ts
+import type { TechorOptions } from 'techor'
+
+interface Options extends TechorOptions<Config> {
+    ...
+}
+
+interface Config {
+    ...
+}
+```
+
+## Usage
+
+```ts
+import Techor from 'techor'
+```
+
+### Create a techor instance
+
+```ts
+const techor = new Techor<Config>()
+```
+
+### Extend the Techor
+```ts
+const defaultOptions = {}
+
+class MyTech extends Techor<Config> {
+    constructor (
+        options: Options
+    ) {
+        super(defaultOptions, options)
+    }
+    ...
+}
+```
+
+## Properties
+
+#### Read user config file by `options.config`
+```ts
+readConfig(): Config
+```
+
+#### Get user config path
+```ts
+get configPath(): string
+```
+
+#### Get resolved user config path
+```ts
+get resolvedConfigPath(): string
+```
