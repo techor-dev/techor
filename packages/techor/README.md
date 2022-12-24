@@ -36,6 +36,13 @@
 
 </div>
 
+- Support multi-format JavaScript module configuration import like `master.css.{js,mjs,cjs,ts}`
+- Ability to import ESM or Typescript modules in a CommonJS environment
+- Support for deep configuration extensions
+- Independent compilation options and user configuration
+
+<br>
+
 ## Getting Started
 
 ```bash
