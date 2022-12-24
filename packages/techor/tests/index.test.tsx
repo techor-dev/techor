@@ -1,4 +1,5 @@
 import Techor from '../src'
+import { TechorOptions } from '../src/options'
 
 it('read .js config', () => {
     const techor = new Techor({ config: 'master.css.js', cwd: __dirname })
@@ -21,15 +22,22 @@ it('cannot read config', () => {
 })
 
 it('can extend Techor', () => {
-    const defaultOptions: any = {
+    interface Options extends TechorOptions<any> {
+        a?: number
+        b?: number
+    }
+    const defaultOptions: Options = {
         b: 0
     }
 
-    class MyTechor extends Techor<any> {
+    class MyTechor extends Techor<Options, any> {
         constructor(
-            options: any
+            options: Options
         ) {
             super(defaultOptions, options)
+        }
+        method() {
+            console.log(this.options.a)
         }
     }
     const myTechor = new MyTechor({ a: 1 })

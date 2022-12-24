@@ -5,12 +5,12 @@ import fg from 'fast-glob'
 import crossImport from 'cross-import'
 import extend from 'to-extend'
 
-export default class Techor<Config> {
-    options: TechorOptions<Config>
+export default class Techor<Options extends TechorOptions<Config>, Config> {
+    options: Options
     constructor(
-        ...options: TechorOptions<Config>[]
+        ...options: Options[]
     ) {
-        this.options = extend(defaultOptions, ...options)
+        this.options = extend(defaultOptions, ...options) as Options
     }
 
     readConfig(): Config {
