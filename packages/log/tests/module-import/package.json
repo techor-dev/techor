@@ -1,7 +1,0 @@
-{
-    "name": "module-import",
-    "files": [
-        "dist"
-    ],
-    "type": "module"
-}

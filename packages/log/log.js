@@ -1,4 +1,4 @@
-const log = require('../dist/index.cjs').default
+const log = require('./dist/index.cjs').default
 
 log(new Error('Foo'))
 
