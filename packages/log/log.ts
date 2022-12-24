@@ -1,4 +1,4 @@
-const log = require('./dist/index.cjs').default
+import log from './src'
 
 log(new Error('Foo'))
 

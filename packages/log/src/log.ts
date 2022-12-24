@@ -20,7 +20,7 @@ import { parseError } from './utils/parse-error'
 import chalk from 'chalk'
 
 const log = <{
-    (strings: TemplateStringsArray, ...messages: any[]): void
+    (strings: TemplateStringsArray | Error, ...messages: any[]): void
     conflict: Log,
     pass: Log,
     e: Log, error: Log,
@@ -31,7 +31,7 @@ const log = <{
     x: Log, invalid: Log,
     o: Log, valid: Log
     ok: Log,
-    d: Log, delete: Log,
+    d: Log, del: Log, delete: Log,
     a: Log, add: Log
     // load: (event: string, message?: string, options?: any) => any
     tree: (object: object | JSON) => void
