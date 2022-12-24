@@ -19,7 +19,7 @@
         "packages/*"
     ],
     "devDependencies": {
-        "aronrepo": "^1.0.0"
+        "aronrepo": "^1.0.0-beta.50"
     },
     "engines": {
         "node": "^18"
