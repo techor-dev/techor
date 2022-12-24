@@ -2,7 +2,6 @@ const log = require('../dist/index.cjs').default
 
 log(new Error('Foo'))
 
-log`[compile] test 3 items \`bg:red\` test ${'omg'} fwe [few] fuck20ms 20ms`
 log`${[1, 2, 3]}`
 log`-> prettier arrow`
 log`<- prettier arrow`
@@ -61,4 +60,7 @@ log.success`All files exported to desktop ${3}`
 log.warn`Warn Same file name`
 log.fail`Too many requests`
 
+console.log('')
 log`${[1, 2, 3, 'fg:blue', 'text:center', 'italic', true, false]}`
+log`[compile] test 3 items \`bg:red\` test ${'omg'} fwe [few] fuck20ms 20ms`
+log`[compile] +${10}+ valid inserted ..in.. ${20}ms ${['block', 'static']}`
