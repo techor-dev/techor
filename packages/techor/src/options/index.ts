@@ -1,10 +1,10 @@
-const defaultOptions = {
+const options: Options<any> = {
     cwd: process.cwd()
 }
 
-export default defaultOptions
+export default options
 
-export interface TechorOptions<Config> {
+export interface Options<Config> {
     config?: string | Config
     cwd?: string
 }
