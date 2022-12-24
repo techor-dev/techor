@@ -64,14 +64,14 @@ import Techor from 'techor'
 ### Create a techor instance
 
 ```ts
-const techor = new Techor<Config>()
+const techor = new Techor<Options, Config>()
 ```
 
 ### Extend the Techor
 ```ts
 const defaultOptions = {}
 
-class MyTech extends Techor<Config> {
+class MyTech extends Techor<Options, Config> {
     constructor (
         options: Options
     ) {

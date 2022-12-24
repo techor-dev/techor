@@ -49,3 +49,5 @@ export default class Techor<Options extends TechorOptions<Config>, Config> {
         return configPath ? upath.resolve(this.options.cwd, configPath) : ''
     }
 }
+
+export type { TechorOptions }
