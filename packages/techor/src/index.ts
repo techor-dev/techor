@@ -23,7 +23,7 @@ export default class Techor<Options extends TechorOptions<Config>, Config> {
             const configPath = this.configPath
             if (configPath) {
                 const userConfigModule = crossImport(configPath, { cwd })
-                userConfig = userConfigModule.default || userConfigModule
+                userConfig = userConfigModule.config || userConfigModule.default || userConfigModule
                 log.ok`Import **${configPath}** config`
             } else if (config) {
                 log.x`Cannot find -${config}- config`
