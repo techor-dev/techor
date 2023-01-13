@@ -1,1 +1,23 @@
-/Users/aron/techor/node_modules/aronrepo/.github/workflows/pull-request-title-check.yml
+name: Check title of pull request
+on:
+    pull_request_target:
+        types:
+            - opened
+            - reopened
+            - edited
+            - synchronize
+
+jobs:
+    check:
+        timeout-minutes: 15
+        runs-on: ubuntu-20.04
+        strategy:
+            matrix:
+                node-version: [18.12.1]
+        steps:
+            - name: Aron Actions
+              uses: 1aron/aronrepo@1.0.0
+              with:
+                  action: 'check-pull-request-title'
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

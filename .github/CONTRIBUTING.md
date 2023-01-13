@@ -18,11 +18,6 @@ npm run test -- --watch
 npm run test
 ```
 
-Commit your tests ( and create a Pull Request ):
-```bash
-Add @1aron tests
-```
-
 ## Linting
 Follow the [Aron's ESLint Preset](https://github.com/1aron/aronrepo/tree/beta/packages/eslint-config)
 ```bash
