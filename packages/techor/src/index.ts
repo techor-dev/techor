@@ -13,7 +13,7 @@ export default class Techor<Options extends TechorOptions<Config>, Config> {
         this.options = extend(defaultOptions, ...options) as Options
     }
 
-    readConfig(): Config {
+    readConfig(key = 'config'): Config | any {
         const { config, cwd } = this.options
         if (typeof config === 'object') {
             return config as Config
@@ -23,7 +23,7 @@ export default class Techor<Options extends TechorOptions<Config>, Config> {
             const configPath = this.configPath
             if (configPath) {
                 const userConfigModule = crossImport(configPath, { cwd })
-                userConfig = userConfigModule.config || userConfigModule.default || userConfigModule
+                userConfig = (key ? userConfigModule[key] : undefined) || userConfigModule.default || userConfigModule
                 log.ok`Import **${configPath}** config`
             } else if (config) {
                 log.x`Cannot find -${config}- config`
