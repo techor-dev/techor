@@ -6,7 +6,7 @@ export function paint(message: string) {
         .map((eachSplit) => eachSplit
             .replace(/^(\d*\.?\d*)$/g, `${chalk.blue('$1')}`)
             // 取代值與單位
-            .replace(/^(\d*\.?\d*)(YB|ZB|EB|PB|TB|GB|MB|KB|B|mb|kb|bit|zs|as|fs|ps|ns|µs|ms|s|m|h|d|m|y)$/g, `${chalk.cyan('$1')}${chalk.magenta('$2')}`)
+            .replace(/^(\d*\.?\d*)(YB|ZB|EB|PB|TB|GB|MB|KB|B|mb|kb|kB|bit|zs|as|fs|ps|ns|µs|ms|s|m|h|d|m|y)$/g, `${chalk.cyan('$1')}${chalk.magenta('$2')}`)
             // timestamp
             .replace(/^((?:[0-1]?[0-9]|[2][0-3]):[0-5][0-9]:[0-5][0-9] (?:AM|PM)?)$/g, `${chalk.dim('$1')}`)
             // [pink]
