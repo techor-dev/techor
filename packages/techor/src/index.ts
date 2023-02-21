@@ -1,5 +1,5 @@
 import upath from 'upath'
-import log from '@techor/log'
+import log, { chalk } from '@techor/log'
 import defaultOptions, { Options, Options as TechorOptions } from './options'
 import fg from 'fast-glob'
 import crossImport from 'cross-import'
@@ -7,11 +7,15 @@ import extend from 'to-extend'
 
 export default class Techor<Options extends TechorOptions<Config>, Config> {
     options: Options
+
     constructor(
         ...options: Options[]
     ) {
         this.options = extend(defaultOptions, ...options) as Options
     }
+
+    logConfigFound = () => log.ok`**${this.options.config}** config file found`
+    logConfigNotFound = () => log.i`No **${this.options.config}** config file found`
 
     readConfig(key = 'config'): Config | any {
         const { config, cwd } = this.options
@@ -24,11 +28,9 @@ export default class Techor<Options extends TechorOptions<Config>, Config> {
             if (configPath) {
                 const userConfigModule = crossImport(configPath, { cwd })
                 userConfig = (key ? userConfigModule[key] : undefined) || userConfigModule.default || userConfigModule
-                log.ok`Import **${configPath}** config`
-            } else if (config) {
-                log.x`Cannot find -${config}- config`
+                this.logConfigFound()
             } else {
-                log.ok`No config file`
+                this.logConfigNotFound()
             }
         } catch (err) {
             log.error(err)

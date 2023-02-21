@@ -1,5 +1,4 @@
-import Techor from '../src'
-import { TechorOptions } from '../src/options'
+import Techor, { Options as TechorOptions } from '../src'
 
 it('read .js config', () => {
     const techor = new Techor({ config: 'master.css.js', cwd: __dirname })
@@ -17,22 +16,28 @@ it('read .mjs config', () => {
 })
 
 it('cannot read config', () => {
-    const techor = new Techor({ config: 'vite.config.{js,mjs,cjs,ts}' })
+    const techor = new Techor({ config: 'vite.config.*' })
     expect(techor.readConfig()).toBeUndefined()
 })
 
 it('can extend Techor', () => {
-    interface Options extends TechorOptions<any> {
+    interface MyConfig {
+        config1?: number
+        config2?: number
+    }
+
+    interface MyOptions extends TechorOptions<MyConfig> {
         a?: number
         b?: number
     }
-    const defaultOptions: Options = {
+
+    const defaultOptions: MyOptions = {
         b: 0
     }
 
-    class MyTechor extends Techor<Options, any> {
+    class MyTechor extends Techor<MyOptions, any> {
         constructor(
-            options: Options
+            options: MyOptions
         ) {
             super(defaultOptions, options)
         }
