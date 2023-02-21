@@ -14,6 +14,7 @@ import { pass } from './pass'
 import { tree } from './tree'
 import { fail } from './fail'
 import { paint } from './paint'
+import { timestamp } from './timestamp'
 
 import processLog from './process-log'
 import { parseError } from './utils/parse-error'
@@ -25,6 +26,7 @@ const log = <{
     pass: Log,
     e: Log, error: Log,
     i: Log, info: Log,
+    t: Log, timestamp: Log,
     success: Log,
     warn: Log,
     fail: Log,
@@ -62,6 +64,7 @@ Object.assign(log, {
     x: invalid, invalid,
     i: info, info,
     e: error, error,
+    t: timestamp, timestamp,
     success,
     fail,
     warn,
