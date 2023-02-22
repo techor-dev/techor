@@ -2,7 +2,7 @@ import treeify from 'object-treeify'
 import { paint } from './paint'
 
 const tree = (object: JSON | object) => {
-    const message = treeify(parseObject(JSON.parse(JSON.stringify(removeEmpty(object)))), {
+    const message = treeify(parseObject(removeEmpty(JSON.parse(JSON.stringify(object)))), {
         spacerNeighbour: paint('..│..') + '  ',
         keyNoNeighbour: paint('..└─..') + ' ',
         keyNeighbour: paint('..├─..') + ' ',
@@ -13,17 +13,19 @@ const tree = (object: JSON | object) => {
 }
 
 function removeEmpty(data) {
-    const entries = Object.entries(data).filter(([, value]) => value !== null)
-    const clean = entries
-        .map(([key, v]) => {
-            const value = typeof v == 'object' ? removeEmpty(v) : v
-            return [key, value]
-        })
-        .filter(([key, v]) => {
-            return typeof v === 'object' ? Object.keys(v).length : true
-        })
-    //transform the key-value pairs back to an object.
-    return Object.fromEntries(clean)
+    for (const dataKey in data) {
+        const dataValue = data[dataKey]
+        if (typeof dataValue === 'object') {
+            if (dataValue !== null && !Object.keys(dataValue).length) {
+                delete data[dataKey]
+            } else {
+                data[dataKey] = removeEmpty(dataValue)
+            }
+        } else if (dataValue === undefined) {
+            delete data[dataKey]
+        }
+    }
+    return data
 }
 
 function parseObject(object) {
