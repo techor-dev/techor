@@ -14,8 +14,8 @@ export default class Techor<Options extends TechorOptions<Config>, Config> {
         this.options = extend(defaultOptions, ...options) as Options
     }
 
-    logConfigFound = () => log.ok`**${this.options.config}** config file found`
-    logConfigNotFound = () => log.i`No **${this.options.config}** config file found`
+    logConfigFound = (configPath: string) => log.ok`**${configPath}** config file found`
+    logConfigNotFound = (configPath: string) => log.i`No **${configPath}** config file found`
 
     readConfig(key = 'config'): Config | any {
         const { config, cwd } = this.options
@@ -28,9 +28,9 @@ export default class Techor<Options extends TechorOptions<Config>, Config> {
             if (configPath) {
                 const userConfigModule = crossImport(configPath, { cwd })
                 userConfig = (key ? userConfigModule[key] : undefined) || userConfigModule.default || userConfigModule
-                this.logConfigFound()
+                this.logConfigFound(configPath)
             } else {
-                this.logConfigNotFound()
+                this.logConfigNotFound(configPath)
             }
         } catch (err) {
             log.error(err)
