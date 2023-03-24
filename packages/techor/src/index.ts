@@ -30,7 +30,7 @@ export default class Techor<Options extends TechorOptions<Config>, Config> {
                 userConfig = (key ? userConfigModule[key] : undefined) || userConfigModule.default || userConfigModule
                 this.logConfigFound(configPath)
             } else {
-                this.logConfigNotFound(configPath)
+                this.logConfigNotFound(config as string)
             }
         } catch (err) {
             log.error(err)
