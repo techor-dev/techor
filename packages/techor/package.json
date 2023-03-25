@@ -53,9 +53,9 @@
     "sideEffects": false,
     "dependencies": {
         "@techor/log": "",
-        "cross-import": "^1.5.3",
+        "cross-import": "^1.5.4",
         "fast-glob": "^3.2.12",
-        "to-extend": "^1.4.6",
+        "to-extend": "^1.5.4",
         "upath": "^2.0.1"
     }
 }
