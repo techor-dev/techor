@@ -1,0 +1,39 @@
+{
+    "name": "commitlint-config-techor",
+    "scripts": {
+        "test": "jest"
+    },
+    "license": "MIT",
+    "description": "Check your commits with Techor's commitlint config",
+    "author": {
+        "name": "Aron",
+        "email": "i@aron.tw",
+        "url": "https://aron.tw"
+    },
+    "homepage": "https://aron.tw",
+    "bugs": {
+        "url": "https://github.com/1aron/techor/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/1aron/techor.git",
+        "directory": "packages/commitlint-config"
+    },
+    "keywords": [
+        "conventional-changelog",
+        "commitlint",
+        "commitlint-config",
+        "techor"
+    ],
+    "main": ".commitlintrc.js",
+    "files": [
+        ".commitlintrc.js",
+        "parser-preset.js"
+    ],
+    "dependencies": {
+        "@commitlint/cli": "",
+        "husky": "",
+        "conventional-changelog-techor": "",
+        "techor-conventional-commits": ""
+    }
+}

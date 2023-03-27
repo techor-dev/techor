@@ -1,0 +1,42 @@
+{
+    "name": "techor-github-actions",
+    "private": true,
+    "scripts": {
+        "test": "jest"
+    },
+    "license": "MIT",
+    "version": "0.1.0",
+    "description": "A set of GitHub Actions for techor ecosystem includes PR title checks",
+    "main": "src/index.js",
+    "author": {
+        "name": "Aron",
+        "email": "i@aron.tw",
+        "url": "https://aron.tw"
+    },
+    "homepage": "https://aron.tw",
+    "bugs": {
+        "url": "https://github.com/1aron/techor/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/1aron/techor.git",
+        "directory": "packages/github-actions"
+    },
+    "keywords": [
+        "conventional-commits",
+        "commitlint",
+        "pull-request-title",
+        "pr",
+        "title",
+        "check",
+        "techor"
+    ],
+    "dependencies": {
+        "@actions/core": "^1.10.0",
+        "@actions/github": "^5.1.1",
+        "techor-conventional-commits": "",
+        "conventional-changelog-techor": "",
+        "conventional-changelog-conventionalcommits": "^5.0.0",
+        "conventional-commits-parser": "^3.2.4"
+    }
+}

@@ -1,0 +1,39 @@
+{
+    "name": "eslint-config-techor",
+    "license": "MIT",
+    "description": "Techor's ESLint config",
+    "author": {
+        "name": "Aron",
+        "email": "i@aron.tw",
+        "url": "https://aron.tw"
+    },
+    "homepage": "https://aron.tw",
+    "bugs": {
+        "url": "https://github.com/1aron/techor/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/1aron/techor.git",
+        "directory": "packages/eslint-config"
+    },
+    "keywords": [
+        "techor",
+        "lint",
+        "styleguide",
+        "stylelint",
+        "eslint",
+        "eslintconfig",
+        "preset",
+        "config",
+        "typescript"
+    ],
+    "main": ".eslintrc.js",
+    "files": [
+        ".eslintrc.js"
+    ],
+    "dependencies": {
+        "@typescript-eslint/eslint-plugin": "",
+        "@typescript-eslint/parser": "",
+        "eslint": ""
+    }
+}

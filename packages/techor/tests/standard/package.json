@@ -1,0 +1,15 @@
+{
+    "name": "test-standard",
+    "sideEffects": false,
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "exports": {
+        ".": {
+            "require": "./dist/index.js",
+            "import": "./dist/index.mjs"
+        }
+    },
+    "files": [
+        "dist"
+    ]
+}

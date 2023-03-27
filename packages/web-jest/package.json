@@ -1,0 +1,36 @@
+{
+    "name": "techor-web-jest",
+    "license": "MIT",
+    "description": "Techor's jest preset for web",
+    "author": {
+        "name": "Aron",
+        "email": "i@aron.tw",
+        "url": "https://aron.tw"
+    },
+    "homepage": "https://aron.tw",
+    "bugs": {
+        "url": "https://github.com/1aron/techor/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/1aron/techor.git",
+        "directory": "packages/techor-web-jest"
+    },
+    "keywords": [
+        "jest",
+        "preset",
+        "config",
+        "techor",
+        "puppeteer",
+        "jest-puppeteer",
+        "chromeless",
+        "chrome-headless"
+    ],
+    "files": [
+        "jest-preset.js"
+    ],
+    "dependencies": {
+        "techor-jest": "",
+        "jest-environment-jsdom": "^29.3.1"
+    }
+}

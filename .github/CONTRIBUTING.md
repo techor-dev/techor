@@ -19,7 +19,7 @@ npm run test
 ```
 
 ## Linting
-Follow the [Aron's ESLint Preset](https://github.com/1aron/aronrepo/tree/beta/packages/eslint-config)
+Follow the [Techor's ESLint Preset](https://github.com/1aron/techor/tree/beta/packages/eslint-config)
 ```bash
 npm run lint
 ```
@@ -35,7 +35,7 @@ npm run type-check
 ```
 
 ## Commit Checking
-Follow the [Aron's Conventional Commits](https://github.com/1aron/aronrepo/tree/beta/packages/conventional-commits)
+Follow the [Techor's Conventional Commits](https://github.com/1aron/techor/tree/beta/packages/conventional-commits)
 ```bash
 npm run commit-check
 ```

@@ -1,0 +1,29 @@
+name: Aron Actions
+author: Aron <i@aron.tw>
+description: A set of GitHub Actions for techor ecosystem
+inputs:
+    action:
+        description: The action to execute.
+        required: true
+    pr-title-check-valid-message:
+        description: Description of the status check if validation succeeds.
+        required: false
+        default: follows the techor-conventional-commits
+    pr-title-check-invalid-message:
+        description: Description of the status check if validation fails.
+        required: false
+        default: doesn't follow the techor-conventional-commits
+    pr-title-check-name:
+        description: Persistent status check context key
+        required: false
+        default: Title of pull request
+    pr-title-check-detail-url:
+        description: URL to be used when linking the "Details" in the actions overview.
+        required: false
+        default: https://github.com/1aron/techor/tree/main/packages/conventional-commits
+runs:
+    using: docker
+    image: packages/github-actions/Dockerfile
+branding:
+    icon: shield
+    color: green

@@ -1,0 +1,54 @@
+{
+    "name": "techor-conventional-commits",
+    "license": "MIT",
+    "scripts": {
+        "build:cjs": "esbuild src/index.ts --bundle --outfile=dist/cjs/index.js --format=cjs --minify --sourcemap --platform=node",
+        "build:esm": "esbuild src/index.ts --bundle --outfile=dist/esm/index.js --format=esm --minify --sourcemap --platform=node",
+        "build:type": "tsc --emitDeclarationOnly --preserveWatchOutput",
+        "build": "conc 'npm:build:*'",
+        "dev": "conc 'npm:build:* -- --watch'",
+        "type-check": "tsc --noEmit",
+        "lint": "eslint src"
+    },
+    "description": "A human-readable set of conventional commits, with version rules and changelog groupings",
+    "author": {
+        "name": "Aron",
+        "email": "i@aron.tw",
+        "url": "https://aron.tw"
+    },
+    "homepage": "https://aron.tw",
+    "bugs": {
+        "url": "https://github.com/1aron/techor/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/1aron/techor.git",
+        "directory": "packages/conventional-commits"
+    },
+    "keywords": [
+        "config",
+        "extends",
+        "commits",
+        "release",
+        "version",
+        "conventional-commits",
+        "semantic-release",
+        "techor",
+        "preset"
+    ],
+    "main": "./dist/cjs/index.js",
+    "jsnext:main": "./dist/esm/index.js",
+    "esnext": "./dist/esm/index.js",
+    "module": "./dist/esm/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "require": "./dist/cjs/index.js",
+            "import": "./dist/esm/index.js",
+            "types": "./dist/index.d.ts"
+        }
+    },
+    "files": [
+        "dist"
+    ]
+}

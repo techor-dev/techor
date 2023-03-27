@@ -1,0 +1,10 @@
+{
+    "name": "bin",
+    "bin": {
+        "mcss": "./dist/bin/index.js",
+        "mastercss": "./dist/bin/index.js"
+    },
+    "files": [
+        "dist"
+    ]
+}

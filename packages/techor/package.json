@@ -1,7 +1,7 @@
 {
     "name": "techor",
     "scripts": {
-        "build": "aron pack --platform=node",
+        "build": "techor pack --platform=node",
         "dev": "npm run build -- --watch",
         "test": "jest",
         "type-check": "tsc --noEmit",
@@ -11,7 +11,7 @@
     "description": "Author technology like a top leader",
     "author": {
         "name": "Aron",
-        "email": "i@aron.tw",
+        "email": "i@techor.tw",
         "url": "https://aron.tw"
     },
     "homepage": "https://github.com/1aron/techor",
@@ -33,7 +33,15 @@
         "package",
         "framework",
         "tool",
-        "software"
+        "software",
+        "pack",
+        "esbuild",
+        "version",
+        "bump",
+        "bundle",
+        "commonjs",
+        "esm",
+        "esmodule"
     ],
     "main": "./dist/index.cjs",
     "jsnext:main": "./dist/index.mjs",
@@ -47,6 +55,9 @@
             "types": "./dist/index.d.ts"
         }
     },
+    "bin": {
+        "techor": "./dist/bin/index"
+    },
     "files": [
         "dist"
     ],
@@ -56,6 +67,21 @@
         "cross-import": "^1.5.4",
         "fast-glob": "^3.2.12",
         "to-extend": "^1.5.4",
-        "upath": "^2.0.1"
+        "upath": "^2.0.1",
+        "esbuild": "^0.17.14",
+        "execa": "^6.1.0",
+        "fs-extra": "^10.1.0",
+        "lodash.camelcase": "^4.3.0",
+        "lodash.isequal": "^4.5.0",
+        "normalize-path": "^3.0.0",
+        "p-all": "^4.0.0",
+        "pretty-bytes": "^6.0.0",
+        "shelljs": "^0.8.5",
+        "shx": "^0.3.4",
+        "to-line": "^1.5.0"
+    },
+    "devDependencies": {
+        "dedent": "^0.7.0",
+        "pkg-types": "^1.0.1"
     }
 }

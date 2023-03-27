@@ -1,0 +1,59 @@
+{
+    "name": "conventional-changelog-techor",
+    "scripts": {
+        "build:cjs": "esbuild src/index.ts --bundle --outfile=dist/cjs/index.js --format=cjs --minify --sourcemap --platform=node",
+        "build:esm": "esbuild src/index.ts --bundle --outfile=dist/esm/index.js --format=esm --minify --sourcemap --platform=node",
+        "build:type": "tsc --emitDeclarationOnly --preserveWatchOutput",
+        "build": "conc 'npm:build:*'",
+        "dev": "conc 'npm:build:* -- --watch'",
+        "test": "jest",
+        "type-check": "tsc --noEmit",
+        "lint": "eslint src"
+    },
+    "license": "MIT",
+    "description": "Beautiful changelog based on Techor's conventional commits",
+    "author": {
+        "name": "Aron",
+        "email": "i@aron.tw",
+        "url": "https://aron.tw"
+    },
+    "homepage": "https://aron.tw",
+    "bugs": {
+        "url": "https://github.com/1aron/techor/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/1aron/techor.git",
+        "directory": "packages/conventional-changelog-config"
+    },
+    "keywords": [
+        "conventional-changelog",
+        "commits",
+        "changelog",
+        "techor",
+        "preset"
+    ],
+    "main": "./dist/cjs/index.js",
+    "jsnext:main": "./dist/esm/index.js",
+    "esnext": "./dist/esm/index.js",
+    "module": "./dist/esm/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "require": "./dist/cjs/index.js",
+            "import": "./dist/esm/index.js",
+            "types": "./dist/index.d.ts"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "dependencies": {
+        "techor-conventional-commits": "",
+        "compare-func": "^2.0.0",
+        "dedent": "^0.7.0"
+    },
+    "devDependencies": {
+        "conventional-changelog-core": "^4.2.4"
+    }
+}

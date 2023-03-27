@@ -1,0 +1,12 @@
+{
+    "name": "specified-ext",
+    "main": "dist/index.js",
+    "exports": {
+        ".": {
+            "require": "./dist/index.js"
+        }
+    },
+    "files": [
+        "dist"
+    ]
+}
