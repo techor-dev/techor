@@ -9,8 +9,8 @@
         "test": "turbo run test --parallel",
         "lint": "turbo run lint --parallel",
         "type-check": "turbo run type-check",
-        "dev": "turbo run dev",
-        "version": "tsx ./packages/techor/src/bin.ts version",
+        "dev": "turbo run dev --force",
+        "version": "tsx ./packages/techor/src/bin version",
         "analyze:commit": "semantic-release --debug"
     },
     "repository": {

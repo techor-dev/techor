@@ -1,7 +1,7 @@
 {
     "name": "techor",
     "scripts": {
-        "build": "tsx ./src/bin.ts pack --shakable",
+        "build": "tsx ./src/bin pack --shakable",
         "dev": "npm run build -- --watch",
         "test": "jest",
         "type-check": "tsc --noEmit",
@@ -65,7 +65,6 @@
         "./src/commands/*"
     ],
     "dependencies": {
-        "@techor/log": "",
         "commander": "^9.4.1",
         "cross-import": "^1.5.4",
         "fast-glob": "^3.2.12",

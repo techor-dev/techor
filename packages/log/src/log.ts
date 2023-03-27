@@ -1,5 +1,4 @@
 import treeify from 'object-treeify'
-
 import { add } from './add'
 import { error } from './error'
 import { conflict } from './conflict'
@@ -15,29 +14,12 @@ import { tree } from './tree'
 import { fail } from './fail'
 import { paint } from './paint'
 import { timestamp } from './timestamp'
-
 import processLog from './process-log'
 import { parseError } from './utils/parse-error'
 import chalk from 'chalk'
 
-const log = <{
-    (strings: TemplateStringsArray | Error, ...messages: any[]): void
-    conflict: Log,
-    pass: Log,
-    e: Log, error: Log,
-    i: Log, info: Log,
-    t: Log, timestamp: Log,
-    success: Log,
-    warn: Log,
-    fail: Log,
-    x: Log, invalid: Log,
-    o: Log, valid: Log
-    ok: Log,
-    d: Log, del: Log, delete: Log,
-    a: Log, add: Log
-    // load: (event: string, message?: string, options?: any) => any
-    tree: (object: object | JSON) => void
-}>((strings, ...slots) => {
+// @ts-ignore
+const log: Log = ((strings, ...slots) => {
     if (strings instanceof Error) {
         const { message, stackTree } = parseError(strings)
         console.log('')
@@ -77,4 +59,21 @@ Object.assign(log, {
 
 export { log }
 
-export type Log = (strings: TemplateStringsArray, ...messages: any[]) => void
+export interface Log {
+    (strings: TemplateStringsArray, ...messages: any[]): void
+    conflict: Log,
+    pass: Log,
+    e: Log, error: Log,
+    i: Log, info: Log,
+    t: Log, timestamp: Log,
+    success: Log,
+    warn: Log,
+    fail: Log,
+    x: Log, invalid: Log,
+    o: Log, valid: Log
+    ok: Log,
+    d: Log, del: Log, delete: Log,
+    a: Log, add: Log
+    // load: (event: string, message: string, options: any) => any
+    tree: (object: object | JSON) => void
+}

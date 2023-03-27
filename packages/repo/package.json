@@ -1,13 +1,6 @@
 {
-    "name": "@techor/reop",
+    "name": "@techor/repo",
     "license": "MIT",
-    "scripts": {
-        "build": "esbuild src/bin.ts --bundle --outfile=dist/bin/index --format=cjs --minify --sourcemap --platform=node --external:esbuild --external:to-line --external:@techor/log --external:commitlint-config-techor --external:conventional-changelog-techor --external:eslint-config-techor --external:fs-extra --external:semantic-release-config-techor --external:commander --external:fast-glob",
-        "dev": "conc 'npm:build -- --watch'",
-        "type-check": "tsc --noEmit",
-        "test": "jest",
-        "lint": "eslint src"
-    },
     "description": "A monorepo ecosystem integrating first-class packages and build systems 📦",
     "author": {
         "name": "Aron",
@@ -27,9 +20,7 @@
         "techor": "./dist/bin/index"
     },
     "files": [
-        "dist",
-        "scripts",
-        ".github"
+        "dist"
     ],
     "peerDependencies": {
         "@types/node": "",

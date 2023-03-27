@@ -26,7 +26,7 @@ export function createFillModuleExtPlugin(outext = '.js', outdir = 'src'): Plugi
                                     const modulePath: string = matches[2]
                                     const parsedModulePath = path.parse(modulePath)
                                     if (parsedModulePath.ext) {
-                                        return matches[1]
+                                        return matches[0]
                                     }
                                     const targetDir = path.resolve(currentDirPath, modulePath)
                                     const foundModuleSourcePath = fg.sync([

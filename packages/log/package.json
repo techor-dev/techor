@@ -2,7 +2,7 @@
     "name": "@techor/log",
     "license": "MIT",
     "scripts": {
-        "build": "techor pack --platform=node",
+        "build": "tsx ../techor/src/bin pack --shakable",
         "dev": "npm run build -- --watch",
         "test": "jest",
         "type-check": "tsc --noEmit",
@@ -29,15 +29,15 @@
         "chalk",
         "semantic"
     ],
-    "main": "./dist/index.cjs",
-    "jsnext:main": "./dist/index.mjs",
-    "esnext": "./dist/index.mjs",
-    "module": "./dist/index.mjs",
+    "main": "./dist/cjs/index.js",
+    "jsnext:main": "./dist/esm/index.mjs",
+    "esnext": "./dist/esm/index.mjs",
+    "module": "./dist/esm/index.mjs",
     "types": "./dist/index.d.ts",
     "exports": {
         ".": {
-            "require": "./dist/index.cjs",
-            "import": "./dist/index.mjs",
+            "require": "./dist/cjs/index.js",
+            "import": "./dist/esm/index.mjs",
             "types": "./dist/index.d.ts"
         }
     },

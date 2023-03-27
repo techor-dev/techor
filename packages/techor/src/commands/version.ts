@@ -2,7 +2,7 @@ import { program } from 'commander'
 import fg from 'fast-glob'
 import fs from 'fs-extra'
 import path from 'path'
-import log, { paint } from '@techor/log'
+import log, { paint } from '../../../log/src'
 import { readPackage } from '../utils/read-package'
 
 const pkg = readPackage()

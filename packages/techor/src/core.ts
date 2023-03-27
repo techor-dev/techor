@@ -1,5 +1,5 @@
 import upath from 'upath'
-import log from '@techor/log'
+import log from '../../log/src'
 import defaultOptions, { Options, Options as TechorOptions } from './options'
 import fg from 'fast-glob'
 import crossImport from 'cross-import'
