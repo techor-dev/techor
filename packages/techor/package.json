@@ -43,7 +43,7 @@
         "esm",
         "esmodule"
     ],
-    "main": "./dist/index.cjs",
+    "main": "./dist/index.js",
     "jsnext:main": "./dist/index.mjs",
     "esnext": "./dist/index.mjs",
     "module": "./dist/index.mjs",
@@ -66,12 +66,10 @@
     ],
     "dependencies": {
         "commander": "^9.4.1",
-        "cross-import": "^1.5.4",
-        "fast-glob": "^3.2.12",
-        "to-extend": "^1.5.4",
-        "upath": "^2.0.1",
+        "cross-import": "^1.5.5",
         "esbuild": "^0.17.14",
         "execa": "^6.1.0",
+        "fast-glob": "^3.2.12",
         "fs-extra": "^10.1.0",
         "lodash.camelcase": "^4.3.0",
         "lodash.isequal": "^4.5.0",
@@ -80,7 +78,9 @@
         "pretty-bytes": "^6.0.0",
         "shelljs": "^0.8.5",
         "shx": "^0.3.4",
-        "to-line": "^1.5.0"
+        "to-extend": "^1.5.4",
+        "to-line": "^1.5.0",
+        "upath": "^2.0.1"
     },
     "devDependencies": {
         "dedent": "^0.7.0",

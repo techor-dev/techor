@@ -1,6 +1,15 @@
 <br>
 <div align="center">
 
+<p align="center">
+    <a href="https://repo.master.co">
+        <picture>
+            <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/33840671/227841265-4fd5a57c-0eb8-4fcf-a8ff-a266c990010c.svg">
+            <source media="(prefers-color-scheme: light)" srcset="https://user-images.githubusercontent.com/33840671/227841250-bfe4af56-2394-4101-b3ba-a4086f171ead.svg">
+            <img alt="techor" src="https://user-images.githubusercontent.com/33840671/227841250-bfe4af56-2394-4101-b3ba-a4086f171ead.svg" width="100%">
+        </picture>
+    </a>
+</p>
 <p align="center">Author technology like a top leader</p>
 
 <p align="center">
@@ -472,7 +481,7 @@ techor version 1.2.0
 
 For version range, check out the [semver](https://github.com/npm/node-semver#versions)
 
-Typically, you would use [Techor's semantic release](https://github.com/1aron/techor/tree/main/packages/semantic-release-config) with CI to automate the version and release commands.
+Typically, you would use [Aron's semantic release](https://github.com/1aron/techor/tree/main/packages/semantic-release-config) with CI to automate the version and release commands.
 
 ## Build system for monorepo
 
@@ -602,7 +611,7 @@ The same goes for `lint` and `type-check`.
 
 While the `build` command will work with `deploy` and `release`, techor builds a complete package release workflow and the tools needed during it.
 
-Next, check out the [Techor's semantic release](https://github.com/1aron/techor/tree/main/packages/semantic-release-config)
+Next, check out the [Aron's semantic release](https://github.com/1aron/techor/tree/main/packages/semantic-release-config)
 
 <br>
 
