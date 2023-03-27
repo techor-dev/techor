@@ -16,9 +16,6 @@
         "url": "https://github.com/1aron/techor.git",
         "directory": "packages/techor"
     },
-    "bin": {
-        "techor": "./dist/bin/index"
-    },
     "files": [
         "dist"
     ],
