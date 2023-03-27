@@ -65,6 +65,7 @@
         "./src/commands/*"
     ],
     "dependencies": {
+        "@techor/log": "",
         "commander": "^9.4.1",
         "cross-import": "^1.5.5",
         "esbuild": "^0.17.14",
