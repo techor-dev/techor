@@ -1,5 +1,6 @@
+
+/** @type {import('techor').Config} */
 export default {
-    /** @type {import('esbuild').BuildOptions} */
     pack: {
         plugins: [
 

@@ -60,7 +60,7 @@ Object.assign(log, {
 export { log }
 
 export interface Log {
-    (strings: TemplateStringsArray, ...messages: any[]): void
+    (strings: TemplateStringsArray | Error, ...messages: any[]): void
     conflict: Log,
     pass: Log,
     e: Log, error: Log,

@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
-        "experimentalDecorators": true,
         "baseUrl": ".",
+        "experimentalDecorators": true,
         "moduleResolution": "Node",
         "esModuleInterop": true,
         "allowJs": true,
@@ -10,9 +10,12 @@
         "skipLibCheck": true,
         "declaration": true,
         "sourceMap": true,
+        "types": [
+            "node",
+            "jest"
+        ],
         "lib": [
-            "es2021",
-            "dom"
+            "esnext"
         ]
-    }
+    },
 }

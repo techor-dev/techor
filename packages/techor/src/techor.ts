@@ -1,6 +1,6 @@
 import Techor from './core'
-import type { Options as TechorOptions } from './core'
-import { BuildOptions } from 'esbuild';
+import type { Options as TechorOptions } from './options'
+import { BuildOptions } from 'esbuild'
 
 export interface Config {
     pack: BuildOptions

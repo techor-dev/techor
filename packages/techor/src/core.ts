@@ -1,6 +1,6 @@
 import upath from 'upath'
 import log from '../../log/src'
-import defaultOptions, { Options, Options as TechorOptions } from './options'
+import defaultOptions, { Options as TechorOptions } from './options'
 import fg from 'fast-glob'
 import crossImport from 'cross-import'
 import extend from 'to-extend'
@@ -51,7 +51,3 @@ export default class Techor<Options extends TechorOptions<Config>, Config> {
         return configPath ? upath.resolve(this.options.cwd, configPath) : ''
     }
 }
-
-export { default as options } from './options'
-
-export type { Options }

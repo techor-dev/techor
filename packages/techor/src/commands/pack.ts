@@ -144,6 +144,9 @@ program.command('pack [entryPaths...]')
                             && eachBuildTask.options.outdir === buildOptions.outdir
                         )
                     )
+            if (!buildOptions.entryPoints.length) {
+                return
+            }
 
             const eachBuildTask: BuildTask = {
                 options: buildOptions,
@@ -182,10 +185,6 @@ program.command('pack [entryPaths...]')
                         await ctx.serve()
                     }
                 }
-            }
-
-            if (!buildOptions.entryPoints.length) {
-                return
             }
 
             buildTasks.push(eachBuildTask)

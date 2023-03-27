@@ -3,7 +3,7 @@ import type { Log } from './log'
 import { paint } from './paint'
 import processLog from './process-log'
 
-const timestamp: Log = (strings, ...slots) => {
+const timestamp = (strings: TemplateStringsArray, ...slots: any[]) => {
     const message = paint('$t ') + processLog(strings, slots)
     console.log(message)
     return message
