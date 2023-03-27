@@ -1,8 +1,0 @@
-{
-    "name": "css-args",
-    "main": "./dist/index.css",
-    "style": "./dist/index.css",
-    "files": [
-        "dist"
-    ]
-}

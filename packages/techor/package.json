@@ -1,7 +1,7 @@
 {
     "name": "techor",
     "scripts": {
-        "build": "techor pack --platform=node",
+        "build": "tsx ./src/bin.ts pack --shakable",
         "dev": "npm run build -- --watch",
         "test": "jest",
         "type-check": "tsc --noEmit",
@@ -11,7 +11,7 @@
     "description": "Author technology like a top leader",
     "author": {
         "name": "Aron",
-        "email": "i@techor.tw",
+        "email": "i@aron.tw",
         "url": "https://aron.tw"
     },
     "homepage": "https://github.com/1aron/techor",
@@ -50,8 +50,8 @@
     "types": "./dist/index.d.ts",
     "exports": {
         ".": {
-            "require": "./dist/index.cjs",
-            "import": "./dist/index.mjs",
+            "require": "./dist/cjs/index.js",
+            "import": "./dist/esm/index.mjs",
             "types": "./dist/index.d.ts"
         }
     },
@@ -61,9 +61,12 @@
     "files": [
         "dist"
     ],
-    "sideEffects": false,
+    "sideEffects": [
+        "./src/commands/*"
+    ],
     "dependencies": {
         "@techor/log": "",
+        "commander": "^9.4.1",
         "cross-import": "^1.5.4",
         "fast-glob": "^3.2.12",
         "to-extend": "^1.5.4",

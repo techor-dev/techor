@@ -15,19 +15,8 @@ import isEqual from 'lodash.isequal'
 import { esbuildOptionNames } from '../utils/esbuild-option-names'
 import { createFillModuleExtPlugin } from '../plugins/esbuild-plugin-fill-module-ext'
 import { removeImportSvelteModuleExtensionPlugin } from '../plugins/esbuild-remove-import-svelte-module-extension'
-import Techor from 'techor'
-import type { Options as TechorOptions } from 'techor'
 import extend from 'to-extend'
-
-type Options = TechorOptions<Config>
-
-interface Config {
-    pack: BuildOptions
-}
-
-const techor = new Techor<Options, Config>({
-    config: 'techor.{js,ts,cjs,mjs}',
-})
+import techor from '../techor'
 
 const ext2format = {
     'js': 'cjs',

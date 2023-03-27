@@ -9,5 +9,6 @@ module.exports = {
                 importHelpers: true
             }
         }
-    }
+    },
+    transformIgnorePatterns: ['node_modules/(?!callsites)/']
 }

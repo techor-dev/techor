@@ -1,6 +1,0 @@
-{
-    "name": "c",
-    "peerDependencies": {
-        "a": ""
-    }
-}

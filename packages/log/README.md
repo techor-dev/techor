@@ -105,7 +105,7 @@ log.add`Add +3+ files`
 
 console.log('')
 log.o`Valid commit format "Fix(Compiler): Import user config file path problem"`
-log.x`Invalid commit format .Aron Conventional Commits.`
+log.x`Invalid commit format .Techor Conventional Commits.`
 
 console.log('')
 log.success`All files exported to desktop ${3}`

@@ -10,7 +10,7 @@
         "lint": "turbo run lint --parallel",
         "type-check": "turbo run type-check",
         "dev": "turbo run dev",
-        "version": "node ./packages/techor/dist/bin/index version",
+        "version": "tsx ./packages/techor/src/bin.ts version",
         "analyze:commit": "semantic-release --debug"
     },
     "repository": {
@@ -31,7 +31,8 @@
         "puppeteer": "^19.2.2",
         "strip-ansi": "^7.0.1",
         "tmp": "^0.2.1",
-        "ts-dedent": "^2.2.0"
+        "ts-dedent": "^2.2.0",
+        "tsx": "^3.12.6"
     },
     "engines": {
         "node": "^18"

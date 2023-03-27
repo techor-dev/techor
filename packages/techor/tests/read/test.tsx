@@ -1,4 +1,4 @@
-import Techor, { Options as TechorOptions } from '../src'
+import Techor, { Options as TechorOptions } from '../../src'
 
 it('read .js config', () => {
     const techor = new Techor({ config: 'master.css.js', cwd: __dirname })

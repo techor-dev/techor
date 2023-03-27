@@ -13,7 +13,7 @@ jobs:
                 node-version: [18.12.1]
         steps:
             - uses: actions/checkout@v3
-            - name: Aron Actions
+            - name: Techor Actions
               uses: 1aron/techor@v1.0.0-beta.49
               with:
                   action: 'sync-dev-branches'

@@ -4,7 +4,7 @@ import dedent from 'dedent'
 import stripAnsi from 'strip-ansi'
 
 test('bump to specific version by analyzing dependencies', () => {
-    const outputLog = execSync('node ../dist/bin/index version 1.2.0 --list',
+    const outputLog = execSync('NODE_OPTIONS=--experimental-vm-modules npx tsx ../src/bin version 1.2.0 --list',
         { cwd: __dirname, stdio: 'pipe' })
         .toString()
     expect(stripAnsi(outputLog)).toContain(dedent`

@@ -3,7 +3,7 @@ import dedent from 'ts-dedent'
 import { expectFileIncludes } from '../../../../utils/expect-file-includes'
 
 it('standard package outputs', () => {
-    execSync('../../dist/bin/index pack --no-minify --shakable', { cwd: __dirname, stdio: 'pipe' })
+    execSync('tsx ../../src/bin pack --no-minify --shakable', { cwd: __dirname, stdio: 'pipe' })
 
     expectFileIncludes('dist/index.js', [
         'module.exports = __toCommonJS'
