@@ -74,8 +74,6 @@
         "lodash.camelcase": "^4.3.0",
         "lodash.isequal": "^4.5.0",
         "normalize-path": "^3.0.0",
-        "pretty-bytes": "^6.0.0",
-        "shelljs": "^0.8.5",
         "shx": "^0.3.4",
         "to-extend": "^1.5.4",
         "to-line": "^1.5.0",
@@ -83,6 +81,7 @@
     },
     "devDependencies": {
         "dedent": "^0.7.0",
-        "pkg-types": "^1.0.1"
+        "pkg-types": "^1.0.1",
+        "pretty-bytes": "^6.1.0"
     }
 }
