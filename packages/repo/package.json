@@ -19,6 +19,9 @@
     "files": [
         "dist"
     ],
+    "publishConfig": {
+        "access": "public"
+    },
     "peerDependencies": {
         "@types/node": "",
         "turbo": "",
