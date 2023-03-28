@@ -2,7 +2,6 @@ import { program } from 'commander'
 import fg from 'fast-glob'
 import { execSync } from 'child_process'
 import { type BuildOptions, context, Metafile } from 'esbuild'
-import pAll from 'p-all'
 import log, { chalk } from '@techor/log'
 import path from 'upath'
 import { readPackage } from '../utils/read-package'
@@ -320,7 +319,7 @@ program.command('pack [entryPaths...]')
             }
         }
 
-        await pAll(buildTasks.map(({ run }) => run))
+        await Promise.all(buildTasks.map(({ run }) => run()))
 
         console.log('')
 

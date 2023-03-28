@@ -74,7 +74,6 @@
         "lodash.camelcase": "^4.3.0",
         "lodash.isequal": "^4.5.0",
         "normalize-path": "^3.0.0",
-        "p-all": "^4.0.0",
         "pretty-bytes": "^6.0.0",
         "shelljs": "^0.8.5",
         "shx": "^0.3.4",
