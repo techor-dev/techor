@@ -3,6 +3,7 @@
     "sideEffects": false,
     "main": "./dist/index.js",
     "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
     "exports": {
         ".": {
             "require": "./dist/index.js",
@@ -11,5 +12,8 @@
     },
     "files": [
         "dist"
-    ]
+    ],
+    "devDependencies": {
+        "typescript": "^4.9.5"
+    }
 }

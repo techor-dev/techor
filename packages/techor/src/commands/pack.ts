@@ -1,6 +1,6 @@
 import { program } from 'commander'
 import fg from 'fast-glob'
-import { execaCommand } from 'execa'
+import { execSync } from 'child_process'
 import { type BuildOptions, context, Metafile } from 'esbuild'
 import pAll from 'p-all'
 import log, { chalk } from '@techor/log'
@@ -295,19 +295,19 @@ program.command('pack [entryPaths...]')
                     platform: 'type',
                     format: 'dts'
                 },
-                run: () => new Promise<void>((resolve) => {
-                    const runTsc = () => execaCommand(line`
-                        npx tsc --emitDeclarationOnly --preserveWatchOutput --declaration
-                        --outDir ${options.outdir}
-                        ${options.watch && '--watch'}
-                    `, {
-                        stdio: 'inherit',
-                        stripFinalNewline: false
-                    })
-                        .catch((reason) => {
-                            process.exit()
-                        })
-                        .finally(resolve)
+                run: () => new Promise<void>((resolve, reject) => {
+                    const runTsc = () => {
+                        try {
+                            execSync(line`npx tsc --emitDeclarationOnly --preserveWatchOutput --declaration --outDir ${options.outdir} ${options.watch && '--watch'}`, {
+                                stdio: 'inherit'
+                            })
+                        } catch (error) {
+                            if (error) {
+                                reject(error.toString())
+                            }
+                        }
+                        resolve()
+                    }
                     if (options.watch) {
                         setTimeout(runTsc, 100)
                     } else {
