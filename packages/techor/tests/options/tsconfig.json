@@ -5,7 +5,8 @@
         "outDir": "dist"
     },
     "include": [
-        "src/**/*.{ts,tsx}",
+        "src/**/*.ts",
+        "src/**/*.tsx",
         "src/**/*.d.ts"
     ],
     "exclude": [
