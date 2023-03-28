@@ -56,7 +56,7 @@
         }
     },
     "bin": {
-        "techor": "./dist/bin/index"
+        "techor": "./dist/bin/index.js"
     },
     "files": [
         "dist"
