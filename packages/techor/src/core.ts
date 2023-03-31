@@ -4,6 +4,7 @@ import defaultOptions, { Options as TechorOptions } from './options'
 import fg from 'fast-glob'
 import crossImport from 'cross-import'
 import extend from '@techor/extend'
+import type { BuildOptions } from 'esbuild'
 
 export default class Techor<Options extends TechorOptions<Config>, Config> {
     options: Options
@@ -17,7 +18,7 @@ export default class Techor<Options extends TechorOptions<Config>, Config> {
     logConfigFound = (configPath: string) => log.ok`**${configPath}** config file found`
     logConfigNotFound = (configPath: string) => log.i`No **${configPath}** config file found`
 
-    readConfig(key = 'config'): Config | any {
+    readConfig(key = 'config', buildOptions?: BuildOptions): Config | any {
         const { config, cwd } = this.options
         if (typeof config === 'object') {
             return config as Config
@@ -26,7 +27,7 @@ export default class Techor<Options extends TechorOptions<Config>, Config> {
         try {
             const configPath = this.configPath
             if (configPath) {
-                const userConfigModule = crossImport(configPath, { cwd })
+                const userConfigModule = crossImport(configPath, { cwd }, buildOptions as any)
                 userConfig = (key ? userConfigModule[key] : undefined) || userConfigModule.default || userConfigModule
                 this.logConfigFound(configPath)
             } else {
