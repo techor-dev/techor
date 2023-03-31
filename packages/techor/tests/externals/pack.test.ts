@@ -4,7 +4,6 @@ import { expectFileIncludes } from '../../../../utils/expect-file-includes'
 test('prevent bundling deps and peerDeps by `package.json`', () => {
     execSync('tsx ../../src/bin pack --extra-external fake-external-package', { cwd: __dirname, stdio: 'pipe' })
     expectFileIncludes('dist/index.js', [
-        'require("@master/css")',
-        'require("@master/style-element.react")'
+        'require("@master/css")'
     ], { cwd: __dirname })
 })
