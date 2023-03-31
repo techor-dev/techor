@@ -60,11 +60,12 @@
         "dist"
     ],
     "dependencies": {
-        "esbuild": "^0.16.9",
-        "fast-glob": "^3.2.12",
-        "require-from-string": "^2.0.2",
+        "@swc/core": "^1.3.44",
         "@techor/extend": "",
         "@techor/fs": "",
+        "fast-glob": "^3.2.12",
+        "require-from-string": "^2.0.2",
+        "rollup": "^3.20.2",
         "upath": "^2.0.1"
     }
 }
