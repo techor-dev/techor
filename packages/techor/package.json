@@ -67,7 +67,7 @@
     "dependencies": {
         "@techor/log": "",
         "commander": "^9.4.1",
-        "cross-import": "^1.5.5",
+        "cross-import": "",
         "esbuild": "^0.17.14",
         "fast-glob": "^3.2.12",
         "fs-extra": "^10.1.0",
@@ -75,8 +75,8 @@
         "lodash.isequal": "^4.5.0",
         "normalize-path": "^3.0.0",
         "shx": "^0.3.4",
-        "to-extend": "^1.5.4",
-        "to-line": "^1.5.0",
+        "to-extend": "",
+        "to-line": "",
         "upath": "^2.0.1"
     },
     "devDependencies": {

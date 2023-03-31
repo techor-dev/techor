@@ -1,0 +1,57 @@
+{
+    "name": "to-query-workspaces",
+    "scripts": {
+        "build": "techor pack --platform node",
+        "dev": "npm run build -- --watch",
+        "test": "jest",
+        "type-check": "tsc --noEmit",
+        "lint": "eslint src"
+    },
+    "license": "MIT",
+    "description": "Query workspaces with package.json",
+    "author": {
+        "name": "Aron",
+        "email": "i@aron.tw",
+        "url": "http://aron.tw"
+    },
+    "homepage": "https://aron.tw",
+    "bugs": {
+        "url": "https://github.com/1aron/utils/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/1aron/utils.git",
+        "directory": "packages/query-workspaces"
+    },
+    "keywords": [
+        "package",
+        "json",
+        "packagejson",
+        "utils",
+        "workspaces",
+        "npm",
+        "pnpm",
+        "yarn"
+    ],
+    "sideEffects": false,
+    "main": "./dist/index.cjs",
+    "jsnext:main": "./dist/index.mjs",
+    "esnext": "./dist/index.mjs",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "require": "./dist/index.cjs",
+            "import": "./dist/index.mjs",
+            "types": "./dist/index.d.ts"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "dependencies": {
+        "fast-glob": "^3.2.12",
+        "to-extend": "",
+        "to-fs": ""
+    }
+}

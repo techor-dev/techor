@@ -1,0 +1,48 @@
+{
+    "name": "to-extend",
+    "scripts": {
+        "build": "techor pack",
+        "dev": "npm run build -- --watch",
+        "test": "jest",
+        "type-check": "tsc --noEmit",
+        "lint": "eslint src"
+    },
+    "license": "MIT",
+    "description": "Deeply extend objects",
+    "author": {
+        "name": "Aron",
+        "email": "i@aron.tw",
+        "url": "http://aron.tw"
+    },
+    "homepage": "https://aron.tw",
+    "bugs": {
+        "url": "https://github.com/1aron/utils/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/1aron/utils.git",
+        "directory": "packages/extend"
+    },
+    "keywords": [
+        "extend",
+        "merge",
+        "deeply",
+        "utils"
+    ],
+    "sideEffects": false,
+    "main": "./dist/index.cjs",
+    "jsnext:main": "./dist/index.mjs",
+    "esnext": "./dist/index.mjs",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "require": "./dist/index.cjs",
+            "import": "./dist/index.mjs",
+            "types": "./dist/index.d.ts"
+        }
+    },
+    "files": [
+        "dist"
+    ]
+}
