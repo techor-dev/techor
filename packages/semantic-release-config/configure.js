@@ -1,6 +1,6 @@
 const releaseRules = require('./rules')
-const extend = require('to-extend').default
-const queryWorkspaces = require('to-query-workspaces').default
+const extend = require('@techor/extend').default
+const queryWorkspaces = require('@techor/query-workspaces').default
 
 const defaultConfig = {
     branches: [

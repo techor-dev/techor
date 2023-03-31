@@ -1,7 +1,7 @@
 <br>
 <div align="center">
 
-<p align="center">Import .ts, .mjs, .cjs files across environments as JavaScript modules</p>
+<p align="center">Conditionally assign and trim strings into one line ~250B</p>
 
 <p align="center">
     <a aria-label="overview" href="https://github.com/1aron/utils">
@@ -18,11 +18,11 @@
             <img alt="NPM Version" src="https://img.shields.io/github/v/release/1aron/utils?include_prereleases&color=f6f7f8&label=&style=for-the-badge&logo=github">
         </picture>
     </a>
-    <a aria-label="NPM Package" href="https://www.npmjs.com/package/cross-import">
+    <a aria-label="NPM Package" href="https://www.npmjs.com/package/@techor/one-liner">
         <picture>
-            <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/npm/dm/cross-import?color=212022&label=%20&logo=npm&style=for-the-badge">
-            <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/npm/dm/cross-import?color=f6f7f8&label=%20&logo=npm&style=for-the-badge">
-            <img alt="NPM package ( download / month )" src="https://img.shields.io/npm/dm/cross-import?color=f6f7f8&label=%20&logo=npm&style=for-the-badge">
+            <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/npm/dm/@techor/one-liner?color=212022&label=%20&logo=npm&style=for-the-badge">
+            <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/npm/dm/@techor/one-liner?color=f6f7f8&label=%20&logo=npm&style=for-the-badge">
+            <img alt="NPM package ( download / month )" src="https://img.shields.io/npm/dm/@techor/one-liner?color=f6f7f8&label=%20&logo=npm&style=for-the-badge">
         </picture>
     </a>
     <a aria-label="Follow @aron1tw" href="https://twitter.com/aron1tw">
@@ -45,76 +45,83 @@
 
 <br>
 
-## Solved Problems
-
-As far as is generally known:
-- Cannot import ESM modules in CJS
-- Cannot use ESM dynamic import in CJS
-- Cannot use CJS dynamic require in ESM
-- Cannot import .ts config in .js .cjs .mjs
-- Cannot mix .js .cjs .mjs packages
-
 ## Getting Started
-
-```bash
-npm install cross-import
+```sh
+npm install @techor/one-liner
 ```
 
-## Usage
-```ts
-import crossImport from 'cross-import'
-```
-
-```ts
-crossImport(
-    source: string | fg.Pattern[],
-    options?: fg.Options
-): any
-```
-
-### Import `.ts` in `.js`
-
-`foo.ts`
-```ts
-export * from './bar'
-export const foo = 'foo'
-```
-
-`bar.ts`
-```ts
-export const bar = 'bar'
-```
-
-`index.js`
 ```js
-crossImport('./foo.ts')
-// {"bar": "bar", "foo": "foo"}
+import oneLiner from '@techor/one-liner';
+// or
+import { l } from '@techor/one-liner';
 ```
-And so on...
+`l` is equal to `l`
 
-### Import format-multiple JS config
-This is often used to read various user-defined configuration files like `master.css.ts`, `next.config.js`, `vite.config.mjs` ...
-
-`index.js`
+### Strings
 ```js
-crossImport('master.css.{js,ts,cjs,mjs}')
-// {"bar": "bar", "foo": "foo"}
+l`a ${true && 'b'} c`;
+// 'a b c'
 ```
 
-## Options
-Inherited from [fast-glob options](https://github.com/mrmlnc/fast-glob#options-3)
+### Objects
 ```js
-{
-    cwd: process.cwd()
-}
+l`a ${{ b: true, c: false, d: isTrue() }} e`;
+// 'a b d e'
 ```
 
-<br>
+### Arrays
+```js
+l`a ${['b', 0, false, 'c']} d`;
+// 'a b c d'
+```
 
-<a aria-label="overview" href="https://github.com/1aron/utils#utilities">
-<picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/%E2%AC%85%20back%20to%20contents-%20?color=212022&style=for-the-badge">
-    <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/badge/%E2%AC%85%20back%20to%20contents-%20?color=f6f7f8&style=for-the-badge">
-    <img alt="NPM Version" src="https://img.shields.io/badge/%E2%AC%85%20back%20to%20contents-%20?color=f6f7f8&style=for-the-badge">
-</picture>
-</a>
+### Resolve types
+```js
+l`a ${true} ${false} ${''} ${null} ${undefined} ${0} ${NaN} b`
+// 'a b'
+```
+
+### Trim and clear
+- Remove newlines
+- Convert consecutive spaces to one space
+```js
+l`
+    a
+    b
+    ${undefined}
+    c    d
+`
+// 'a b c d'
+```
+
+### Mixed and nested
+```js
+l`
+    a
+    ${
+        [
+            1 && 'b',
+            { c: false, d: null },
+            ['e', ['f']]
+        ]
+    }
+    g    h
+`;
+// 'a b e f g h'
+```
+
+### Execute like a function
+```js
+l`a b ${['c', 'd']} ${{ e: true, f: false }} ${true && 'g'}`;
+// or
+line('a b', ['c', 'd'], { e: true, f: false }, true && 'g');
+
+// 'a b c d e g'
+```
+
+## Related
+- [@master/style-element](https://github.com/master-co/style-element) - Quickly create styled React elements with conditional class names
+- [@master/css](https://github.com/master-co/css) - A Virtual CSS language with enhanced syntax
+
+## Inspiration
+- [clsx](https://github.com/lukeed/clsx) - A tiny utility for constructing `className` strings conditionally

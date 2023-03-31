@@ -1,11 +1,11 @@
 import upath from 'upath'
 import requireFromString from 'require-from-string'
 import fg from 'fast-glob'
-import extend from 'to-extend'
+import extend from '@techor/extend'
 import { BuildOptions, buildSync } from 'esbuild'
-import { readFileAsJSON } from 'to-fs'
+import { readFileAsJSON } from '@techor/fs'
 
-export default function crossImport(
+export default function xImport(
     source: string | fg.Pattern[],
     options?: fg.Options,
     buildOptions?: BuildOptions
@@ -42,4 +42,4 @@ export default function crossImport(
     return requireFromString(text, upath.changeExt(resolvedFilePath, '.js'))
 }
 
-export { crossImport }
+export { xImport }

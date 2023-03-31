@@ -18,11 +18,11 @@
             <img alt="NPM Version" src="https://img.shields.io/github/v/release/1aron/utils?include_prereleases&color=f6f7f8&label=&style=for-the-badge&logo=github">
         </picture>
     </a>
-    <a aria-label="NPM Package" href="https://www.npmjs.com/package/to-query-workspaces">
+    <a aria-label="NPM Package" href="https://www.npmjs.com/package/@techor/query-workspaces">
         <picture>
-            <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/npm/dm/to-query-workspaces?color=212022&label=%20&logo=npm&style=for-the-badge">
-            <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/npm/dm/to-query-workspaces?color=f6f7f8&label=%20&logo=npm&style=for-the-badge">
-            <img alt="NPM package ( download / month )" src="https://img.shields.io/npm/dm/to-query-workspaces?color=f6f7f8&label=%20&logo=npm&style=for-the-badge">
+            <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/npm/dm/@techor/query-workspaces?color=212022&label=%20&logo=npm&style=for-the-badge">
+            <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/npm/dm/@techor/query-workspaces?color=f6f7f8&label=%20&logo=npm&style=for-the-badge">
+            <img alt="NPM package ( download / month )" src="https://img.shields.io/npm/dm/@techor/query-workspaces?color=f6f7f8&label=%20&logo=npm&style=for-the-badge">
         </picture>
     </a>
     <a aria-label="Follow @aron1tw" href="https://twitter.com/aron1tw">
@@ -53,7 +53,7 @@
 ## Getting Started
 
 ```bash
-npm install to-query-workspaces
+npm install @techor/query-workspaces
 ```
 
 ## Preparation
@@ -84,7 +84,7 @@ Your monorepo usually looks like this:
 ## Usage
 `queryWorkspaces(patterns?, options?): string[]`
 ```js
-import queryWorkspaces from 'to-query-workspaces'
+import queryWorkspaces from '@techor/query-workspaces'
 
 const workspaces = queryWorkspaces()
 // ['packages/a', 'packages/b', 'packages/b/bb']

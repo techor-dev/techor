@@ -1,6 +1,6 @@
-function line(defaultClassNames: TemplateStringsArray, ...params: any[])
-function line(defaultClassNames: any, ...params: any[])
-function line(firstParam: any, ...params: any[]) {
+function oneLiner(defaultClassNames: TemplateStringsArray, ...params: any[])
+function oneLiner(defaultClassNames: any, ...params: any[])
+function oneLiner(firstParam: any, ...params: any[]) {
     let newClassName = ''
 
     function handle(value: any, delimiter = '') {
@@ -45,5 +45,5 @@ function line(firstParam: any, ...params: any[]) {
         .replace(/  +/g, ' ')
 }
 
-export { line as l, line }
-export default line
+export { oneLiner as l, oneLiner }
+export default oneLiner

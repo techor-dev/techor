@@ -1,6 +1,6 @@
 import type { Options, Pattern } from 'fast-glob'
-import { readFileAsJSON } from 'to-fs'
-import queryWorkspaces from 'to-query-workspaces'
+import { readFileAsJSON } from '@techor/fs'
+import queryWorkspaces from '@techor/query-workspaces'
 import upath from 'upath'
 
 export default function readWorkspacePackages(

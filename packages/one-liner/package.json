@@ -1,8 +1,11 @@
 {
-    "name": "to-line",
+    "name": "@techor/one-liner",
     "scripts": {
-        "build": "tsx ../techor/src/bin pack",
-        "dev": "npm run build -- --watch",
+        "build:cjs": "esbuild src/index.ts --bundle --outfile=dist/index.js --format=cjs --minify --sourcemap --platform=node",
+        "build:esm": "esbuild src/index.ts --bundle --outfile=dist/index.mjs --format=esm --minify --sourcemap --platform=node",
+        "build:type": "tsc --emitDeclarationOnly --preserveWatchOutput",
+        "build": "npm run build:cjs && npm run build:esm && npm run build:type",
+        "dev": "conc 'npm:build:* -- --watch'",
         "test": "jest",
         "type-check": "tsc --noEmit",
         "lint": "eslint src"
@@ -21,7 +24,7 @@
     "repository": {
         "type": "git",
         "url": "https://github.com/1aron/utils.git",
-        "directory": "packages/to-line"
+        "directory": "packages/@techor/one-liner"
     },
     "keywords": [
         "one-linear",
@@ -33,14 +36,14 @@
         "templateliterals"
     ],
     "sideEffects": false,
-    "main": "./dist/index.cjs",
+    "main": "./dist/index.js",
     "jsnext:main": "./dist/index.mjs",
     "esnext": "./dist/index.mjs",
     "module": "./dist/index.mjs",
     "types": "./dist/index.d.ts",
     "exports": {
         ".": {
-            "require": "./dist/index.cjs",
+            "require": "./dist/index.js",
             "import": "./dist/index.mjs",
             "types": "./dist/index.d.ts"
         }

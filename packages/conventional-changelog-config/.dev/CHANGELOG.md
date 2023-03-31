@@ -1,44 +1,44 @@
 ### New Features
 
-- Amazing new module <sub><sup>[eec5719](https://github.com/conventional-changelog/conventional-changelog/commit/eec5719d1e1c80185be89fc78ea3b20ed6122fd8)</sup></sub>
-- **API** - New option for test [#88](https://github.com/conventional-changelog/conventional-changelog/issues/88) <sub><sup>[a0633bf](https://github.com/conventional-changelog/conventional-changelog/commit/a0633bf61195160b8c70f620c3355e2f55e31422)</sup></sub>
-- **Awesome** - Addresses the issue brought up in [#133](https://github.com/conventional-changelog/conventional-changelog/issues/133) <sub><sup>[9d64b62](https://github.com/conventional-changelog/conventional-changelog/commit/9d64b62d8f7493ec4409d8bf5eebda487e3f1a53)</sup></sub>
-- **Search** - Issue brought up by [@1aron](https://github.com/1aron)! on Friday <sub><sup>[e446590](https://github.com/conventional-changelog/conventional-changelog/commit/e446590107fdbcddf2060debea80cf5f42eae1ef)</sup></sub>
+- Amazing new module <sub><sup>[f649620](https://github.com/conventional-changelog/conventional-changelog/commit/f649620e22c66b98dc83baf32239c313e0f021bb)</sup></sub>
+- **API** - New option for test [#88](https://github.com/conventional-changelog/conventional-changelog/issues/88) <sub><sup>[d5f0271](https://github.com/conventional-changelog/conventional-changelog/commit/d5f02716681e34860fd02a0da82f2b8a36fc9ed0)</sup></sub>
+- **Awesome** - Addresses the issue brought up in [#133](https://github.com/conventional-changelog/conventional-changelog/issues/133) <sub><sup>[e93176e](https://github.com/conventional-changelog/conventional-changelog/commit/e93176e1936cfe69369d40cf6993b24b5ac568e3)</sup></sub>
+- **Search** - Issue brought up by [@1aron](https://github.com/1aron)! on Friday <sub><sup>[bc3ad98](https://github.com/conventional-changelog/conventional-changelog/commit/bc3ad980322ceda6b0f1b12d5c809f72aad0a85c)</sup></sub>
 
 ### Performance Upgrades
 
-- **`ngOptions`** - Make it faster <sub><sup>[ce77060](https://github.com/conventional-changelog/conventional-changelog/commit/ce77060ae97c3b72bedb53c9e93c67d599d10eec)</sup></sub>, [#1](https://github.com/conventional-changelog/conventional-changelog/issues/1) [#2](https://github.com/conventional-changelog/conventional-changelog/issues/2)
-- **`ngOptions`** - Make it faster, [#1](https://github.com/conventional-changelog/conventional-changelog/issues/1), [#2](https://github.com/conventional-changelog/conventional-changelog/issues/2) <sub><sup>[322020e](https://github.com/conventional-changelog/conventional-changelog/commit/322020ea700b69f67acb9706da5f800ecd5504c3)</sup></sub>
+- **`ngOptions`** - Make it faster <sub><sup>[9f9d612](https://github.com/conventional-changelog/conventional-changelog/commit/9f9d6121a591d8c878b0ecaef8df932dcffc7f68)</sup></sub>, [#1](https://github.com/conventional-changelog/conventional-changelog/issues/1) [#2](https://github.com/conventional-changelog/conventional-changelog/issues/2)
+- **`ngOptions`** - Make it faster, [#1](https://github.com/conventional-changelog/conventional-changelog/issues/1), [#2](https://github.com/conventional-changelog/conventional-changelog/issues/2) <sub><sup>[fb4a266](https://github.com/conventional-changelog/conventional-changelog/commit/fb4a2665b653d1160bb3bc6e14aaf6b7f1d49b2e)</sup></sub>
 
 ### Updates
 
-- **Contact** - Address and tel <sub><sup>[b75429c](https://github.com/conventional-changelog/conventional-changelog/commit/b75429c035c0429c09fb53027fe80407c4ab5d06)</sup></sub>
+- **Contact** - Address and tel <sub><sup>[37b9a02](https://github.com/conventional-changelog/conventional-changelog/commit/37b9a02602a40f73984682961f950f5b2508a068)</sup></sub>
 
 ### Improvements
 
-- **UI** - Call to action <sub><sup>[f1ebd06](https://github.com/conventional-changelog/conventional-changelog/commit/f1ebd06b5691ef576c3ed28b97eaa4b74f51b207)</sup></sub>
+- **UI** - Call to action <sub><sup>[c9f632a](https://github.com/conventional-changelog/conventional-changelog/commit/c9f632a571db5b254fb3147c22feb87224754108)</sup></sub>
 
 ### Bug Fixes
 
-- **Compiler** - Avoid a bug <sub><sup>[e7ed39c](https://github.com/conventional-changelog/conventional-changelog/commit/e7ed39c2233b70815916e334a9d9f02d25fbdaf0)</sup></sub>
-- Content not changed <sub><sup>[6dfb288](https://github.com/conventional-changelog/conventional-changelog/commit/6dfb288d5956f3be7bf8cc0ecbecf8ff75f9ede6)</sup></sub>
-- **Normal.css** - Layout shift <sub><sup>[bafca61](https://github.com/conventional-changelog/conventional-changelog/commit/bafca61bec2110d74c8aca83e47e4ceb20d09a18)</sup></sub>
-- **Vite** - HMR causes page reloaded <sub><sup>[faba590](https://github.com/conventional-changelog/conventional-changelog/commit/faba59049e7a53ddd7a58243587531deb602f238)</sup></sub>
+- **Compiler** - Avoid a bug <sub><sup>[679ebc3](https://github.com/conventional-changelog/conventional-changelog/commit/679ebc35f1cd6f8e9b61856403efaa0f99d26c03)</sup></sub>
+- Content not changed <sub><sup>[758c7eb](https://github.com/conventional-changelog/conventional-changelog/commit/758c7eb84096463306f9a525626190dad44ae406)</sup></sub>
+- **Normal.css** - Layout shift <sub><sup>[82f13f2](https://github.com/conventional-changelog/conventional-changelog/commit/82f13f23a771171426ae996dc1db3099907e3924)</sup></sub>
+- **Vite** - HMR causes page reloaded <sub><sup>[012e536](https://github.com/conventional-changelog/conventional-changelog/commit/012e5369903ae9d8f5a489a5870b88926a9e7a41)</sup></sub>
 
 ### Deprecations
 
-- **Commitlint Config** - Remove `header-max-length` rule <sub><sup>[43d31f9](https://github.com/conventional-changelog/conventional-changelog/commit/43d31f9f403d31cd6eeed15eefe1076353b07e1d)</sup></sub>
-- **Syntax** - Use `fg:color` instead of ~~`font:color`~~ <sub><sup>[b8b0fe7](https://github.com/conventional-changelog/conventional-changelog/commit/b8b0fe7492b2f5a64aaa1bb9a842dca4a9fd3bc3)</sup></sub>
+- **Commitlint Config** - Remove `header-max-length` rule <sub><sup>[ae7b3bb](https://github.com/conventional-changelog/conventional-changelog/commit/ae7b3bba063f3c40b35391a72b247ec3d122659b)</sup></sub>
+- **Syntax** - Use `fg:color` instead of ~~`font:color`~~ <sub><sup>[a12ee9b](https://github.com/conventional-changelog/conventional-changelog/commit/a12ee9ba9b24709962bc89c72d0b8e17dda48892)</sup></sub>
 
 ### Documentation
 
-- Add `font-size` demo <sub><sup>[34cb9b4](https://github.com/conventional-changelog/conventional-changelog/commit/34cb9b4f3c92a9128e56fe0cba43579d85d55372)</sup></sub>
+- Add `font-size` demo <sub><sup>[0537a1e](https://github.com/conventional-changelog/conventional-changelog/commit/0537a1e64a02649110f5609a29f325a4c7c466b3)</sup></sub>
 
 ### Upgrades
 
-- Bump `@dummy/package` from 7.1.2 to 8.0.0 <sub><sup>[10703fd](https://github.com/conventional-changelog/conventional-changelog/commit/10703fdb12e74851564bb2260dd45e0bda7f60a9)</sup></sub>
+- Bump `@dummy/package` from 7.1.2 to 8.0.0 <sub><sup>[7693f6a](https://github.com/conventional-changelog/conventional-changelog/commit/7693f6a077e6028e821f5cfb1bab861b3352efa0)</sup></sub>
 
 ### Reversions
 
-- Revert《 Fix(Repo): PeerDependencies -> Dependencies 》 <sub><sup>[a4896ec](https://github.com/conventional-changelog/conventional-changelog/commit/a4896ecac0aa32193c067f00c31390d9fcb4ad8e)</sup></sub>
-- **`ngOptions`** - Bad commit <sub><sup>[043d82c](https://github.com/conventional-changelog/conventional-changelog/commit/043d82cd5de80faa032dd924875a623576579db5)</sup></sub>
+- Revert《 Fix(Repo): PeerDependencies -> Dependencies 》 <sub><sup>[0c0ea18](https://github.com/conventional-changelog/conventional-changelog/commit/0c0ea180bbf80f6edb1ea359b1435ae6351e5f7c)</sup></sub>
+- **`ngOptions`** - Bad commit <sub><sup>[ebf9894](https://github.com/conventional-changelog/conventional-changelog/commit/ebf98942220e0d93e0a466da121f3bd571bafbd6)</sup></sub>

@@ -18,11 +18,11 @@
             <img alt="NPM Version" src="https://img.shields.io/github/v/release/1aron/utils?include_prereleases&color=f6f7f8&label=&style=for-the-badge&logo=github">
         </picture>
     </a>
-    <a aria-label="NPM Package" href="https://www.npmjs.com/package/to-fs">
+    <a aria-label="NPM Package" href="https://www.npmjs.com/package/@techor/fs">
         <picture>
-            <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/npm/dm/to-fs?color=212022&label=%20&logo=npm&style=for-the-badge">
-            <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/npm/dm/to-fs?color=f6f7f8&label=%20&logo=npm&style=for-the-badge">
-            <img alt="NPM package ( download / month )" src="https://img.shields.io/npm/dm/to-fs?color=f6f7f8&label=%20&logo=npm&style=for-the-badge">
+            <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/npm/dm/@techor/fs?color=212022&label=%20&logo=npm&style=for-the-badge">
+            <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/npm/dm/@techor/fs?color=f6f7f8&label=%20&logo=npm&style=for-the-badge">
+            <img alt="NPM package ( download / month )" src="https://img.shields.io/npm/dm/@techor/fs?color=f6f7f8&label=%20&logo=npm&style=for-the-badge">
         </picture>
     </a>
     <a aria-label="Follow @aron1tw" href="https://twitter.com/aron1tw">
@@ -48,7 +48,7 @@
 ## Getting Started
 
 ```bash
-npm install to-fs
+npm install @techor/fs
 ```
 
 ## Usage
@@ -70,7 +70,7 @@ writeToFile(filePath: fs.PathOrFileDescriptor, data: any, options?: WriteToFileO
 { "name": "b" }
 ```
 ```js
-import { readFile, readFiles } from 'to-fs'
+import { readFile, readFiles } from '@techor/fs'
 
 readFile('a.*')
 // Buffer

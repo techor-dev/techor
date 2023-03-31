@@ -1,7 +1,7 @@
 import fs from 'fs'
 import upath from 'upath'
 import fg from 'fast-glob'
-import extend from 'to-extend'
+import extend from '@techor/extend'
 
 interface Options extends fg.Options {
     encoding?: BufferEncoding

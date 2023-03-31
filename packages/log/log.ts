@@ -18,7 +18,7 @@ log`[normal]`
 log`<normal>`
 log`npx create-next-app <project>`
 log`5:24:11 AM test`
-log`dist/index.cjs.map 15.5KB`
+log`dist/index.js.map 15.5KB`
 log`$t show timestamp`
 
 log.add`add +3+ files`

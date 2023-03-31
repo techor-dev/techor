@@ -181,7 +181,7 @@ techor pack [entryPaths...]
          │    ├─── index.ts
          │    └─── index.browser.ts
 +        ├─── dist
-+        │    ├─── index.cjs
++        │    ├─── index.js
 +        │    ├─── index.mjs
 +        │    ├─── index.d.ts
 +        │    └─── index.browser.ts
@@ -295,7 +295,7 @@ techor src/**/*.ts
          │    └─── utils
          │         └─── exec.ts
 +        ├─── dist
-+        │    ├─── index.cjs
++        │    ├─── index.js
 +        │    ├─── index.mjs
 +        │    └─── utils
 +        │         ├─── exec.cjs
@@ -386,7 +386,7 @@ So if there is an external package that needs to be bundled, you just install it
          │    └─── utils
          │         └─── exec.ts
 +        ├─── dist
-+        │    ├─── index.cjs
++        │    ├─── index.js
 +        │    ├─── index.mjs
 +        │    └─── utils
 +        │         ├─── exec.cjs

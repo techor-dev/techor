@@ -11,7 +11,9 @@
         "type-check": "turbo run type-check",
         "dev": "turbo run dev --force",
         "version": "tsx ./packages/techor/src/bin version",
-        "analyze:commit": "semantic-release --debug"
+        "analyze:commit": "semantic-release --debug",
+        "clean:dist": "rm -rf ./packages/**/*dist",
+        "clean:node": "rm -rf ./{examples,packages}/**/*node_modules"
     },
     "repository": {
         "type": "git",

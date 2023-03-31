@@ -1,5 +1,5 @@
 import fs from 'fs'
-import extend from 'to-extend'
+import extend from '@techor/extend'
 import upath from 'upath'
 
 interface WriteToFileOptions {

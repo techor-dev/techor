@@ -53,7 +53,7 @@
 ## Getting Started
 
 ```bash
-npm install to-read-workspace-packages
+npm install @techor/read-workspace-packages
 ```
 
 ## Preparation
@@ -93,7 +93,7 @@ Your monorepo usually looks like this:
 ## Usage
 `readWorkspacePackages(patterns?, options?): any[]`
 ```js
-import readWorkspacePackages from 'to-read-workspace-packages'
+import readWorkspacePackages from '@techor/read-workspace-packages'
 
 const packages = readWorkspacePackages()
 // [{ name: 'a' }, { name: 'b' }, { name: 'd', private: true }, { name: 'bb' }]

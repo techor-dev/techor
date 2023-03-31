@@ -1,14 +1,14 @@
-import crossImport from '../src'
+import xImport from '../src'
 
 it('import .ts in .js', () => {
     expect(
-        crossImport('./foo.ts', { cwd: __dirname })
+        xImport('./foo.ts', { cwd: __dirname })
     ).toEqual({ 'bar': 'bar', 'foo': 'foo' })
 })
 
 it('read config from file', () => {
     expect(
-        crossImport('home-config.ts', { cwd: __dirname }))
+        xImport('home-config.ts', { cwd: __dirname }))
         .toEqual({
             'default': {
                 'classes': { 'btn': 'font:12' },
@@ -21,21 +21,21 @@ it('read config from file', () => {
 
 it('read config with third-party deps', () => {
     expect(
-        crossImport('external.ts', { cwd: __dirname }).default
+        xImport('external.ts', { cwd: __dirname }).default
     )
         .toBeDefined()
 })
 
 it('read aron.ts with esbuild svelte', () => {
     expect(
-        crossImport('aron.ts', { cwd: __dirname })
+        xImport('aron.ts', { cwd: __dirname })
     )
         .toBeDefined()
 })
 
 it('read non-existent file', () => {
     expect(
-        crossImport('idontexist.ts', { cwd: __dirname })
+        xImport('idontexist.ts', { cwd: __dirname })
     )
         .toBeUndefined()
 })

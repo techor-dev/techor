@@ -1,7 +1,7 @@
 import fg from 'fast-glob'
 import type { Options, Pattern } from 'fast-glob'
-import { readFileAsJSON } from 'to-fs'
-import extend from 'to-extend'
+import { readFileAsJSON } from '@techor/fs'
+import extend from '@techor/extend'
 
 export default function queryWorkspaces(
     patterns: Pattern[] = [],

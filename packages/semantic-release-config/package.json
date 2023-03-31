@@ -42,7 +42,7 @@
     "dependencies": {
         "techor-conventional-commits": "",
         "conventional-changelog-techor": "",
-        "to-extend": "",
-        "to-query-workspaces": ""
+        "@techor/extend": "",
+        "@techor/query-workspaces": ""
     }
 }
