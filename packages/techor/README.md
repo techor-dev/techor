@@ -194,7 +194,7 @@ Simultaneously output `cjs`, `esm`, `iife`, `type declarations` respectively acc
 {
     "name": "a",
     "scripts": {
-        "build": "techor pack",
+        "build": "tsx ../techor/src/bin pack",
         "dev": "npm run build -- --watch"
     },
     "main": "dist/cjs/index.js",
@@ -251,7 +251,7 @@ Packaging CSS is more straightforward, configuring `style` and `main` entry poin
 {
     "name": "b",
     "scripts": {
-        "build": "techor pack",
+        "build": "tsx ../techor/src/bin pack",
         "dev": "npm run build -- --watch"
     },
     "main": "./dist/index.css",
@@ -542,7 +542,7 @@ Typical workspace scripts for authoring a package:
 ```json
 {
     "scripts": {
-        "build": "techor pack",
+        "build": "tsx ../techor/src/bin pack",
         "dev": "npm run build -- --watch",
         "test": "jest",
         "type-check": "tsc --noEmit",

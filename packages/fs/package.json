@@ -1,7 +1,7 @@
 {
     "name": "to-fs",
     "scripts": {
-        "build": "techor pack --platform node",
+        "build": "tsx ../techor/src/bin pack --platform node",
         "dev": "npm run build -- --watch",
         "test": "jest",
         "type-check": "tsc --noEmit",

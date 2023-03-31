@@ -1,7 +1,7 @@
 {
     "name": "a-plain-obj",
     "scripts": {
-        "build": "techor pack",
+        "build": "tsx ../techor/src/bin pack",
         "dev": "npm run build -- --watch",
         "test": "jest",
         "type-check": "tsc --noEmit",
