@@ -1,7 +1,7 @@
-import '@master/css'
-import merge from 'lodash.merge'
+import extend from '@techor/extend'
+import log from '@techor/log'
 
-console.log(merge);
+console.log(extend, log);
 
 (async () => {
     // @ts-ignore

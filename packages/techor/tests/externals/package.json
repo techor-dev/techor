@@ -11,12 +11,12 @@
         "dist"
     ],
     "dependencies": {
-        "@master/css": "^2.0.0-beta.132"
+        "@techor/log": ""
     },
     "peerDependencies": {
-        "lodash.merge": "^4.6.2"
+        "@techor/extend": ""
     },
     "devDependencies": {
-        "lodash.isempty": "^4.4.0"
+        "@techor/is-plain-obj": ""
     }
 }
