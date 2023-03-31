@@ -4,7 +4,6 @@ import { execaCommand } from 'execa'
 import { type BuildOptions, context, Metafile } from 'esbuild'
 import log, { chalk } from '@techor/log'
 import path from 'upath'
-import { readPackage } from '../utils/read-package'
 import line, { l } from '@techor/one-liner'
 import type { PackageJson } from 'pkg-types'
 import prettyBytes from 'pretty-bytes'
@@ -16,6 +15,7 @@ import { createFillModuleExtPlugin } from '../plugins/esbuild-plugin-fill-module
 import { removeImportSvelteModuleExtensionPlugin } from '../plugins/esbuild-remove-import-svelte-module-extension'
 import extend from '@techor/extend'
 import techor from '../techor'
+import { readFileAsJSON } from '@techor/fs'
 
 const ext2format = {
     'js': 'cjs',
@@ -25,8 +25,7 @@ const ext2format = {
 }
 
 declare type BuildTask = { options?: BuildOptions, metafile?: Metafile, run: () => Promise<any> }
-
-const pkg: PackageJson = readPackage()
+const pkg: PackageJson = readFileAsJSON('./package.json')
 const { dependencies, peerDependencies } = pkg
 /** Extract external dependencies to prevent bundling */
 const externalDependencies = []

@@ -1,3 +1,3 @@
 ### New Features
 
-- `it` alias for `test` <sub><sup>[0e4c377](https://github.com/conventional-changelog/conventional-changelog/commit/0e4c37729f6d3c1562aee54727eb0e0bde8605e3)</sup></sub>
+- `it` alias for `test` <sub><sup>[3f9dfd8](https://github.com/conventional-changelog/conventional-changelog/commit/3f9dfd8393e9325ae83d4d7742adab329af1309a)</sup></sub>

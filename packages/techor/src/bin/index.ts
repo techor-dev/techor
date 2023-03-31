@@ -1,15 +1,11 @@
 #!/usr/bin/env node
 
 import { program } from 'commander'
-import path from 'path'
 import '../commands'
-import { readPackage } from '../utils/read-package'
+import { readFileAsJSON } from '@techor/fs'
+const { version, name, description } = readFileAsJSON('./package.json')
 
-const { version, name, description } = readPackage(path.join(__dirname, '../../package.json'))
-program
-    .name(name)
-    .description(description)
-    .version(version)
-
+program.name(name)
+program.description(description)
+program.version(version)
 program.parse()
-

@@ -1,26 +1,27 @@
 import { program } from 'commander'
 import fg from 'fast-glob'
-import fs from 'fs-extra'
 import path from 'path'
 import log, { paint } from '@techor/log'
-import { readPackage } from '../utils/read-package'
+import { readFileAsJSON, writeToFile } from '@techor/fs'
 
-const pkg = readPackage()
+const pkg = readFileAsJSON('./package.json')
 
-const defaults = {
+const defaultOptions = {
     workspaces: pkg.workspaces
 }
 
 program.command('version <version>')
     .description('Bump to specific version for workspace\'s packages')
     .option('-p, --prefix <symbol>', 'Version prefix `^`, `~`, `>`, `>=`, `<`, `<=` ', '^')
-    .option('-w, --workspaces <paths>', 'Specific your workspaces', defaults.workspaces)
+    .option('-w, --workspaces <paths>', 'Specific your workspaces', defaultOptions.workspaces)
     .option('-ls, --list', 'List current bumpable dependency tree in workspaces', false)
-    .action((version, { prefix, list, workspaces }) => {
-        const nextVersion = prefix + version
+    .option('--private', 'Bump private project version', false)
+    .option('--no-public', 'Off: Bump public project version')
+    .action((version, options) => {
+        const nextVersion = options.prefix + version
         const packagesOfPath = {}
         const packagesOfName = {}
-        const workspacePackagePaths = workspaces.map((eachWorkspace) => path.join(eachWorkspace, '*package.json'))
+        const workspacePackagePaths = options.workspaces.map((eachWorkspace) => path.join(eachWorkspace, '*package.json'))
         const updateDependencies = (dependencies, title) => {
             let updated = false
             for (const dependencyName in dependencies) {
@@ -37,9 +38,12 @@ program.command('version <version>')
 
         // Read package.json by workspaces
         for (const eachPackagePath of fg.sync(workspacePackagePaths)) {
-            const eachPackage = fs.readJSONSync(eachPackagePath)
+            const eachPackage = readFileAsJSON(eachPackagePath)
             // Prevent version bumps of private package
-            if (!eachPackage.private) {
+            if (
+                eachPackage.private && (options.private) ||
+                !eachPackage.private && (options.public)
+            ) {
                 packagesOfPath[eachPackagePath] = eachPackage
                 packagesOfName[eachPackage.name] = eachPackage
                 // Bump to next verion
@@ -52,8 +56,8 @@ program.command('version <version>')
             const { dependencies, peerDependencies } = packagesOfPath[eachPackagePath]
             dependencies && updateDependencies(dependencies, 'dependencies')
             peerDependencies && updateDependencies(peerDependencies, 'peerDependencies')
-            if (!list) {
-                fs.writeJSONSync(eachPackagePath, eachPackage)
+            if (!options.list) {
+                writeToFile(eachPackagePath, eachPackage)
             }
         }
 
