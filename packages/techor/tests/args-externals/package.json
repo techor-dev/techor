@@ -1,5 +1,6 @@
 {
-    "name": "args-externals",
+    "name": "@techor.tests/args-externals",
+    "private": true,
     "main": "dist/cjs/index.js",
     "exports": {
         ".": {

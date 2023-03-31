@@ -1,5 +1,6 @@
 {
-    "name": "test-pack-svelte-package",
+    "name": "@techor.tests/svelte",
+    "private": true,
     "type": "module",
     "sideEffects": false,
     "module": "./dist/index.js",

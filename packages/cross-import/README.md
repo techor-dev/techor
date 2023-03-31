@@ -18,11 +18,11 @@
             <img alt="NPM Version" src="https://img.shields.io/github/v/release/1aron/utils?include_prereleases&color=f6f7f8&label=&style=for-the-badge&logo=github">
         </picture>
     </a>
-    <a aria-label="NPM Package" href="https://www.npmjs.com/package/x-import">
+    <a aria-label="NPM Package" href="https://www.npmjs.com/package/cross-import">
         <picture>
-            <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/npm/dm/x-import?color=212022&label=%20&logo=npm&style=for-the-badge">
-            <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/npm/dm/x-import?color=f6f7f8&label=%20&logo=npm&style=for-the-badge">
-            <img alt="NPM package ( download / month )" src="https://img.shields.io/npm/dm/x-import?color=f6f7f8&label=%20&logo=npm&style=for-the-badge">
+            <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/npm/dm/cross-import?color=212022&label=%20&logo=npm&style=for-the-badge">
+            <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/npm/dm/cross-import?color=f6f7f8&label=%20&logo=npm&style=for-the-badge">
+            <img alt="NPM package ( download / month )" src="https://img.shields.io/npm/dm/cross-import?color=f6f7f8&label=%20&logo=npm&style=for-the-badge">
         </picture>
     </a>
     <a aria-label="Follow @aron1tw" href="https://twitter.com/aron1tw">
@@ -57,16 +57,16 @@ As far as is generally known:
 ## Getting Started
 
 ```bash
-npm install x-import
+npm install cross-import
 ```
 
 ## Usage
 ```ts
-import xImport from 'x-import'
+import crossImport from 'cross-import'
 ```
 
 ```ts
-xImport(
+crossImport(
     source: string | fg.Pattern[],
     options?: fg.Options
 ): any
@@ -87,7 +87,7 @@ export const bar = 'bar'
 
 `index.js`
 ```js
-xImport('./foo.ts')
+crossImport('./foo.ts')
 // {"bar": "bar", "foo": "foo"}
 ```
 And so on...
@@ -97,7 +97,7 @@ This is often used to read various user-defined configuration files like `master
 
 `index.js`
 ```js
-xImport('master.css.{js,ts,cjs,mjs}')
+crossImport('master.css.{js,ts,cjs,mjs}')
 // {"bar": "bar", "foo": "foo"}
 ```
 

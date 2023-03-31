@@ -1,5 +1,6 @@
 {
-    "name": "test-standard",
+    "name": "@techor.tests/standard",
+    "private": true,
     "sideEffects": false,
     "main": "./dist/index.js",
     "module": "./dist/index.mjs",

@@ -352,7 +352,7 @@ import '@master/style-element.react'
         "@master/css": "^2.0.0-beta.55"
     },
     "peerDependencies": {
-        "@master/style-element.react": "^1.1.6"
+        "@master/style-element.react": "^2.0.0-beta.7"
     },
     "devDependencies": {
         "@master/css.webpack": "^2.0.0-beta.55"

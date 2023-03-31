@@ -1,4 +1,6 @@
 {
+    "name": "@techor.tests/root",
+    "private": true,
     "workspaces": [
         "a",
         "b",

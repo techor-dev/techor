@@ -1,5 +1,6 @@
 {
-    "name": "specified-ext",
+    "name": "@techor.tests/specified-ext",
+    "private": true,
     "main": "dist/index.js",
     "exports": {
         ".": {

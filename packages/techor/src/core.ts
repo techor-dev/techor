@@ -2,7 +2,7 @@ import upath from 'upath'
 import log from '@techor/log'
 import defaultOptions, { Options as TechorOptions } from './options'
 import fg from 'fast-glob'
-import xImport from 'x-import'
+import crossImport from 'cross-import'
 import extend from '@techor/extend'
 
 export default class Techor<Options extends TechorOptions<Config>, Config> {
@@ -26,7 +26,7 @@ export default class Techor<Options extends TechorOptions<Config>, Config> {
         try {
             const configPath = this.configPath
             if (configPath) {
-                const userConfigModule = xImport(configPath, { cwd })
+                const userConfigModule = crossImport(configPath, { cwd })
                 userConfig = (key ? userConfigModule[key] : undefined) || userConfigModule.default || userConfigModule
                 this.logConfigFound(configPath)
             } else {

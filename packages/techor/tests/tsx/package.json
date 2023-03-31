@@ -1,5 +1,6 @@
 {
-    "name": "tsx",
+    "name": "@techor.tests/tsx",
+    "private": true,
     "main": "dist/cjs/index.js",
     "module": "dist/esm/index.js",
     "types": "dist/index.d.ts",

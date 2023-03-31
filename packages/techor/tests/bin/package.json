@@ -1,5 +1,6 @@
 {
-    "name": "bin",
+    "name": "@techor.tests/bin",
+    "private": true,
     "bin": {
         "mcss": "./dist/bin/index.js",
         "mastercss": "./dist/bin/index.js"

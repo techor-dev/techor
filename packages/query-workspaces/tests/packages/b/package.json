@@ -1,3 +1,4 @@
 {
-    "name": "b"
+    "name": "@query-workspaces.tests/b",
+    "private": true
 }

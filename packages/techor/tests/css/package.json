@@ -1,5 +1,6 @@
 {
-    "name": "css",
+    "name": "@techor.tests/css",
+    "private": true,
     "main": "./dist/index.css",
     "style": "./dist/index.css",
     "files": [

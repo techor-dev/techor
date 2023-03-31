@@ -5,7 +5,7 @@ import extend from '@techor/extend'
 import { BuildOptions, buildSync } from 'esbuild'
 import { readFileAsJSON } from '@techor/fs'
 
-export default function xImport(
+export default function crossImport(
     source: string | fg.Pattern[],
     options?: fg.Options,
     buildOptions?: BuildOptions
@@ -42,4 +42,4 @@ export default function xImport(
     return requireFromString(text, upath.changeExt(resolvedFilePath, '.js'))
 }
 
-export { xImport }
+export { crossImport }

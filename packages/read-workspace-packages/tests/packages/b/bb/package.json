@@ -1,3 +1,4 @@
 {
-    "name": "bb"
+    "name": "@read-workspace-packages.tests/bb",
+    "private": true
 }

@@ -2,8 +2,8 @@
     "private": true,
     "scripts": {
         "install": "husky install && npm ls --link=true",
-        "build": "turbo run build",
-        "build:clean": "rm -rf ./packages/**/*dist && turbo run build --force --no-cache",
+        "build": "turbo run build --filter=./packages/*",
+        "build:clean": "rm -rf ./packages/**/*dist && npm run build -- --force --no-cache",
         "check": "npm run commit-check && turbo run test lint type-check --parallel",
         "commit-check": "commitlint --from=HEAD~1 --verbose",
         "test": "turbo run test --parallel",
@@ -20,7 +20,7 @@
         "url": "https://github.com/1aron/techor.git"
     },
     "workspaces": [
-        "packages/*"
+        "packages/**"
     ],
     "devDependencies": {
         "@types/fs-extra": "^9.0.13",

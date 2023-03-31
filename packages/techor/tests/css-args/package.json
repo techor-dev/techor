@@ -1,5 +1,6 @@
 {
-    "name": "css-args",
+    "name": "@techor.tests/css-args",
+    "private": true,
     "main": "./dist/index.css",
     "style": "./dist/index.css",
     "files": [

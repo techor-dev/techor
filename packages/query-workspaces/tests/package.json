@@ -1,5 +1,6 @@
 {
-    "name": "root",
+    "name": "@query-workspaces.tests/root",
+    "private": true,
     "workspaces": [
         "packages/**"
     ]

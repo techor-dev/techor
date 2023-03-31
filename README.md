@@ -78,7 +78,7 @@
 ##### Utilities
 - [extend](https://github.com/1aron/techor/tree/main/packages/extend) — Deeply extend objects ~380B
 - [a plain obj](https://github.com/1aron/techor/tree/main/packages/is-plain-obj) — Is it a plain object? ~100B
-- [cross import](https://github.com/1aron/techor/tree/main/packages/x-import) — Import .ts, .mjs, .cjs files across environments as JavaScript modules
+- [cross import](https://github.com/1aron/techor/tree/main/packages/cross-import) — Import .ts, .mjs, .cjs files across environments as JavaScript modules
 - [fs](https://github.com/1aron/techor/tree/main/packages/fs) — A human-friendly file system with glob patterns
 - [read workspace packages](https://github.com/1aron/techor/tree/main/packages/read-workspace-packages) — Read workspace package.json contents
 - [query workspaces](https://github.com/1aron/techor/tree/main/packages/query-workspaces) — Query workspaces with package.json

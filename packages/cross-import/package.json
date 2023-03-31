@@ -1,5 +1,5 @@
 {
-    "name": "x-import",
+    "name": "cross-import",
     "scripts": {
         "build:cjs": "esbuild src/index.ts --bundle --outfile=dist/index.js --format=cjs --minify --sourcemap --platform=node --external:esbuild --external:fast-glob --external:require-from-string --external:@techor/extend --external:@techor/fs --external:upath",
         "build:esm": "esbuild src/index.ts --bundle --outfile=dist/index.mjs --format=esm --minify --sourcemap --platform=node --external:esbuild --external:fast-glob --external:require-from-string --external:@techor/extend --external:@techor/fs --external:upath",

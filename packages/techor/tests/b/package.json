@@ -1,3 +1,4 @@
 {
-    "name": "b"
+    "name": "@techor.tests/b",
+    "private": true
 }

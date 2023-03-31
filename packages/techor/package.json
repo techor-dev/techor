@@ -67,7 +67,7 @@
     "dependencies": {
         "@techor/log": "",
         "commander": "^9.4.1",
-        "x-import": "",
+        "cross-import": "",
         "esbuild": "^0.17.14",
         "fast-glob": "^3.2.12",
         "fs-extra": "^10.1.0",
