@@ -1,7 +1,7 @@
 {
-    "name": "techor-web-jest",
+    "name": "@techor/jest-dom",
     "license": "MIT",
-    "description": "Techor's jest preset for web",
+    "description": "Techor's jest preset for DOM",
     "author": {
         "name": "Aron",
         "email": "i@aron.tw",
@@ -14,7 +14,7 @@
     "repository": {
         "type": "git",
         "url": "https://github.com/1aron/techor.git",
-        "directory": "packages/techor-web-jest"
+        "directory": "packages/jest-dom"
     },
     "keywords": [
         "jest",
@@ -31,7 +31,7 @@
         "jest-preset.js"
     ],
     "dependencies": {
-        "techor-jest": "",
+        "@techor/jest": "",
         "jest-environment-jsdom": "^29.3.1"
     }
 }

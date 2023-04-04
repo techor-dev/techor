@@ -27,11 +27,11 @@
             <img alt="NPM Version" src="https://img.shields.io/github/v/release/1aron/techor?include_prereleases&color=f6f7f8&label=&style=for-the-badge&logo=github">
         </picture>
     </a>
-    <a aria-label="NPM Package" href="https://www.npmjs.com/package/techor-jest">
+    <a aria-label="NPM Package" href="https://www.npmjs.com/package/@techor/jest">
         <picture>
-            <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/npm/dm/techor-jest?color=212022&label=%20&logo=npm&style=for-the-badge">
-            <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/npm/dm/techor-jest?color=f6f7f8&label=%20&logo=npm&style=for-the-badge">
-            <img alt="NPM package ( download / month )" src="https://img.shields.io/npm/dm/techor-jest?color=f6f7f8&label=%20&logo=npm&style=for-the-badge">
+            <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/npm/dm/@techor/jest?color=212022&label=%20&logo=npm&style=for-the-badge">
+            <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/npm/dm/@techor/jest?color=f6f7f8&label=%20&logo=npm&style=for-the-badge">
+            <img alt="NPM package ( download / month )" src="https://img.shields.io/npm/dm/@techor/jest?color=f6f7f8&label=%20&logo=npm&style=for-the-badge">
         </picture>
     </a>
     <a aria-label="Follow @aron1tw" href="https://twitter.com/aron1tw">
@@ -58,30 +58,14 @@
 
 Skip if you have already run `npm install techor`:
 ```
-npm install techor-jest -D
+npm install @techor/jest -D
 ```
 
 ### Configuration
-Create a `jest.config.ts` file in your project root and preset `techor-jest`:
+Create a `jest.config.ts` file in your project root and preset `@techor/jest`:
 ```ts
 export default {
-    preset: 'techor-jest'
-}
-```
-
-## Preset
-```js
-module.exports = {
-    transform: {
-        '^.+\\.(t|j)sx?$': '@swc/jest'
-    },
-    globals: {
-        'ts-jest': {
-            tsConfig: {
-                importHelpers: true
-            }
-        }
-    }
+    preset: '@techor/jest'
 }
 ```
 

@@ -1,5 +1,5 @@
 {
-    "name": "techor-jest",
+    "name": "@techor/jest",
     "license": "MIT",
     "description": "Techor's jest preset to improve performance",
     "author": {
@@ -14,7 +14,7 @@
     "repository": {
         "type": "git",
         "url": "https://github.com/1aron/techor.git",
-        "directory": "packages/techor-web-jest"
+        "directory": "packages/jest"
     },
     "keywords": [
         "jest",
