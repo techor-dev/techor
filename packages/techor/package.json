@@ -64,6 +64,9 @@
     "sideEffects": [
         "./src/commands/*"
     ],
+    "publishConfig": {
+        "access": "public"
+    },
     "dependencies": {
         "@techor/extend": "",
         "@techor/fs": "",

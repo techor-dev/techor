@@ -30,6 +30,9 @@
     "files": [
         "jest-preset.js"
     ],
+    "publishConfig": {
+        "access": "public"
+    },
     "dependencies": {
         "@techor/jest": "",
         "jest-puppeteer": "^8.0.6"

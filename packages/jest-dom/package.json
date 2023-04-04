@@ -30,6 +30,9 @@
     "files": [
         "jest-preset.js"
     ],
+    "publishConfig": {
+        "access": "public"
+    },
     "dependencies": {
         "@techor/jest": "",
         "jest-environment-jsdom": "^29.3.1"
