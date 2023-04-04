@@ -35,6 +35,7 @@
     },
     "dependencies": {
         "@techor/jest": "",
-        "jest-puppeteer": "^8.0.6"
+        "jest-environment-puppeteer": "^8.0.6",
+        "puppeteer": "^19.8.3"
     }
 }
