@@ -35,7 +35,6 @@ export default function crossImport(
         }, buildOptions)
     )
     const { text } = buildResult.outputFiles[0]
-    console.log(text)
     return requireFromString(text, upath.changeExt(resolvedFilePath, '.js'))
 }
 
