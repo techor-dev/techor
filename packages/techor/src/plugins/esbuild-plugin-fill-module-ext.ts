@@ -1,4 +1,4 @@
-import { Plugin } from 'esbuild'
+import type { Plugin } from 'esbuild'
 import fs from 'fs'
 import fg from 'fast-glob'
 import path from 'upath'

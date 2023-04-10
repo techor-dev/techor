@@ -1,4 +1,4 @@
-import { Plugin } from 'esbuild'
+import type { Plugin } from 'esbuild'
 import fs from 'fs'
 
 export const removeImportSvelteModuleExtensionPlugin: Plugin = {

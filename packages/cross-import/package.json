@@ -61,11 +61,9 @@
     ],
     "dependencies": {
         "@techor/extend": "",
-        "@techor/fs": "",
-        "esbuild": "^0.17.14",
         "fast-glob": "^3.2.12",
-        "require-from-string": "^2.0.2",
-        "rollup": "^3.20.2",
+        "jiti": "^1.18.2",
+        "sucrase": "^3.32.0",
         "upath": "^2.0.1"
     }
 }
