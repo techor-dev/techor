@@ -3,6 +3,13 @@ import fg from 'fast-glob'
 import extend from '@techor/extend'
 import jiti from 'jiti'
 import { transform } from 'sucrase'
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+if (typeof __dirname === 'undefined') {
+    const __filename = fileURLToPath(import.meta.url)
+    global['__dirname'] = path.dirname(__filename)
+}
 
 export default function crossImport(
     source: string | fg.Pattern[],
