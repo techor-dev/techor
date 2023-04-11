@@ -1,7 +1,7 @@
 {
     "name": "techor",
     "scripts": {
-        "build": "tsx ./src/bin pack --shakable",
+        "build": "tsx ./src/bin pack --shakable --shakable-format cjs",
         "dev": "npm run build -- --watch",
         "test": "jest",
         "type-check": "tsc --noEmit",
@@ -44,14 +44,10 @@
         "esmodule"
     ],
     "main": "./dist/cjs/index.js",
-    "jsnext:main": "./dist/esm/index.mjs",
-    "esnext": "./dist/esm/index.mjs",
-    "module": "./dist/esm/index.mjs",
     "types": "./dist/index.d.ts",
     "exports": {
         ".": {
             "require": "./dist/cjs/index.js",
-            "import": "./dist/esm/index.mjs",
             "types": "./dist/index.d.ts"
         }
     },
