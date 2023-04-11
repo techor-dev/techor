@@ -10,6 +10,7 @@
 **/*node_modules
 **/*.turbo
 **/*out
+**/*config-tmp.*
 
 # Only exists if Bazel was run
 /bazel-out

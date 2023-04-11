@@ -21,6 +21,7 @@ export default function crossImport(
     if (!filePath) return
     const resolvedFilePath = upath.resolve(options.cwd, filePath)
     try {
+        delete require.cache[resolvedFilePath]
         return require(resolvedFilePath)
     } catch {
         return jiti(__dirname, {
