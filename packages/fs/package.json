@@ -2,9 +2,8 @@
     "name": "@techor/fs",
     "scripts": {
         "build:cjs": "esbuild src/index.ts --bundle --outfile=dist/index.js --format=cjs --minify --sourcemap --platform=node --external:fast-glob --external:@techor/extend --external:upath",
-        "build:esm": "esbuild src/index.ts --bundle --outfile=dist/index.mjs --format=esm --minify --sourcemap --platform=node --external:fast-glob --external:@techor/extend --external:upath",
         "build:type": "tsc --emitDeclarationOnly --preserveWatchOutput",
-        "build": "npm run build:cjs && npm run build:esm && npm run build:type",
+        "build": "npm run build:cjs && npm run build:type",
         "dev": "conc 'npm:build:* -- --watch'",
         "test": "jest",
         "type-check": "tsc --noEmit",
@@ -43,17 +42,7 @@
         "access": "public"
     },
     "main": "./dist/index.js",
-    "jsnext:main": "./dist/index.mjs",
-    "esnext": "./dist/index.mjs",
-    "module": "./dist/index.mjs",
     "types": "./dist/index.d.ts",
-    "exports": {
-        ".": {
-            "require": "./dist/index.js",
-            "import": "./dist/index.mjs",
-            "types": "./dist/index.d.ts"
-        }
-    },
     "files": [
         "dist"
     ],
