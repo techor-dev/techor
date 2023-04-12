@@ -1,4 +1,4 @@
-import upath from 'upath'
+import path from 'path'
 import fg from 'fast-glob'
 import extend from '@techor/extend'
 import jiti from 'jiti'
@@ -12,7 +12,10 @@ export default function crossImport(
     if (!source) return
     const filePath = fg.sync(source, options)[0]
     if (!filePath) return
-    const resolvedFilePath = upath.resolve(options.cwd, filePath)
+    const resolvedFilePath = path.resolve(options.cwd, filePath)
+    if (process.env.DEBUG) {
+        console.log('[crossImport] resolvedFilePath:', resolvedFilePath)
+    }
     try {
         delete require.cache[resolvedFilePath]
         return require(resolvedFilePath)

@@ -17,8 +17,7 @@ jobs:
         strategy:
             matrix:
                 node-version: [18.12.1]
-                os: [ubuntu-latest]
-                # os: [ubuntu-latest, windows-latest] 暫時不測試 windows-latest，有 bug 未解
+                os: [ubuntu-latest, windows-latest]
 
         steps:
             - uses: actions/checkout@v3
