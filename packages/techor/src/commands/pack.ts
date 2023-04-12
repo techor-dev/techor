@@ -209,11 +209,11 @@ program.command('pack [entryPaths...]')
             if (pkg.exports) {
                 (function handleExports(eachExports: any, eachParentKey: string, eachOptions?: { format?: string, outFile?: string, platform?: string }) {
                     if (typeof eachExports === 'string') {
-                        const exportsExt = path.extname(eachExports)
+                        const exportsExt = path.extname(eachExports).slice(1)
                         addBuildTask([getFileSrcGlobPattern(eachExports, '.{js,ts,jsx,tsx,mjs,mts}')], {
-                            format: eachOptions.format || ext2format[exportsExt],
-                            outFile: eachOptions.outFile || eachExports,
-                            platform: eachOptions.platform
+                            format: ext2format[exportsExt],
+                            outFile: options.outFile || eachExports,
+                            platform: options.platform
                         })
                     } else {
                         for (const eachExportKey in eachExports) {

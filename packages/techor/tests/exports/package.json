@@ -1,0 +1,12 @@
+{
+    "name": "@techor.tests/exports",
+    "private": true,
+    "main": "./dist/index.js",
+    "types": "./dist/index.js",
+    "exports": {
+        ".": "./dist/index.js"
+    },
+    "files": [
+        "dist"
+    ]
+}
