@@ -1,7 +1,7 @@
 {
     "name": "techor",
     "scripts": {
-        "build": "tsx ./src/bin pack",
+        "build": "tsx ./src/bin pack --shakable --shakable-format cjs",
         "dev": "npm run build -- --watch",
         "test": "jest",
         "type-check": "tsc --noEmit",
@@ -43,8 +43,14 @@
         "esm",
         "esmodule"
     ],
-    "main": "./dist/index.js",
+    "main": "./dist/cjs/index.js",
     "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "require": "./dist/cjs/index.js",
+            "types": "./dist/index.d.ts"
+        }
+    },
     "bin": {
         "techor": "./dist/bin/index.js"
     },
