@@ -5,7 +5,7 @@
         "build:type": "tsc --emitDeclarationOnly --preserveWatchOutput",
         "build": "npm run build:cjs && npm run build:type",
         "dev": "conc 'npm:build:* -- --watch'",
-        "test": "jest",
+        "test": "node -r sucrase/register ./tests/real && jest",
         "type-check": "tsc --noEmit",
         "lint": "eslint src"
     },
