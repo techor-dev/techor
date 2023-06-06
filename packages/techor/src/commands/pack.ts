@@ -14,8 +14,8 @@ import { esbuildOptionNames } from '../utils/esbuild-option-names'
 import { createFillModuleExtPlugin } from '../plugins/esbuild-plugin-fill-module-ext'
 import { removeImportSvelteModuleExtensionPlugin } from '../plugins/esbuild-remove-import-svelte-module-extension'
 import extend from '@techor/extend'
-import techor from '../techor'
 import { readFileAsJSON } from '@techor/fs'
+import exploreConfig from 'explore-config'
 
 const ext2format = {
     'js': 'cjs',
@@ -62,7 +62,7 @@ program.command('pack [entryPaths...]')
             console.log('')
             log.d`Cleaned up the **${options.outdir}** output directory`
         }
-        const useConfig = techor.readConfig(null)
+        const useConfig = exploreConfig('techor.*')
         const buildTasks: BuildTask[] = []
         const getFileSrcGlobPattern = (filePath: string, targetExt: string) => {
             const subFilePath /* components/a.ts */ = path.relative(options.outdir, filePath)
