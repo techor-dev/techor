@@ -1,0 +1,7 @@
+{
+    "name": "@techor.tests/c",
+    "private": true,
+    "peerDependencies": {
+        "@techor.tests/a": ""
+    }
+}

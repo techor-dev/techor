@@ -1,0 +1,62 @@
+{
+    "name": "@techor/pack",
+    "scripts": {
+        "build": "tsx ./src/bin pack",
+        "dev": "npm run build -- --watch",
+        "test": "jest",
+        "type-check": "tsc --noEmit",
+        "lint": "eslint src"
+    },
+    "license": "MIT",
+    "description": "Bundling your TypeScript and CSS packages with zero configuration",
+    "author": {
+        "name": "Aron",
+        "email": "i@aron.tw",
+        "url": "https://aron.tw"
+    },
+    "homepage": "https://github.com/1aron/techor",
+    "bugs": {
+        "url": "https://github.com/1aron/techor/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/1aron/techor.git",
+        "directory": "packages/pack"
+    },
+    "keywords": [
+        "pack",
+        "esbuild",
+        "bundle",
+        "commonjs",
+        "esm",
+        "esmodule"
+    ],
+    "bin": {
+        "techor-pack": "./dist/bin/index.js"
+    },
+    "files": [
+        "dist"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "dependencies": {
+        "@techor/extend": "",
+        "@techor/fs": "",
+        "@techor/log": "",
+        "@techor/one-liner": "",
+        "commander": "^10.0.0",
+        "cross-import": "",
+        "esbuild": "^0.17.14",
+        "explore-config": "",
+        "fast-glob": "^3.2.12",
+        "lodash.isequal": "^4.5.0",
+        "upath": "^2.0.1"
+    },
+    "devDependencies": {
+        "dedent": "^0.7.0",
+        "execa": "^7.1.1",
+        "pkg-types": "^1.0.1",
+        "pretty-bytes": "^6.1.0"
+    }
+}
