@@ -28,7 +28,7 @@
         "typescript": ""
     },
     "dependencies": {
-        "techor-jest": "",
+        "@techor/jest": "",
         "commitlint-config-techor": "",
         "conventional-changelog-techor": "",
         "eslint-config-techor": "",
