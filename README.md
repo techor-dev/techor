@@ -51,7 +51,6 @@
 - [techor](https://github.com/1aron/techor/tree/main/packages/techor) - A monorepo build system and workflow
 
 ##### Convention
-
 - [techor-conventional-commits](https://github.com/1aron/techor/tree/main/packages/conventional-commits) - A human-readable set of conventional commits, with version rules and changelog groupings
 - [conventional-changelog-techor](https://github.com/1aron/techor/tree/main/packages/conventional-changelog-config) - Beautiful changelog based on Techor's conventional commits
 
@@ -59,18 +58,18 @@
 - [semantic-release-config-techor](https://github.com/1aron/techor/tree/main/packages/semantic-release-config) - Techor's semantic release config for publishing workspace packages
 
 ##### Packing
-- [techor pack](https://github.com/1aron/techor/tree/main/packages/techor#pack) - Bundling your TypeScript and CSS packages with zero configuration
+- [pack](https://github.com/1aron/techor/tree/main/packages/techor#pack) - Bundling your TypeScript and CSS packages with zero configuration
 
 ##### Versioning
-- [techor version](https://github.com/1aron/techor/tree/main/packages/techor#version) - Smartly bump all workspace-dependent packages to specific versions
+- [version](https://github.com/1aron/techor/tree/main/packages/techor#version) - Smartly bump all workspace-dependent packages to specific versions
 
 ##### Linting
 - [eslint-config-techor](https://github.com/1aron/techor/tree/main/packages/eslint-config) - Techor's eslint config
 - [commitlint-config-techor](https://github.com/1aron/techor/tree/main/packages/commitlint-config) - Check your commits with Techor's commitlint config
 
 ##### Testing
-- [@techor/jest](https://github.com/1aron/techor/tree/main/packages/jest) - Techor's jest preset to improve performance
-- [techor-web-jest](https://github.com/1aron/techor/tree/main/packages/web-jest) - Techor's jest preset for web
+- [jest](https://github.com/1aron/techor/tree/main/packages/jest) - Techor's jest preset to improve performance
+- [jest-dom](https://github.com/1aron/techor/tree/main/packages/jest-dom) - Techor's jest preset for DOM
 
 ##### Continuous Integration
 - [techor-github-actions](https://github.com/1aron/techor/tree/main/packages/github-actions) - A set of GitHub Actions for techor ecosystem includes PR title checks
