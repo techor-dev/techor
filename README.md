@@ -69,7 +69,7 @@
 - [commitlint-config-techor](https://github.com/1aron/techor/tree/main/packages/commitlint-config) - Check your commits with Techor's commitlint config
 
 ##### Testing
-- [techor-jest](https://github.com/1aron/techor/tree/main/packages/jest) - Techor's jest preset to improve performance
+- [@techor/jest](https://github.com/1aron/techor/tree/main/packages/jest) - Techor's jest preset to improve performance
 - [techor-web-jest](https://github.com/1aron/techor/tree/main/packages/web-jest) - Techor's jest preset for web
 
 ##### Continuous Integration
