@@ -1,0 +1,57 @@
+{
+    "name": "@techor/version",
+    "scripts": {
+        "build": "tsx ../pack/src/bin pack",
+        "dev": "npm run build -- --watch",
+        "test": "jest",
+        "type-check": "tsc --noEmit",
+        "lint": "eslint src"
+    },
+    "license": "MIT",
+    "description": "Smartly bump all workspace-dependent packages to specific versions",
+    "author": {
+        "name": "Aron",
+        "email": "i@aron.tw",
+        "url": "https://aron.tw"
+    },
+    "homepage": "https://github.com/1aron/techor",
+    "bugs": {
+        "url": "https://github.com/1aron/techor/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/1aron/techor.git",
+        "directory": "packages/version"
+    },
+    "keywords": [
+        "version",
+        "bump"
+    ],
+    "bin": {
+        "techor-version": "./dist/bin/index.js"
+    },
+    "files": [
+        "dist"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "dependencies": {
+        "explore-config": "",
+        "@techor/extend": "",
+        "@techor/fs": "",
+        "@techor/log": "",
+        "@techor/one-liner": "",
+        "commander": "^10.0.0",
+        "cross-import": "",
+        "esbuild": "^0.17.14",
+        "fast-glob": "^3.2.12",
+        "upath": "^2.0.1"
+    },
+    "devDependencies": {
+        "dedent": "^0.7.0",
+        "execa": "^7.1.1",
+        "pkg-types": "^1.0.1",
+        "pretty-bytes": "^6.1.0"
+    }
+}
