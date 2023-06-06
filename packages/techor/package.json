@@ -68,6 +68,7 @@
         "access": "public"
     },
     "dependencies": {
+        "explore-config": "",
         "@techor/extend": "",
         "@techor/fs": "",
         "@techor/log": "",

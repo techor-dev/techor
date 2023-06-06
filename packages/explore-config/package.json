@@ -1,0 +1,60 @@
+{
+    "name": "explore-config",
+    "scripts": {
+        "build:cjs": "esbuild src/index.ts --bundle --outfile=dist/index.js --format=cjs --minify --sourcemap --platform=node --external:esbuild --external:fast-glob --external:@techor/log --external:@techor/extend --external:cross-import --external:upath",
+        "build:type": "tsc --emitDeclarationOnly --preserveWatchOutput",
+        "build": "npm run build:cjs && npm run build:type",
+        "dev": "conc 'npm:build:* -- --watch'",
+        "test": "jest",
+        "type-check": "tsc --noEmit",
+        "lint": "eslint src"
+    },
+    "license": "MIT",
+    "description": "Explore multi-format JavaScript module configuration",
+    "author": {
+        "name": "Aron",
+        "email": "i@aron.tw",
+        "url": "https://aron.tw"
+    },
+    "homepage": "https://github.com/1aron/techor",
+    "bugs": {
+        "url": "https://github.com/1aron/techor/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/1aron/techor.git",
+        "directory": "packages/explore-config"
+    },
+    "keywords": [
+        "config",
+        "esm",
+        "cjs",
+        "ts",
+        "configuration",
+        "read",
+        "find",
+        "explore"
+    ],
+    "sideEffects": false,
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "require": "./dist/index.js",
+            "types": "./dist/index.d.ts"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "dependencies": {
+        "@techor/extend": "",
+        "@techor/log": "",
+        "cross-import": "",
+        "fast-glob": "^3.2.12",
+        "upath": "^2.0.1"
+    }
+}
