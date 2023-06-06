@@ -36,6 +36,8 @@
 
 </div>
 
+<br>
+
 ## Getting Started
 
 ```

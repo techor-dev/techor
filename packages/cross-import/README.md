@@ -54,6 +54,8 @@ As far as is generally known:
 - Cannot import .ts config in .js .cjs .mjs
 - Cannot mix .js .cjs .mjs packages
 
+<br>
+
 ## Getting Started
 
 ```bash

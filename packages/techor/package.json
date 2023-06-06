@@ -1,9 +1,8 @@
 {
     "name": "techor",
     "scripts": {
-        "build": "tsx ./src/bin pack",
+        "build": "tsx ../pack/src/bin pack",
         "dev": "npm run build -- --watch",
-        "test": "jest",
         "type-check": "tsc --noEmit",
         "lint": "eslint src"
     },
@@ -43,50 +42,20 @@
         "esm",
         "esmodule"
     ],
-    "main": "./dist/index.js",
-    "jsnext:main": "./dist/index.mjs",
-    "esnext": "./dist/index.mjs",
-    "module": "./dist/index.mjs",
-    "types": "./dist/index.d.ts",
-    "exports": {
-        ".": {
-            "require": "./dist/index.js",
-            "import": "./dist/index.mjs",
-            "types": "./dist/index.d.ts"
-        }
-    },
     "bin": {
         "techor": "./dist/bin/index.js"
     },
     "files": [
         "dist"
     ],
-    "sideEffects": [
-        "./src/commands/*"
-    ],
+    "sideEffects": false,
     "publishConfig": {
         "access": "public"
     },
     "dependencies": {
-        "explore-config": "",
-        "@techor/extend": "",
         "@techor/fs": "",
-        "@techor/log": "",
-        "@techor/one-liner": "",
-        "commander": "^10.0.0",
-        "cross-import": "",
-        "esbuild": "^0.17.14",
-        "fast-glob": "^3.2.12",
-        "lodash.camelcase": "^4.3.0",
-        "lodash.isequal": "^4.5.0",
-        "normalize-path": "^3.0.0",
-        "shx": "^0.3.4",
-        "upath": "^2.0.1"
-    },
-    "devDependencies": {
-        "dedent": "^0.7.0",
-        "execa": "^7.1.1",
-        "pkg-types": "^1.0.1",
-        "pretty-bytes": "^6.1.0"
+        "@techor/pack": "",
+        "@techor/version": "",
+        "commander": "^10.0.0"
     }
 }

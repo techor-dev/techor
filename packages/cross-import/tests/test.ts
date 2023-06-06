@@ -26,13 +26,6 @@ it('read config with third-party deps', () => {
         .toBeDefined()
 })
 
-it('read aron.ts with esbuild svelte', () => {
-    expect(
-        crossImport('aron.ts', { cwd: __dirname })
-    )
-        .toBeDefined()
-})
-
 it('read non-existent file', () => {
     expect(
         crossImport('idontexist.ts', { cwd: __dirname })
