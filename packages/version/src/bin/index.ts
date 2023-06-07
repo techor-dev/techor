@@ -8,7 +8,7 @@ import { readFileAsJSON, writeToFile } from '@techor/fs'
 
 const pkg = readFileAsJSON('./package.json')
 
-program.command('version <version>')
+program.command('version <version>', { isDefault: true })
     .description('Bump to specific version for workspace\'s packages')
     .option('-p, --prefix <symbol>', 'Version prefix `^`, `~`, `>`, `>=`, `<`, `<=` ', '^')
     .option('-w, --workspaces <paths>', 'Specific your workspaces', pkg.workspaces)
