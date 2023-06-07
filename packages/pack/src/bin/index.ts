@@ -34,7 +34,7 @@ const externalDependencies = []
 dependencies && externalDependencies.push(...Object.keys(dependencies))
 peerDependencies && externalDependencies.push(...Object.keys(peerDependencies))
 
-program.command('pack [entryPaths...]')
+program.command('pack [entryPaths...]', { isDefault: true })
     .option('-f, --format [formats...]', 'The output format for the generated JavaScript files `iife`, `cjs`, `esm`', ['cjs', 'esm'])
     .option('-t, --shakable-format [formats...]', 'Tree-shakable module\'s formats', ['cjs', 'esm'])
     .option('--shakable', 'Enable outputting tree-shakable modules', false)
