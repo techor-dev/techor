@@ -4,5 +4,5 @@ import upath from 'upath'
 
 export function exploreResolvedConfigPath(sources: Pattern | Pattern[], options?: Options) {
     const foundPath = exploreConfigPath(sources, options)
-    return foundPath ? upath.resolve(options.cwd, foundPath) : ''
+    return foundPath ? upath.resolve(options?.cwd || '', foundPath) : ''
 }
