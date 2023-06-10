@@ -3,6 +3,11 @@ import fg from 'fast-glob'
 import extend from '@techor/extend'
 import jiti from 'jiti'
 import { transform } from 'sucrase'
+import { fileURLToPath } from 'url'
+
+const currentFilename = typeof __filename === 'undefined'
+    ? fileURLToPath(import.meta.url)
+    : __filename
 
 export default function crossImport(
     source: string | fg.Pattern[],
@@ -20,7 +25,7 @@ export default function crossImport(
         delete require.cache[resolvedFilePath]
         return require(resolvedFilePath)
     } catch {
-        return jiti(__dirname, {
+        return jiti(currentFilename, {
             interopDefault: true,
             transform: (options) => {
                 return transform(options.source, {
