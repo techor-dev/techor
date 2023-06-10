@@ -3,6 +3,9 @@ import fg from 'fast-glob'
 import extend from '@techor/extend'
 import jiti from 'jiti'
 import { transform } from 'sucrase'
+import { fileURLToPath } from 'url'
+
+const __filename = fileURLToPath(import.meta.url)
 
 export default function crossImport(
     source: string | fg.Pattern[],

@@ -2,7 +2,7 @@
     "name": "cross-import",
     "scripts": {
         "build:cjs": "esbuild src/index.ts --bundle --outfile=dist/index.js --format=cjs --minify --sourcemap --platform=node --external:esbuild --external:fast-glob --external:jiti --external:@techor/extend --external:sucrase --external:upath",
-        "build:esm": "esbuild src/index.ts --bundle --outfile=dist/index.mjs --format=esm --minify --sourcemap --platform=node --external:esbuild --external:fast-glob --external:jiti --external:@techor/extend --external:sucrase --external:upath",
+        "build:esm": "esbuild src/index.ts --bundle --outfile=dist/index.esm.mjs --format=esm --minify --sourcemap --platform=node --external:esbuild --external:fast-glob --external:jiti --external:@techor/extend --external:sucrase --external:upath",
         "build:type": "tsc --emitDeclarationOnly --preserveWatchOutput",
         "build": "npm run build:cjs && npm run build:esm && npm run build:type",
         "dev": "conc 'npm:build:* -- --watch'",
@@ -45,14 +45,14 @@
         "access": "public"
     },
     "main": "./dist/index.js",
-    "jsnext:main": "./dist/index.mjs",
-    "esnext": "./dist/index.mjs",
-    "module": "./dist/index.mjs",
+    "jsnext:main": "./dist/index.esm.mjs",
+    "esnext": "./dist/index.esm.mjs",
+    "module": "./dist/index.esm.mjs",
     "types": "./dist/index.d.ts",
     "exports": {
         ".": {
             "require": "./dist/index.js",
-            "import": "./dist/index.mjs",
+            "import": "./dist/index.esm.mjs",
             "types": "./dist/index.d.ts"
         }
     },
