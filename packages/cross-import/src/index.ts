@@ -32,14 +32,19 @@ export default function crossImport(
             console.log('[DEBUG: Cross Import] require')
         }
         return require(resolvedFilePath)
-    } catch {
+    } catch (error) {
         if (process.env.DEBUG) {
-            console.log('[Cross Import] JITI')
+            console.log('[DEBUG: Cross Import] JITI')
+            console.error(error)
         }
         return jiti(__filename, {
             interopDefault: true,
             cache: false,
             transform: (options) => {
+                if (process.env.DEBUG) {
+                    console.log('[DEBUG: Cross Import] JITI transform')
+                    console.error(error)
+                }
                 return transform(options.source, {
                     transforms: ['imports', 'typescript'],
                 })
