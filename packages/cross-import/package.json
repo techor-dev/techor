@@ -2,9 +2,8 @@
     "name": "cross-import",
     "scripts": {
         "build:cjs": "esbuild src/index.ts --bundle --outfile=dist/index.js --format=cjs --minify --sourcemap --platform=node --external:esbuild --external:fast-glob --external:jiti --external:@techor/extend --external:sucrase --external:upath",
-        "build:esm": "esbuild src/index.esm.ts --bundle --outfile=dist/index.esm.mjs --format=esm --minify --sourcemap --platform=node --external:esbuild --external:fast-glob --external:jiti --external:@techor/extend --external:sucrase --external:upath",
         "build:type": "tsc --emitDeclarationOnly --preserveWatchOutput",
-        "build": "npm run build:cjs && npm run build:esm && npm run build:type",
+        "build": "npm run build:cjs && npm run build:type",
         "dev": "conc 'npm:build:* -- --watch'",
         "test": "node -r sucrase/register ./tests/real && jest",
         "type-check": "tsc --noEmit",
@@ -35,7 +34,6 @@
         "read",
         "cross",
         "environments",
-        "esm",
         "commonjs",
         "ts",
         "typescript"
@@ -45,14 +43,11 @@
         "access": "public"
     },
     "main": "./dist/index.js",
-    "jsnext:main": "./dist/index.esm.mjs",
-    "esnext": "./dist/index.esm.mjs",
-    "module": "./dist/index.esm.mjs",
     "types": "./dist/index.d.ts",
     "exports": {
         ".": {
             "require": "./dist/index.js",
-            "import": "./dist/index.esm.mjs",
+            "import": "./dist/index.js",
             "types": "./dist/index.d.ts"
         }
     },

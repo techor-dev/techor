@@ -14,14 +14,31 @@ export default function crossImport(
     if (!filePath) return
     const resolvedFilePath = path.resolve(options.cwd, filePath)
     if (process.env.DEBUG) {
-        console.log('[crossImport] resolvedFilePath:', resolvedFilePath)
+        console.log('[DEBUG: Cross Import] resolvedFilePath:', resolvedFilePath)
     }
+
+    /** try to delete cache first */
     try {
-        delete require.cache[resolvedFilePath]
+        if (require.cache[resolvedFilePath]) {
+            delete require.cache[resolvedFilePath]
+            if (process.env.DEBUG) {
+                console.log('[DEBUG: Cross Import] delete cache')
+            }
+        }
+    } catch { /* empty */ }
+
+    try {
+        if (process.env.DEBUG) {
+            console.log('[DEBUG: Cross Import] require')
+        }
         return require(resolvedFilePath)
     } catch {
+        if (process.env.DEBUG) {
+            console.log('[Cross Import] JITI')
+        }
         return jiti(__filename, {
             interopDefault: true,
+            cache: false,
             transform: (options) => {
                 return transform(options.source, {
                     transforms: ['imports', 'typescript'],

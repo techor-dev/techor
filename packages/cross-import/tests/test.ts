@@ -1,4 +1,6 @@
 import crossImport from '../src'
+import fs from 'fs'
+import path from 'path'
 
 it('import .ts in .js', () => {
     expect(
@@ -32,3 +34,5 @@ it('read non-existent file', () => {
     )
         .toBeUndefined()
 })
+
+// Do not test secondary imports in a test environment, inaccurate.
