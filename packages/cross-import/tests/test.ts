@@ -4,13 +4,13 @@ import path from 'path'
 
 it('import .ts in .js', () => {
     expect(
-        crossImport('./foo.ts', { cwd: __dirname })
+        crossImport(path.resolve(__dirname, './foo.ts'))
     ).toEqual({ 'bar': 'bar', 'foo': 'foo' })
 })
 
 it('read config from file', () => {
     expect(
-        crossImport('home-config.ts', { cwd: __dirname }))
+        crossImport(path.resolve(__dirname, 'home-config.ts')))
         .toEqual({
             'default': {
                 'classes': { 'btn': 'font:12' },
@@ -23,16 +23,16 @@ it('read config from file', () => {
 
 it('read config with third-party deps', () => {
     expect(
-        crossImport('external.ts', { cwd: __dirname }).default
+        crossImport(path.resolve(__dirname, 'external.ts')).default
     )
         .toBeDefined()
 })
 
 it('read non-existent file', () => {
-    expect(
-        crossImport('idontexist.ts', { cwd: __dirname })
-    )
-        .toBeUndefined()
+    expect(() => {
+        crossImport(path.resolve(__dirname, 'idontexist.ts'))
+    })
+        .toThrowError()
 })
 
 // Do not test secondary imports in a test environment, inaccurate.

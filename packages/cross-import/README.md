@@ -68,10 +68,7 @@ import crossImport from 'cross-import'
 ```
 
 ```ts
-crossImport(
-    source: string | fg.Pattern[],
-    options?: fg.Options
-): any
+crossImport(modulePath: string): any
 ```
 
 ### Import `.ts` in `.js`
@@ -91,24 +88,6 @@ export const bar = 'bar'
 ```js
 crossImport('./foo.ts')
 // {"bar": "bar", "foo": "foo"}
-```
-And so on...
-
-### Import format-multiple JS config
-This is often used to read various user-defined configuration files like `master.css.ts`, `next.config.js`, `vite.config.mjs` ...
-
-`index.js`
-```js
-crossImport('master.css.{js,ts,cjs,mjs}')
-// {"bar": "bar", "foo": "foo"}
-```
-
-## Options
-Inherited from [fast-glob options](https://github.com/mrmlnc/fast-glob#options-3)
-```js
-{
-    cwd: process.cwd()
-}
 ```
 
 <br>

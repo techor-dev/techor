@@ -96,7 +96,7 @@ Simultaneously output `cjs`, `esm`, `iife`, `type declarations` respectively acc
 {
     "name": "a",
     "scripts": {
-        "build": "tsx ../techor/src/bin pack",
+        "build": "ts-node ../techor/src/bin pack",
         "dev": "npm run build -- --watch"
     },
     "main": "dist/cjs/index.js",
@@ -153,7 +153,7 @@ Packaging CSS is more straightforward, configuring `style` and `main` entry poin
 {
     "name": "b",
     "scripts": {
-        "build": "tsx ../techor/src/bin pack",
+        "build": "ts-node ../techor/src/bin pack",
         "dev": "npm run build -- --watch"
     },
     "main": "./dist/index.css",

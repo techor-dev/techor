@@ -1,8 +1,9 @@
 import log from '@techor/log'
 import type { Pattern } from 'fast-glob'
-import { crossImport } from 'cross-import'
+import crossImport from 'cross-import'
 import extend from '@techor/extend'
 import { exploreConfigPath } from './explore-config-path'
+import upath from 'upath'
 
 export default function exploreConfig(
     sources: Pattern | Pattern[],
@@ -28,7 +29,7 @@ export default function exploreConfig(
     try {
         const foundPath = exploreConfigPath(sources, options)
         if (foundPath) {
-            const foundConfigModule = crossImport(foundPath, { cwd })
+            const foundConfigModule = crossImport(upath.resolve(options.cwd, foundPath))
             for (const key of keys) {
                 foundConfig = foundConfigModule[key]
                 if (foundConfig) {

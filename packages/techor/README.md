@@ -145,7 +145,7 @@ Typical workspace scripts for authoring a package:
 ```json
 {
     "scripts": {
-        "build": "tsx ../techor/src/bin pack",
+        "build": "ts-node ../techor/src/bin pack",
         "dev": "npm run build -- --watch",
         "test": "jest",
         "type-check": "tsc --noEmit",

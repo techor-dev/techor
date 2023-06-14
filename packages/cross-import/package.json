@@ -1,7 +1,7 @@
 {
     "name": "cross-import",
     "scripts": {
-        "build:cjs": "esbuild src/index.ts --bundle --outfile=dist/index.js --format=cjs --minify --sourcemap --platform=node --external:esbuild --external:fast-glob --external:jiti --external:@techor/extend --external:sucrase --external:upath",
+        "build:cjs": "esbuild src/index.ts --bundle --outfile=dist/index.js --format=cjs --minify --sourcemap --platform=node",
         "build:type": "tsc --emitDeclarationOnly --preserveWatchOutput",
         "build": "npm run build:cjs && npm run build:type",
         "dev": "conc 'npm:build:* -- --watch'",
@@ -54,11 +54,8 @@
     "files": [
         "dist"
     ],
-    "dependencies": {
-        "@techor/extend": "",
-        "fast-glob": "^3.2.12",
-        "jiti": "^1.18.2",
+    "devDependencies": {
         "sucrase": "^3.32.0",
-        "upath": "^2.0.1"
+        "jiti": "^1.18.2"
     }
 }
