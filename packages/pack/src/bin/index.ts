@@ -3,7 +3,7 @@
 import { program } from 'commander'
 import fg from 'fast-glob'
 import { execaCommand } from 'execa'
-import { type BuildOptions, context, Metafile } from 'esbuild'
+import { type BuildOptions, context, Metafile, build } from 'esbuild'
 import log, { chalk } from '@techor/log'
 import path from 'upath'
 import line, { l } from '@techor/one-liner'
@@ -53,7 +53,7 @@ program.command('pack [entryPaths...]', { isDefault: true })
     .option('--esm-ext <ext>', 'Specify CommonJS default file extension', '.mjs')
     .option('--framework <name>', 'Specify a framework like `svelte` to resolve related issues automatically')
     .option('--srcdir <dir>', 'The source directory', 'src')
-    .option('--target', 'This sets the target environment for the generated JavaScript and/or CSS code.', 'esnext')
+    .option('--target [targets...]', 'This sets the target environment for the generated JavaScript and/or CSS code.')
     .option('--mangle-props', 'Pass a regular expression to esbuild to tell esbuild to automatically rename all properties that match this regular expression', '^_')
     .option('--no-bundle', 'OFF: Inline any imported dependencies into the file itself', true)
     .option('--no-minify', 'OFF: Minify the generated code')
@@ -105,6 +105,10 @@ program.command('pack [entryPaths...]', { isDefault: true })
                 external,
                 plugins: [],
             }, useConfig?.pack)
+
+            if (!buildOptions.target) {
+                delete buildOptions.target
+            }
 
             if (!options.bundle) {
                 delete buildOptions.external
@@ -168,6 +172,7 @@ program.command('pack [entryPaths...]', { isDefault: true })
                             outdir: buildOptions.outdir,
                             format: buildOptions.format,
                             platform: buildOptions.platform,
+                            target: buildOptions.target,
                             [
                                 Object.keys(buildOptions)
                                     .filter((x) => buildOptions[x] === true)
@@ -302,7 +307,8 @@ program.command('pack [entryPaths...]', { isDefault: true })
                         ${options.watch && '--watch'}
                     `, {
                         stdio: 'inherit',
-                        stripFinalNewline: false
+                        stripFinalNewline: false,
+                        cwd: process.cwd()
                     })
                         .catch((reason) => {
                             process.exit()
