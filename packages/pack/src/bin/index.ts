@@ -158,14 +158,11 @@ program.command('pack [entryPaths...]', { isDefault: true })
                     const ctx = await context(buildOptions)
                     const { metafile } = await ctx.rebuild()
                     if (metafile) {
-                        console.log('')
                         eachBuildTask.metafile = metafile
                         for (const outputFilePath in metafile.outputs) {
-                            const eachOutput = metafile.outputs[outputFilePath]
-                            const outputSize = prettyBytes(eachOutput.bytes).replace(/ /g, '')
-                            const eachOutputFormat = metafile.outputs[outputFilePath]['format'] = eachOptions.format
-                            log`${chalk.dim('│')} $t [${eachOutputFormat}] **${outputFilePath}** ${outputSize} (${Object.keys(eachOutput.inputs).length} inputs)`
+                            metafile.outputs[outputFilePath]['format'] = eachOptions.format
                         }
+                        log.i`**options**`
                         log.tree({
                             entries: buildOptions.entryPoints,
                             external: buildOptions.external,
