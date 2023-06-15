@@ -4,8 +4,8 @@ import { paint } from './paint'
 const tree = (object: JSON | object) => {
     const message = treeify(parseObject(removeEmpty(JSON.parse(JSON.stringify(object)))), {
         spacerNeighbour: paint('..│..') + '  ',
-        keyNoNeighbour: paint('..└─..') + ' ',
-        keyNeighbour: paint('..├─..') + ' ',
+        keyNoNeighbour: paint('..└..') + ' ',
+        keyNeighbour: paint('..├..') + ' ',
         separator: paint('..:..') + ' '
     })
     console.log(message)
@@ -34,7 +34,7 @@ function parseObject(object) {
         if (Array.isArray(value)) {
             object[key] = value
                 .map((eachValue) => paint(`**${eachValue}**`))
-                .join(paint('..,..'))
+                .join(paint('..,.. '))
         } else if (typeof value === 'object') {
             parseObject(value)
         } else {

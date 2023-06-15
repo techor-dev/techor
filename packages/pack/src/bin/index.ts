@@ -43,7 +43,7 @@ program.command('pack [entryPaths...]', { isDefault: true })
     .option('-p, --platform <node,browser,neutral>', 'Platform target', 'browser')
     .option('-t, --type', 'Emit typescript declarations', pkg.types)
     .option('-o, --outdir <dir>', 'The output directory for the build operation', 'dist')
-    .option('-o, --serve', 'Serve mode starts a web server that serves your code to your browser on your device', false)
+    .option('--serve', 'Serve mode starts a web server that serves your code to your browser on your device', false)
     .option('-e, --external <packages...>', 'External packages to exclude from the build', externalDependencies)
     .option('-ee, --extra-external <packages...>', 'Extra external packages to exclude from the build', [])
     .option('-re, --resolve-extensions [extensions...]', 'The resolution algorithm used by node supports implicit file extensions', ['.tsx', '.ts', '.jsx', '.js', '.css', '.json'])
@@ -160,9 +160,12 @@ program.command('pack [entryPaths...]', { isDefault: true })
                     if (metafile) {
                         eachBuildTask.metafile = metafile
                         for (const outputFilePath in metafile.outputs) {
-                            metafile.outputs[outputFilePath]['format'] = eachOptions.format
+                            const eachOutput = metafile.outputs[outputFilePath]
+                            const outputSize = prettyBytes(eachOutput.bytes).replace(/ /g, '')
+                            const eachOutputFormat = metafile.outputs[outputFilePath]['format'] = eachOptions.format
+                            log``
+                            log.i`**${outputFilePath}** ${outputSize} (${Object.keys(eachOutput.inputs).length} inputs)`
                         }
-                        log.i`**options**`
                         log.tree({
                             entries: buildOptions.entryPoints,
                             external: buildOptions.external,
@@ -346,9 +349,9 @@ program.command('pack [entryPaths...]', { isDefault: true })
         }
         console.log('')
         if (options.watch) {
-            log`Start watching ${buildTasks.length} build tasks`
+            log`Start watching ${buildTasks.length} build tasks $t`
         } else {
-            log.success`${buildTasks.length} build tasks`
+            log.success`${buildTasks.length} build tasks $t`
         }
         console.log('')
 
