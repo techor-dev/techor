@@ -26,8 +26,8 @@ const log: Log = ((strings, ...slots) => {
         console.log(chalk.bgRed.bold.white(' 𝗫 ERROR ') + ' ' + chalk.bold.red(message))
         console.log(treeify(stackTree, {
             spacerNeighbour: chalk.redBright.dim('│  '),
-            keyNoNeighbour: chalk.redBright.dim('└─ '),
-            keyNeighbour: chalk.redBright.dim('├─ '),
+            keyNoNeighbour: chalk.redBright.dim('└ '),
+            keyNeighbour: chalk.redBright.dim('├ '),
             separator: chalk.redBright.dim(': ')
         }))
         console.log('')
