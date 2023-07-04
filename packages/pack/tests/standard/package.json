@@ -17,6 +17,7 @@
     "devDependencies": {
         "@techor/is-plain-obj": "",
         "esbuild": "^0.18.11",
+        "pretty-bytes": "^6.1.0",
         "typescript": "^4.9.5"
     },
     "dependencies": {

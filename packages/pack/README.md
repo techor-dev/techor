@@ -99,16 +99,16 @@ Simultaneously output `cjs`, `esm`, `iife`, `type declarations` respectively acc
         "build": "ts-node ../techor/src/bin pack",
         "dev": "npm run build -- --watch"
     },
-    "main": "dist/cjs/index.js",
+    "main": "dist/index.js",
     "browser": "dist/index.browser.js",
-    "module": "dist/esm/index.js",
+    "module": "dist/index.js",
     "types": "dist/index.d.ts",
-    "jsnext:main": "dist/esm/index.js",
-    "esnext": "dist/esm/index.js",
+    "jsnext:main": "dist/index.js",
+    "esnext": "dist/index.js",
     "exports": {
         ".": {
-            "require": "./dist/cjs/index.js",
-            "import": "./dist/esm/index.js",
+            "require": "./dist/index.js",
+            "import": "./dist/index.js",
             "types": "./dist/index.d.ts"
         }
     },
@@ -241,10 +241,10 @@ import '@master/style-element.react'
 ```json
 {
     "name": "externals",
-    "main": "dist/cjs/index.js",
+    "main": "dist/index.js",
     "exports": {
         ".": {
-            "require": "./dist/cjs/index.js"
+            "require": "./dist/index.js"
         }
     },
     "files": [
@@ -270,7 +270,7 @@ techor pack --platform node
 
 <img width="568" alt="exclude-externals-pack" src="https://user-images.githubusercontent.com/33840671/204489494-10854837-be15-49fd-a1c8-0e02fb3e174a.png">
 
-`@master/css.webpack` is bundled into `dist/cjs/index.js`, except for `@master/css` and `@master/style-element.react`.
+`@master/css.webpack` is bundled into `dist/index.js`, except for `@master/css` and `@master/style-element.react`.
 
 So if there is an external package that needs to be bundled, you just install it to `devDependencies` via `npm i <some-package> --save-dev`, then `techor pack` will not exclude it.
 
@@ -301,8 +301,8 @@ So if there is an external package that needs to be bundled, you just install it
     "name": "externals",
     "exports": {
         ".": {
-            "require": "./dist/cjs/index.js",
-            "import": "./dist/esm/index.js"
+            "require": "./dist/index.js",
+            "import": "./dist/index.js"
         },
         "./utils/exec": {
             "require": "./dist/utils/exec.cjs",

@@ -13,7 +13,6 @@ import fs from 'fs'
 import isEqual from 'lodash.isequal'
 import { esbuildOptionNames } from '../utils/esbuild-option-names'
 import { createFillModuleExtPlugin } from '../plugins/esbuild-plugin-fill-module-ext'
-import { removeImportSvelteModuleExtensionPlugin } from '../plugins/esbuild-remove-import-svelte-module-extension'
 import extend from '@techor/extend'
 import { readFileAsJSON } from '@techor/fs'
 import exploreConfig from 'explore-config'
@@ -22,8 +21,7 @@ import { execaCommand } from 'execa'
 const ext2format = {
     'js': 'cjs',
     'cjs': 'cjs',
-    'mjs': 'esm',
-    'css': 'css'
+    'mjs': 'esm'
 }
 
 declare type BuildTask = { options?: BuildOptions, metafile?: Metafile, run: () => Promise<any> }
@@ -36,29 +34,29 @@ peerDependencies && externalDependencies.push(...Object.keys(peerDependencies))
 
 program.command('pack [entryPaths...]', { isDefault: true })
     .option('-f, --format [formats...]', 'The output format for the generated JavaScript files `iife`, `cjs`, `esm`', ['cjs', 'esm'])
-    .option('-t, --shakable-format [formats...]', 'Tree-shakable module\'s formats', ['cjs', 'esm'])
-    .option('--shakable', 'Enable outputting tree-shakable modules', false)
     .option('-w, --watch', 'Rebuild whenever a file changes', false)
     .option('-s, --sourcemap', 'Emit a source map', process.env.NODE_ENV === 'production')
     .option('-p, --platform <node,browser,neutral>', 'Platform target', 'browser')
     .option('-o, --outdir <dir>', 'The output directory for the build operation', 'dist')
     .option('--serve', 'Serve mode starts a web server that serves your code to your browser on your device', false)
     .option('--bundle', 'Inline any imported dependencies into the file itself', false)
-    .option('-e, --external <packages...>', 'External packages to exclude from the build', externalDependencies)
-    .option('-ee, --extra-external <packages...>', 'Extra external packages to exclude from the build', [])
+    .option('-e, --external <packages...>', 'External packages to exclude from the build', [])
     .option('-re, --resolve-extensions [extensions...]', 'The resolution algorithm used by node supports implicit file extensions', ['.tsx', '.ts', '.jsx', '.js', '.css', '.json'])
     .option('-kn, --keep-names', 'Keep JavaScript function/class names', false)
     .option('--cjs-ext <ext>', 'Specify CommonJS default file extension', '.js')
     .option('--iife-ext <ext>', 'Specify CommonJS default file extension', '.js')
     .option('--esm-ext <ext>', 'Specify CommonJS default file extension', '.mjs')
-    .option('--framework <name>', 'Specify a framework like `svelte` to resolve related issues automatically')
     .option('--srcdir <dir>', 'The source directory', 'src')
     .option('--target [targets...]', 'This sets the target environment for the generated JavaScript and/or CSS code.')
     .option('--mangle-props', 'Pass a regular expression to esbuild to tell esbuild to automatically rename all properties that match this regular expression', '^_')
+    .option('--manual', 'Do not automatically read all entries in `package.json`', false)
     .option('--no-declare', 'OFF: Emit typescript declarations', !!pkg.types)
     .option('--no-minify', 'OFF: Minify the generated code')
     .option('--no-clean', 'OFF: Clean up the previous output directory before the build starts')
-    .action(async function (entries: string[], options, args) {
+    .action(async function (specifiedEntries: string[], options) {
+        if (!specifiedEntries.length) {
+            specifiedEntries = [path.join(options.srcdir, '**/*.{js,ts,jsx,tsx,mjs,mts,css}')]
+        }
         if (options.clean && fs.existsSync(options.outdir)) {
             fs.rmSync(options.outdir, { force: true, recursive: true })
             console.log('')
@@ -66,41 +64,51 @@ program.command('pack [entryPaths...]', { isDefault: true })
         }
         const useConfig = exploreConfig('techor.*')
         const buildTasks: BuildTask[] = []
-        const resolvePackageEntry = (filePath: string, targetExt: string) => {
+        const exploreEntries = (eachEntries: string[]) => {
+            return fg.sync(
+                [...new Set(eachEntries)].map((eachEntry) => normalizePath(eachEntry))
+            )
+        }
+        const exploreMapptedEntry = (filePath: string, targetExt: string) => {
             const subFilePath /* components/a.ts */ = path.relative(options.outdir, filePath.replace('.bundle', ''))
             const srcFilePath /* src/components/a.ts */ = path.join(options.srcdir, subFilePath)
-            return path.changeExt(srcFilePath, targetExt)
+            const pattern = path.changeExt(srcFilePath, targetExt)
+            const foundEntries = exploreEntries([pattern])
+            if (!foundEntries.length) {
+                throw new Error(`Cannot find the entry file **${pattern}**`)
+            }
+            return foundEntries[0]
         }
-        const addBuildTask = async (eachEntries: string[], eachOptions: { format: string, bundle?: boolean, softBundle?: boolean, ext?: string, platform?: string, outdir?: string, outFile?: string }) => {
-            const isCSSTask = eachOptions.format === 'css'
+        const addBuildTask = async (eachEntries: string[], eachOptions: { format?: string, bundle?: boolean, ext?: string, platform?: string, outdir?: string, outFile?: string } = {}) => {
             let eachOutExt = eachOptions.ext || eachOptions.outFile && path.extname(eachOptions.outFile) || undefined
+            const outExtension = { '.css': '.css' }
             if (!eachOutExt) {
                 eachOutExt = { cjs: options.cjsExt, esm: options.esmExt, iife: options.iifeExt }[eachOptions.format]
+                if (eachOutExt) {
+                    outExtension['.js'] = eachOutExt
+                }
             }
             if (eachOptions.bundle === undefined) {
                 eachOptions.bundle = options.bundle
             }
             const external = [
-                ...options.external,
-                ...options.extraExternal
+                ...externalDependencies,
+                ...options.external
             ]
             const eachOutdir = eachOptions.outdir || options.outdir
-            if (eachOptions.bundle && eachOptions.softBundle) {
+            if (!eachOptions.bundle) {
                 external.push('.*')
             }
-            console.log(eachOptions.outFile)
             const buildOptions: BuildOptions = extend(options, {
-                outExtension: isCSSTask
-                    ? { '.css': '.css' }
-                    : { '.js': eachOutExt },
+                outExtension,
                 logLevel: 'info',
                 outdir: eachOptions.outFile ? undefined : eachOutdir,
-                bundle: eachOptions.bundle,
                 outfile: eachOptions.outFile,
                 outbase: options.srcdir,
                 platform: eachOptions.platform || options.platform,
                 metafile: true,
-                format: isCSSTask ? undefined : eachOptions.format,
+                bundle: eachOptions.bundle,
+                format: eachOptions.format,
                 keepNames: options.keepNames,
                 resolveExtensions: options.resolveExtensions,
                 mangleProps: options.mangleProps ? new RegExp(options.mangleProps) : undefined,
@@ -114,17 +122,7 @@ program.command('pack [entryPaths...]', { isDefault: true })
                 delete buildOptions.target
             }
 
-            if (!eachOptions.bundle) {
-                delete buildOptions.external
-            }
-
-            switch (options.framework) {
-                case 'svelte':
-                    buildOptions.plugins.push(removeImportSvelteModuleExtensionPlugin)
-                    break
-            }
-
-            if (eachOptions.softBundle && eachOptions.format === 'esm') {
+            if (!eachOptions.bundle && eachOptions.format === 'esm') {
                 buildOptions.plugins.push(createFillModuleExtPlugin(options.esmExt))
             }
 
@@ -140,89 +138,111 @@ program.command('pack [entryPaths...]', { isDefault: true })
                 }
             }
 
-            buildOptions.entryPoints =
-                fg.sync(
-                    [...new Set(eachEntries)].map((eachEntry) => normalizePath(eachEntry))
-                )
-                    .filter((eachEntry: never) =>
-                        !buildTasks.find((eachBuildTask) =>
-                            (eachBuildTask.options.entryPoints as []).includes(eachEntry)
-                            && eachBuildTask.options.format === buildOptions.format
-                            && isEqual(eachBuildTask.options.outExtension, buildOptions.outExtension)
-                            && eachBuildTask.options.outdir === buildOptions.outdir
-                            && eachBuildTask.options.outfile === buildOptions.outfile
-                        )
+            const allowedAllEntries = eachEntries
+                .filter((eachEntry: never) =>
+                    !buildTasks.find((eachBuildTask) =>
+                        (eachBuildTask.options.entryPoints as []).includes(eachEntry)
+                        && eachBuildTask.options.format === buildOptions.format
+                        && isEqual(eachBuildTask.options.outExtension, buildOptions.outExtension)
+                        && eachBuildTask.options.outdir === buildOptions.outdir
+                        && eachBuildTask.options.outfile === buildOptions.outfile
+                        && eachBuildTask.options.bundle === buildOptions.bundle
                     )
-            if (!buildOptions.entryPoints.length) {
+                )
+
+            if (!allowedAllEntries.length) {
                 return
             }
 
-            const eachBuildTask: BuildTask = {
-                options: buildOptions,
-                run: async () => {
-                    const ctx = await context(buildOptions)
-                    const { metafile } = await ctx.rebuild()
-                    if (metafile) {
-                        eachBuildTask.metafile = metafile
-                        for (const outputFilePath in metafile.outputs) {
-                            const eachOutput = metafile.outputs[outputFilePath]
-                            const outputSize = prettyBytes(eachOutput.bytes).replace(/ /g, '')
-                            eachOutput['format'] = buildOptions.format
-                            log``
-                            log.i`**${outputFilePath}** ${outputSize} (${Object.keys(eachOutput.inputs).length} inputs)`
-                        }
-                        log.tree({
-                            entries: buildOptions.entryPoints,
-                            external: buildOptions.external,
-                            outdir: buildOptions.outdir,
-                            format: buildOptions.format,
-                            platform: buildOptions.platform,
-                            target: buildOptions.target,
-                            [
-                                Object.keys(buildOptions)
-                                    .filter((x) => buildOptions[x] === true)
-                                    .map((x) => chalk.green('✓ ') + x)
-                                    .join(', ')
-                            ]: null
-                        })
-                    }
-                    if (options.watch) {
-                        await ctx.watch()
-                    } else {
-                        await ctx.dispose()
-                    }
-                    if (options.serve) {
-                        await ctx.serve()
-                    }
+            const allowedCSSEntries = []
+            const allowedEntries = []
+
+            for (const allowedEntry of allowedAllEntries) {
+                console.log(allowedEntry)
+                if (allowedEntry.endsWith('.css')) {
+                    allowedCSSEntries.push(allowedEntry)
+                } else {
+                    allowedEntries.push(allowedEntry)
                 }
             }
 
-            buildTasks.push(eachBuildTask)
+            const addTask = ({ entryPoints, bundle }) => {
+                const eachBuildTask: BuildTask = {
+                    options: {
+                        ...buildOptions,
+                        entryPoints
+                    },
+                    run: async () => {
+                        const esbuildOptions = { ...buildOptions, entryPoints, bundle }
+                        if (!esbuildOptions.bundle) {
+                            delete esbuildOptions.external
+                        }
+                        const ctx = await context(esbuildOptions)
+                        const { metafile } = await ctx.rebuild()
+                        if (metafile) {
+                            eachBuildTask.metafile = metafile
+                            for (const outputFilePath in metafile.outputs) {
+                                const eachOutput = metafile.outputs[outputFilePath]
+                                const outputSize = prettyBytes(eachOutput.bytes).replace(/ /g, '')
+                                eachOutput['format'] = buildOptions.format
+                                log``
+                                log.i`**${outputFilePath}** ${outputSize} (${Object.keys(eachOutput.inputs).length} inputs)`
+                            }
+                            log.tree({
+                                entries: buildOptions.entryPoints,
+                                external: buildOptions.external,
+                                outdir: buildOptions.outdir,
+                                format: buildOptions.format,
+                                platform: buildOptions.platform,
+                                target: buildOptions.target,
+                                [
+                                    Object.keys(buildOptions)
+                                        .filter((x) => buildOptions[x] === true)
+                                        .map((x) => chalk.green('✓ ') + x)
+                                        .join(', ')
+                                ]: null
+                            })
+                        }
+                        if (options.watch) {
+                            await ctx.watch()
+                        } else {
+                            await ctx.dispose()
+                        }
+                        if (options.serve) {
+                            await ctx.serve()
+                        }
+                    }
+                }
+                buildTasks.push(eachBuildTask)
+            }
+
+            if (allowedCSSEntries.length) {
+                addTask({ entryPoints: allowedCSSEntries, bundle: false })
+            }
+
+            if (allowedEntries.length) {
+                addTask({ entryPoints: allowedEntries, bundle: true })
+            }
         }
 
-        if (options.shakable && options.shakableFormat.length) {
-            options.shakableFormat.forEach((eachFormat: string) =>
-                addBuildTask(
-                    [path.join(options.srcdir, '**/*.{js,ts,jsx,tsx,mjs,mts}')],
-                    { format: eachFormat, platform: 'node', outdir: path.join(options.outdir), softBundle: true }
-                ))
+        if (specifiedEntries.length) {
+            const foundEntries = exploreEntries(specifiedEntries)
+            for (const foundEntry of foundEntries) {
+                if (foundEntry.endsWith('.css')) {
+                    addBuildTask([foundEntry])
+                } else {
+                    options.format.forEach((eachFormat: string) => addBuildTask([foundEntry], { format: eachFormat }))
+                }
+            }
         }
 
-        if (entries.length) {
-            const cssEntries = entries.filter((eachEntry) => eachEntry.includes('.css'))
-            const jsEntries = entries.filter((eachEntry) => !eachEntry.includes('.css'))
-            if (cssEntries.length) {
-                addBuildTask(cssEntries, { format: 'css' })
-            }
-            if (jsEntries.length) {
-                options.format.forEach((eachFormat: string) => addBuildTask(jsEntries, { format: eachFormat }))
-            }
-        } else {
+        /* Read entries from `package.json` automatically */
+        if (!options.manual) {
             if (pkg.exports) {
                 (function handleExports(eachExports: any, eachParentKey: string, eachOptions?: { format?: string, outFile?: string, platform?: string }) {
                     if (typeof eachExports === 'string') {
                         const exportsExt = path.extname(eachExports).slice(1)
-                        addBuildTask([resolvePackageEntry(eachExports, '.{js,ts,jsx,tsx,mjs,mts}')], {
+                        addBuildTask([exploreMapptedEntry(eachExports, '.{js,ts,jsx,tsx,mjs,mts}')], {
                             format: ext2format[exportsExt],
                             outFile: options.outFile || eachExports,
                             platform: options.platform,
@@ -273,30 +293,31 @@ program.command('pack [entryPaths...]', { isDefault: true })
                 })(pkg.exports, '')
             }
             if (pkg.style) {
-                addBuildTask([resolvePackageEntry(pkg.style, '.css')], { format: 'css', outFile: pkg.style, bundle: pkg.main.includes('.bundle') })
+                addBuildTask([exploreMapptedEntry(pkg.style, '.css')], { outFile: pkg.style, bundle: pkg.main.includes('.bundle') })
             }
             if (pkg.main && !pkg.main.endsWith('.css')) {
-                addBuildTask([resolvePackageEntry(pkg.main, '.{js,ts,jsx,tsx,mjs,mts}')], { format: 'cjs', outFile: pkg.main, bundle: pkg.main.includes('.bundle') })
+                addBuildTask([exploreMapptedEntry(pkg.main, '.{js,ts,jsx,tsx,mjs,mts}')], { format: 'cjs', outFile: pkg.main, bundle: pkg.main.includes('.bundle') })
             }
             if (pkg.module) {
-                addBuildTask([resolvePackageEntry(pkg.module, '.{js,ts,jsx,tsx,mjs,mts}')], { format: 'esm', outFile: pkg.module, bundle: pkg.module.includes('.bundle') })
+                addBuildTask([exploreMapptedEntry(pkg.module, '.{js,ts,jsx,tsx,mjs,mts}')], { format: 'esm', outFile: pkg.module, bundle: pkg.module.includes('.bundle') })
             }
             if (pkg.browser) {
-                addBuildTask([resolvePackageEntry(pkg.browser, '.{js,ts,jsx,tsx,mjs,mts}')], { format: 'iife', platform: 'browser', outFile: pkg.browser, bundle: pkg.browser.includes('.bundle') })
+                addBuildTask([exploreMapptedEntry(pkg.browser, '.{js,ts,jsx,tsx,mjs,mts}')], { format: 'iife', platform: 'browser', outFile: pkg.browser, bundle: pkg.browser.includes('.bundle') })
             }
             if (pkg.bin) {
                 if (typeof pkg.bin === 'string') {
-                    addBuildTask([resolvePackageEntry(pkg.bin, '.{js,ts,jsx,tsx,mjs,mts}')], { format: 'cjs', platform: 'node', outFile: pkg.bin, bundle: pkg.bin.includes('.bundle') })
+                    addBuildTask([exploreMapptedEntry(pkg.bin, '.{js,ts,jsx,tsx,mjs,mts}')], { format: 'cjs', platform: 'node', outFile: pkg.bin, bundle: pkg.bin.includes('.bundle') })
                 } else {
                     for (const eachCommandName in pkg.bin) {
                         const eachCommandFile = pkg.bin[eachCommandName]
-                        addBuildTask([resolvePackageEntry(eachCommandFile, '.{js,ts,jsx,tsx,mjs,mts}')], { format: 'cjs', platform: 'node', outFile: eachCommandFile, bundle: eachCommandFile.includes('.bundle') })
+                        addBuildTask([exploreMapptedEntry(eachCommandFile, '.{js,ts,jsx,tsx,mjs,mts}')], { format: 'cjs', platform: 'node', outFile: eachCommandFile, bundle: eachCommandFile.includes('.bundle') })
                     }
                 }
             }
         }
+
         if (!buildTasks.length) {
-            options.format.map((eachFormat: string) => addBuildTask([path.join(options.srcdir, 'index.ts')], { format: eachFormat }))
+            throw new Error('No entry found')
         }
 
         let typeBuildTask: any

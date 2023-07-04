@@ -1,17 +1,17 @@
 {
     "name": "@techor.tests/multi-exports",
     "private": true,
-    "main": "./dist/cjs/index.js",
-    "jsnext:main": "./dist/esm/index.js",
+    "main": "./dist/index.js",
+    "jsnext:main": "./dist/index.js",
     "browser": "./dist/index.browser.js",
-    "esnext": "./dist/esm/index.js",
-    "module": "./dist/esm/index.js",
+    "esnext": "./dist/index.js",
+    "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
     "exports": {
         ".": {
             "node": {
-                "require": "./dist/cjs/index.js",
-                "import": "./dist/esm/index.js"
+                "require": "./dist/index.js",
+                "import": "./dist/index.js"
             },
             "browser": {
                 "import": "./dist/index.browser.mjs"
