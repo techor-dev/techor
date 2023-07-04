@@ -102,7 +102,8 @@ Set up the `/turbo.json`:
     "pipeline": {
         "dev": {
             "cache": false,
-            "dependsOn": ["^build"]
+            "dependsOn": ["^build"],
+            "outputs": ["dist/**"]
         },
         "build": {
             "dependsOn": ["^build"],
