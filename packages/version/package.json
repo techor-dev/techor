@@ -37,14 +37,10 @@
         "access": "public"
     },
     "dependencies": {
-        "explore-config": "",
         "@techor/extend": "",
         "@techor/fs": "",
         "@techor/log": "",
-        "@techor/one-liner": "",
         "commander": "^10.0.0",
-        "cross-import": "",
-        "esbuild": "^0.17.14",
         "fast-glob": "^3.2.12",
         "upath": "^2.0.1"
     },
