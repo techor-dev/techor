@@ -41,6 +41,7 @@
         "access": "public"
     },
     "dependencies": {
+        "techor": "",
         "@techor/extend": "",
         "@techor/fs": "",
         "@techor/log": "",

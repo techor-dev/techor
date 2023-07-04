@@ -54,8 +54,6 @@
     },
     "dependencies": {
         "@techor/fs": "",
-        "@techor/pack": "",
-        "@techor/version": "",
         "commander": "^10.0.0"
     }
 }

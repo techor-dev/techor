@@ -8,8 +8,8 @@ import initFakeGit from '../../../utils/init-fake-git'
 const config = require('../')
 const conventionalChangelogCore = require('conventional-changelog-core')
 
-if (!fs.existsSync(path.join(__dirname, '../.dev'))) {
-    fs.mkdirSync(path.join(__dirname, '../.dev'))
+if (!fs.existsSync(path.join(__dirname, '../changelog-dist'))) {
+    fs.mkdirSync(path.join(__dirname, '../changelog-dist'))
 }
 
 describe('techor preset', () => {
@@ -97,7 +97,7 @@ export function testAronChangelog(commits, handle: (changelog: string) => void, 
         })
             .on('data', changelogChunk => {
                 const changelog = changelogChunk.toString()
-                fs.writeFileSync(path.join(__dirname, '../.dev', changelogFileName), dedent(changelog))
+                fs.writeFileSync(path.join(__dirname, '../changelog-dist', changelogFileName), dedent(changelog))
                 handle(changelog)
             })
             .on('error', (error) => {

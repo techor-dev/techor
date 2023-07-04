@@ -28,6 +28,8 @@
         "typescript": ""
     },
     "dependencies": {
+        "@techor/pack": "",
+        "@techor/version": "",
         "@techor/jest": "",
         "commitlint-config-techor": "",
         "conventional-changelog-techor": "",

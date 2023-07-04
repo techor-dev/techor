@@ -2,10 +2,13 @@
 
 import { program } from 'commander'
 import { readFileAsJSON } from '@techor/fs'
-const { version, name, description } = readFileAsJSON('./package.json')
+import { execSync } from 'child_process'
 
-program.command('pack', 'Alias for techor-pack')
-program.command('version', 'Alias for techor-version')
+const { version, name, description } = readFileAsJSON('./package.json')
+const args = process.argv.slice(4)
+
+program.command('pack', 'Alias for techor-pack').action(() => { execSync('techor-pack ' + args.join(' '), { stdio: 'inherit' }) })
+program.command('version', 'Alias for techor-version').action(() => { execSync('techor-version ' + args.join(' '), { stdio: 'inherit' }) })
 program.parse(process.argv)
 program.name(name)
 program.description(description)
