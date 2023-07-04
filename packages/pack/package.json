@@ -48,9 +48,12 @@
         "commander": "^10.0.0",
         "cross-import": "",
         "esbuild": "^0.18.11",
+        "esbuild-plugin-d.ts": "^1.1.0",
         "explore-config": "",
         "fast-glob": "^3.2.12",
+        "i": "^0.3.7",
         "lodash.isequal": "^4.5.0",
+        "npm": "^9.7.2",
         "upath": "^2.0.1"
     },
     "devDependencies": {

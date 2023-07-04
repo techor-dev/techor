@@ -2,7 +2,6 @@
 
 import { program } from 'commander'
 import fg from 'fast-glob'
-import { execaCommand } from 'execa'
 import { type BuildOptions, context, Metafile, build } from 'esbuild'
 import log, { chalk } from '@techor/log'
 import path from 'upath'
@@ -18,6 +17,7 @@ import { removeImportSvelteModuleExtensionPlugin } from '../plugins/esbuild-remo
 import extend from '@techor/extend'
 import { readFileAsJSON } from '@techor/fs'
 import exploreConfig from 'explore-config'
+import { execaCommand } from 'execa'
 
 const ext2format = {
     'js': 'cjs',
@@ -41,7 +41,6 @@ program.command('pack [entryPaths...]', { isDefault: true })
     .option('-w, --watch', 'Rebuild whenever a file changes', false)
     .option('-s, --sourcemap', 'Emit a source map', process.env.NODE_ENV === 'production')
     .option('-p, --platform <node,browser,neutral>', 'Platform target', 'browser')
-    .option('-t, --type', 'Emit typescript declarations', pkg.types)
     .option('-o, --outdir <dir>', 'The output directory for the build operation', 'dist')
     .option('--serve', 'Serve mode starts a web server that serves your code to your browser on your device', false)
     .option('-e, --external <packages...>', 'External packages to exclude from the build', externalDependencies)
@@ -55,6 +54,7 @@ program.command('pack [entryPaths...]', { isDefault: true })
     .option('--srcdir <dir>', 'The source directory', 'src')
     .option('--target [targets...]', 'This sets the target environment for the generated JavaScript and/or CSS code.')
     .option('--mangle-props', 'Pass a regular expression to esbuild to tell esbuild to automatically rename all properties that match this regular expression', '^_')
+    .option('--no-declare', 'OFF: Emit typescript declarations', !!pkg.types)
     .option('--no-bundle', 'OFF: Inline any imported dependencies into the file itself', true)
     .option('--no-minify', 'OFF: Minify the generated code')
     .option('--no-clean', 'OFF: Clean up the previous output directory before the build starts')
@@ -73,7 +73,10 @@ program.command('pack [entryPaths...]', { isDefault: true })
         }
         const addBuildTask = async (eachEntries: string[], eachOptions: { format: string, softBundle?: boolean, ext?: string, platform?: string, outdir?: string, outFile?: string }) => {
             const isCSSTask = eachOptions.format === 'css'
-            const eachOutext = eachOptions.ext || eachOptions.outFile && path.extname(eachOptions.outFile) || undefined
+            let eachOutExt = eachOptions.ext || eachOptions.outFile && path.extname(eachOptions.outFile) || undefined
+            if (!eachOutExt) {
+                eachOutExt = { cjs: options.cjsExt, esm: options.esmExt, iife: options.iifeExt }[eachOptions.format]
+            }
             const external = [
                 ...options.external,
                 ...options.extraExternal
@@ -86,11 +89,7 @@ program.command('pack [entryPaths...]', { isDefault: true })
             const buildOptions: BuildOptions = extend(options, {
                 outExtension: isCSSTask
                     ? { '.css': '.css' }
-                    : {
-                        '.js': eachOutext
-                            ? eachOutext
-                            : { cjs: options.cjsExt, esm: options.esmExt, iife: options.iifeExt }[eachOptions.format]
-                    },
+                    : { '.js': eachOutExt },
                 logLevel: 'info',
                 outdir: eachOutdir,
                 outbase: options.srcdir,
@@ -162,7 +161,7 @@ program.command('pack [entryPaths...]', { isDefault: true })
                         for (const outputFilePath in metafile.outputs) {
                             const eachOutput = metafile.outputs[outputFilePath]
                             const outputSize = prettyBytes(eachOutput.bytes).replace(/ /g, '')
-                            const eachOutputFormat = metafile.outputs[outputFilePath]['format'] = eachOptions.format
+                            eachOutput['format'] = buildOptions.format
                             log``
                             log.i`**${outputFilePath}** ${outputSize} (${Object.keys(eachOutput.inputs).length} inputs)`
                         }
@@ -292,8 +291,9 @@ program.command('pack [entryPaths...]', { isDefault: true })
         if (!buildTasks.length) {
             options.format.map((eachFormat: string) => addBuildTask([path.join(options.srcdir, 'index.ts')], { format: eachFormat }))
         }
+
         let typeBuildTask: any
-        if (options.type) {
+        if (options.declare) {
             typeBuildTask = {
                 outFile: 'declarations',
                 options: {
@@ -301,19 +301,24 @@ program.command('pack [entryPaths...]', { isDefault: true })
                     format: 'dts'
                 },
                 run: () => new Promise<void>((resolve) => {
-                    const runTsc = () => execaCommand(line`
-                        npx tsc --emitDeclarationOnly --preserveWatchOutput --declaration
-                        --outDir ${options.outdir}
-                        ${options.watch && '--watch'}
-                    `, {
-                        stdio: 'inherit',
-                        stripFinalNewline: false,
-                        cwd: process.cwd()
-                    })
-                        .catch((reason) => {
-                            process.exit()
+                    const runTsc = () => {
+                        execaCommand(line`
+                            npx tsc
+                            --emitDeclarationOnly
+                            --preserveWatchOutput
+                            --declaration
+                            --outDir ${options.outdir}
+                            ${options.watch && '--watch --incremental'}
+                        `, {
+                            stdio: 'inherit',
+                            stripFinalNewline: false,
+                            cwd: process.cwd()
                         })
-                        .finally(resolve)
+                            .catch((reason) => {
+                                process.exit()
+                            })
+                            .finally(resolve)
+                    }
                     if (options.watch) {
                         setTimeout(runTsc, 100)
                     } else {
