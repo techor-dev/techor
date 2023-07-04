@@ -28,7 +28,7 @@
         "bump"
     ],
     "bin": {
-        "techor-version": "./dist/bin/index.js"
+        "techor-version": "./dist/bin/index.bundle.js"
     },
     "files": [
         "dist"
