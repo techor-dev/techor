@@ -1,28 +1,30 @@
 import { execSync } from 'node:child_process'
 import dedent from 'ts-dedent'
-import { expectFileIncludes } from '../../../../utils/expect-file-includes'
+import fs from 'fs'
+import path from 'path'
+
+beforeAll(() => {
+    execSync('tsx ../../src/bin pack --platform node --no-minify --shakable', { cwd: __dirname, stdio: 'pipe' })
+    execSync('esbuild src/index.ts --bundle --outfile=esbuild-dist/index.js --format=cjs --platform=node --external:@techor/log --external:@techor/extend', { cwd: __dirname, stdio: 'pipe' })
+    execSync('esbuild src/index.ts --bundle --outfile=esbuild-dist/index.mjs --format=esm --platform=node --external:@techor/log --external:@techor/extend', { cwd: __dirname, stdio: 'pipe' })
+})
 
 it('standard package outputs', () => {
-    execSync('tsx ../../src/bin pack --no-minify --shakable', { cwd: __dirname, stdio: 'pipe' })
-
-    expectFileIncludes('dist/index.js', [
-        'module.exports = __toCommonJS'
-    ], { cwd: __dirname })
-
-    expectFileIncludes('dist/index.mjs', [
-        dedent`export {
+    expect(fs.readFileSync(path.join(__dirname, 'dist/index.js')).toString()).toContain('module.exports = __toCommonJS')
+    expect(fs.readFileSync(path.join(__dirname, 'dist/index.mjs')).toString()).toContain(dedent`
+        export {
           optionA,
           optionB
-        };`
-    ], { cwd: __dirname })
+        };
+    `)
+    expect(fs.readFileSync(path.join(__dirname, 'dist/cjs/index.js')).toString()).toContain('module.exports = __toCommonJS(src_exports);')
+    expect(fs.readFileSync(path.join(__dirname, 'dist/esm/index.mjs')).toString()).toContain('export * from "./options/index.mjs";')
+})
 
-    expectFileIncludes('dist/cjs/index.js', [
-        'module.exports = __toCommonJS(src_exports);'
-    ], { cwd: __dirname })
+it('cjs bundle should be same as esbuild', () => {
+    expect(fs.readFileSync(path.join(__dirname, 'dist/index.js')).toString()).toEqual(fs.readFileSync(path.join(__dirname, 'esbuild-dist/index.js')).toString())
+})
 
-    expectFileIncludes('dist/esm/index.mjs', [
-        'export * from "./options/index.mjs";'
-    ], { cwd: __dirname })
-
-
+it('esm bundle should be same as esbuild', () => {
+    expect(fs.readFileSync(path.join(__dirname, 'dist/index.mjs')).toString()).toEqual(fs.readFileSync(path.join(__dirname, 'esbuild-dist/index.mjs')).toString())
 })
