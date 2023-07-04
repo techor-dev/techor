@@ -2,8 +2,8 @@
     "name": "@techor.tests/standard",
     "private": true,
     "sideEffects": false,
-    "main": "./dist/index.js",
-    "module": "./dist/index.mjs",
+    "main": "./dist/index.bundle.js",
+    "module": "./dist/index.bundle.mjs",
     "types": "./dist/index.d.ts",
     "exports": {
         ".": {

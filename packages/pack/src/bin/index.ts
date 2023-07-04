@@ -43,6 +43,7 @@ program.command('pack [entryPaths...]', { isDefault: true })
     .option('-p, --platform <node,browser,neutral>', 'Platform target', 'browser')
     .option('-o, --outdir <dir>', 'The output directory for the build operation', 'dist')
     .option('--serve', 'Serve mode starts a web server that serves your code to your browser on your device', false)
+    .option('--bundle', 'Inline any imported dependencies into the file itself', false)
     .option('-e, --external <packages...>', 'External packages to exclude from the build', externalDependencies)
     .option('-ee, --extra-external <packages...>', 'Extra external packages to exclude from the build', [])
     .option('-re, --resolve-extensions [extensions...]', 'The resolution algorithm used by node supports implicit file extensions', ['.tsx', '.ts', '.jsx', '.js', '.css', '.json'])
@@ -55,7 +56,6 @@ program.command('pack [entryPaths...]', { isDefault: true })
     .option('--target [targets...]', 'This sets the target environment for the generated JavaScript and/or CSS code.')
     .option('--mangle-props', 'Pass a regular expression to esbuild to tell esbuild to automatically rename all properties that match this regular expression', '^_')
     .option('--no-declare', 'OFF: Emit typescript declarations', !!pkg.types)
-    .option('--no-bundle', 'OFF: Inline any imported dependencies into the file itself', true)
     .option('--no-minify', 'OFF: Minify the generated code')
     .option('--no-clean', 'OFF: Clean up the previous output directory before the build starts')
     .action(async function (entries: string[], options, args) {
@@ -66,32 +66,37 @@ program.command('pack [entryPaths...]', { isDefault: true })
         }
         const useConfig = exploreConfig('techor.*')
         const buildTasks: BuildTask[] = []
-        const getFileSrcGlobPattern = (filePath: string, targetExt: string) => {
-            const subFilePath /* components/a.ts */ = path.relative(options.outdir, filePath)
+        const resolvePackageEntry = (filePath: string, targetExt: string) => {
+            const subFilePath /* components/a.ts */ = path.relative(options.outdir, filePath.replace('.bundle', ''))
             const srcFilePath /* src/components/a.ts */ = path.join(options.srcdir, subFilePath)
             return path.changeExt(srcFilePath, targetExt)
         }
-        const addBuildTask = async (eachEntries: string[], eachOptions: { format: string, softBundle?: boolean, ext?: string, platform?: string, outdir?: string, outFile?: string }) => {
+        const addBuildTask = async (eachEntries: string[], eachOptions: { format: string, bundle?: boolean, softBundle?: boolean, ext?: string, platform?: string, outdir?: string, outFile?: string }) => {
             const isCSSTask = eachOptions.format === 'css'
             let eachOutExt = eachOptions.ext || eachOptions.outFile && path.extname(eachOptions.outFile) || undefined
             if (!eachOutExt) {
                 eachOutExt = { cjs: options.cjsExt, esm: options.esmExt, iife: options.iifeExt }[eachOptions.format]
+            }
+            if (eachOptions.bundle === undefined) {
+                eachOptions.bundle = options.bundle
             }
             const external = [
                 ...options.external,
                 ...options.extraExternal
             ]
             const eachOutdir = eachOptions.outdir || options.outdir
-            if (options.bundle && eachOptions.softBundle) {
+            if (eachOptions.bundle && eachOptions.softBundle) {
                 external.push('.*')
             }
-
+            console.log(eachOptions.outFile)
             const buildOptions: BuildOptions = extend(options, {
                 outExtension: isCSSTask
                     ? { '.css': '.css' }
                     : { '.js': eachOutExt },
                 logLevel: 'info',
-                outdir: eachOutdir,
+                outdir: eachOptions.outFile ? undefined : eachOutdir,
+                bundle: eachOptions.bundle,
+                outfile: eachOptions.outFile,
                 outbase: options.srcdir,
                 platform: eachOptions.platform || options.platform,
                 metafile: true,
@@ -103,13 +108,13 @@ program.command('pack [entryPaths...]', { isDefault: true })
                 sourcemap: options.sourcemap,
                 external,
                 plugins: [],
-            }, useConfig?.pack)
+            } as BuildOptions, useConfig?.pack)
 
             if (!buildOptions.target) {
                 delete buildOptions.target
             }
 
-            if (!options.bundle) {
+            if (!eachOptions.bundle) {
                 delete buildOptions.external
             }
 
@@ -145,6 +150,7 @@ program.command('pack [entryPaths...]', { isDefault: true })
                             && eachBuildTask.options.format === buildOptions.format
                             && isEqual(eachBuildTask.options.outExtension, buildOptions.outExtension)
                             && eachBuildTask.options.outdir === buildOptions.outdir
+                            && eachBuildTask.options.outfile === buildOptions.outfile
                         )
                     )
             if (!buildOptions.entryPoints.length) {
@@ -198,7 +204,7 @@ program.command('pack [entryPaths...]', { isDefault: true })
             options.shakableFormat.forEach((eachFormat: string) =>
                 addBuildTask(
                     [path.join(options.srcdir, '**/*.{js,ts,jsx,tsx,mjs,mts}')],
-                    { format: eachFormat, platform: 'node', outdir: path.join(options.outdir, eachFormat), softBundle: true }
+                    { format: eachFormat, platform: 'node', outdir: path.join(options.outdir), softBundle: true }
                 ))
         }
 
@@ -216,10 +222,11 @@ program.command('pack [entryPaths...]', { isDefault: true })
                 (function handleExports(eachExports: any, eachParentKey: string, eachOptions?: { format?: string, outFile?: string, platform?: string }) {
                     if (typeof eachExports === 'string') {
                         const exportsExt = path.extname(eachExports).slice(1)
-                        addBuildTask([getFileSrcGlobPattern(eachExports, '.{js,ts,jsx,tsx,mjs,mts}')], {
+                        addBuildTask([resolvePackageEntry(eachExports, '.{js,ts,jsx,tsx,mjs,mts}')], {
                             format: ext2format[exportsExt],
                             outFile: options.outFile || eachExports,
-                            platform: options.platform
+                            platform: options.platform,
+                            bundle: eachExports.includes('.bundle')
                         })
                     } else {
                         for (const eachExportKey in eachExports) {
@@ -266,24 +273,24 @@ program.command('pack [entryPaths...]', { isDefault: true })
                 })(pkg.exports, '')
             }
             if (pkg.style) {
-                addBuildTask([getFileSrcGlobPattern(pkg.main, '.css')], { format: 'css' })
+                addBuildTask([resolvePackageEntry(pkg.style, '.css')], { format: 'css', outFile: pkg.style, bundle: pkg.main.includes('.bundle') })
             }
             if (pkg.main && !pkg.main.endsWith('.css')) {
-                addBuildTask([getFileSrcGlobPattern(pkg.main, '.{js,ts,jsx,tsx,mjs,mts}')], { format: 'cjs', outFile: pkg.main })
+                addBuildTask([resolvePackageEntry(pkg.main, '.{js,ts,jsx,tsx,mjs,mts}')], { format: 'cjs', outFile: pkg.main, bundle: pkg.main.includes('.bundle') })
             }
             if (pkg.module) {
-                addBuildTask([getFileSrcGlobPattern(pkg.module, '.{js,ts,jsx,tsx,mjs,mts}')], { format: 'esm', outFile: pkg.module })
+                addBuildTask([resolvePackageEntry(pkg.module, '.{js,ts,jsx,tsx,mjs,mts}')], { format: 'esm', outFile: pkg.module, bundle: pkg.module.includes('.bundle') })
             }
             if (pkg.browser) {
-                addBuildTask([getFileSrcGlobPattern(pkg.browser, '.{js,ts,jsx,tsx,mjs,mts}')], { format: 'iife', platform: 'browser', outFile: pkg.browser })
+                addBuildTask([resolvePackageEntry(pkg.browser, '.{js,ts,jsx,tsx,mjs,mts}')], { format: 'iife', platform: 'browser', outFile: pkg.browser, bundle: pkg.browser.includes('.bundle') })
             }
             if (pkg.bin) {
                 if (typeof pkg.bin === 'string') {
-                    addBuildTask([getFileSrcGlobPattern(pkg.bin, '.{js,ts,jsx,tsx,mjs,mts}')], { format: 'cjs', platform: 'node', outFile: pkg.bin })
+                    addBuildTask([resolvePackageEntry(pkg.bin, '.{js,ts,jsx,tsx,mjs,mts}')], { format: 'cjs', platform: 'node', outFile: pkg.bin, bundle: pkg.bin.includes('.bundle') })
                 } else {
                     for (const eachCommandName in pkg.bin) {
                         const eachCommandFile = pkg.bin[eachCommandName]
-                        addBuildTask([getFileSrcGlobPattern(eachCommandFile, '.{js,ts,jsx,tsx,mjs,mts}')], { format: 'cjs', platform: 'node', outFile: eachCommandFile })
+                        addBuildTask([resolvePackageEntry(eachCommandFile, '.{js,ts,jsx,tsx,mjs,mts}')], { format: 'cjs', platform: 'node', outFile: eachCommandFile, bundle: eachCommandFile.includes('.bundle') })
                     }
                 }
             }

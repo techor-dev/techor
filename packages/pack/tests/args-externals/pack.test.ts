@@ -3,8 +3,8 @@ import { expectFileIncludes } from '../../../../utils/expect-file-includes'
 
 test('prevent bundling external packages by args', () => {
     execSync('tsx ../../src/bin pack --shakable --external @master/css @master/style-element.react', { cwd: __dirname, stdio: 'pipe' })
-    expectFileIncludes('dist/cjs/index.js', [
+    expectFileIncludes('dist/index.js', [
         'require("@master/css")',
         'require("@master/style-element.react")'
-    ],  { cwd: __dirname })
+    ], { cwd: __dirname })
 })
