@@ -1,7 +1,7 @@
 {
     "name": "@techor/pack",
     "scripts": {
-        "build": "tsx ./src/bin pack",
+        "build": "tsx ./src/bin pack --platform node --format cjs",
         "dev": "npm run build -- --watch",
         "test": "jest",
         "type-check": "tsc --noEmit",
@@ -32,7 +32,7 @@
         "esmodule"
     ],
     "bin": {
-        "techor-pack": "./dist/bin/index.bundle.js"
+        "techor-pack": "./dist/bin/index.js"
     },
     "files": [
         "dist"

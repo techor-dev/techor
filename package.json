@@ -38,5 +38,8 @@
     },
     "engines": {
         "node": "^18"
+    },
+    "dependencies": {
+        "turbo": "^1.10.7"
     }
 }

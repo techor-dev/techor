@@ -1,7 +1,7 @@
 {
     "name": "techor",
     "scripts": {
-        "build": "tsx ../pack/src/bin pack",
+        "build": "tsx ../pack/src/bin pack --platform node --format cjs",
         "dev": "npm run build -- --watch",
         "type-check": "tsc --noEmit",
         "lint": "eslint src"
@@ -43,7 +43,7 @@
         "esmodule"
     ],
     "bin": {
-        "techor": "./dist/bin/index.bundle.js"
+        "techor": "./dist/bin/index.js"
     },
     "files": [
         "dist"
