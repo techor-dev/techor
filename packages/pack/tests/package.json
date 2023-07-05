@@ -2,8 +2,6 @@
     "name": "@test/pack-root",
     "private": true,
     "workspaces": [
-        "a",
-        "b",
-        "c"
+        "*"
     ]
 }

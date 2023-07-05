@@ -2,6 +2,6 @@
     "name": "@test/pack-a",
     "private": true,
     "dependencies": {
-        "@test/b": ""
+        "@test/pack-b": ""
     }
 }

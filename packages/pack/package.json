@@ -3,7 +3,7 @@
     "scripts": {
         "build": "tsx ./src/bin pack",
         "dev": "npm run build -- --watch",
-        "test": "jest",
+        "test": "cd tests && npm i && cd ../ && jest",
         "type-check": "tsc --noEmit",
         "lint": "eslint src"
     },
