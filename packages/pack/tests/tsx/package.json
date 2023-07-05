@@ -1,5 +1,5 @@
 {
-    "name": "@techor.tests/tsx",
+    "name": "@test/tsx",
     "private": true,
     "main": "./dist/index.js",
     "module": "./dist/index.js",

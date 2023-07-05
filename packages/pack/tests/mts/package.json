@@ -1,0 +1,15 @@
+{
+    "name": "@test/options",
+    "private": true,
+    "module": "./dist/index.bundle.mjs",
+    "exports": {
+        ".": {
+            "import": "./dist/index.mjs"
+        },
+        "./tree-shaking": "./dist/tree-shaking.bundle.mjs"
+    },
+    "sideEffects": false,
+    "files": [
+        "dist"
+    ]
+}

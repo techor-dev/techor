@@ -1,5 +1,5 @@
 {
-    "name": "@techor.tests/svelte",
+    "name": "@test/svelte",
     "private": true,
     "type": "module",
     "sideEffects": false,

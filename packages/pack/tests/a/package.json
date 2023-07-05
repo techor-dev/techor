@@ -1,7 +1,7 @@
 {
-    "name": "@techor.tests/a",
+    "name": "@test/pack-a",
     "private": true,
     "dependencies": {
-        "@techor.tests/b": ""
+        "@test/b": ""
     }
 }

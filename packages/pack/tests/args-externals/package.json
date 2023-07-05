@@ -1,5 +1,5 @@
 {
-    "name": "@techor.tests/args-externals",
+    "name": "@test/args-externals",
     "private": true,
     "main": "dist/index.js",
     "exports": {

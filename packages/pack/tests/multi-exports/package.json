@@ -1,5 +1,5 @@
 {
-    "name": "@techor.tests/multi-exports",
+    "name": "@test/multi-exports",
     "private": true,
     "main": "./dist/index.js",
     "jsnext:main": "./dist/index.js",

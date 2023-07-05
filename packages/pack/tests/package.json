@@ -1,5 +1,5 @@
 {
-    "name": "@techor.tests/root",
+    "name": "@test/pack-root",
     "private": true,
     "workspaces": [
         "a",

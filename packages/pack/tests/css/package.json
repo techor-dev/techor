@@ -1,8 +1,8 @@
 {
-    "name": "@techor.tests/css",
+    "name": "@test/css",
     "private": true,
-    "main": "./dist/index.css",
-    "style": "./dist/index.css",
+    "main": "./dist/index.bundle.css",
+    "style": "./dist/index.bundle.css",
     "files": [
         "dist"
     ]

@@ -1,5 +1,5 @@
 {
-    "name": "@techor.tests/type",
+    "name": "@test/type",
     "private": true,
     "sideEffects": false,
     "main": "./dist/index.js",

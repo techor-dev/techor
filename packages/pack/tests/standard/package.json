@@ -1,5 +1,5 @@
 {
-    "name": "@techor.tests/standard",
+    "name": "@test/standard",
     "private": true,
     "sideEffects": false,
     "main": "./dist/index.bundle.js",
@@ -7,8 +7,8 @@
     "types": "./dist/index.d.ts",
     "exports": {
         ".": {
-            "require": "./dist/index.js",
-            "import": "./dist/index.mjs"
+            "require": "./dist/index.bundle.js",
+            "import": "./dist/index.bundle.mjs"
         }
     },
     "files": [
@@ -18,6 +18,7 @@
         "@techor/is-plain-obj": "",
         "esbuild": "^0.18.11",
         "pretty-bytes": "^6.1.0",
+        "@test/dev-dependency": "",
         "typescript": "^4.9.5"
     },
     "dependencies": {

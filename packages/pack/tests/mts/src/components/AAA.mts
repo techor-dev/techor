@@ -1,4 +1,4 @@
-import { aUtil } from '../utils/a-util'
+import { aUtil } from '../utils/a-util.mjs'
 
 const hasFn = typeof Function !== 'undefined'
 

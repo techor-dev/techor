@@ -1,5 +1,5 @@
 {
-    "name": "@techor.tests/css-bundle",
+    "name": "@test/css-bundle",
     "private": true,
     "main": "./dist/index.bundle.css",
     "style": "./dist/index.bundle.css",

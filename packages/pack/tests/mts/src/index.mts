@@ -1,6 +1,6 @@
-import { AAA, BBB } from './components'
+import { AAA, BBB } from './components/index.mjs'
 
-export * from './components'
+export * from './components/index.mjs'
 export const components = [
     AAA,
     BBB

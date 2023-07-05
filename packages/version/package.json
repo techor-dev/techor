@@ -1,7 +1,7 @@
 {
     "name": "@techor/version",
     "scripts": {
-        "build": "tsx ../pack/src/bin pack --platform node --format cjs",
+        "build": "tsx ../pack/src/bin pack",
         "dev": "npm run build -- --watch",
         "test": "jest",
         "type-check": "tsc --noEmit",
@@ -28,7 +28,7 @@
         "bump"
     ],
     "bin": {
-        "techor-version": "./dist/bin/index.js"
+        "techor-version": "./dist/bin/index.bundle.js"
     },
     "files": [
         "dist"

@@ -1,0 +1,6 @@
+{
+    "name": "@test/dev-dependency",
+    "private": true,
+    "main": "./index.js",
+    "module": "./index.mjs"
+}

@@ -313,6 +313,18 @@ So if there is an external package that needs to be bundled, you just install it
 ```
 Any nested conditions in `exports` like `node`, `browser`, `default`, `require`, and `import` will be mapped to ESBuild’s `format` and `platform` options.
 
+## Options
+### `mangleProps`
+```bash
+techor pack --mangle-props '^_'
+```
+```diff
+- module.exports._parse = parse;
+- module.exports._enoent = enoent;
++ module.exports.b = parse;
++ module.exports.c = enoent;
+```
+
 <br>
 
 <a aria-label="overview" href="https://github.com/1aron/techor#ecosystem">

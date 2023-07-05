@@ -1,10 +1,10 @@
 {
-    "name": "@techor.tests/externals",
+    "name": "@test/external",
     "private": true,
-    "main": "dist/index.js",
+    "main": "dist/index.bundle.js",
     "exports": {
         ".": {
-            "require": "./dist/index.js"
+            "require": "./dist/index.bundle.js"
         }
     },
     "files": [

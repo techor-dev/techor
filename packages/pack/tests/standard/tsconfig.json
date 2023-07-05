@@ -7,7 +7,8 @@
     "include": [
         "src/**/*.ts",
         "src/**/*.tsx",
-        "src/**/*.d.ts"
+        "src/**/*.d.ts",
+        "../dev-dependency/**/*.ts"
     ],
     "exclude": [
         "src/**/*.test.ts"

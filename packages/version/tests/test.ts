@@ -9,13 +9,13 @@ test('bump to specific version by analyzing dependencies', () => {
         .toString()
     expect(stripAnsi(outputLog)).toContain(dedent`
         📦
-        ├ @techor.tests/a
+        ├ @test/a
         │  └ dependencies
-        │     └ @techor.tests/b
-        ├ @techor.tests/b
-        └ @techor.tests/c
+        │     └ @test/b
+        ├ @test/b
+        └ @test/c
            └ peerDependencies
-              └ @techor.tests/a
+              └ @test/a
         ⏺ Success bump version to ^1.2.0 for 3 packages in all workspace
     `)
 })
