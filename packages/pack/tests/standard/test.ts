@@ -8,8 +8,8 @@ beforeAll(() => {
 })
 
 it('contains bundled files', () => {
-    expect(fs.readFileSync(path.join(__dirname, 'dist/index.bundle.mjs')).toString()).toContain('// src/options/a.ts')
-    expect(fs.readFileSync(path.join(__dirname, 'dist/index.bundle.mjs')).toString()).toContain('// node_modules/pretty-bytes/index.js')
+    expect(fs.readFileSync(path.join(__dirname, 'dist/index.bundle.mjs')).toString()).toContain('src/options/a.ts')
+    expect(fs.readFileSync(path.join(__dirname, 'dist/index.bundle.mjs')).toString()).toContain('node_modules/pretty-bytes/index.js')
 })
 
 // it('contains multiple entries for tree shaking', () => {
@@ -39,12 +39,12 @@ it('contains bundled files', () => {
 //     expect(fs.readFileSync(path.join(__dirname, 'dist/external/index.js')).toString()).not.toContain('require("./lib/parse")')
 // })
 
-// it('cjs bundle should be same as esbuild', () => {
-//     execSync('esbuild src/index.ts --bundle --outfile=esbuild-dist/index.bundle.js --format=cjs --platform=node --external:@techor/log --external:@techor/extend', { cwd: __dirname, stdio: 'pipe' })
-//     expect(fs.readFileSync(path.join(__dirname, 'dist/index.bundle.js')).toString()).toEqual(fs.readFileSync(path.join(__dirname, 'esbuild-dist/index.bundle.js')).toString())
-// })
+it('cjs bundle should be same as esbuild', () => {
+    execSync('esbuild src/index.ts --bundle --outfile=esbuild-dist/index.bundle.js --format=cjs --platform=node --external:@techor/log --external:@techor/extend', { cwd: __dirname, stdio: 'pipe' })
+    expect(fs.readFileSync(path.join(__dirname, 'dist/index.bundle.js')).toString()).toEqual(fs.readFileSync(path.join(__dirname, 'esbuild-dist/index.bundle.js')).toString())
+})
 
-// it('esm bundle should be same as esbuild', () => {
-//     execSync('esbuild src/index.ts --bundle --outfile=esbuild-dist/index.bundle.mjs --format=esm --platform=node --external:@techor/log --external:@techor/extend', { cwd: __dirname, stdio: 'pipe' })
-//     expect(fs.readFileSync(path.join(__dirname, 'dist/index.bundle.mjs')).toString()).toEqual(fs.readFileSync(path.join(__dirname, 'esbuild-dist/index.bundle.mjs')).toString())
-// })
+it('esm bundle should be same as esbuild', () => {
+    execSync('esbuild src/index.ts --bundle --outfile=esbuild-dist/index.bundle.mjs --format=esm --platform=node --external:@techor/log --external:@techor/extend', { cwd: __dirname, stdio: 'pipe' })
+    expect(fs.readFileSync(path.join(__dirname, 'dist/index.bundle.mjs')).toString()).toEqual(fs.readFileSync(path.join(__dirname, 'esbuild-dist/index.bundle.mjs')).toString())
+})
