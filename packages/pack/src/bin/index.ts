@@ -158,7 +158,6 @@ program.command('pack [entryPaths...]', { isDefault: true })
             const allowedEntries = []
 
             for (const allowedEntry of allowedAllEntries) {
-                console.log(allowedEntry)
                 if (allowedEntry.endsWith('.css')) {
                     allowedCSSEntries.push(allowedEntry)
                 } else {
@@ -183,25 +182,8 @@ program.command('pack [entryPaths...]', { isDefault: true })
                             eachBuildTask.metafile = metafile
                             for (const outputFilePath in metafile.outputs) {
                                 const eachOutput = metafile.outputs[outputFilePath]
-                                const outputSize = prettyBytes(eachOutput.bytes).replace(/ /g, '')
                                 eachOutput['format'] = buildOptions.format
-                                log``
-                                log.i`**${outputFilePath}** ${outputSize} (${Object.keys(eachOutput.inputs).length} inputs)`
                             }
-                            log.tree({
-                                entries: buildOptions.entryPoints,
-                                external: buildOptions.external,
-                                outdir: buildOptions.outdir,
-                                format: buildOptions.format,
-                                platform: buildOptions.platform,
-                                target: buildOptions.target,
-                                [
-                                    Object.keys(buildOptions)
-                                        .filter((x) => buildOptions[x] === true)
-                                        .map((x) => chalk.green('✓ ') + x)
-                                        .join(', ')
-                                ]: null
-                            })
                         }
                         if (options.watch) {
                             await ctx.watch()
@@ -325,7 +307,7 @@ program.command('pack [entryPaths...]', { isDefault: true })
             typeBuildTask = {
                 outFile: 'declarations',
                 options: {
-                    platform: 'type',
+                    platform: 'ts',
                     format: 'dts'
                 },
                 run: () => new Promise<void>((resolve) => {
@@ -374,10 +356,10 @@ program.command('pack [entryPaths...]', { isDefault: true })
                         const eachOutput = eachBuildTask.metafile.outputs[outputFilePath]
                         const outputSize = prettyBytes(eachOutput.bytes).replace(/ /g, '')
                         const eachOutputFormat = eachOutput['format']
-                        log.ok(l`[${eachBuildTask.options.platform}] **${outputFilePath}** ${outputSize} (${eachOutputFormat})`)
+                        log.ok(l`[${eachBuildTask.options.platform}] **${outputFilePath}** ${outputSize} (${eachOutputFormat}) ${eachBuildTask.options.bundle && '(bundle)'} ${eachBuildTask.options.minify && '(minify)'} ${Object.keys(eachOutput.inputs).length} inputs`)
                     })
             } else {
-                log.ok(l`[${eachBuildTask.options.format}] **${eachBuildTask['outFile']}** (${eachBuildTask.options.format})`)
+                log.ok(l`[${eachBuildTask.options.platform}] **${eachBuildTask['outFile']}** (${eachBuildTask.options.format})`)
             }
         }
         console.log('')
