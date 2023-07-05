@@ -8,7 +8,7 @@
         "commit-check": "commitlint --from=HEAD~1 --verbose",
         "test": "turbo run test --parallel --filter=./packages/*",
         "lint": "turbo run lint --parallel --filter=./packages/*",
-        "type-check": "turbo run type-check",
+        "type-check": "turbo run type-check --filter=./packages/*",
         "dev": "turbo run dev --force --filter=./packages/*",
         "version": "tsx ./packages/version/src/bin version",
         "analyze:commit": "semantic-release --debug",
