@@ -1,0 +1,10 @@
+{
+    "name": "@test/entry-names",
+    "private": true,
+    "sideEffects": false,
+    "main": "./dist/index.bundle.js",
+    "module": "./dist/index.bundle.mjs",
+    "files": [
+        "dist"
+    ]
+}

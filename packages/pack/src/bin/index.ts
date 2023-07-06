@@ -8,7 +8,6 @@ import path from 'upath'
 import line, { l } from '@techor/one-liner'
 import type { PackageJson } from 'pkg-types'
 import prettyBytes from 'pretty-bytes'
-import normalizePath from 'normalize-path'
 import fs from 'fs'
 import isEqual from 'lodash.isequal'
 import { esbuildOptionNames } from '../utils/esbuild-option-names'
@@ -45,6 +44,7 @@ program.command('pack [entryPaths...]', { isDefault: true })
     .option('--srcdir <dir>', 'The source directory', 'src')
     .option('--target [targets...]', 'This sets the target environment for the generated JavaScript and/or CSS code.')
     .option('--mangle-props <regExp>', 'Pass a regular expression to esbuild to tell esbuild to automatically rename all properties that match this regular expression')
+    .option('--entry-names <[dir]/[name]>', 'Pass a regular expression to esbuild to tell esbuild to automatically rename all properties that match this regular expression')
     .option('--no-declare', 'OFF: Emit typescript declarations', !!pkg.types)
     .option('--no-minify', 'OFF: Minify the generated code')
     .option('--no-clean', 'OFF: Clean up the previous output directory before the build starts')
@@ -61,8 +61,9 @@ program.command('pack [entryPaths...]', { isDefault: true })
         const useConfig = exploreConfig('techor.*')
         const buildTasks: BuildTask[] = []
         const exploreEntries = (eachEntries: string[]) => {
+            console.log(process.cwd())
             return fg.sync(
-                [...new Set(eachEntries)].map((eachEntry) => normalizePath(eachEntry))
+                [...new Set(eachEntries)].map((eachEntry) => path.normalize(eachEntry))
             )
         }
         const exploreMapptedEntry = (filePath: string, targetExt: string) => {
@@ -99,6 +100,9 @@ program.command('pack [entryPaths...]', { isDefault: true })
             if (eachOptions.outdir) eachOptions.outdir = path.normalize(eachOptions.outdir)
             if (eachOptions.bundle === undefined) eachOptions.bundle = options.bundle
             if (eachOptions.outfile) {
+                if (eachOptions.bundle) {
+                    eachOptions.outfile = eachOptions.outfile.replace('.bundle', '')
+                }
                 eachOptions.outfile = path.normalize(eachOptions.outfile)
                 if (outputFilePaths.includes(eachOptions.outfile)) {
                     return
@@ -138,6 +142,7 @@ program.command('pack [entryPaths...]', { isDefault: true })
                 platform: eachOptions.platform || options.platform,
                 metafile: true,
                 bundle: eachOptions.bundle,
+                entryNames: options.entryNames ? options.entryNames : (eachOptions.bundle ? '[dir]/[name].bundle' : '[dir]/[name]'),
                 format: eachOptions.format,
                 keepNames: options.keepNames,
                 resolveExtensions: options.resolveExtensions,

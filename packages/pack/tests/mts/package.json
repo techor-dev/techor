@@ -4,7 +4,7 @@
     "module": "./dist/index.bundle.mjs",
     "exports": {
         ".": {
-            "import": "./dist/index.mjs"
+            "import": "./dist/index.bundle.mjs"
         },
         "./tree-shaking": "./dist/tree-shaking.bundle.mjs"
     },
