@@ -17,6 +17,8 @@ import extend from '@techor/extend'
 import { readFileAsJSON } from '@techor/fs'
 import exploreConfig from 'explore-config'
 import { execaCommand } from 'execa'
+import prettyHartime from 'pretty-hrtime'
+import { createShakableLibPlugin } from '../plugins/shakable-lib'
 
 declare type BuildTask = { options?: BuildOptions, metafile?: Metafile, run: () => Promise<any> }
 const pkg: PackageJson = readFileAsJSON('./package.json')
@@ -153,6 +155,8 @@ program.command('pack [entryPaths...]', { isDefault: true })
             // if (!eachOptions.bundle && eachOptions.format === 'esm') {
             //     buildOptions.plugins.push(createFillModuleExtPlugin(options.esmExt))
             // }
+
+            // buildOptions.plugins.push(createShakableLibPlugin({ srcdir: options.srcdir }))
 
             // Fix ERROR: Invalid option in build() call
             delete buildOptions['watch']
@@ -352,7 +356,9 @@ program.command('pack [entryPaths...]', { isDefault: true })
             }
         }
 
+        const buildStartTime = process.hrtime()
         await Promise.all(buildTasks.map(({ run }) => run()))
+        const buildEndTime = process.hrtime(buildStartTime)
 
         console.log('')
 
@@ -377,7 +383,7 @@ program.command('pack [entryPaths...]', { isDefault: true })
         if (options.watch) {
             log`Start watching ${buildTasks.length} build tasks $t`
         } else {
-            log.success`${buildTasks.length} build tasks $t`
+            log.success`${buildTasks.length} build tasks $t in ${prettyHartime(buildEndTime).replace(' ', '')}`
         }
         console.log('')
 
