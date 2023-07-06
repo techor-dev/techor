@@ -61,7 +61,6 @@ program.command('pack [entryPaths...]', { isDefault: true })
         const useConfig = exploreConfig('techor.*')
         const buildTasks: BuildTask[] = []
         const exploreEntries = (eachEntries: string[]) => {
-            console.log(process.cwd())
             return fg.sync(
                 [...new Set(eachEntries)].map((eachEntry) => path.normalize(eachEntry))
             )
