@@ -3,7 +3,7 @@ import path from 'path'
 import log, { paint } from '@techor/log'
 import { readJSONFileSync, writeFileSync } from '@techor/fs'
 
-export default function action(version: string, options) {
+module.exports = function action(version: string, options) {
     const pkg = readJSONFileSync(path.resolve('./package.json'))
     if (!options.workspaces) {
         options.workspaces = pkg.workspaces

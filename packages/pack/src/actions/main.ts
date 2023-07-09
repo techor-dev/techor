@@ -20,7 +20,7 @@ import { explorePathsSync } from '@techor/glob'
 
 declare type BuildTask = { options?: BuildOptions, metafile?: Metafile, run: () => Promise<any> }
 
-export default async function action(specifiedEntries: string[], options: any = {}) {
+module.exports = async function action(specifiedEntries: string[], options: any = {}) {
     // if (!specifiedEntries.length) {
     //     specifiedEntries = [path.join(options.srcdir, '**/*.{js,ts,jsx,tsx,mjs,mts,css}')]
     // }

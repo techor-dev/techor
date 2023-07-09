@@ -1,10 +1,17 @@
 #!/usr/bin/env node
 
-import { program } from 'commander'
+import { Command } from 'commander'
 import { readJSONFileSync } from '@techor/fs'
 import log from '@techor/log'
+import path from 'path'
 
-const { version, name, description } = readJSONFileSync('./package.json')
+const { version, name, description } = readJSONFileSync(path.resolve(__dirname, '../../package.json'))
+const program = new Command()
+
+program
+    .name(name)
+    .description(description)
+    .version(version || '0.0.0')
 
 program.command('pack [entryPaths...]')
     .option('-f, --format [formats...]', 'The output format for the generated JavaScript files `iife`, `cjs`, `esm`', ['cjs', 'esm'])
@@ -29,8 +36,7 @@ program.command('pack [entryPaths...]')
     .option('--no-clean', 'OFF: Clean up the previous output directory before the build starts')
     .action(async function (args, options) {
         try {
-            // @ts-expect-error dynamic import action
-            const action = (await import('@techor/pack/actions/main')).default
+            const action = require('@techor/pack/actions/main')
             await action(args, options)
         } catch (error) {
             if (error.code === 'ERR_MODULE_NOT_FOUND') {
@@ -50,8 +56,7 @@ program.command('version <version>')
     .option('--no-public', 'Off: Bump public project version')
     .action(async function (args, options) {
         try {
-            // @ts-expect-error dynamic import action
-            const action = (await import('@techor/version/actions/main')).default
+            const action = require('@techor/version/actions/main')
             await action(args, options)
         } catch (error) {
             if (error.code === 'ERR_MODULE_NOT_FOUND') {
@@ -62,7 +67,4 @@ program.command('version <version>')
         }
     })
 
-program.parse(process.argv)
-program.name(name)
-program.description(description)
-program.version(version)
+program.parse()

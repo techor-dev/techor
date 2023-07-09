@@ -43,8 +43,8 @@
     "dependencies": {
         "@techor/extend": "",
         "@techor/fs": "",
-        "@techor/log": "",
         "@techor/glob": "",
+        "@techor/log": "",
         "@techor/one-liner": "",
         "cross-import": "",
         "esbuild": "^0.18.11",
