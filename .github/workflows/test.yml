@@ -2,7 +2,7 @@ name: Test
 on:
     push:
         branches:
-            - '**'
+            - "**"
     pull_request_target:
         types:
             - opened
@@ -16,16 +16,15 @@ jobs:
         runs-on: ${{ matrix.os }}
         strategy:
             matrix:
-                node-version: [18.12.1]
-                os: [ubuntu-latest]
-                # os: [ubuntu-latest, windows-latest] 暫時不測試 windows-latest，有 bug 未解
+                node-version: [18]
+                os: [ubuntu-latest, windows-latest, macos-latest]
 
         steps:
             - uses: actions/checkout@v3
             - uses: actions/setup-node@v3
               with:
                   node-version: ${{ matrix.node-version }}
-                  cache: 'npm'
+                  cache: "npm"
             - run: npm ci
             - run: npm run build
             - run: npm run test
