@@ -4,7 +4,8 @@ import { program } from 'commander'
 import fg from 'fast-glob'
 import { type BuildOptions, context, Metafile, build } from 'esbuild'
 import log from '@techor/log'
-import path from 'path'
+import path from 'upath'
+import upath from 'upath'
 import line, { l } from '@techor/one-liner'
 import type { PackageJson } from 'pkg-types'
 import prettyBytes from 'pretty-bytes'
@@ -53,7 +54,7 @@ program.command('pack [entryPaths...]', { isDefault: true })
         // if (!specifiedEntries.length) {
         //     specifiedEntries = [path.join(options.srcdir, '**/*.{js,ts,jsx,tsx,mjs,mts,css}')]
         // }
-        if (options.srcdir) path.normalize(options.srcdir)
+        if (options.srcdir) upath.normalize(options.srcdir)
         if (options.clean && fs.existsSync(options.outdir)) {
             fs.rmSync(options.outdir, { force: true, recursive: true })
             log.i`**${options.outdir}** output cleaned up`
@@ -63,7 +64,7 @@ program.command('pack [entryPaths...]', { isDefault: true })
         const buildTasks: BuildTask[] = []
         const exploreEntries = (eachEntries: string[]) => {
             return fg.sync(
-                [...new Set(eachEntries)].map((eachEntry) => path.normalize(eachEntry))
+                [...new Set(eachEntries)].map((eachEntry) => upath.normalize(eachEntry))
             )
         }
         const exploreMapptedEntry = (filePath: string, targetExt: string) => {
@@ -97,13 +98,13 @@ program.command('pack [entryPaths...]', { isDefault: true })
             if (eachOutExt) {
                 outExtension['.js'] = eachOutExt
             }
-            if (eachOptions.outdir) eachOptions.outdir = path.normalize(eachOptions.outdir)
+            if (eachOptions.outdir) eachOptions.outdir = upath.normalize(eachOptions.outdir)
             if (eachOptions.bundle === undefined) eachOptions.bundle = options.bundle
             if (eachOptions.outfile) {
                 if (eachOptions.bundle) {
                     eachOptions.outfile = eachOptions.outfile.replace('.bundle', '')
                 }
-                eachOptions.outfile = path.normalize(eachOptions.outfile)
+                eachOptions.outfile = upath.normalize(eachOptions.outfile)
                 if (outputFilePaths.includes(eachOptions.outfile)) {
                     return
                 }
