@@ -2,7 +2,7 @@ import { expectErrorCommand } from '../../../utils/expect-error-command'
 import { expectErrorFreeCommand } from '../../../utils/expect-error-free-command'
 
 if (process.platform === 'win32') {
-    test.skip('skip commitlint-config tests on Windows OS')
+    test.todo('Skip commitlint-config tests on Windows OS')
 } else {
     test('Type: Summary', () => {
         expectErrorFreeCommand(`echo 'New: Syntax' | commitlint`)
