@@ -80,6 +80,7 @@
 - [cross import](https://github.com/1aron/techor/tree/main/packages/cross-import) — Import .ts, .mjs, .cjs files across environments as JavaScript modules
 - [explore config](https://github.com/1aron/techor/tree/main/packages/explore-config) — Explore multi-format JavaScript module configuration
 - [fs](https://github.com/1aron/techor/tree/main/packages/fs) — A human-friendly file system with glob patterns
+- [glob](https://github.com/1aron/techor/tree/main/packages/glob) — A human-friendly set of glob utilities
 - [read workspace packages](https://github.com/1aron/techor/tree/main/packages/read-workspace-packages) — Read workspace package.json contents
 - [query workspaces](https://github.com/1aron/techor/tree/main/packages/query-workspaces) — Query workspaces with package.json
 
