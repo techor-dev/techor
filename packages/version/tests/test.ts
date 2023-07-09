@@ -4,10 +4,9 @@ import dedent from 'ts-dedent'
 import stripAnsi from 'strip-ansi'
 
 test('bump to specific version by analyzing dependencies', () => {
-    const outputLog = execSync('NODE_OPTIONS=--experimental-vm-modules npx tsx ../../techor/src/bin version 1.2.0 --private --list',
+    const outputLog = execSync('tsx ../../techor/src/bin version 1.2.0 --private --list',
         { cwd: __dirname, stdio: 'pipe' })
         .toString()
-    console.log(outputLog)
     expect(stripAnsi(outputLog)).toContain(dedent`
         📦
         ├ @test/a
