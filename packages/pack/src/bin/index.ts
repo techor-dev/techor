@@ -4,7 +4,7 @@ import { program } from 'commander'
 import fg from 'fast-glob'
 import { type BuildOptions, context, Metafile, build } from 'esbuild'
 import log from '@techor/log'
-import path from 'upath'
+import path from 'path'
 import line, { l } from '@techor/one-liner'
 import type { PackageJson } from 'pkg-types'
 import prettyBytes from 'pretty-bytes'
@@ -13,14 +13,15 @@ import isEqual from 'lodash.isequal'
 import { esbuildOptionNames } from '../utils/esbuild-option-names'
 import { createFillModuleExtPlugin } from '../plugins/esbuild-plugin-fill-module-ext'
 import extend from '@techor/extend'
-import { readFileAsJSON } from '@techor/fs'
 import exploreConfig from 'explore-config'
 import { execaCommand } from 'execa'
 import prettyHartime from 'pretty-hrtime'
+import { readJSONFileSync } from '@techor/fs'
 import { createShakableLibPlugin } from '../plugins/shakable-lib'
+import { changeExt } from 'upath'
 
 declare type BuildTask = { options?: BuildOptions, metafile?: Metafile, run: () => Promise<any> }
-const pkg: PackageJson = readFileAsJSON('./package.json')
+const pkg: PackageJson = readJSONFileSync(path.resolve('./package.json'))
 const { dependencies, peerDependencies } = pkg
 /** Extract external dependencies to prevent bundling */
 const externalDependencies = []
@@ -68,7 +69,7 @@ program.command('pack [entryPaths...]', { isDefault: true })
         const exploreMapptedEntry = (filePath: string, targetExt: string) => {
             const subFilePath = path.relative(options.outdir, filePath.replace('.bundle', ''))
             const srcFilePath = path.join(options.srcdir, subFilePath)
-            const pattern = path.changeExt(srcFilePath, targetExt)
+            const pattern = changeExt(srcFilePath, targetExt)
             const foundEntries = exploreEntries([pattern])
             if (!foundEntries.length) {
                 throw new Error(`Cannot find the entry file **${pattern}**`)
@@ -110,7 +111,7 @@ program.command('pack [entryPaths...]', { isDefault: true })
             }
             if (!eachOptions.outfile && !eachOptions.bundle) {
                 eachEntries = eachEntries.filter((eachEntry) => {
-                    const eachOutputFilePath = path.changeExt(path.join(options.outdir, path.relative(options.srcdir, eachEntry)), eachOutExt)
+                    const eachOutputFilePath = changeExt(path.join(options.outdir, path.relative(options.srcdir, eachEntry)), eachOutExt)
                     if (outputFilePaths.includes(eachOutputFilePath)) {
                         return false
                     } else {

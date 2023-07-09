@@ -1,5 +1,5 @@
 import type { Plugin } from 'esbuild'
-import path from 'upath'
+import path from 'path'
 
 export const createShakableLibPlugin = ({ srcdir }: { srcdir: string }): Plugin => ({
     name: 'shakable-lib-plugin',

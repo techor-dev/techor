@@ -1,7 +1,8 @@
 import type { Plugin } from 'esbuild'
 import fs from 'fs'
 import fg from 'fast-glob'
-import path from 'upath'
+import path from 'path'
+import { changeExt } from 'upath'
 
 export function createFillModuleExtPlugin(outext = '.js', outdir = 'src'): Plugin {
     const resolvedOutdir = path.resolve(outdir)
@@ -36,7 +37,7 @@ export function createFillModuleExtPlugin(outext = '.js', outdir = 'src'): Plugi
                                     if (!foundModuleSourcePath) {
                                         return matches[0]
                                     }
-                                    let targetModulePath = path.relative(resolvedOutdir, path.changeExt(foundModuleSourcePath, outext))
+                                    let targetModulePath = path.relative(resolvedOutdir, changeExt(foundModuleSourcePath, outext))
                                     const parsedTargetModulePath = path.parse(targetModulePath)
                                     if (modulePath === '.' || modulePath === './') {
                                         targetModulePath = './index' + outext

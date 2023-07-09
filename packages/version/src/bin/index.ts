@@ -4,9 +4,9 @@ import { program } from 'commander'
 import fg from 'fast-glob'
 import path from 'path'
 import log, { paint } from '@techor/log'
-import { readFileAsJSON, writeToFile } from '@techor/fs'
+import { readJSONFileSync, writeFileSync } from '@techor/fs'
 
-const pkg = readFileAsJSON('./package.json')
+const pkg = readJSONFileSync('./package.json')
 
 program.command('version <version>', { isDefault: true })
     .description('Bump to specific version for workspace\'s packages')
@@ -36,7 +36,7 @@ program.command('version <version>', { isDefault: true })
 
         // Read package.json by workspaces
         for (const eachPackagePath of fg.sync(workspacePackagePaths)) {
-            const eachPackage = readFileAsJSON(eachPackagePath)
+            const eachPackage = readJSONFileSync(eachPackagePath)
             // Prevent version bumps of private package
             if (
                 eachPackage.private && (options.private) ||
@@ -55,7 +55,7 @@ program.command('version <version>', { isDefault: true })
             dependencies && updateDependencies(dependencies, 'dependencies')
             peerDependencies && updateDependencies(peerDependencies, 'peerDependencies')
             if (!options.list) {
-                writeToFile(eachPackagePath, eachPackage)
+                writeFileSync(eachPackagePath, eachPackage)
             }
         }
 

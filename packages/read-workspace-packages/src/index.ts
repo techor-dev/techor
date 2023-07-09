@@ -1,7 +1,7 @@
 import type { Options, Pattern } from 'fast-glob'
-import { readFileAsJSON } from '@techor/fs'
+import { readJSONFileSync } from '@techor/fs'
 import queryWorkspaces from '@techor/query-workspaces'
-import upath from 'upath'
+import path from 'path'
 
 export default function readWorkspacePackages(
     patterns: Pattern[] = [],
@@ -11,7 +11,7 @@ export default function readWorkspacePackages(
     return workspaces.length
         ? workspaces
             .map((eachWorkspace: string) =>
-                readFileAsJSON(upath.join(eachWorkspace, 'package.json'), options)
+                readJSONFileSync(path.join(options?.cwd || '', eachWorkspace, 'package.json'))
             )
         : []
 

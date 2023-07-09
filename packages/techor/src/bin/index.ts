@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
 import { program } from 'commander'
-import { readFileAsJSON } from '@techor/fs'
+import { readJSONFileSync } from '@techor/fs'
 import { execSync } from 'child_process'
 
-const { version, name, description } = readFileAsJSON('./package.json')
+const { version, name, description } = readJSONFileSync('./package.json')
 const args = process.argv.slice(4)
 
 program.command('pack', 'Alias for techor-pack').action(() => { execSync('techor-pack ' + args.join(' '), { stdio: 'inherit' }) })

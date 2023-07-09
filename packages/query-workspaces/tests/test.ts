@@ -1,5 +1,5 @@
 import queryWorkspaces from '../src'
-import { writeToFile } from '../../fs/src'
+import { writeFileSync } from '../../fs/src'
 import path from 'path'
 
 it('query workspaces', () => {
@@ -24,7 +24,7 @@ it('exclude workspaces without package.json', () => {
 
 it('exclude node_modules', () => {
     // create fake node_modules
-    writeToFile(
+    writeFileSync(
         path.resolve(__dirname, 'packages/b/node_modules/fake-module/package.json'),
         { name: 'fake-module' }
     )
