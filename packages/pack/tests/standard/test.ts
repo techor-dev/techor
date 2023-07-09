@@ -4,7 +4,7 @@ import fs from 'fs'
 import path from 'path'
 
 beforeAll(() => {
-    execSync('tsx ../../src/bin pack --platform node --no-minify', { cwd: __dirname, stdio: 'pipe' })
+    execSync('tsx ../../../techor/src/bin pack --platform node --no-minify', { cwd: __dirname, stdio: 'pipe' })
 })
 
 it('contains bundled files', () => {

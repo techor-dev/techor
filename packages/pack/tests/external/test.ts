@@ -4,7 +4,7 @@ import { join } from 'node:path'
 import dedent from 'ts-dedent'
 
 beforeAll(() => {
-    execSync('tsx ../../src/bin pack --platform node --no-minify --external fake-external-package', { cwd: __dirname, stdio: 'inherit' })
+    execSync('tsx ../../../techor/src/bin pack --platform node --no-minify --external fake-external-package', { cwd: __dirname, stdio: 'inherit' })
 })
 
 it('prevent bundling dependencies and peerDependencies', () => {

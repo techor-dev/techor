@@ -3,7 +3,7 @@ import fs from 'fs'
 import path from 'path'
 
 beforeAll(() => {
-    execSync(`tsx ../../src/bin pack 'src/**/*.ts' --format esm --bundle`, { cwd: __dirname, stdio: 'inherit' })
+    execSync(`tsx ../../../techor/src/bin pack 'src/**/*.ts' --format esm --bundle`, { cwd: __dirname, stdio: 'inherit' })
 })
 
 it('contains bundled files', () => {

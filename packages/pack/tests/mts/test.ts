@@ -4,7 +4,7 @@ import { join } from 'node:path'
 import dedent from 'ts-dedent'
 
 beforeAll(() => {
-    execSync(`tsx ../../src/bin pack --no-minify --mangle-props '^_'`, { cwd: __dirname, stdio: 'pipe' })
+    execSync(`tsx ../../../techor/src/bin pack --no-minify --mangle-props '^_'`, { cwd: __dirname, stdio: 'pipe' })
 })
 
 it('mangle private', () => {

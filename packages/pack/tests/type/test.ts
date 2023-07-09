@@ -4,7 +4,7 @@ import fs from 'fs'
 import path from 'path'
 
 beforeAll(() => {
-    execSync('tsx ../../src/bin pack', { cwd: __dirname, stdio: 'pipe' })
+    execSync('tsx ../../../techor/src/bin pack', { cwd: __dirname, stdio: 'pipe' })
 })
 
 it('generates declarations', () => {

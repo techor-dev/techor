@@ -1,7 +1,7 @@
 {
     "name": "@techor/version",
     "scripts": {
-        "build": "tsx ../pack/src/bin pack",
+        "build": "esbuild src/actions/main.ts --bundle --outfile=dist/actions/main.bundle.js --format=cjs --minify --platform=node --external:techor --external:@techor/fs --external:@techor/log --external:fast-glob",
         "dev": "npm run build -- --watch",
         "test": "jest",
         "type-check": "tsc --noEmit",
@@ -27,8 +27,8 @@
         "version",
         "bump"
     ],
-    "bin": {
-        "techor-version": "./dist/bin/index.bundle.js"
+    "exports": {
+        "./actions/main": "./dist/actions/main.bundle.js"
     },
     "files": [
         "dist"
@@ -37,18 +37,10 @@
         "access": "public"
     },
     "dependencies": {
-        "techor": "",
-        "@techor/extend": "",
         "@techor/fs": "",
         "@techor/log": "",
-        "commander": "^10.0.0",
         "fast-glob": "^3.2.12",
+        "techor": "",
         "upath": "^2.0.1"
-    },
-    "devDependencies": {
-        "dedent": "^0.7.0",
-        "execa": "^7.1.1",
-        "pkg-types": "^1.0.1",
-        "pretty-bytes": "^6.1.0"
     }
 }

@@ -1,7 +1,7 @@
 {
     "name": "@techor/pack",
     "scripts": {
-        "build": "tsx ./src/bin pack",
+        "build": "esbuild src/actions/main.ts --bundle --outfile=dist/actions/main.bundle.js --format=cjs --minify --platform=node --external:esbuild --external:@techor/extend --external:@techor/fs --external:@techor/log --external:@techor/one-liner --external:cross-import --external:explore-config --external:fast-glob --external:lodash.isequal --external:npm --external:techor --external:upath",
         "dev": "npm run build -- --watch",
         "test": "cd tests && npm i && cd ../ && jest",
         "type-check": "tsc --noEmit",
@@ -31,8 +31,8 @@
         "esm",
         "esmodule"
     ],
-    "bin": {
-        "techor-pack": "./dist/bin/index.bundle.js"
+    "exports": {
+        "./actions/main": "./dist/actions/main.bundle.js"
     },
     "files": [
         "dist"
@@ -45,7 +45,6 @@
         "@techor/fs": "",
         "@techor/log": "",
         "@techor/one-liner": "",
-        "commander": "^10.0.0",
         "cross-import": "",
         "esbuild": "^0.18.11",
         "esbuild-plugin-d.ts": "^1.1.0",

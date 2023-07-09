@@ -9,7 +9,7 @@
         "test": "turbo run test --parallel",
         "lint": "turbo run lint --parallel",
         "type-check": "turbo run type-check",
-        "dev": "turbo run dev --force",
+        "dev": "turbo run dev --no-cache --force --concurrency=30",
         "version": "tsx ./packages/version/src/bin version",
         "analyze:commit": "semantic-release --debug",
         "clean": "rm -rf ./packages/**/*dist && rm -rf ./{examples,packages}/**/*node_modules"
