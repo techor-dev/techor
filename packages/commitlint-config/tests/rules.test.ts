@@ -1,7 +1,9 @@
 import { expectErrorCommand } from '../../../utils/expect-error-command'
 import { expectErrorFreeCommand } from '../../../utils/expect-error-free-command'
 
-describe('Valid', () => {
+if (process.platform === 'win32') {
+    test.skip('skip commitlint-config tests on Windows OS')
+} else {
     test('Type: Summary', () => {
         expectErrorFreeCommand(`echo 'New: Syntax' | commitlint`)
     })
@@ -14,9 +16,6 @@ describe('Valid', () => {
         expectErrorFreeCommand(`echo 'Update something' | commitlint`)
         expectErrorFreeCommand(`echo 'Update README.md' | commitlint`)
     })
-})
-
-describe('Invalid', () => {
     test('non-sentense case header', () => {
         expectErrorCommand(`echo 'update something' | commitlint`)
     })
@@ -38,4 +37,4 @@ describe('Invalid', () => {
         expectErrorCommand(`echo 'Omg(Really?): What is this?' | commitlint`)
     })
 
-})
+}
