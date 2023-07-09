@@ -3,7 +3,7 @@ import { readFileAsNormalizedStrSync } from '../../../fs/src'
 import { join } from 'node:path'
 
 beforeAll(() => {
-    execSync(`tsx ../../../techor/src/bin pack --no-minify --mangle-props '^_'`, { cwd: __dirname, stdio: 'inherit' })
+    execSync(`tsx ../../../techor/src/bin pack --no-minify --mangle-props "^_"`, { cwd: __dirname, stdio: 'inherit' })
 })
 
 it('mangle private', () => {
