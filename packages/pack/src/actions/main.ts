@@ -1,4 +1,3 @@
-import fg from 'fast-glob'
 import { type BuildOptions, context, Metafile, build } from 'esbuild'
 import log from '@techor/log'
 import path from 'upath'
@@ -17,6 +16,7 @@ import prettyHartime from 'pretty-hrtime'
 import { readJSONFileSync } from '@techor/fs'
 import { createShakableLibPlugin } from '../plugins/shakable-lib'
 import { changeExt } from 'upath'
+import { explorePathsSync } from '@techor/glob'
 
 declare type BuildTask = { options?: BuildOptions, metafile?: Metafile, run: () => Promise<any> }
 
@@ -41,16 +41,12 @@ export default async function action(specifiedEntries: string[], options: any = 
     const extByFormat = { cjs: options.cjsExt, esm: options.esmExt, iife: options.iifeExt }
     const useConfig = exploreConfig('techor.*')
     const buildTasks: BuildTask[] = []
-    const exploreEntries = (eachEntries: string[]) => {
-        return fg.sync(
-            [...new Set(eachEntries)].map((eachEntry) => upath.normalize(eachEntry))
-        )
-    }
+
     const exploreMapptedEntry = (filePath: string, targetExt: string) => {
         const subFilePath = path.relative(options.outdir, filePath.replace('.bundle', ''))
         const srcFilePath = path.join(options.srcdir, subFilePath)
         const pattern = changeExt(srcFilePath, targetExt)
-        const foundEntries = exploreEntries([pattern])
+        const foundEntries = explorePathsSync(pattern)
         if (!foundEntries.length) {
             throw new Error(`Cannot find the entry file **${pattern}**`)
         }
@@ -196,7 +192,7 @@ export default async function action(specifiedEntries: string[], options: any = 
         buildTasks.push(eachBuildTask)
     }
     if (specifiedEntries.length) {
-        const foundEntries = exploreEntries(specifiedEntries)
+        const foundEntries = explorePathsSync(specifiedEntries)
         const foundCSSEntries = []
         const foundJSEntries = []
         for (const foundEntry of foundEntries) {

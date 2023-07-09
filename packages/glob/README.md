@@ -1,7 +1,7 @@
 <br>
 <div align="center">
 
-<p align="center">Read workspace package.json contents</p>
+<p align="center">A human-friendly set of glob utilities</p>
 
 <p align="center">
     <a aria-label="overview" href="https://github.com/1aron/techor">
@@ -18,11 +18,11 @@
             <img alt="NPM Version" src="https://img.shields.io/github/v/release/1aron/utils?include_prereleases&color=f6f7f8&label=&style=for-the-badge&logo=github">
         </picture>
     </a>
-    <a aria-label="NPM Package" href="https://www.npmjs.com/package/to-read-package">
+    <a aria-label="NPM Package" href="https://www.npmjs.com/package/@techor/glob">
         <picture>
-            <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/npm/dm/to-read-package?color=212022&label=%20&logo=npm&style=for-the-badge">
-            <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/npm/dm/to-read-package?color=f6f7f8&label=%20&logo=npm&style=for-the-badge">
-            <img alt="NPM package ( download / month )" src="https://img.shields.io/npm/dm/to-read-package?color=f6f7f8&label=%20&logo=npm&style=for-the-badge">
+            <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/npm/dm/@techor/glob?color=212022&label=%20&logo=npm&style=for-the-badge">
+            <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/npm/dm/@techor/glob?color=f6f7f8&label=%20&logo=npm&style=for-the-badge">
+            <img alt="NPM package ( download / month )" src="https://img.shields.io/npm/dm/@techor/glob?color=f6f7f8&label=%20&logo=npm&style=for-the-badge">
         </picture>
     </a>
     <a aria-label="Follow @aron1tw" href="https://twitter.com/aron1tw">
@@ -45,75 +45,39 @@
 
 <br>
 
-- By default, read workspace packages by package.json `.workspaces` in the current working directory
-- By default, workspace packages in node_modules are excluded
-
-<br>
-
 ## Getting Started
 
 ```bash
-npm install @techor/read-workspace-packages
-```
-
-## Preparation
-Your monorepo usually looks like this:
-
-```diff
-.
-├── package.json
-└── packages
-    ├─── a
-    │    └─── package.json
-    ├─── b
-    │    ├─── node_modules
-    │    │    └─── fake-module
-    │    │         └─── package.json
-    │    ├─── bb
-    │    │    └─── package.json
-    │    └─── package.json
-    ├─── c
-    └─── d
-         └─── package.json
-```
-./package.json
-```json
-{
-    "workspaces": ["packages/**"]
-}
-```
-./packages/d/package.json
-```json
-{
-    "name": "d",
-    "private": true
-}
+npm install @techor/glob
 ```
 
 ## Usage
-`readWorkspacePackages(patterns?, options?): any[]`
+```ts
+explorePathSync(source: string | string[], options?: Options | undefined): string
+explorePathsSync(source: string | string[], options?: Options | undefined): string[]
+```
+
+```
+├── a.json
+├── b.json
+└── c.json
+```
+
 ```js
-import readWorkspacePackages from '@techor/read-workspace-packages'
+import { explorePathSync } from '@techor/glob'
 
-const packages = readWorkspacePackages()
-// [{ name: 'a' }, { name: 'b' }, { name: 'd', private: true }, { name: 'bb' }]
+explorePathSync('a.*')
+// 'a.json'
 
-const packages = readWorkspacePackages(['packages/*'])
-// [{ name: 'a' }, { name: 'b' }, { name: 'd', private: true }]
+explorePathSync('*.json')
+// 'a.json'
 
-const publicPackages = readWorkspacePackages()
-    .fiter((eachWorkspacePackage) => !eachWorkspacePackage.private)
-// [{ name: 'a' }, { name: 'b' }, { name: 'bb' }]
+explorePathsSync('*.json')
+// ['a.json', 'b.json', 'c.json']
 ```
 
 ## Options
 Inherited from [fast-glob options](https://github.com/mrmlnc/fast-glob#options-3)
-```js
-{
-    cwd: process.cwd(),
-    ignore: ['**/node_modules/**']
-}
-```
 
 <br>
 

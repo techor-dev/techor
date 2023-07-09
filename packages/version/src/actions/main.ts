@@ -1,6 +1,5 @@
-import fg from 'fast-glob'
+import { explorePathsSync } from '@techor/glob'
 import path from 'path'
-import upath from 'upath'
 import log, { paint } from '@techor/log'
 import { readJSONFileSync, writeFileSync } from '@techor/fs'
 
@@ -15,7 +14,7 @@ export default function action(version: string, options) {
     const nextVersion = options.prefix + version
     const packagesOfPath = {}
     const packagesOfName = {}
-    const workspacePackagePaths = options.workspaces.map((eachWorkspace) => upath.join(eachWorkspace, '*package.json'))
+    const workspacePackagePaths = options.workspaces.map((eachWorkspace) => path.join(eachWorkspace, '*package.json'))
     const updateDependencies = (dependencies, title) => {
         let updated = false
         for (const dependencyName in dependencies) {
@@ -31,7 +30,7 @@ export default function action(version: string, options) {
     }
 
     // Read package.json by workspaces
-    for (const eachPackagePath of fg.sync(workspacePackagePaths)) {
+    for (const eachPackagePath of explorePathsSync(workspacePackagePaths)) {
         const eachPackage = readJSONFileSync(path.resolve(eachPackagePath))
         // Prevent version bumps of private package
         if (

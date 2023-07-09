@@ -1,7 +1,7 @@
 {
     "name": "@techor/pack",
     "scripts": {
-        "build": "esbuild src/actions/main.ts --bundle --outfile=dist/actions/main.bundle.js --format=cjs --minify --platform=node --external:esbuild --external:@techor/extend --external:@techor/fs --external:@techor/log --external:@techor/one-liner --external:cross-import --external:explore-config --external:fast-glob --external:lodash.isequal --external:npm --external:techor --external:upath",
+        "build": "esbuild src/actions/main.ts --bundle --outfile=dist/actions/main.bundle.js --format=cjs --minify --platform=node --external:esbuild --external:@techor/extend --external:@techor/fs --external:@techor/log --external:@techor/one-liner --external:cross-import --external:explore-config --external:@techor/glob --external:lodash.isequal --external:npm --external:techor --external:upath",
         "dev": "npm run build -- --watch",
         "test": "cd tests && npm i && cd ../ && jest",
         "type-check": "tsc --noEmit",
@@ -44,12 +44,12 @@
         "@techor/extend": "",
         "@techor/fs": "",
         "@techor/log": "",
+        "@techor/glob": "",
         "@techor/one-liner": "",
         "cross-import": "",
         "esbuild": "^0.18.11",
         "esbuild-plugin-d.ts": "^1.1.0",
         "explore-config": "",
-        "fast-glob": "^3.3.0",
         "lodash.isequal": "^4.5.0",
         "npm": "^9.7.2",
         "techor": "",

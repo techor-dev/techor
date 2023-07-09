@@ -1,8 +1,8 @@
 {
     "name": "@techor/query-workspaces",
     "scripts": {
-        "build:cjs": "esbuild src/index.ts --bundle --outfile=dist/index.js --format=cjs --minify --sourcemap --platform=node --external:esbuild --external:fast-glob --external:@techor/extend --external:@techor/fs",
-        "build:esm": "esbuild src/index.ts --bundle --outfile=dist/index.mjs --format=esm --minify --sourcemap --platform=node --external:esbuild --external:fast-glob --external:@techor/extend --external:@techor/fs",
+        "build:cjs": "esbuild src/index.ts --bundle --outfile=dist/index.js --format=cjs --minify --sourcemap --platform=node --external:esbuild --external:@techor/glob --external:@techor/extend --external:@techor/fs",
+        "build:esm": "esbuild src/index.ts --bundle --outfile=dist/index.mjs --format=esm --minify --sourcemap --platform=node --external:esbuild --external:@techor/glob --external:@techor/extend --external:@techor/fs",
         "build:type": "tsc --emitDeclarationOnly --preserveWatchOutput",
         "build": "npm run build:cjs && npm run build:esm && npm run build:type",
         "dev": "conc 'npm:build:* -- --watch'",
@@ -19,11 +19,11 @@
     },
     "homepage": "https://aron.tw",
     "bugs": {
-        "url": "https://github.com/1aron/utils/issues"
+        "url": "https://github.com/1aron/techor/issues"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/1aron/utils.git",
+        "url": "https://github.com/1aron/techor.git",
         "directory": "packages/query-workspaces"
     },
     "keywords": [
@@ -56,7 +56,7 @@
         "dist"
     ],
     "dependencies": {
-        "fast-glob": "^3.2.12",
+        "@techor/glob": "",
         "@techor/extend": "",
         "@techor/fs": ""
     }

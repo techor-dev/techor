@@ -1,2 +1,5 @@
-export * from './read'
-export * from './write'
+export { default as readFileAsNormalizedStrSync } from './read-file-as-normalized-str-sync'
+export { default as readFileSync } from './read-file-sync'
+export { default as readJSONFileSync } from './read-json-file-sync'
+export { default as writeFileSync } from './write-file-sync'
+export { default as writeJSONFileSync } from './write-json-file-sync'

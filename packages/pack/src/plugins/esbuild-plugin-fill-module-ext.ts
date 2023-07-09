@@ -1,8 +1,9 @@
 import type { Plugin } from 'esbuild'
 import fs from 'fs'
-import fg from 'fast-glob'
+import upath from 'upath'
 import path from 'path'
 import { changeExt } from 'upath'
+import { explorePathSync } from '@techor/glob'
 
 export function createFillModuleExtPlugin(outext = '.js', outdir = 'src'): Plugin {
     const resolvedOutdir = path.resolve(outdir)
@@ -30,10 +31,10 @@ export function createFillModuleExtPlugin(outext = '.js', outdir = 'src'): Plugi
                                         return matches[0]
                                     }
                                     const targetDir = path.resolve(currentDirPath, modulePath)
-                                    const foundModuleSourcePath = fg.sync([
+                                    const foundModuleSourcePath = explorePathSync([
                                         targetDir + '.{ts,js,mjs,jsx,tsx,mjs,mts}',
-                                        path.join(targetDir, 'index.{ts,js,mjs,jsx,tsx,mjs,mts}')
-                                    ])[0]
+                                        upath.join(targetDir, 'index.{ts,js,mjs,jsx,tsx,mjs,mts}')
+                                    ])
                                     if (!foundModuleSourcePath) {
                                         return matches[0]
                                     }

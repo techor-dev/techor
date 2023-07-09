@@ -4,26 +4,26 @@ import { transform } from 'sucrase'
 export default function crossImport(modulePath: string): any {
     if (!modulePath) return
     if (process.env.DEBUG) {
-        console.log('[DEBUG: Cross Import] modulePath:', modulePath)
+        console.log('[DEBUG] [Cross Import] modulePath:', modulePath)
     }
     /** try to delete cache first */
     try {
         if (require.cache[modulePath]) {
             delete require.cache[modulePath]
             if (process.env.DEBUG) {
-                console.log('[DEBUG: Cross Import] delete cache')
+                console.log('[DEBUG] [Cross Import] delete cache')
             }
         }
     } catch { /* empty */ }
 
     try {
         if (process.env.DEBUG) {
-            console.log('[DEBUG: Cross Import] require')
+            console.log('[DEBUG] [Cross Import] require')
         }
         return require(modulePath)
     } catch (error) {
         if (process.env.DEBUG) {
-            console.log('[DEBUG: Cross Import] JITI')
+            console.log('[DEBUG] [Cross Import] JITI')
             console.error(error)
         }
         try {
@@ -32,7 +32,7 @@ export default function crossImport(modulePath: string): any {
                 cache: false,
                 transform: (options) => {
                     if (process.env.DEBUG) {
-                        console.log('[DEBUG: Cross Import] JITI transform')
+                        console.log('[DEBUG] [Cross Import] JITI transform')
                         console.error(error)
                     }
                     return transform(options.source, {

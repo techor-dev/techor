@@ -1,7 +1,7 @@
 {
     "name": "@techor/version",
     "scripts": {
-        "build": "esbuild src/actions/main.ts --bundle --outfile=dist/actions/main.bundle.js --format=cjs --minify --platform=node --external:techor --external:@techor/fs --external:@techor/log --external:fast-glob",
+        "build": "esbuild src/actions/main.ts --bundle --outfile=dist/actions/main.bundle.js --format=cjs --minify --platform=node --external:techor --external:@techor/fs --external:@techor/log --external:@techor/glob",
         "dev": "npm run build -- --watch",
         "test": "jest",
         "type-check": "tsc --noEmit",
@@ -37,10 +37,9 @@
         "access": "public"
     },
     "dependencies": {
+        "@techor/glob": "",
         "@techor/fs": "",
         "@techor/log": "",
-        "fast-glob": "^3.2.12",
-        "techor": "",
-        "upath": "^2.0.1"
+        "techor": ""
     }
 }

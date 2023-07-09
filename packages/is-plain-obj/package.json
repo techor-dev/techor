@@ -19,11 +19,11 @@
     },
     "homepage": "https://aron.tw",
     "bugs": {
-        "url": "https://github.com/1aron/utils/issues"
+        "url": "https://github.com/1aron/techor/issues"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/1aron/utils.git",
+        "url": "https://github.com/1aron/techor.git",
         "directory": "packages/is-plain-object"
     },
     "keywords": [

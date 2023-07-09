@@ -1,8 +1,8 @@
 {
     "name": "explore-config",
     "scripts": {
-        "build:cjs": "esbuild src/index.ts --bundle --outfile=dist/index.js --format=cjs --minify --sourcemap --platform=node --external:esbuild --external:fast-glob --external:@techor/log --external:@techor/extend --external:cross-import --external:upath",
-        "build:esm": "esbuild src/index.ts --bundle --outfile=dist/index.mjs --format=esm --minify --sourcemap --platform=node --external:esbuild --external:fast-glob --external:@techor/log --external:@techor/extend --external:cross-import --external:upath",
+        "build:cjs": "esbuild src/index.ts --bundle --outfile=dist/index.js --format=cjs --minify --sourcemap --platform=node --external:esbuild --external:@techor/glob --external:@techor/log --external:@techor/extend --external:cross-import --external:upath",
+        "build:esm": "esbuild src/index.ts --bundle --outfile=dist/index.mjs --format=esm --minify --sourcemap --platform=node --external:esbuild --external:@techor/glob --external:@techor/log --external:@techor/extend --external:cross-import --external:upath",
         "build:type": "tsc --emitDeclarationOnly --preserveWatchOutput",
         "build": "npm run build:cjs && npm run build:esm && npm run build:type",
         "dev": "conc 'npm:build:* -- --watch'",
@@ -58,7 +58,7 @@
     "dependencies": {
         "@techor/extend": "",
         "@techor/log": "",
-        "cross-import": "",
-        "fast-glob": "^3.2.12"
+        "@techor/glob": "",
+        "cross-import": ""
     }
 }
