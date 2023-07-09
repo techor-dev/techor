@@ -76,17 +76,10 @@ exploreConfig(
 ```
 
 ```ts
-import exploreConfig, { exploreConfigPath, exploreResolvedConfigPath } from 'explore-config'
+import exploreConfig from 'explore-config'
 
 config = exploreConfig('master.css.*')
 // {...}
-
-configPath = exploreConfigPath('master.css.*')
-// 'master.css.js'
-
-resolvedConfigPath = exploreResolvedConfigPath('master.css.*')
-// '/home/myself/node/master.css.js'
-// If the current working directory is /home/myself/node */
 ```
 
 <br>

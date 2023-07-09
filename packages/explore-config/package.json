@@ -59,7 +59,6 @@
         "@techor/extend": "",
         "@techor/log": "",
         "cross-import": "",
-        "fast-glob": "^3.2.12",
-        "upath": "^2.0.1"
+        "fast-glob": "^3.2.12"
     }
 }
