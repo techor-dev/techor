@@ -11,7 +11,7 @@
         "lint": "eslint src"
     },
     "license": "MIT",
-    "description": "A human-friendly file system with glob patterns",
+    "description": "A human-friendly file system",
     "author": {
         "name": "Aron",
         "email": "i@aron.tw",

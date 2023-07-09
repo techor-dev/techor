@@ -1,7 +1,7 @@
 <br>
 <div align="center">
 
-<p align="center">Read a file content by glob patterns</p>
+<p align="center">A human-friendly file system</p>
 
 <p align="center">
     <a aria-label="overview" href="https://github.com/1aron/utils">
@@ -53,12 +53,11 @@ npm install @techor/fs
 
 ## Usage
 ```ts
-readFile(source?: fg.Pattern | fg.Pattern[], options?: Options): Buffer
-readFileAsStr(source?: fg.Pattern | fg.Pattern[], options?: Options): string
-readFileAsJSON(source?: fg.Pattern | fg.Pattern[], options?: Options): any
-readFiles(source?: fg.Pattern | fg.Pattern[], options?: Options): Buffer[]
+readFileSync(filepath: string, options?: Options): Buffer
+readFileAsNormalizedStrSync(filepath: string, options?: Options): string
+readJSONFileSync(filepath: string, options?: Options): any
 
-writeToFile(filePath: fs.PathOrFileDescriptor, data: any, options?: WriteToFileOptions): void
+writeToFile(filePath: string, data: any, options?: WriteToFileOptions): void
 ```
 
 `a.json`
@@ -70,40 +69,28 @@ writeToFile(filePath: fs.PathOrFileDescriptor, data: any, options?: WriteToFileO
 { "name": "b" }
 ```
 ```js
-import { readFile, readFiles } from '@techor/fs'
+import { readFileSync } from '@techor/fs'
 
-readFile('a.*')
+readFileSync('a.*')
 // Buffer
 
-readFile('./fewjiogw/wiefoiwe')
+readFileSync('./fewjiogw/wiefoiwe')
 // undefined
 
-readFileAsStr('a.*')
+readFileAsNormalizedStrSync('a.*')
 // '{ "name": "a" }'
 
-readFileAsJSON('./package.json')
+readJSONFileSync('./package.json')
 // { "name": "root", ... }
 
-readFileAsJSON('./package.json', { cwd: path.resolve('./packages/a') })
+readJSONFileSync('./package.json')
 // { "name": "a", ... }
 
-readFiles('*.json').toString()
-// [Buffer, Buffer]
 ```
 
 ## Options
-File reading methods inherit [fast-glob options](https://github.com/mrmlnc/fast-glob#options-3)
-```js
-{
-    cwd: process.cwd()
-}
-```
-With additional options:
 ```ts
-{
-    encoding?: null
-    flag?: string
-}
+declare type Options = ObjectEncodingOptions & { encoding?: BufferEncoding | null }
 ```
 
 <br>

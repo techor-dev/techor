@@ -1,4 +1,4 @@
-import { writeToFile } from '../src'
+import { writeJSONFileSync } from '../src'
 import fs from 'fs'
 import path from 'path'
 
@@ -7,7 +7,7 @@ it('write to a non-existent file', () => {
     if (fs.existsSync(filePath)) {
         fs.rmSync(filePath)
     }
-    writeToFile(filePath, { 'name': 'a' })
+    writeJSONFileSync(filePath, { 'name': 'a' })
     expect(fs.existsSync(filePath)).toBeTruthy()
 })
 
@@ -16,6 +16,6 @@ it('non-existent deep file', () => {
     if (fs.existsSync(filePath)) {
         fs.rmSync(filePath)
     }
-    writeToFile(filePath, { 'name': 'a' })
+    writeJSONFileSync(filePath, { 'name': 'a' })
     expect(fs.existsSync(filePath)).toBeTruthy()
 })

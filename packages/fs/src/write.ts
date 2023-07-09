@@ -1,6 +1,5 @@
 import fs from 'fs'
-import extend from '@techor/extend'
-import upath from 'upath'
+import path from 'path'
 
 interface WriteToFileOptions {
     encoding?: null
@@ -8,15 +7,21 @@ interface WriteToFileOptions {
     cwd?: string
 }
 
-export function writeToFile(filePath: fs.PathOrFileDescriptor, data: any, options?: WriteToFileOptions) {
+export function writeFileSync(filePath: string, data: string | NodeJS.ArrayBufferView, options?: WriteToFileOptions) {
     if (!filePath) return
-    options = extend({ cwd: process.cwd() }, options)
-    filePath = upath.resolve(options.cwd, filePath)
     if (typeof data === 'object') {
         data = JSON.stringify(data)
     }
     if (!fs.existsSync(filePath)) {
-        fs.mkdirSync(upath.dirname(filePath), { recursive: true })
+        fs.mkdirSync(path.dirname(filePath), { recursive: true })
     }
     fs.writeFileSync(filePath, data, options)
+}
+
+export function writeJSONFileSync(filePath: string, data: any, options?: WriteToFileOptions) {
+    if (!filePath || !data) return
+    if (typeof data === 'object') {
+        data = JSON.stringify(data)
+    }
+    writeFileSync(filePath, data, options)
 }

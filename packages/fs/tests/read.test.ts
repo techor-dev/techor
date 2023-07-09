@@ -1,33 +1,23 @@
-import { readFile, readFiles, readFileAsJSON, readFileAsStr } from '../src'
+import path from 'path'
+import { readFileSync, readFileAsNormalizedStrSync, readJSONFileSync } from '../src'
 import dedent from 'ts-dedent'
 
 it('read one file', () => {
-    expect(readFile('a.*', { cwd: __dirname }).toString().replace(/(\r\n|\r|\n)/g, '\n'))
+    expect(readFileSync(path.resolve(__dirname, 'a.json')).toString().replace(/(\r\n|\r|\n)/g, '\n'))
         .toEqual(dedent`
             {
                 "name": "a"
-            }
-        `)
-})
-
-it('read files', () => {
-    expect(readFiles(['{a,b}.json'], { cwd: __dirname }).toString().replace(/(\r\n|\r|\n)/g, '\n'))
-        .toEqual(dedent`
-            {
-                "name": "a"
-            },{
-                "name": "b"
             }
         `)
 })
 
 it('read non-existent file', () => {
-    expect(readFile('wefwef.txt', { cwd: __dirname }))
+    expect(readFileSync(path.resolve(__dirname, 'wefwef.txt')))
         .toBeUndefined()
 })
 
 it('read file as string', () => {
-    expect(readFileAsStr('a.*', { cwd: __dirname }))
+    expect(readFileAsNormalizedStrSync(path.resolve(__dirname, 'a.json')))
         .toEqual(dedent`
             {
                 "name": "a"
@@ -36,6 +26,6 @@ it('read file as string', () => {
 })
 
 it('read json file', () => {
-    expect(readFileAsJSON('a.*', { cwd: __dirname }))
+    expect(readJSONFileSync(path.resolve(__dirname, 'a.json')))
         .toEqual({ 'name': 'a' })
 })
