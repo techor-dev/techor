@@ -3,7 +3,7 @@ import { readFileSync, readFileAsNormalizedStrSync, readJSONFileSync } from '../
 import dedent from 'ts-dedent'
 
 it('read one file', () => {
-    expect(readFileSync(path.resolve(__dirname, 'a.json')).toString().replace(/(\r\n|\r|\n)/g, '\n'))
+    expect(readFileAsNormalizedStrSync(path.resolve(__dirname, 'a.json')))
         .toEqual(dedent`
             {
                 "name": "a"
