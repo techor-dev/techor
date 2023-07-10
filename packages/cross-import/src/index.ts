@@ -30,10 +30,10 @@ export default function crossImport(modulePath: string): any {
             return jiti(__filename, {
                 interopDefault: true,
                 cache: false,
+                debug: !!process.env.DEBUG,
                 transform: (options) => {
                     if (process.env.DEBUG) {
                         console.log('[DEBUG] [Cross Import] JITI transform')
-                        console.error(error)
                     }
                     return transform(options.source, {
                         transforms: ['imports', 'typescript'],
