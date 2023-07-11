@@ -76,7 +76,7 @@ Type(Target): Summary
   ┊     ┊
   ┊     └─⫸ Target: Workspace, Package or Role
   ┊
-  └─⫸ Type: Bump, Feat, New, Perf, Add, Update, Improve, Fix, Depreciate, Drop, Docs, Upgrade, Revert, Example, Test, Refactor, Chore, Misc
+  └─⫸ Type: Bump, Feat, New, Perf, Add, Update, Improve, Fix, Deprecate, Drop, Docs, Upgrade, Revert, Example, Test, Refactor, Chore, Misc
 ```
 For full documentation, check out the [Techor's conventional commits](https://github.com/1aron/techor/tree/main/packages/conventional-commits)
 

@@ -71,7 +71,7 @@ Type(Target): Summary
   ┊     ┊
   ┊     └─⫸ Target: Workspace, Package or Role
   ┊
-  └─⫸ Type: Bump, Feat, New, Perf, Add, Update, Improve, Fix, Depreciate, Drop, Docs, Upgrade, Revert, Example, Test, Refactor, Chore, Misc
+  └─⫸ Type: Bump, Feat, New, Perf, Add, Update, Improve, Fix, Deprecate, Drop, Docs, Upgrade, Revert, Example, Test, Refactor, Chore, Misc
 ```
 
 - `Type`
@@ -89,7 +89,7 @@ Type(Target): Summary
 Such commits result in version bumps.
 
 ### Patch
-`Perf` `Add` `Update` `Improve` `Fix` `Depreciate` `Drop` `Upgrade` `Revert` `Bump(Patch)` `Docs(README)`
+`Perf` `Add` `Update` `Improve` `Fix` `Deprecate` `Drop` `Upgrade` `Revert` `Bump(Patch)` `Docs(README)`
 
 #### Bug Fixes
 `Changelog` `+0.0.1` A change to a system or product designed to handle a programming bug/glitch.
@@ -178,8 +178,8 @@ Upgrade(Compiler): Dependency `@master/css@^2.0.0`
 #### Deprecations
 `Changelog` `+0.0.1` `Alias: Drop` Deprecate features, options, parameters, units, pages, etc.
 ```
-Depreciate: <Summary>
-Depreciate(Target): <Summary>
+Deprecate: <Summary>
+Deprecate(Target): <Summary>
 ```
 
 Example

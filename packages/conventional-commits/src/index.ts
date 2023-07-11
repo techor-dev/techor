@@ -16,7 +16,7 @@ const commits = [
 
     { type: 'Fix', release: 'patch', group: 'Bug Fixes' },
 
-    { type: 'Depreciate', release: 'patch', group: 'Deprecations' },
+    { type: 'Deprecate', release: 'patch', group: 'Deprecations' },
     { type: 'Drop', release: 'patch', group: 'Deprecations' },
 
     { type: 'Docs', release: false, group: 'Documentation' },
