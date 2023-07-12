@@ -1,11 +1,8 @@
 import compareFunc from 'compare-func'
 import { commits } from 'techor-conventional-commits'
-import { readFileSync } from 'fs'
-import path from 'path'
-
-const mainTemplate = readFileSync(path.resolve(__dirname, './templates/template.hbs')).toString()
-const footerPartial = readFileSync(path.resolve(__dirname, './templates/footer.hbs')).toString()
-const commitPartial = readFileSync(path.resolve(__dirname, './templates/commit.hbs')).toString()
+import mainTemplate from './templates/template.hbs'
+import footerPartial from './templates/footer.hbs'
+import commitPartial from './templates/commit.hbs'
 
 export default {
     transform: (commit, context) => {
