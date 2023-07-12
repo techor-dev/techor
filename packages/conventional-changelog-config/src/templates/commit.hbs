@@ -1,8 +1,4 @@
-const dedent = require('dedent')
-
-module.exports = /* html */ dedent`
--{{#if scope}} **{{scope}}** -
-{{~/if}} {{#if subject}}
+- {{#if subject}}
 {{~subject}}
 {{~else}}
 {{~header}}
@@ -10,25 +6,25 @@ module.exports = /* html */ dedent`
 
 {{~!-- commit link --}} {{#if @root.linkReferences~}}
 <sub><sup>[{{shortHash}}](
-{{~#if @root.repository}}
-{{~#if @root.host}}
-{{~@root.host}}/
-{{~/if}}
-{{~#if @root.owner}}
-{{~@root.owner}}/
-{{~/if}}
-{{~@root.repository}}
-{{~else}}
-{{~@root.repoUrl}}
-{{~/if}}/
-{{~@root.commit}}/{{hash}})</sup></sub>
+        {{~#if @root.repository}}
+        {{~#if @root.host}}
+        {{~@root.host}}/
+        {{~/if}}
+        {{~#if @root.owner}}
+        {{~@root.owner}}/
+        {{~/if}}
+        {{~@root.repository}}
+        {{~else}}
+        {{~@root.repoUrl}}
+        {{~/if}}/
+        {{~@root.commit}}/{{hash}})</sup></sub>
 {{~else}}
 <sub><sup>{{~shortHash}}</sup></sub>
 {{~/if}}
 
 {{~!-- commit references --}}
 {{~#if references~}}
-,
+
 {{~#each references}} {{#if @root.linkReferences~}}
 [
 {{~#if this.owner}}
@@ -60,6 +56,4 @@ module.exports = /* html */ dedent`
 {{~/if}}
 {{~this.repository}}#{{this.issue}}
 {{~/if}}{{/each}}
-{{~/if}}
-\n
-`
+{{~/if}}\n

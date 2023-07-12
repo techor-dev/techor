@@ -1,12 +1,20 @@
 import compareFunc from 'compare-func'
-import mainTemplate from './templates/template'
-import footerPartial from './templates/footer'
-import commitPartial from './templates/commit'
 import { commits } from 'techor-conventional-commits'
+import { readFileSync } from 'fs'
+import path from 'path'
+
+const mainTemplate = readFileSync(path.resolve(__dirname, './templates/template.hbs')).toString()
+const footerPartial = readFileSync(path.resolve(__dirname, './templates/footer.hbs')).toString()
+const commitPartial = readFileSync(path.resolve(__dirname, './templates/commit.hbs')).toString()
 
 export default {
     transform: (commit, context) => {
         const issues = []
+        if (commit.header) {
+            commit.header = commit.header
+                .replace(/->/g, '→')
+                .replace(/<-/g, '←')
+        }
         const conventionalCommit = commits.find(({ type }) => commit.type === type)
         if (commit.type === 'Revert' || commit.revert) {
             commit.type = commits.find(({ type }) => type === 'Revert').group
@@ -14,7 +22,7 @@ export default {
              * From    Revert: "Feat(Scope): First feature"
              * To      Revert:《 Feat(Scope): First feature 》
              */
-            commit.header = commit.header.replace(/(Revert|Revert:)\s"([\s\S]+?)"(.*)/, '$1《 $2 》$3')
+            commit.header = commit.header.replace(/(Revert|Revert:)\s"([\s\S]+?)"(.*)/, '$1 ``` $2 `text` ``` $3')
         } else if (conventionalCommit && !conventionalCommit.hidden && conventionalCommit.group) {
             commit.type = conventionalCommit.group
         } else {
@@ -43,7 +51,7 @@ export default {
             }
             if (context.host) {
                 // User URLs.
-                commit.subject = commit.subject.replace(/\B@([a-z0-9](?:-?[a-z0-9/]){0,38})/g, (_, username) => {
+                commit.subject = commit.subject.replace(/(?<!['`])@([a-z0-9](?:-?[a-z0-9]){0,38})(?<!['])/gi, (_, username) => {
                     if (username.includes('/')) {
                         return `@${username}`
                     }
@@ -83,5 +91,33 @@ export default {
     mainTemplate,
     commitPartial,
     headerPartial: '',
-    footerPartial
+    footerPartial,
+    finalizeContext: (context, options, commits) => {
+        context.commitGroups.forEach(commitGroup => {
+            const scopes = []
+            commitGroup.commits.forEach(commit => {
+                const { scope } = commit
+                if (!scopes.includes(scope)) {
+                    scopes.push(scope)
+                }
+            })
+            commitGroup.scopes = scopes
+                .map((eachScope) => {
+                    return {
+                        title: eachScope || '',
+                        commits: commitGroup.commits.filter((commit) => commit.scope === eachScope)
+                    }
+                })
+                .sort((a, b) => {
+                    if (a.title === '') {
+                        return -1 // 将 title 为 '' 的项排在前面
+                    }
+                    if (b.title === '') {
+                        return 1 // 将 title 为 '' 的项排在前面
+                    }
+                    return a.title.localeCompare(b.title) // 按照 name 的默认排序顺序排列
+                })
+        })
+        return context
+    }
 }

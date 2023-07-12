@@ -4,8 +4,9 @@ import dedent from 'dedent'
 import exec from '../../../utils/exec'
 import commit from '../../../utils/commit'
 import initFakeGit from '../../../utils/init-fake-git'
+import { writeFileSync } from '../../fs/src'
 
-const config = require('../')
+const config = require('../src')
 const conventionalChangelogCore = require('conventional-changelog-core')
 
 if (process.platform === 'win32') {
@@ -19,6 +20,7 @@ if (process.platform === 'win32') {
         test('changelog', async () => {
             await testAronChangelog(
                 [
+                    'Fix(CSS): `@media` and `@supports` doesn\'t transform `|` to ` ` #198',
                     'Build: First build setup',
                     'CI(Travis): Add TravisCI pipeline',
                     'New: Amazing new module',
@@ -28,12 +30,12 @@ if (process.platform === 'win32') {
                     'Breaking(API): Rename `extend` parameters',
                     'Fix(Normal.css): Layout shift',
                     'Breaking: Remove `configure()` method',
-                    'Perf(`ngOptions`): Make it faster, #1, #2',
+                    'Perf(`ngOptions`): Make it faster #1 #2',
                     'Drop(Syntax): Use `fg:color` instead of ~~`font:color`~~',
                     'Update(Contact): Address and tel',
                     'Drop(Commitlint Config): Remove `header-max-length` rule',
                     'Improve(UI): Call to action',
-                    ['Perf(`ngOptions`): Make it faster', ' #1, #2'],
+                    ['Perf(`ngOptions`): Make it faster', ' #1 #2'],
                     'Docs: Add `font-size` demo',
                     'Revert(`ngOptions`): Bad commit',
                     'Revert \\"Fix(Repo): PeerDependencies -> Dependencies\\"\n\nThis reverts commit 123.\n',
@@ -51,17 +53,19 @@ if (process.platform === 'win32') {
                 ],
                 (changelog) => {
                     expect(changelog).toMatch('Amazing new module')
-                    expect(changelog).toMatch('**Compiler** - Avoid a bug')
+                    expect(changelog).toMatch('Compiler')
+                    expect(changelog).toMatch('Avoid a bug')
                     expect(changelog).toMatch('Make it faster')
-                    expect(changelog).toMatch(', [#1](https://github.com/conventional-changelog/conventional-changelog/issues/1) [#2](https://github.com/conventional-changelog/conventional-changelog/issues/2)')
+                    expect(changelog).toMatch('[#1](https://github.com/conventional-changelog/conventional-changelog/issues/1) [#2](https://github.com/conventional-changelog/conventional-changelog/issues/2)')
                     expect(changelog).toMatch('New Features')
                     expect(changelog).toMatch('Bug Fixes')
                     expect(changelog).toMatch('Performance Upgrades')
-                    expect(changelog).toMatch('**`ngOptions`** - Bad commit')
+                    expect(changelog).toMatch('`ngOptions`')
+                    expect(changelog).toMatch('Bad commit')
                     expect(changelog).not.toMatch('Delete unused file')
                     expect(changelog).not.toMatch('First build setup')
-                    expect(changelog).not.toMatch('**travis** - Add TravisCI pipeline')
-                    expect(changelog).not.toMatch('**travis** - Continuously integrated.')
+                    expect(changelog).not.toMatch('Add TravisCI pipeline')
+                    expect(changelog).not.toMatch('Continuously integrated.')
                     expect(changelog).not.toMatch('CI')
                     expect(changelog).not.toMatch('Build')
                     expect(changelog).not.toMatch('Chore')
@@ -99,7 +103,7 @@ export function testAronChangelog(commits, handle: (changelog: string) => void, 
         })
             .on('data', changelogChunk => {
                 const changelog = changelogChunk.toString()
-                fs.writeFileSync(path.join(__dirname, '../changelog-dist', changelogFileName), dedent(changelog))
+                writeFileSync(path.join(__dirname, 'dist', changelogFileName), dedent(changelog))
                 handle(changelog)
             })
             .on('error', (error) => {
