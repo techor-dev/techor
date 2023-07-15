@@ -1,8 +1,8 @@
 {
     "name": "conventional-changelog-techor",
     "scripts": {
-        "build:cjs": "esbuild src/index.ts --bundle --outfile=dist/index.js --format=cjs --minify --sourcemap --loader:.hbs=text --asset-names=[dir]/[name] --platform=node --external:esbuild --external:fast-glob --external:require-from-string --external:@techor/extend --external:@techor/fs --external:upath",
-        "build:esm": "esbuild src/index.ts --bundle --outfile=dist/index.mjs --format=esm --minify --sourcemap --loader:.hbs=text --asset-names=[dir]/[name] --platform=node --external:esbuild --external:fast-glob --external:require-from-string --external:@techor/extend --external:@techor/fs --external:upath",
+        "build:cjs": "esbuild src/index.ts --bundle --outfile=dist/index.js --format=cjs --minify --sourcemap --loader:.hbs=file --asset-names=[dir]/[name] --platform=node --external:esbuild --external:fast-glob --external:require-from-string --external:@techor/extend --external:@techor/fs --external:upath",
+        "build:esm": "esbuild src/index.ts --bundle --outfile=dist/index.mjs --format=esm --minify --sourcemap --loader:.hbs=file --asset-names=[dir]/[name] --platform=node --external:esbuild --external:fast-glob --external:require-from-string --external:@techor/extend --external:@techor/fs --external:upath",
         "build:type": "tsc --emitDeclarationOnly --preserveWatchOutput",
         "build": "npm run build:cjs && npm run build:esm && npm run build:type",
         "dev": "conc 'npm:build:* -- --watch'",
