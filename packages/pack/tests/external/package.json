@@ -11,12 +11,12 @@
         "dist"
     ],
     "dependencies": {
-        "@techor/log": "workspace:^"
+        "@techor/log": ""
     },
     "peerDependencies": {
-        "@techor/extend": "workspace:^"
+        "@techor/extend": ""
     },
     "devDependencies": {
-        "@techor/is-plain-obj": "workspace:^"
+        "@techor/is-plain-obj": ""
     }
 }

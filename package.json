@@ -6,7 +6,7 @@
         "build:clean": "rm -rf ./packages/**/*dist && pnpm run build -- --force --no-cache",
         "check": "pnpm run commit-check && turbo run test lint type-check --parallel",
         "commit-check": "commitlint --from=HEAD~1 --verbose",
-        "test": "turbo run test --parallel",
+        "test": "turbo run test",
         "lint": "turbo run lint --parallel",
         "type-check": "turbo run type-check",
         "dev": "turbo run dev --no-cache --force --concurrency=30",
@@ -39,7 +39,10 @@
         "tmp": "^0.2.1",
         "ts-dedent": "^2.2.0",
         "tsx": "^3.12.6",
-        "commitlint-config-techor": "workspace:^"
+        "commitlint-config-techor": "workspace:^",
+        "eslint-config-techor": "workspace:^",
+        "@techor/jest": "workspace:^",
+        "@techor/pack": "workspace:^"
     },
     "dependencies": {
         "turbo": "^1.10.7"
