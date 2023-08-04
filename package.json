@@ -42,7 +42,8 @@
         "commitlint-config-techor": "workspace:^",
         "eslint-config-techor": "workspace:^",
         "@techor/jest": "workspace:^",
-        "@techor/pack": "workspace:^"
+        "@techor/pack": "workspace:^",
+        "@techor/version": "workspace:^"
     },
     "dependencies": {
         "turbo": "^1.10.7"

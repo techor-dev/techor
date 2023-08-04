@@ -18,6 +18,9 @@ importers:
       '@techor/pack':
         specifier: workspace:^
         version: link:packages/pack
+      '@techor/version':
+        specifier: workspace:^
+        version: link:packages/version
       '@types/fs-extra':
         specifier: ^9.0.13
         version: 9.0.13
