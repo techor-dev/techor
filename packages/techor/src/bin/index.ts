@@ -52,7 +52,7 @@ program.command('version <version>')
     .option('-p, --prefix <symbol>', 'Version prefix `^`, `~`, `>`, `>=`, `<`, `<=` ', '^')
     .option('-w, --workspaces <paths>', 'Specific your workspaces')
     .option('-ls, --list', 'List current bumpable dependency tree in workspaces', false)
-    .option('--private', 'Bump private project version', false)
+    .option('--no-private', 'Off: Bump private project version')
     .option('--no-public', 'Off: Bump public project version')
     .action(async function (args, options) {
         try {
