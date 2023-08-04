@@ -33,6 +33,9 @@ importers:
       concurrently:
         specifier: ^7.5.0
         version: 7.5.0
+      conventional-changelog-techor:
+        specifier: workspace:^
+        version: link:packages/conventional-changelog-config
       eslint-config-techor:
         specifier: workspace:^
         version: link:packages/eslint-config

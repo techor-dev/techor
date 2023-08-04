@@ -44,7 +44,8 @@
         "@techor/jest": "workspace:^",
         "@techor/pack": "workspace:^",
         "@techor/version": "workspace:^",
-        "semantic-release-config-techor": "workspace:^"
+        "semantic-release-config-techor": "workspace:^",
+        "conventional-changelog-techor": "workspace:^"
     },
     "dependencies": {
         "turbo": "^1.10.7"
