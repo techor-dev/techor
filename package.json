@@ -1,10 +1,10 @@
 {
     "private": true,
     "scripts": {
-        "install": "husky install && npm ls --link=true",
+        "install": "husky install && pnpm ls --r --filter \"./packages/*\"",
         "build": "turbo run build",
-        "build:clean": "rm -rf ./packages/**/*dist && npm run build -- --force --no-cache",
-        "check": "npm run commit-check && turbo run test lint type-check --parallel",
+        "build:clean": "rm -rf ./packages/**/*dist && pnpm run build -- --force --no-cache",
+        "check": "pnpm run commit-check && turbo run test lint type-check --parallel",
         "commit-check": "commitlint --from=HEAD~1 --verbose",
         "test": "turbo run test --parallel",
         "lint": "turbo run lint --parallel",
@@ -13,6 +13,10 @@
         "version": "tsx ./packages/techor/src/bin version",
         "analyze:commit": "semantic-release --debug",
         "clean": "rm -rf ./packages/**/*dist && rm -rf ./{examples,packages}/**/*node_modules"
+    },
+    "packageManager": "pnpm@8.6.10",
+    "engines": {
+        "node": "^18.16.1"
     },
     "repository": {
         "type": "git",
@@ -29,15 +33,13 @@
         "jest-environment-jsdom": "^29.3.1",
         "jest-puppeteer": "^6.1.1",
         "parent-module": "^3.0.0",
-        "puppeteer": "^19.2.2",
+        "puppeteer": "^21.0.1",
         "strip-ansi": "^7.0.1",
         "sucrase": "^3.32.0",
         "tmp": "^0.2.1",
         "ts-dedent": "^2.2.0",
-        "tsx": "^3.12.6"
-    },
-    "engines": {
-        "node": "^18"
+        "tsx": "^3.12.6",
+        "commitlint-config-techor": "workspace:^"
     },
     "dependencies": {
         "turbo": "^1.10.7"

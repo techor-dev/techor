@@ -41,18 +41,18 @@
         "access": "public"
     },
     "dependencies": {
-        "@techor/extend": "",
-        "@techor/fs": "",
-        "@techor/glob": "",
-        "@techor/log": "",
-        "@techor/one-liner": "",
-        "cross-import": "",
+        "@techor/extend": "workspace:^",
+        "@techor/fs": "workspace:^",
+        "@techor/glob": "workspace:^",
+        "@techor/log": "workspace:^",
+        "@techor/one-liner": "workspace:^",
+        "cross-import": "workspace:^",
         "esbuild": "^0.18.11",
         "esbuild-plugin-d.ts": "^1.1.0",
-        "explore-config": "",
+        "explore-config": "workspace:^",
         "lodash.isequal": "^4.5.0",
         "npm": "^9.7.2",
-        "techor": "",
+        "techor": "workspace:^",
         "upath": "^2.0.1"
     },
     "devDependencies": {

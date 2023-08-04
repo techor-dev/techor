@@ -58,7 +58,7 @@
     ],
     "dependencies": {
         "fast-glob": "^3.2.12",
-        "@techor/query-workspaces": "",
-        "@techor/fs": ""
+        "@techor/query-workspaces": "workspace:^",
+        "@techor/fs": "workspace:^"
     }
 }

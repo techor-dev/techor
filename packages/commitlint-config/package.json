@@ -33,7 +33,7 @@
     "dependencies": {
         "@commitlint/cli": "",
         "husky": "",
-        "conventional-changelog-techor": "",
-        "techor-conventional-commits": ""
+        "conventional-changelog-techor": "workspace:^",
+        "techor-conventional-commits": "workspace:^"
     }
 }

@@ -34,7 +34,7 @@
         "access": "public"
     },
     "dependencies": {
-        "@techor/jest": "",
+        "@techor/jest": "workspace:^",
         "jest-environment-jsdom": "^29.3.1"
     }
 }

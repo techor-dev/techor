@@ -49,7 +49,7 @@
         "dist"
     ],
     "dependencies": {
-        "techor-conventional-commits": "",
+        "techor-conventional-commits": "workspace:^",
         "compare-func": "^2.0.0",
         "dedent": "^0.7.0"
     },

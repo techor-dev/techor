@@ -28,12 +28,12 @@
         "typescript": ""
     },
     "dependencies": {
-        "@techor/pack": "",
-        "@techor/version": "",
-        "@techor/jest": "",
-        "commitlint-config-techor": "",
-        "conventional-changelog-techor": "",
-        "eslint-config-techor": "",
-        "semantic-release-config-techor": ""
+        "@techor/pack": "workspace:^",
+        "@techor/version": "workspace:^",
+        "@techor/jest": "workspace:^",
+        "commitlint-config-techor": "workspace:^",
+        "conventional-changelog-techor": "workspace:^",
+        "eslint-config-techor": "workspace:^",
+        "semantic-release-config-techor": "workspace:^"
     }
 }

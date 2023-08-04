@@ -53,8 +53,8 @@
         "access": "public"
     },
     "dependencies": {
-        "@techor/fs": "",
-        "@techor/log": "",
+        "@techor/fs": "workspace:^",
+        "@techor/log": "workspace:^",
         "commander": "^11.0.0"
     }
 }

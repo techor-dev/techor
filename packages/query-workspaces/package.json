@@ -56,8 +56,8 @@
         "dist"
     ],
     "dependencies": {
-        "@techor/glob": "",
-        "@techor/extend": "",
-        "@techor/fs": ""
+        "@techor/glob": "workspace:^",
+        "@techor/extend": "workspace:^",
+        "@techor/fs": "workspace:^"
     }
 }
