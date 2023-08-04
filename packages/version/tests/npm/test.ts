@@ -4,18 +4,18 @@ import dedent from 'ts-dedent'
 import stripAnsi from 'strip-ansi'
 
 test('bump to specific version by analyzing dependencies', () => {
-    const outputLog = execSync('tsx ../../techor/src/bin version 1.2.0 --private --list',
+    const outputLog = execSync('tsx ../../../techor/src/bin version 1.2.0 --private --list',
         { cwd: __dirname, stdio: 'pipe' })
         .toString()
     expect(stripAnsi(outputLog)).toContain(dedent`
         📦
         ├ @test/a
         │  └ dependencies
-        │     └ @test/b
+        │     └ @test/b: ^1.2.0
         ├ @test/b
         └ @test/c
            └ peerDependencies
-              └ @test/a
-        ⏺ Success bump version to ^1.2.0 for 3 packages in all workspace
+              └ @test/a: ^1.2.0
+        ⏺ Success bump version to 1.2.0 for 3 packages in all workspace
     `)
 })

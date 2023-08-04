@@ -1,0 +1,7 @@
+{
+    "name": "@test/pnpm-a",
+    "private": true,
+    "dependencies": {
+        "@test/pnpm-b": "workspace:^"
+    }
+}

@@ -37,9 +37,10 @@
         "access": "public"
     },
     "dependencies": {
-        "@techor/glob": "",
         "@techor/fs": "",
+        "@techor/glob": "",
         "@techor/log": "",
+        "js-yaml": "^4.1.0",
         "techor": ""
     }
 }

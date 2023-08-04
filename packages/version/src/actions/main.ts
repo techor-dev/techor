@@ -1,32 +1,49 @@
 import { explorePathsSync } from '@techor/glob'
 import path from 'path'
 import log, { paint } from '@techor/log'
-import { readJSONFileSync, writeFileSync } from '@techor/fs'
+import { readJSONFileSync, writeFileSync, readFileSync } from '@techor/fs'
+import yaml from 'js-yaml'
 
 module.exports = function action(version: string, options) {
-    const pkg = readJSONFileSync(path.resolve('./package.json'))
     if (!options.workspaces) {
-        options.workspaces = pkg.workspaces
+        const pnpmWorkspaceContent = readFileSync(path.resolve('./pnpm-workspace.yaml'))
+        if (pnpmWorkspaceContent) {
+            const pnpmWorkspaceJSON = yaml.load(pnpmWorkspaceContent)
+            options.workspaces = pnpmWorkspaceJSON.packages
+            log.info`pnpm-workspace.yaml is detected`
+        } else {
+            const pkg = readJSONFileSync(path.resolve('./package.json'))
+            if (pkg) {
+                options.workspaces = pkg.workspaces
+                log.info`package.json is detected`
+            } else {
+                return log.x`package.json is not found`
+            }
+        }
     }
     if (!options.workspaces?.length) {
         log.x`workspaces is not defined in package.json`
     }
-    const nextVersion = options.prefix + version
     const packagesOfPath = {}
     const packagesOfName = {}
     const workspacePackagePaths = options.workspaces.map((eachWorkspace) => path.join(eachWorkspace, '*package.json'))
-    const updateDependencies = (dependencies, title) => {
-        let updated = false
-        for (const dependencyName in dependencies) {
+    const resolveVersion = (eachVersion: string) => {
+        if (eachVersion.startsWith('workspace:')) {
+            return eachVersion.replace('workspace:', '') + version
+        } else if (eachVersion === '') {
+            return options.prefix + version
+        }
+    }
+    const updateDependencies = (eachDependencies) => {
+        for (const dependencyName in eachDependencies) {
             if (dependencyName in packagesOfName) {
-                const dependencyVersion = dependencies[dependencyName]
-                if (dependencyVersion === '') {
-                    dependencies[dependencyName] = nextVersion
-                    updated = true
+                const dependencyVersion = eachDependencies[dependencyName]
+                const resolvedVersion = resolveVersion(dependencyVersion)
+                if (resolvedVersion) {
+                    eachDependencies[dependencyName] = resolvedVersion
                 }
             }
         }
-        return updated
     }
 
     // Read package.json by workspaces
@@ -47,8 +64,8 @@ module.exports = function action(version: string, options) {
     for (const eachPackagePath in packagesOfPath) {
         const eachPackage = packagesOfPath[eachPackagePath]
         const { dependencies, peerDependencies } = packagesOfPath[eachPackagePath]
-        dependencies && updateDependencies(dependencies, 'dependencies')
-        peerDependencies && updateDependencies(peerDependencies, 'peerDependencies')
+        dependencies && updateDependencies(dependencies)
+        peerDependencies && updateDependencies(peerDependencies)
         if (!options.list) {
             writeFileSync(eachPackagePath, eachPackage)
         }
@@ -64,8 +81,7 @@ module.exports = function action(version: string, options) {
                 for (const dependencyName in eachDeps) {
                     if (dependencyName in packagesOfName) {
                         const eachDependencyVersion = eachDeps[dependencyName]
-                        workspacePackage[key][paint('**' + dependencyName + '**')] =
-                            eachDependencyVersion === nextVersion ? null : nextVersion
+                        workspacePackage[key][paint('**' + dependencyName + '**')] = eachDependencyVersion || null
                     }
                 }
             }
@@ -79,5 +95,5 @@ module.exports = function action(version: string, options) {
     }
     log`📦`
     log.tree(workspaceDepsTree)
-    log.success`bump version to +${nextVersion}+ for ${Object.keys(packagesOfName).length} packages in all workspace`
+    log.success`bump version to ${version} for ${Object.keys(packagesOfName).length} packages in all workspace`
 }

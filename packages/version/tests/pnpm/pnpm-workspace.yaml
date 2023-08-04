@@ -1,0 +1,4 @@
+packages:
+  - 'pnpm-a'
+  - 'pnpm-b'
+  - 'pnpm-c'
