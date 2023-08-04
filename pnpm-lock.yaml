@@ -51,6 +51,9 @@ importers:
       puppeteer:
         specifier: ^21.0.1
         version: 21.0.1
+      semantic-release-config-techor:
+        specifier: workspace:^
+        version: link:packages/semantic-release-config
       strip-ansi:
         specifier: ^7.0.1
         version: 7.0.1
