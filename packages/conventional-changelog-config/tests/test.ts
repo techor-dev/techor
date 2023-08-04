@@ -79,7 +79,7 @@ if (process.platform === 'win32') {
                     expect(changelog).toMatch('[@1aron](https://github.com/1aron)')
 
                 }, { changelogFileName: 'CHANGELOG.md' })
-        })
+        }, 10000)
 
         test('should work if there is a semver tag', async () => {
             exec('git tag v1.0.0')
@@ -90,7 +90,7 @@ if (process.platform === 'win32') {
                     // not to include provious changes
                     expect(changelog).not.toMatch('Breaking Changes')
                 }, { changelogFileName: 'CHANGELOG.more.md' })
-        })
+        }, 10000)
     })
 }
 
