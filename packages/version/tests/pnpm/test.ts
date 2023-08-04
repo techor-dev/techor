@@ -4,7 +4,7 @@ import dedent from 'ts-dedent'
 import stripAnsi from 'strip-ansi'
 
 it('bump to specific version by analyzing PNPM dependencies', () => {
-    const outputLog = execSync('tsx ../../../techor/src/bin version 1.2.0 --private --list',
+    const outputLog = execSync('tsx ../../../techor/src/bin version 1.2.0 --list',
         { cwd: __dirname, stdio: 'pipe' })
         .toString()
     expect(stripAnsi(outputLog)).toContain(dedent`
