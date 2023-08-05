@@ -81,8 +81,7 @@
 - [explore config](https://github.com/1aron/techor/tree/main/packages/explore-config) — Explore multi-format JavaScript module configuration
 - [fs](https://github.com/1aron/techor/tree/main/packages/fs) — A human-friendly file system with glob patterns
 - [glob](https://github.com/1aron/techor/tree/main/packages/glob) — A human-friendly set of glob utilities
-- [read workspace packages](https://github.com/1aron/techor/tree/main/packages/read-workspace-packages) — Read workspace package.json contents
-- [query workspaces](https://github.com/1aron/techor/tree/main/packages/query-workspaces) — Query workspaces with package.json
+- [npm](https://github.com/1aron/techor/tree/main/packages/npm) — Get, query, and read such as package workspaces via NPM/PNPM.
 
 ## Built on the top
 - [turborepo](https://turbo.build/repo) - A high-performance build system for monorepo

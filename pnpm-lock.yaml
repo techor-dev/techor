@@ -214,6 +214,21 @@ importers:
         specifier: ^3.3.1
         version: 3.3.1
 
+  packages/npm:
+    dependencies:
+      '@techor/extend':
+        specifier: workspace:^
+        version: link:../extend
+      '@techor/fs':
+        specifier: workspace:^
+        version: link:../fs
+      '@techor/glob':
+        specifier: workspace:^
+        version: link:../glob
+      js-yaml:
+        specifier: ^4.1.0
+        version: 4.1.0
+
   packages/one-liner: {}
 
   packages/pack:
@@ -363,30 +378,6 @@ importers:
 
   packages/pack/tests/type: {}
 
-  packages/query-workspaces:
-    dependencies:
-      '@techor/extend':
-        specifier: workspace:^
-        version: link:../extend
-      '@techor/fs':
-        specifier: workspace:^
-        version: link:../fs
-      '@techor/glob':
-        specifier: workspace:^
-        version: link:../glob
-
-  packages/read-workspace-packages:
-    dependencies:
-      '@techor/fs':
-        specifier: workspace:^
-        version: link:../fs
-      '@techor/query-workspaces':
-        specifier: workspace:^
-        version: link:../query-workspaces
-      fast-glob:
-        specifier: ^3.2.12
-        version: 3.3.0
-
   packages/repo:
     dependencies:
       '@techor/jest':
@@ -428,9 +419,9 @@ importers:
       '@techor/extend':
         specifier: workspace:^
         version: link:../extend
-      '@techor/query-workspaces':
+      '@techor/npm':
         specifier: workspace:^
-        version: link:../query-workspaces
+        version: link:../npm
       conventional-changelog-techor:
         specifier: workspace:^
         version: link:../conventional-changelog-config

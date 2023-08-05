@@ -1,5 +1,5 @@
-import queryWorkspaces from '../src'
-import { writeJSONFileSync } from '../../fs/src'
+import { queryWorkspaces } from '../../src'
+import { writeJSONFileSync } from '../../../fs/src'
 import path from 'path'
 
 it('query workspaces', () => {

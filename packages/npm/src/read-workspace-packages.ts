@@ -1,6 +1,6 @@
 import type { Options, Pattern } from 'fast-glob'
 import { readJSONFileSync } from '@techor/fs'
-import queryWorkspaces from '@techor/query-workspaces'
+import queryWorkspaces from './query-workspaces'
 import path from 'path'
 
 export default function readWorkspacePackages(
@@ -16,5 +16,3 @@ export default function readWorkspacePackages(
         : []
 
 }
-
-export { readWorkspacePackages }

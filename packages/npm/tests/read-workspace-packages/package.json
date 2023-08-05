@@ -1,5 +1,4 @@
 {
-    "name": "@read-workspace-packages.tests/root",
     "private": true,
     "workspaces": [
         "packages/**"

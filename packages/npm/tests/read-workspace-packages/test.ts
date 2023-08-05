@@ -1,4 +1,4 @@
-import readWorkspacePackages from '../src'
+import { readWorkspacePackages } from '../../src'
 
 it('read workspace packages', () => {
     expect(readWorkspacePackages(['packages/**'], { cwd: __dirname }))

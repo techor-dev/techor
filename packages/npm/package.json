@@ -1,5 +1,5 @@
 {
-    "name": "@techor/query-workspaces",
+    "name": "@techor/npm",
     "scripts": {
         "build:cjs": "esbuild src/index.ts --bundle --outfile=dist/index.js --format=cjs --minify --sourcemap --platform=node --external:esbuild --external:@techor/glob --external:@techor/extend --external:@techor/fs",
         "build:esm": "esbuild src/index.ts --bundle --outfile=dist/index.mjs --format=esm --minify --sourcemap --platform=node --external:esbuild --external:@techor/glob --external:@techor/extend --external:@techor/fs",
@@ -11,7 +11,7 @@
         "lint": "eslint src"
     },
     "license": "MIT",
-    "description": "Query workspaces with package.json",
+    "description": "Get, query, and read such as package workspaces via NPM/PNPM.",
     "author": {
         "name": "Aron",
         "email": "i@aron.tw",
@@ -24,7 +24,7 @@
     "repository": {
         "type": "git",
         "url": "https://github.com/1aron/techor.git",
-        "directory": "packages/query-workspaces"
+        "directory": "packages/npm"
     },
     "keywords": [
         "package",
@@ -58,6 +58,7 @@
     "dependencies": {
         "@techor/glob": "workspace:^",
         "@techor/extend": "workspace:^",
-        "@techor/fs": "workspace:^"
+        "@techor/fs": "workspace:^",
+        "js-yaml": "^4.1.0"
     }
 }

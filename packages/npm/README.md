@@ -1,7 +1,7 @@
 <br>
 <div align="center">
 
-<p align="center">Query workspaces with package.json</p>
+<p align="center">Get, query, and read such as package workspaces via NPM/PNPM.</p>
 
 <p align="center">
     <a aria-label="overview" href="https://github.com/1aron/techor">
@@ -18,11 +18,11 @@
             <img alt="NPM Version" src="https://img.shields.io/github/v/release/1aron/techor?include_prereleases&color=f6f7f8&label=&style=for-the-badge&logo=github">
         </picture>
     </a>
-    <a aria-label="NPM Package" href="https://www.npmjs.com/package/@techor/query-workspaces">
+    <a aria-label="NPM Package" href="https://www.npmjs.com/package/@techor/npm">
         <picture>
-            <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/npm/dm/@techor/query-workspaces?color=212022&label=%20&logo=npm&style=for-the-badge">
-            <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/npm/dm/@techor/query-workspaces?color=f6f7f8&label=%20&logo=npm&style=for-the-badge">
-            <img alt="NPM package ( download / month )" src="https://img.shields.io/npm/dm/@techor/query-workspaces?color=f6f7f8&label=%20&logo=npm&style=for-the-badge">
+            <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/npm/dm/@techor/npm?color=212022&label=%20&logo=npm&style=for-the-badge">
+            <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/npm/dm/@techor/npm?color=f6f7f8&label=%20&logo=npm&style=for-the-badge">
+            <img alt="NPM package ( download / month )" src="https://img.shields.io/npm/dm/@techor/npm?color=f6f7f8&label=%20&logo=npm&style=for-the-badge">
         </picture>
     </a>
     <a aria-label="Follow @aron1tw" href="https://twitter.com/aron1tw">
@@ -45,18 +45,11 @@
 
 <br>
 
+## queryWorkspaces()
+
 - By default, read `.workspaces` of package.json in the current working directory
 - By default, workspaces in node_modules are excluded
 
-<br>
-
-## Getting Started
-
-```bash
-npm install @techor/query-workspaces
-```
-
-## Preparation
 Your monorepo usually looks like this:
 
 ```diff
@@ -81,10 +74,10 @@ Your monorepo usually looks like this:
 }
 ```
 
-## Usage
+### Usage
 `queryWorkspaces(patterns?, options?): string[]`
 ```js
-import queryWorkspaces from '@techor/query-workspaces'
+import queryWorkspaces from '@techor/npm'
 
 const workspaces = queryWorkspaces()
 // ['packages/a', 'packages/b', 'packages/b/bb']
@@ -93,7 +86,70 @@ const workspaces = queryWorkspaces(['packages/*'])
 // ['packages/a', 'packages/b']
 ```
 
-## Options
+### Options
+Inherited from [fast-glob options](https://github.com/mrmlnc/fast-glob#options-3)
+```js
+{
+    cwd: process.cwd(),
+    ignore: ['**/node_modules/**']
+}
+```
+
+## readWorkspacePackages()
+
+- By default, read workspace packages by package.json `.workspaces` in the current working directory
+- By default, workspace packages in node_modules are excluded
+
+Your monorepo usually looks like this:
+
+```diff
+.
+├── package.json
+└── packages
+    ├─── a
+    │    └─── package.json
+    ├─── b
+    │    ├─── node_modules
+    │    │    └─── fake-module
+    │    │         └─── package.json
+    │    ├─── bb
+    │    │    └─── package.json
+    │    └─── package.json
+    ├─── c
+    └─── d
+         └─── package.json
+```
+./package.json
+```json
+{
+    "workspaces": ["packages/**"]
+}
+```
+./packages/d/package.json
+```json
+{
+    "name": "d",
+    "private": true
+}
+```
+
+### Usage
+`readWorkspacePackages(patterns?, options?): any[]`
+```js
+import readWorkspacePackages from '@techor/read-workspace-packages'
+
+const packages = readWorkspacePackages()
+// [{ name: 'a' }, { name: 'b' }, { name: 'd', private: true }, { name: 'bb' }]
+
+const packages = readWorkspacePackages(['packages/*'])
+// [{ name: 'a' }, { name: 'b' }, { name: 'd', private: true }]
+
+const publicPackages = readWorkspacePackages()
+    .fiter((eachWorkspacePackage) => !eachWorkspacePackage.private)
+// [{ name: 'a' }, { name: 'b' }, { name: 'bb' }]
+```
+
+### Options
 Inherited from [fast-glob options](https://github.com/mrmlnc/fast-glob#options-3)
 ```js
 {

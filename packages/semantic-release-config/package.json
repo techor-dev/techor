@@ -43,6 +43,6 @@
         "techor-conventional-commits": "workspace:^",
         "conventional-changelog-techor": "workspace:^",
         "@techor/extend": "workspace:^",
-        "@techor/query-workspaces": "workspace:^"
+        "@techor/npm": "workspace:^"
     }
 }
