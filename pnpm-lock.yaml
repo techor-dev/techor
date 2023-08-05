@@ -458,9 +458,9 @@ importers:
       '@techor/log':
         specifier: workspace:^
         version: link:../log
-      js-yaml:
-        specifier: ^4.1.0
-        version: 4.1.0
+      '@techor/npm':
+        specifier: workspace:^
+        version: link:../npm
       techor:
         specifier: workspace:^
         version: link:../techor

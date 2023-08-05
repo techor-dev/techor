@@ -27,7 +27,7 @@ const defaultConfig = {
     }
 }
 
-module.exports = ({ packageManager = 'npm', ...config } = {}) => {
+module.exports = (config) => {
     const newConfig = extend(defaultConfig, config)
     newConfig.plugins = Object.keys(newConfig.plugins)
         .map((eachPluginName) => {
@@ -41,17 +41,21 @@ module.exports = ({ packageManager = 'npm', ...config } = {}) => {
             }
         })
         .filter((eachPlugin) => eachPlugin)
-    const workspaces = queryWorkspaces(packageManager === 'pnpm' ? readPNPMWorkspaces() : undefined)
-    if (workspaces?.length) {
-        newConfig.plugins.push(
-            ...workspaces.map((eachWorkspace) => [
-                packageManager === 'npm'
-                    ? '@semantic-release/npm'
-                    : 'semantic-release-pnpm'
-                , {
-                    pkgRoot: eachWorkspace
-                }])
-        )
+    let workspaces
+    const packageManager = explorePackageManager()
+    switch (packageManager) {
+        case 'pnpm':
+            workspaces = readPNPMWorkspaces()
+            if (workspaces?.length) {
+                newConfig.plugins.push(...workspaces.map((eachWorkspace) => ['@semantic-release/npm', { pkgRoot: eachWorkspace }]))
+            }
+            break
+        case 'npm':
+            workspaces = readWorkspaces()
+            if (workspaces?.length) {
+                newConfig.plugins.push(...workspaces.map((eachWorkspace) => ['semantic-release-pnpm', { pkgRoot: eachWorkspace }]))
+            }
+            break
     }
     return newConfig
 }

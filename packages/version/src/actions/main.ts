@@ -1,24 +1,19 @@
 import { explorePathsSync } from '@techor/glob'
 import path from 'path'
 import log, { paint } from '@techor/log'
-import { readJSONFileSync, writeFileSync, readFileSync } from '@techor/fs'
-import yaml from 'js-yaml'
+import { readJSONFileSync, writeFileSync } from '@techor/fs'
+import { readPNPMWorkspaces, readWorkspaces, explorePackageManager } from '@techor/npm'
 
 module.exports = function action(version: string, options) {
     if (!options.workspaces) {
-        const pnpmWorkspaceContent = readFileSync(path.resolve('./pnpm-workspace.yaml'))
-        if (pnpmWorkspaceContent) {
-            const pnpmWorkspaceJSON = yaml.load(pnpmWorkspaceContent)
-            options.workspaces = pnpmWorkspaceJSON.packages
-            log.info`pnpm-workspace.yaml is detected`
-        } else {
-            const pkg = readJSONFileSync(path.resolve('./package.json'))
-            if (pkg) {
-                options.workspaces = pkg.workspaces
-                log.info`package.json is detected`
-            } else {
-                return log.x`package.json is not found`
-            }
+        const packageManager = explorePackageManager()
+        switch (packageManager) {
+            case 'pnpm':
+                options.workspaces = readPNPMWorkspaces()
+                break
+            case 'npm':
+                options.workspaces = readWorkspaces()
+                break
         }
     }
     if (!options.workspaces?.length) {

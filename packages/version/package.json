@@ -40,7 +40,7 @@
         "@techor/fs": "workspace:^",
         "@techor/glob": "workspace:^",
         "@techor/log": "workspace:^",
-        "js-yaml": "^4.1.0",
+        "@techor/npm": "workspace:^",
         "techor": "workspace:^"
     }
 }
