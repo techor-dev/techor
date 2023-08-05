@@ -1,6 +1,6 @@
 const releaseRules = require('./rules')
 const extend = require('@techor/extend').default
-const { explorePackageManager, readPNPMWorkspaces, readWorkspaces, queryWorkspaces } = require('@techor/npm')
+const { readWorkspaces, queryWorkspaces } = require('@techor/npm')
 
 const defaultConfig = {
     branches: [
@@ -41,23 +41,10 @@ module.exports = (config) => {
             }
         })
         .filter((eachPlugin) => eachPlugin)
-    let workspaces
-    const packageManager = explorePackageManager()
-    switch (packageManager) {
-        case 'pnpm':
-            workspaces = readPNPMWorkspaces()
-            if (workspaces?.length) {
-                const resolvedWorkspaces = queryWorkspaces(workspaces)
-                newConfig.plugins.push(...resolvedWorkspaces.map((eachWorkspace) => ['semantic-release-pnpm', { pkgRoot: eachWorkspace }]))
-            }
-            break
-        case 'npm':
-            workspaces = readWorkspaces()
-            if (workspaces?.length) {
-                const resolvedWorkspaces = queryWorkspaces(workspaces)
-                newConfig.plugins.push(...resolvedWorkspaces.map((eachWorkspace) => ['@semantic-release/npm', { pkgRoot: eachWorkspace }]))
-            }
-            break
+    let workspaces = readWorkspaces()
+    if (workspaces?.length) {
+        const resolvedWorkspaces = queryWorkspaces(workspaces)
+        newConfig.plugins.push(...resolvedWorkspaces.map((eachWorkspace) => ['@semantic-release/npm', { pkgRoot: eachWorkspace }]))
     }
     return newConfig
 }

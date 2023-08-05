@@ -43,7 +43,6 @@
         "@techor/extend": "workspace:^",
         "@techor/npm": "workspace:^",
         "conventional-changelog-techor": "workspace:^",
-        "semantic-release-pnpm": "^1.0.2",
         "techor-conventional-commits": "workspace:^"
     }
 }
