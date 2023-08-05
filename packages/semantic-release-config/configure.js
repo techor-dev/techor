@@ -44,9 +44,13 @@ module.exports = ({ packageManager = 'npm', ...config } = {}) => {
     const workspaces = queryWorkspaces(packageManager === 'pnpm' ? readPNPMWorkspaces() : undefined)
     if (workspaces?.length) {
         newConfig.plugins.push(
-            ...workspaces.map((eachWorkspace) => [`@semantic-release/${packageManager}`, {
-                pkgRoot: eachWorkspace
-            }])
+            ...workspaces.map((eachWorkspace) => [
+                packageManager === 'npm'
+                    ? '@semantic-release/npm'
+                    : 'semantic-release-pnpm'
+                , {
+                    pkgRoot: eachWorkspace
+                }])
         )
     }
     return newConfig
