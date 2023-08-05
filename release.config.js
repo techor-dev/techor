@@ -4,7 +4,7 @@ module.exports = configure({
     packageManager: 'pnpm',
     plugins: {
         '@semantic-release/exec': {
-            prepareCmd: 'npm run version ${nextRelease.version}'
+            prepareCmd: 'pnpm run version ${nextRelease.version}'
         }
     }
 })

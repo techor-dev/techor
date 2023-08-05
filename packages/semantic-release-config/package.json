@@ -40,9 +40,10 @@
         "semantic-release": "^19.0.5"
     },
     "dependencies": {
-        "techor-conventional-commits": "workspace:^",
-        "conventional-changelog-techor": "workspace:^",
         "@techor/extend": "workspace:^",
-        "@techor/npm": "workspace:^"
+        "@techor/npm": "workspace:^",
+        "conventional-changelog-techor": "workspace:^",
+        "semantic-release-pnpm": "^1.0.2",
+        "techor-conventional-commits": "workspace:^"
     }
 }
