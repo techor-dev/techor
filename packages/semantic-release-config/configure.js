@@ -1,6 +1,6 @@
 const releaseRules = require('./rules')
 const extend = require('@techor/extend').default
-const { explorePackageManager, readPNPMWorkspaces } = require('@techor/npm')
+const { explorePackageManager, readPNPMWorkspaces, readWorkspaces } = require('@techor/npm')
 
 const defaultConfig = {
     branches: [
