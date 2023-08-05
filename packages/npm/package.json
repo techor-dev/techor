@@ -59,6 +59,7 @@
         "@techor/glob": "workspace:^",
         "@techor/extend": "workspace:^",
         "@techor/fs": "workspace:^",
+        "@techor/log": "workspace:^",
         "js-yaml": "^4.1.0"
     }
 }
