@@ -47,13 +47,13 @@ module.exports = (config) => {
         case 'pnpm':
             workspaces = readPNPMWorkspaces()
             if (workspaces?.length) {
-                newConfig.plugins.push(...workspaces.map((eachWorkspace) => ['@semantic-release/npm', { pkgRoot: eachWorkspace }]))
+                newConfig.plugins.push(...workspaces.map((eachWorkspace) => ['semantic-release-pnpm', { pkgRoot: eachWorkspace }]))
             }
             break
         case 'npm':
             workspaces = readWorkspaces()
             if (workspaces?.length) {
-                newConfig.plugins.push(...workspaces.map((eachWorkspace) => ['semantic-release-pnpm', { pkgRoot: eachWorkspace }]))
+                newConfig.plugins.push(...workspaces.map((eachWorkspace) => ['@semantic-release/npm', { pkgRoot: eachWorkspace }]))
             }
             break
     }
