@@ -42,8 +42,10 @@ module.exports = (config) => {
         })
         .filter((eachPlugin) => eachPlugin)
     let workspaces = readWorkspaces()
+    console.log('Found workspaces:', workspaces)
     if (workspaces?.length) {
         const resolvedWorkspaces = queryWorkspaces(workspaces)
+        console.log('Resolved workspaces:', resolvedWorkspaces)
         newConfig.plugins.push(...resolvedWorkspaces.map((eachWorkspace) => ['@semantic-release/npm', { pkgRoot: eachWorkspace }]))
     }
     return newConfig
