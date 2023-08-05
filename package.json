@@ -22,9 +22,6 @@
         "type": "git",
         "url": "https://github.com/1aron/techor.git"
     },
-    "workspaces": [
-        "packages/*"
-    ],
     "devDependencies": {
         "@types/fs-extra": "^9.0.13",
         "@types/node": "^18.11.9",
