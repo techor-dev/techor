@@ -21,7 +21,7 @@ jobs:
                   node-version: 18
                   cache: "pnpm"
             - name: Techor Actions
-              uses: 1aron/techor@v2.5.2
+              uses: 1aron/techor@v2.4.6
               with:
                   action: "sync-dev-branches"
               env:
