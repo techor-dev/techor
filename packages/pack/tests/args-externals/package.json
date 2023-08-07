@@ -1,5 +1,6 @@
 {
     "name": "@test/args-externals",
+    "version": "1.0.0",
     "private": true,
     "main": "dist/index.js",
     "exports": {

@@ -1,5 +1,6 @@
 {
     "name": "@test/pack-a",
+    "version": "1.0.0",
     "private": true,
     "dependencies": {
         "@test/pack-b": ""

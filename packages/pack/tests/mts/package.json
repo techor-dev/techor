@@ -1,5 +1,6 @@
 {
     "name": "@test/options",
+    "version": "1.0.0",
     "private": true,
     "module": "./dist/index.bundle.mjs",
     "exports": {

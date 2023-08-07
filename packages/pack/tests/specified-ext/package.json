@@ -1,5 +1,6 @@
 {
     "name": "@test/specified-ext",
+    "version": "1.0.0",
     "private": true,
     "main": "dist/index.js",
     "exports": {

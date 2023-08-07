@@ -1,5 +1,6 @@
 {
     "name": "@test/type",
+    "version": "1.0.0",
     "private": true,
     "sideEffects": false,
     "main": "./dist/index.js",

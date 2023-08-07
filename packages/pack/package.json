@@ -3,7 +3,7 @@
     "scripts": {
         "build": "esbuild src/actions/main.ts --bundle --outfile=dist/actions/main.bundle.js --format=cjs --minify --platform=node --external:esbuild --external:@techor/extend --external:@techor/fs --external:@techor/log --external:@techor/one-liner --external:cross-import --external:explore-config --external:@techor/glob --external:lodash.isequal --external:npm --external:techor --external:upath",
         "dev": "npm run build -- --watch",
-        "test": "cd tests && npm i && cd ../ && jest",
+        "test": "cd tests && pnpm i && cd ../ && jest",
         "type-check": "tsc --noEmit",
         "lint": "eslint src"
     },

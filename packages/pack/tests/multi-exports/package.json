@@ -1,5 +1,6 @@
 {
     "name": "@test/multi-exports",
+    "version": "1.0.0",
     "private": true,
     "main": "./dist/index.js",
     "jsnext:main": "./dist/index.js",
