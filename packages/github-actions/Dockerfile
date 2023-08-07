@@ -1,5 +1,6 @@
-FROM node:19-alpine
+FROM node:19-alpine AS base
 
+RUN npm i -g pnpm
 ADD package.json /action/
 RUN cd /action && pnpm i
 
