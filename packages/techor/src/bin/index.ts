@@ -52,8 +52,6 @@ program.command('version <version>')
     .option('-p, --prefix <symbol>', 'Version prefix `^`, `~`, `>`, `>=`, `<`, `<=` ', '^')
     .option('-w, --workspaces <paths>', 'Specific your workspaces')
     .option('-ls, --list', 'List current bumpable dependency tree in workspaces', false)
-    .option('--no-private', 'Off: Bump private project version')
-    .option('--no-public', 'Off: Bump public project version')
     .action(async function (args, options) {
         try {
             const action = require('@techor/version/actions/main')

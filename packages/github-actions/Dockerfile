@@ -1,8 +1,8 @@
-FROM node:19-alpine AS base
+FROM node:19-alpine
 
-RUN npm i -g pnpm
 ADD package.json /action/
-RUN cd /action && pnpm i
+RUN cd /action && npm i
 
 ADD src /action/src
 ENTRYPOINT ["node", "/action/src/index.js"]
+Z

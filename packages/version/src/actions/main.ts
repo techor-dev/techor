@@ -45,15 +45,10 @@ module.exports = function action(version: string, options) {
     for (const eachPackagePath of explorePathsSync(workspacePackagePaths)) {
         const eachPackage = readJSONFileSync(path.resolve(eachPackagePath))
         // Prevent version bumps of private package
-        if (
-            eachPackage.private && (options.private) ||
-            !eachPackage.private && (options.public)
-        ) {
             packagesOfPath[eachPackagePath] = eachPackage
             packagesOfName[eachPackage.name] = eachPackage
             // Bump to next verion
             eachPackage.version = version
-        }
     }
 
     for (const eachPackagePath in packagesOfPath) {
