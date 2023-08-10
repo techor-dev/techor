@@ -98,7 +98,7 @@ module.exports = async function action(specifiedEntries: string[], options: any 
         }
         const eachOutdir = eachOptions.outdir || options.outdir
 
-        /** 
+        /**
          * Keep original directory output and prevent bundling
          * @example $ esbuild entry.js a.js b.js external.j --format=esm --outdir=dist --bundle --external:./a --external:./b
          * @example https://esbuild.github.io/try/#YgAwLjE4LjExAGVudHJ5LmpzIGEuanMgYi5qcyBleHRlcm5hbC5qIC0tZm9ybWF0PWVzbSAtLW91dGRpcj1kaXN0IC0tYnVuZGxlIC0tZXh0ZXJuYWw6Li9hIC0tZXh0ZXJuYWw6Li9iAABlbnRyeS5qcwBleHBvcnQgKiBmcm9tICcuL2EnCmV4cG9ydCAqIGZyb20gJy4vYicKZXhwb3J0ICogZnJvbSAnLi9leHRlcm5hbCcAAGEuanMAZXhwb3J0IGNvbnN0IGEgPSAnYScAAGIuanMAZXhwb3J0IGNvbnN0IGIgPSAnYicAAGV4dGVybmFsLmpzAGV4cG9ydCBjb25zdCBleHRlcm5hbCA9ICdleHRlcm5hbCc
@@ -131,6 +131,11 @@ module.exports = async function action(specifiedEntries: string[], options: any 
 
         if (!buildOptions.target) {
             delete buildOptions.target
+        }
+
+        // Fixed: Cannot use "external" option with "bundle" option
+        if (!buildOptions.bundle) {
+            delete buildOptions.external
         }
 
         // if (!eachOptions.bundle && eachOptions.format === 'esm') {
