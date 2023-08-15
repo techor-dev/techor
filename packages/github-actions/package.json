@@ -34,8 +34,8 @@
     "dependencies": {
         "@actions/core": "^1.10.0",
         "@actions/github": "^5.1.1",
-        "techor-conventional-commits": "*",
-        "conventional-changelog-techor": "*",
+        "techor-conventional-commits": "workspace:^",
+        "conventional-changelog-techor": "workspace:^",
         "conventional-changelog-conventionalcommits": "^5.0.0",
         "conventional-commits-parser": "^3.2.4"
     }

@@ -158,14 +158,14 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0
       conventional-changelog-techor:
-        specifier: '*'
-        version: 2.5.9
+        specifier: workspace:^
+        version: link:../conventional-changelog-config
       conventional-commits-parser:
         specifier: ^3.2.4
         version: 3.2.4
       techor-conventional-commits:
-        specifier: '*'
-        version: 2.5.9
+        specifier: workspace:^
+        version: link:../conventional-commits
 
   packages/glob:
     dependencies:
@@ -3091,14 +3091,6 @@ packages:
       read-pkg-up: 3.0.0
       through2: 4.0.2
     dev: true
-
-  /conventional-changelog-techor@2.5.9:
-    resolution: {integrity: sha512-z2HIBVBhuMwEmnIlHLioj86gECzDMJcCdFtFWcUSYd89xNK8yYswHcjzfob1iZ/TS30U7+xH4iLIgyj0yLZJfw==}
-    dependencies:
-      compare-func: 2.0.0
-      dedent: 0.7.0
-      techor-conventional-commits: 2.5.9
-    dev: false
 
   /conventional-changelog-writer@5.0.1:
     resolution: {integrity: sha512-5WsuKUfxW7suLblAbFnxAcrvf6r+0b7GvNaWUwUIk0bXMnENP/PEieGKVUQrjPqwPT4o3EPAASBXiY6iHooLOQ==}
@@ -6709,10 +6701,6 @@ packages:
       fast-fifo: 1.3.0
       streamx: 2.15.0
     dev: true
-
-  /techor-conventional-commits@2.5.9:
-    resolution: {integrity: sha512-0F5PO2Qke5/Xu3WcFhIQXPmUtkKPvdqLKvC/l4LZHlOIQTQiecJI8hxCukMzkvuAnCqLFF8fk0G4bRTWjj9E0g==}
-    dev: false
 
   /temp-dir@3.0.0:
     resolution: {integrity: sha512-nHc6S/bwIilKHNRgK/3jlhDoIHcp45YgyiwcAk46Tr0LfEqGBVpmiAyuiuxeVE44m3mXnEeVhaipLOEWmH+Njw==}
