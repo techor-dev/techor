@@ -24,7 +24,7 @@ jobs:
               with:
                   ref: ${{ github.ref }}
                   running-workflow-name: wait-for-check-regexp
-                  check-regexp: test.*|check.*|lint.*
+                  check-regexp: lint|test|commit-check|type-check
                   repo-token: ${{ secrets.GITHUB_TOKEN }}
                   wait-interval: 10
             - run: pnpm exec semantic-release
