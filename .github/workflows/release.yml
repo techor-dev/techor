@@ -26,7 +26,7 @@ jobs:
                   check-regexp: test.*|check.*|commit-check.*|lint.*
                   repo-token: ${{ secrets.GITHUB_TOKEN }}
                   wait-interval: 10
-            - run: pnpm dlx semantic-release
+            - run: pnpm exec semantic-release
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

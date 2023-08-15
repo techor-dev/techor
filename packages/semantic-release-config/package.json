@@ -37,7 +37,7 @@
     ],
     "peerDependencies": {
         "@semantic-release/exec": "^6.0.3",
-        "semantic-release": "^19.0.5"
+        "semantic-release": "^21.0.7"
     },
     "dependencies": {
         "@techor/extend": "workspace:^",
