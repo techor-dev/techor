@@ -13,7 +13,7 @@ jobs:
                 node-version: [18.17.0]
         steps:
             - uses: actions/checkout@v3
-            - uses: ../../packages/github-actions
+            - uses: ../../packages/github-actions/Dockerfile
               with:
                   action: "sync-dev-branches"
               env:
