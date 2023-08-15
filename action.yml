@@ -23,7 +23,7 @@ inputs:
         default: https://github.com/1aron/techor/tree/main/packages/conventional-commits
 runs:
     using: docker
-    image: packages/github-actions/Dockerfile
+    image: .github/actions/Dockerfile
 branding:
     icon: shield
     color: green
