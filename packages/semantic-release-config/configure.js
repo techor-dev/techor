@@ -24,7 +24,7 @@ const defaultConfig = {
         '@semantic-release/commit-analyzer': { preset: 'techor', releaseRules },
         '@semantic-release/release-notes-generator': { preset: 'techor' },
         '@semantic-release/exec': {
-            verifyConditionsCmd: 'techor version ${nextRelease.version}'
+            verifyRelease: 'techor version ${nextRelease.version}'
         },
         '@semantic-release/github': true
     }
