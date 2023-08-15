@@ -158,13 +158,13 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0
       conventional-changelog-techor:
-        specifier: ''
+        specifier: '*'
         version: 2.5.9
       conventional-commits-parser:
         specifier: ^3.2.4
         version: 3.2.4
       techor-conventional-commits:
-        specifier: ''
+        specifier: '*'
         version: 2.5.9
 
   packages/glob:
