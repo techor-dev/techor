@@ -1,6 +1,7 @@
 FROM node:20-slim AS base
 
-ADD package.json /
-RUN npx pnpm i
+ADD package.json /action/
+RUN cd /action && npm i
 
-ENTRYPOINT ["node", "/src/index.js"]
+ADD src /action/src
+ENTRYPOINT ["node", "/action/src/index.js"]
