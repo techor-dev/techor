@@ -23,6 +23,7 @@ jobs:
             - uses: lewagon/wait-on-check-action@v1.3.1
               with:
                   ref: ${{ github.ref }}
+                  running-workflow-name: wait-for-check-regexp
                   check-regexp: test.*|check.*|commit-check.*|lint.*
                   repo-token: ${{ secrets.GITHUB_TOKEN }}
                   wait-interval: 10
