@@ -11,6 +11,9 @@
     "bugs": {
         "url": "https://github.com/1aron/techor/issues"
     },
+    "publishConfig": {
+        "access": "public"
+    },
     "repository": {
         "type": "git",
         "url": "https://github.com/1aron/techor.git",
