@@ -1,0 +1,6 @@
+{
+    "workspaces": [
+        "public",
+        "restricted"
+    ]
+}

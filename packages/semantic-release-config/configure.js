@@ -1,6 +1,9 @@
+const path = require('path')
 const releaseRules = require('./rules')
 const extend = require('@techor/extend').default
 const { explorePackageManager, readPNPMWorkspaces, readWorkspaces, queryWorkspaces } = require('@techor/npm')
+const { readJSONFileSync } = require('@techor/fs')
+const log = require('@techor/log').default
 
 const defaultConfig = {
     branches: [
@@ -53,8 +56,15 @@ module.exports = (config) => {
     }
     if (workspaces?.length) {
         const resolvedWorkspaces = queryWorkspaces(workspaces)
-        console.log('Workspaces found:', resolvedWorkspaces)
-        newConfig.plugins.push(...resolvedWorkspaces.map((eachWorkspace) => ['@semantic-release/npm', { pkgRoot: eachWorkspace }]))
+        for (const eachWorkspace of resolvedWorkspaces) {
+            const eachWorkspacePackage = readJSONFileSync(path.join(eachWorkspace, 'package.json'))
+            if (eachWorkspacePackage?.publishConfig?.access === 'public') {
+                log.add`Add npm release for **${eachWorkspace}**`
+                newConfig.plugins.push(['@semantic-release/npm', { pkgRoot: eachWorkspace }])
+            } else {
+                log.i`Skip npm release for **${eachWorkspace}**`
+            }
+        }
     }
     return newConfig
 }

@@ -42,6 +42,8 @@
     "dependencies": {
         "@techor/extend": "workspace:^",
         "@techor/npm": "workspace:^",
+        "@techor/fs": "workspace:^",
+        "@techor/log": "workspace:^",
         "conventional-changelog-techor": "workspace:^",
         "techor-conventional-commits": "workspace:^"
     }

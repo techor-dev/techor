@@ -159,13 +159,13 @@ importers:
         version: 5.0.0
       conventional-changelog-techor:
         specifier: ''
-        version: 2.5.8
+        version: 2.5.9
       conventional-commits-parser:
         specifier: ^3.2.4
         version: 3.2.4
       techor-conventional-commits:
         specifier: ''
-        version: 2.5.8
+        version: 2.5.9
 
   packages/glob:
     dependencies:
@@ -330,6 +330,12 @@ importers:
       '@techor/extend':
         specifier: workspace:^
         version: link:../extend
+      '@techor/fs':
+        specifier: workspace:^
+        version: link:../fs
+      '@techor/log':
+        specifier: workspace:^
+        version: link:../log
       '@techor/npm':
         specifier: workspace:^
         version: link:../npm
@@ -3086,12 +3092,12 @@ packages:
       through2: 4.0.2
     dev: true
 
-  /conventional-changelog-techor@2.5.8:
-    resolution: {integrity: sha512-LwsoJj0Ghrz7sX8Seo398dovKqXjehaZbl35hJTvK+us5503Iy2uq+sFnYV1oruOUY5L1uffADlrQwyGD8PpMg==}
+  /conventional-changelog-techor@2.5.9:
+    resolution: {integrity: sha512-z2HIBVBhuMwEmnIlHLioj86gECzDMJcCdFtFWcUSYd89xNK8yYswHcjzfob1iZ/TS30U7+xH4iLIgyj0yLZJfw==}
     dependencies:
       compare-func: 2.0.0
       dedent: 0.7.0
-      techor-conventional-commits: 2.5.8
+      techor-conventional-commits: 2.5.9
     dev: false
 
   /conventional-changelog-writer@5.0.1:
@@ -6704,8 +6710,8 @@ packages:
       streamx: 2.15.0
     dev: true
 
-  /techor-conventional-commits@2.5.8:
-    resolution: {integrity: sha512-Tk3CiAqns5wbxhwM9ZEdC62HIXKQtSjXAymETg7f5HJBlixzYMjhDLzvVyWdsuBofD8jB3UE1gzyXqxIyWz6rQ==}
+  /techor-conventional-commits@2.5.9:
+    resolution: {integrity: sha512-0F5PO2Qke5/Xu3WcFhIQXPmUtkKPvdqLKvC/l4LZHlOIQTQiecJI8hxCukMzkvuAnCqLFF8fk0G4bRTWjj9E0g==}
     dev: false
 
   /temp-dir@3.0.0:

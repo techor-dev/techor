@@ -1,0 +1,6 @@
+{
+    "name": "@tests/semantic-release-config-restricted",
+    "publishConfig": {
+        "access": "restricted"
+    }
+}
