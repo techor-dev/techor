@@ -1,0 +1,43 @@
+{
+    "name": "@master/css-language-service",
+    "scripts": {
+        "build": "techor pack --platform node",
+        "dev": "pnpm run build --watch",
+        "type-check": "tsc --noEmit",
+        "lint": "eslint src"
+    },
+    "description": "Master CSS Language Service",
+    "author": "Aoyue Design LLC.",
+    "license": "MIT",
+    "dependencies": {
+        "@babel/parser": "^7.22.7",
+        "@master/css": "workspace:^",
+        "js-beautify": "^1.14.7"
+    },
+    "devDependencies": {
+        "vscode-css-languageservice": "^6.2.5",
+        "vscode-languageserver-types": "^3.17.3"
+    },
+    "main": "./dist/index.bundle.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": "./dist/index.bundle.js",
+        "./settings": "./dist/settings.bundle.js"
+    },
+    "typesVersions": {
+        "*": {
+            "./": [
+                "./dist/index.d.ts"
+            ],
+            "./settings": [
+                "./dist/settings.d.ts"
+            ]
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "publishConfig": {
+        "access": "public"
+    }
+}

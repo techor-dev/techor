@@ -1,0 +1,80 @@
+{
+    "name": "@master/css-extractor",
+    "scripts": {
+        "build": "techor pack --platform node",
+        "dev": "pnpm run build --watch",
+        "lint": "eslint ./src",
+        "type-check": "tsc --noEmit",
+        "test": "jest"
+    },
+    "license": "MIT",
+    "description": "Master CSS static extractor for various raw text",
+    "author": "Aoyue Design LLC.",
+    "funding": "https://docs.master.co/css/donate",
+    "homepage": "https://css.master.co",
+    "bugs": {
+        "url": "https://github.com/master-co/css/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/master-co/css.git",
+        "directory": "packages/extractor"
+    },
+    "keywords": [
+        "plugin",
+        "integration",
+        "extractor",
+        "static",
+        "build tools",
+        "css",
+        "mastercss"
+    ],
+    "sideEffects": false,
+    "main": "./dist/index.bundle.js",
+    "module": "./dist/index.bundle.mjs",
+    "jsnext:main": "./dist/index.bundle.mjs",
+    "esnext": "./dist/index.bundle.mjs",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "import": "./dist/index.bundle.mjs",
+            "require": "./dist/index.bundle.js",
+            "types": "./dist/index.d.ts"
+        },
+        "./options": {
+            "import": "./dist/options/index.bundle.mjs",
+            "require": "./dist/options/index.bundle.js",
+            "types": "./dist/options/index.d.ts"
+        },
+        "./actions/main": "./dist/actions/main.bundle.js"
+    },
+    "typesVersions": {
+        "*": {
+            ".": [
+                "./dist/index.d.js"
+            ],
+            "./options": [
+                "./dist/options/index.d.ts"
+            ]
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "dependencies": {
+        "@master/css": "workspace:^",
+        "@master/css-validator": "workspace:^",
+        "@techor/extend": "^2.5.4",
+        "@techor/glob": "^2.5.4",
+        "@techor/log": "^2.5.4",
+        "chokidar": "^3.5.3",
+        "explore-config": "^2.5.4",
+        "minimatch": "^9.0.1"
+    },
+    "devDependencies": {
+        "ts-jest": "^29.0.5"
+    }
+}

@@ -1,0 +1,47 @@
+{
+    "name": "@master/css-validator",
+    "scripts": {
+        "build": "techor pack --platform node",
+        "dev": "pnpm run build --watch",
+        "lint": "eslint ./src",
+        "type-check": "tsc --noEmit",
+        "test": "jest --forceExit --detectOpenHandles"
+    },
+    "license": "MIT",
+    "description": "Validator for Master CSS class syntax",
+    "author": "Aoyue Design LLC.",
+    "funding": "https://docs.master.co/css/donate",
+    "homepage": "https://css.master.co",
+    "bugs": {
+        "url": "https://github.com/master-co/css/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/master-co/css.git",
+        "directory": "packages/validator"
+    },
+    "keywords": [
+        "classes",
+        "class",
+        "validator",
+        "css",
+        "mastercss"
+    ],
+    "sideEffects": false,
+    "main": "./dist/index.bundle.js",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "dependencies": {
+        "@master/css": "workspace:^",
+        "csstree-validator": "^3.0.0"
+    },
+    "devDependencies": {
+        "shared": "workspace:^",
+        "ts-jest": "^29.1.0"
+    }
+}
