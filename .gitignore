@@ -11,6 +11,7 @@
 **/*.turbo
 **/*out
 **/*tmp.*
+**/*tmp
 
 # Only exists if Bazel was run
 /bazel-out
