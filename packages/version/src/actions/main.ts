@@ -4,7 +4,7 @@ import log, { paint } from '@techor/log'
 import { readJSONFileSync, writeFileSync } from '@techor/fs'
 import { readPNPMWorkspaces, readWorkspaces, explorePackageManager } from '@techor/npm'
 
-module.exports = function action(version: string, options) {
+module.exports = function action(version: string, options: any = {}) {
     if (!options.workspaces) {
         const packageManager = explorePackageManager()
         switch (packageManager) {
@@ -53,8 +53,9 @@ module.exports = function action(version: string, options) {
 
     for (const eachPackagePath in packagesOfPath) {
         const eachPackage = packagesOfPath[eachPackagePath]
-        const { dependencies, peerDependencies } = packagesOfPath[eachPackagePath]
+        const { dependencies, devDependencies ,peerDependencies } = packagesOfPath[eachPackagePath]
         dependencies && updateDependencies(dependencies)
+        devDependencies && updateDependencies(devDependencies)
         peerDependencies && updateDependencies(peerDependencies)
         if (!options.list) {
             writeFileSync(eachPackagePath, eachPackage)
@@ -63,7 +64,7 @@ module.exports = function action(version: string, options) {
 
     const workspaceDepsTree = {}
     for (const name in packagesOfName) {
-        const { dependencies, peerDependencies } = packagesOfName[name]
+        const { dependencies, peerDependencies, devDependencies } = packagesOfName[name]
         const workspacePackage: any = workspaceDepsTree[paint('**' + name + '**')] = {}
         const analyzeDeps = (eachDeps, key: string) => {
             if (eachDeps) {
@@ -78,6 +79,7 @@ module.exports = function action(version: string, options) {
         }
         analyzeDeps(dependencies, 'dependencies')
         analyzeDeps(peerDependencies, 'peerDependencies')
+        analyzeDeps(devDependencies, 'devDependencies')
         /* 防止沒有印出空 {} 的項目 */
         if (!Object.keys(workspaceDepsTree[paint('**' + name + '**')]).length) {
             workspaceDepsTree[paint('**' + name + '**')] = null
