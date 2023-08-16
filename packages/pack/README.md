@@ -97,7 +97,7 @@ Simultaneously output `cjs`, `esm`, `iife`, `type declarations` respectively acc
     "name": "a",
     "scripts": {
         "build": "ts-node ../techor/src/bin pack",
-        "dev": "npm run build -- --watch"
+        "dev": "pnpm run build --watch"
     },
     "main": "dist/index.js",
     "browser": "dist/index.browser.js",
@@ -122,7 +122,7 @@ If you only want to pack specific javascript modules, remove the corresponding e
 Run with the above configuration:
 
 ```bash
-npm run build
+pnpm run build
 ```
 
 <img width="628" alt="cjs-esm-iife-type-pack" src="https://user-images.githubusercontent.com/33840671/204300928-23e2d2f9-b0ed-4feb-b7cf-1b9ba6cf8127.png">
@@ -154,7 +154,7 @@ Packaging CSS is more straightforward, configuring `style` and `main` entry poin
     "name": "b",
     "scripts": {
         "build": "ts-node ../techor/src/bin pack",
-        "dev": "npm run build -- --watch"
+        "dev": "pnpm run build --watch"
     },
     "main": "./dist/index.css",
     "style": "./dist/index.css",
@@ -167,7 +167,7 @@ Packaging CSS is more straightforward, configuring `style` and `main` entry poin
 Run with the above configuration:
 
 ```bash
-npm run build
+pnpm run build
 ```
 
 <img width="523" alt="css-pack" src="https://user-images.githubusercontent.com/33840671/204450194-7831c448-2e21-4ce8-8c45-5139febc10e6.png">

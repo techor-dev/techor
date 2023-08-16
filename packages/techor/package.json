@@ -2,7 +2,7 @@
     "name": "techor",
     "scripts": {
         "build": "esbuild src/bin/index.ts --bundle --outfile=dist/bin/index.bundle.js --format=cjs --target=esnext --platform=node --external:@techor/fs --external:@techor/log --external:commander --external:@techor/version --external:@techor/pack",
-        "dev": "npm run build -- --watch",
+        "dev": "pnpm run build --watch",
         "type-check": "tsc --noEmit",
         "lint": "eslint src"
     },

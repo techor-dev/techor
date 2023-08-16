@@ -1,4 +1,4 @@
-/** require: `npm run dev` in root */
+/** require: `pnpm run dev` in root */
 
 import fs from 'fs'
 import path from 'upath'

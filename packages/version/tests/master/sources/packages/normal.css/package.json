@@ -2,7 +2,7 @@
     "name": "@master/normal.css",
     "scripts": {
         "build": "techor pack",
-        "dev": "npm run build -- --watch"
+        "dev": "pnpm run build --watch"
     },
     "license": "MIT",
     "description": "Normalize the browser's styles ~500B",

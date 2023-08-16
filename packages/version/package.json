@@ -2,7 +2,7 @@
     "name": "@techor/version",
     "scripts": {
         "build": "esbuild src/actions/main.ts --bundle --outfile=dist/actions/main.bundle.js --format=cjs --minify --platform=node --external:techor --external:@techor/fs --external:@techor/log --external:@techor/glob",
-        "dev": "npm run build -- --watch",
+        "dev": "pnpm run build --watch",
         "test": "jest",
         "type-check": "tsc --noEmit",
         "lint": "eslint src"

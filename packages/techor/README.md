@@ -147,7 +147,7 @@ Typical workspace scripts for authoring a package:
 {
     "scripts": {
         "build": "ts-node ../techor/src/bin pack",
-        "dev": "npm run build -- --watch",
+        "dev": "pnpm run build --watch",
         "test": "jest",
         "type-check": "tsc --noEmit",
         "lint": "eslint src"
@@ -158,23 +158,23 @@ Typical workspace scripts for authoring a package:
 From now on, you only need to **run the command in the project root** after opening the project.
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 Build your application or package:
 ```bash
-npm run build
+pnpm run build
 ```
 Test your business logic or UI by running scripts:
 ```bash
-npm run test
+pnpm run test
 ```
 Find and fix problems in JavaScript code before building:
 ```bash
-npm run lint
+pnpm run lint
 ```
 Improve reliability with TypeScript's type checking:
 ```bash
-npm run type-check
+pnpm run type-check
 ```
 
 ### Continuous Integration
@@ -208,8 +208,8 @@ jobs:
                   node-version: ${{ matrix.node-version }}
                   cache: 'npm'
             - run: npm ci
-            - run: npm run build
-            - run: npm run test
+            - run: pnpm run build
+            - run: pnpm run test
 ```
 The same goes for `lint` and `type-check`.
 

@@ -1,53 +1,53 @@
 # Contributing to Techor
 
 ## Developing
-Split a new terminal and run `npm run dev` in the project root to watch all packages change and build:
+Split a new terminal and run `pnpm run dev` in the project root to watch all packages change and build:
 ```bash
-npm run dev
+pnpm run dev
 ```
 Split a new terminal and switch to the target directory for testing to avoid running tests from other packages:
 ```bash
 cd packages/target
 ```
 ```bash
-npm run test -- --watch
+pnpm run test -- --watch
 ```
 
 ## Testing
 ```bash
-npm run test
+pnpm run test
 ```
 
 ## Linting
 Follow the [Techor's ESLint Preset](https://github.com/1aron/techor/tree/beta/packages/eslint-config)
 ```bash
-npm run lint
+pnpm run lint
 ```
 
 To automatically fix any violations in your code:
 ```
-npm run lint -- --fix
+pnpm run lint -- --fix
 ```
 
 ## Type Checking
 ```bash
-npm run type-check
+pnpm run type-check
 ```
 
 ## Commit Checking
 Follow the [Techor's Conventional Commits](https://github.com/1aron/techor/tree/beta/packages/conventional-commits)
 ```bash
-npm run commit-check
+pnpm run commit-check
 ```
 
 ## Checking
-You have to pass `npm run check` before submitting a pull request.
+You have to pass `pnpm run check` before submitting a pull request.
 ```bash
-npm run check
+pnpm run check
 ```
 The command includes all of the following checks:
 
 ## Building
 ```
-npm run build
+pnpm run build
 ```

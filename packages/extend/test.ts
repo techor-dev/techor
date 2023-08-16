@@ -222,7 +222,7 @@ test('semantic-release-config-aron', () => {
             '@semantic-release/commit-analyzer': { preset: 'aron' },
             '@semantic-release/release-notes-generator': { preset: 'aron' },
             '@semantic-release/exec': {
-                prepareCmd: 'npm run check && npm run build',
+                prepareCmd: 'pnpm run check && pnpm run build',
                 publishCmd: 'aron version ${nextRelease.version} && npm publish --workspaces --access public'
             },
             '@semantic-release/github': true
@@ -240,7 +240,7 @@ test('semantic-release-config-aron', () => {
             '@semantic-release/commit-analyzer': { preset: 'aron' },
             '@semantic-release/release-notes-generator': { preset: 'aron' },
             '@semantic-release/exec': {
-                prepareCmd: 'npm run check && npm run build',
+                prepareCmd: 'pnpm run check && pnpm run build',
                 publishCmd: 'aron version ${nextRelease.version} && npm publish --workspaces --access public'
             },
             '@semantic-release/github': {

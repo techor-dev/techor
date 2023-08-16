@@ -100,7 +100,7 @@ Save `commit-check` and `husky install` commands for teamwork and CI:
 }
 ```
 
-`npm run commit-check`:
+`pnpm run commit-check`:
 
 <img width="581" alt="commit-check" src="https://user-images.githubusercontent.com/33840671/205993191-bf48b3ef-8884-4ea3-991c-4ec782151d4b.png">
 
@@ -137,7 +137,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
                   cache: 'npm'
             - run: npm ci
-            - run: npm run commit-check
+            - run: pnpm run commit-check
 
 ```
 

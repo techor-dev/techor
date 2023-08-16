@@ -3,8 +3,8 @@
     "scripts": {
         "build:cjs": "esbuild src/index.ts --bundle --outfile=dist/index.js --format=cjs --minify --sourcemap --platform=node",
         "build:type": "tsc --emitDeclarationOnly --preserveWatchOutput",
-        "build": "npm run build:cjs && npm run build:type",
-        "dev": "conc 'npm:build:* -- --watch'",
+        "build": "pnpm run build:cjs && pnpm run build:type",
+        "dev": "pnpm run \"/^build:.*/\" --watch",
         "test": "node -r sucrase/register ./tests/real && jest",
         "type-check": "tsc --noEmit",
         "lint": "eslint src"

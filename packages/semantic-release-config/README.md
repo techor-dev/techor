@@ -97,7 +97,7 @@ module.exports = configure({
         '@semantic-release/commit-analyzer': { preset: 'techor', releaseRules },
         '@semantic-release/release-notes-generator': { preset: 'techor' },
         '@semantic-release/exec': {
-            prepareCmd: 'npm run check && npm run build',
+            prepareCmd: 'pnpm run check && pnpm run build',
             publishCmd: 'techor version ${nextRelease.version}'
         },
         '@semantic-release/npm': true,
