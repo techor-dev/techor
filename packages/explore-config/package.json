@@ -1,8 +1,8 @@
 {
     "name": "explore-config",
     "scripts": {
-        "build:cjs": "esbuild src/index.ts --bundle --outfile=dist/index.js --format=cjs --minify --sourcemap --platform=node --external:esbuild --external:@techor/glob --external:@techor/log --external:@techor/extend --external:cross-import --external:upath",
-        "build:esm": "esbuild src/index.ts --bundle --outfile=dist/index.mjs --format=esm --minify --sourcemap --platform=node --external:esbuild --external:@techor/glob --external:@techor/log --external:@techor/extend --external:cross-import --external:upath",
+        "build:cjs": "esbuild src/index.ts --outfile=dist/index.js --format=cjs --minify --sourcemap --platform=node",
+        "build:esm": "esbuild src/index.ts --outfile=dist/index.mjs --format=esm --minify --sourcemap --platform=node",
         "build:type": "tsc --emitDeclarationOnly --preserveWatchOutput",
         "build": "pnpm run build:cjs && pnpm run build:esm && pnpm run build:type",
         "dev": "pnpm run \"/^build:.*/\" --watch",

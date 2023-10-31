@@ -1,7 +1,7 @@
 {
     "name": "cross-import",
     "scripts": {
-        "build:cjs": "esbuild src/index.ts --bundle --outfile=dist/index.js --format=cjs --minify --sourcemap --platform=node",
+        "build:cjs": "esbuild src/index.ts --outfile=dist/index.js --format=cjs --minify --sourcemap --platform=node",
         "build:type": "tsc --emitDeclarationOnly --preserveWatchOutput",
         "build": "pnpm run build:cjs && pnpm run build:type",
         "dev": "pnpm run \"/^build:.*/\" --watch",
@@ -44,18 +44,12 @@
     },
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
-    "exports": {
-        ".": {
-            "require": "./dist/index.js",
-            "import": "./dist/index.js",
-            "types": "./dist/index.d.ts"
-        }
-    },
+    "exports": "./dist/index.js",
     "files": [
         "dist"
     ],
-    "devDependencies": {
-        "sucrase": "^3.32.0",
-        "jiti": "^1.18.2"
+    "dependencies": {
+        "jiti": "^1.21.0",
+        "sucrase": "^3.34.0"
     }
 }

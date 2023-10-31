@@ -3,45 +3,38 @@ import { transform } from 'sucrase'
 
 export default function crossImport(modulePath: string): any {
     if (!modulePath) return
-    if (process.env.DEBUG) {
-        console.log('[DEBUG] [Cross Import] modulePath:', modulePath)
-    }
     /** try to delete cache first */
     try {
         if (require.cache[modulePath]) {
             delete require.cache[modulePath]
             if (process.env.DEBUG) {
-                console.log('[DEBUG] [Cross Import] delete cache')
+                console.log('[cross-import] cache deleted')
             }
         }
     } catch { /* empty */ }
 
     try {
         if (process.env.DEBUG) {
-            console.log('[DEBUG] [Cross Import] require')
+            console.log('[cross-import] require:', modulePath)
         }
         return require(modulePath)
     } catch (error) {
         if (process.env.DEBUG) {
-            console.log('[DEBUG] [Cross Import] JITI')
             console.error(error)
+            console.log('[cross-import] fall back to jiti:', modulePath)
         }
-        try {
-            return jiti(__filename, {
-                interopDefault: true,
-                cache: false,
-                debug: !!process.env.DEBUG,
-                transform: (options) => {
-                    if (process.env.DEBUG) {
-                        console.log('[DEBUG] [Cross Import] JITI transform')
-                    }
-                    return transform(options.source, {
-                        transforms: ['imports', 'typescript'],
-                    })
+        return jiti(__filename, {
+            interopDefault: true,
+            cache: false,
+            debug: !!process.env.DEBUG,
+            transform: (options) => {
+                if (process.env.DEBUG) {
+                    console.log('[cross-import] jiti transform')
                 }
-            })(modulePath)
-        } catch (error) {
-            throw new Error(error)
-        }
+                return transform(options.source, {
+                    transforms: ['imports', 'typescript'],
+                })
+            }
+        })(modulePath)
     }
 }
