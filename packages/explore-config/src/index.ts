@@ -24,25 +24,21 @@ export default function exploreConfig(
     }, options)
     const { on, keys } = options
     let foundConfig: any
-    try {
-        const foundPath = explorePathSync(source, options)
-        if (foundPath) {
-            const foundConfigModule = crossImport(path.resolve(options.cwd || '', foundPath))
-            for (const key of keys) {
-                foundConfig = foundConfigModule[key]
-                if (foundConfig) {
-                    break
-                }
+    const foundPath = explorePathSync(source, options)
+    if (foundPath) {
+        const foundConfigModule = crossImport(path.resolve(options.cwd || '', foundPath))
+        for (const key of keys) {
+            foundConfig = foundConfigModule[key]
+            if (foundConfig) {
+                break
             }
-            if (!foundConfig) {
-                foundConfig = foundConfigModule
-            }
-            on.found?.(foundPath)
-        } else {
-            on.notFound?.()
         }
-    } catch (err) {
-        log.error(err)
+        if (!foundConfig) {
+            foundConfig = foundConfigModule
+        }
+        on.found?.(foundPath)
+    } else {
+        on.notFound?.()
     }
     return foundConfig
 }
