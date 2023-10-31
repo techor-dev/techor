@@ -45,7 +45,7 @@
         "@techor/fs": "workspace:^",
         "@techor/glob": "workspace:^",
         "@techor/log": "workspace:^",
-        "@techor/one-liner": "workspace:^",
+        "clsx": "^2.0.0",
         "cross-import": "workspace:^",
         "esbuild": "^0.18.11",
         "explore-config": "workspace:^",

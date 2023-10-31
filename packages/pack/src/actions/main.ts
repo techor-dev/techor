@@ -1,8 +1,6 @@
 import { type BuildOptions, context, Metafile, build } from 'esbuild'
 import log from '@techor/log'
-import path from 'upath'
 import upath from 'upath'
-import line, { l } from '@techor/one-liner'
 import type { PackageJson } from 'pkg-types'
 import prettyBytes from 'pretty-bytes'
 import fs from 'fs'
@@ -17,6 +15,7 @@ import { readJSONFileSync } from '@techor/fs'
 import { createShakableLibPlugin } from '../plugins/shakable-lib'
 import { changeExt } from 'upath'
 import { explorePathsSync } from '@techor/glob'
+import clsx from 'clsx'
 
 declare type BuildTask = { options?: BuildOptions, metafile?: Metafile, run: () => Promise<any> }
 
@@ -24,7 +23,7 @@ module.exports = async function action(specifiedEntries: string[], options: any 
     // if (!specifiedEntries.length) {
     //     specifiedEntries = [path.join(options.srcdir, '**/*.{js,ts,jsx,tsx,mjs,mts,css}')]
     // }
-    const pkg: PackageJson = readJSONFileSync(path.resolve('./package.json'))
+    const pkg: PackageJson = readJSONFileSync(upath.resolve('./package.json'))
     const { dependencies, peerDependencies } = pkg
     /** Extract external dependencies to prevent bundling */
     const externalDependencies = []
@@ -43,8 +42,8 @@ module.exports = async function action(specifiedEntries: string[], options: any 
     const buildTasks: BuildTask[] = []
 
     const exploreMapptedEntry = (filePath: string, targetExt: string) => {
-        const subFilePath = path.relative(options.outdir, filePath.replace('.bundle', ''))
-        const srcFilePath = path.join(options.srcdir, subFilePath)
+        const subFilePath = upath.relative(options.outdir, filePath.replace('.bundle', ''))
+        const srcFilePath = upath.join(options.srcdir, subFilePath)
         const pattern = changeExt(srcFilePath, targetExt)
         const foundEntries = explorePathsSync(pattern)
         if (!foundEntries.length) {
@@ -61,7 +60,7 @@ module.exports = async function action(specifiedEntries: string[], options: any 
         outdir?: string,
         outfile?: string
     } = {}) => {
-        let eachOutExt = eachOptions.ext || eachOptions.outfile && path.extname(eachOptions.outfile) || undefined
+        let eachOutExt = eachOptions.ext || eachOptions.outfile && upath.extname(eachOptions.outfile) || undefined
         const outExtension = { '.css': '.css' }
         const external = [
             ...externalDependencies,
@@ -87,7 +86,7 @@ module.exports = async function action(specifiedEntries: string[], options: any 
         }
         if (!eachOptions.outfile && !eachOptions.bundle) {
             eachEntries = eachEntries.filter((eachEntry) => {
-                const eachOutputFilePath = changeExt(path.join(options.outdir, path.relative(options.srcdir, eachEntry)), eachOutExt)
+                const eachOutputFilePath = changeExt(upath.join(options.outdir, upath.relative(options.srcdir, eachEntry)), eachOutExt)
                 if (outputFilePaths.includes(eachOutputFilePath)) {
                     return false
                 } else {
@@ -220,7 +219,7 @@ module.exports = async function action(specifiedEntries: string[], options: any 
         if (pkg.exports) {
             (function handleExports(eachExports: any, eachParentKey: string, eachOptions?: { format?: string, outfile?: string, platform?: string }) {
                 if (typeof eachExports === 'string') {
-                    const exportsExt = path.extname(eachExports).slice(1)
+                    const exportsExt = upath.extname(eachExports).slice(1)
                     addBuildTask([exploreMapptedEntry(eachExports, '.{js,ts,jsx,tsx,mjs,mts}')], {
                         format: {
                             'js': 'cjs',
@@ -313,14 +312,11 @@ module.exports = async function action(specifiedEntries: string[], options: any 
             },
             run: () => new Promise<void>((resolve) => {
                 const runTsc = () => {
-                    execaCommand(line`
-                        npx tsc
-                        --emitDeclarationOnly
-                        --preserveWatchOutput
-                        --declaration
-                        --outDir ${options.outdir}
-                        ${options.watch && '--watch --incremental'}
-                    `, {
+                    execaCommand(clsx(
+                        'npx tsc --emitDeclarationOnly --preserveWatchOutput --declaration',
+                        options.outdir && '--outDir ' + options.outdir,
+                        options.watch && '--watch --incremental'
+                    ), {
                         stdio: 'inherit',
                         stripFinalNewline: false,
                         cwd: process.cwd()
@@ -359,10 +355,22 @@ module.exports = async function action(specifiedEntries: string[], options: any 
                     const eachOutput = eachBuildTask.metafile.outputs[outputFilePath]
                     const outputSize = prettyBytes(eachOutput.bytes).replace(/ /g, '')
                     const eachOutputFormat = eachOutput['format']
-                    log.ok(l`[${eachBuildTask.options.platform}] **${outputFilePath}** ${outputSize} (${eachOutputFormat}) ${eachBuildTask.options.bundle && '(bundle)'} ${eachBuildTask.options.minify && '(minify)'} ${Object.keys(eachOutput.inputs).length} inputs`)
+                    log.ok(clsx(
+                        `[${eachBuildTask.options.platform}]`,
+                        `**${outputFilePath}**`,
+                        outputSize,
+                        `(${eachOutputFormat})`,
+                        eachBuildTask.options.bundle && '(bundle)',
+                        eachBuildTask.options.minify && '(minify)',
+                        `${Object.keys(eachOutput.inputs).length} inputs`
+                    ))
                 })
         } else {
-            log.ok(l`[${eachBuildTask.options.platform}] **${eachBuildTask['outfile']}** (${eachBuildTask.options.format})`)
+            log.ok(clsx(
+                `[${eachBuildTask.options.platform}]`,
+                `**${eachBuildTask['outfile']}**`,
+                `(${eachBuildTask.options.format})`
+            ))
         }
     }
     console.log('')

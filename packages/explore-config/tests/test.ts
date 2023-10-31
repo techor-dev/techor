@@ -1,4 +1,4 @@
-import exploreConfig from '../src/core'
+import exploreConfig from '../src'
 
 it('read .js config', () => {
     const config = exploreConfig('master.css.js', { cwd: __dirname })

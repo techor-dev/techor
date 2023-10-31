@@ -1,7 +1,7 @@
 import chalk from 'chalk'
 import { paint } from './paint'
 
-export default function processLog(strings: TemplateStringsArray, slots: any[]) {
+export default function processLog(strings: TemplateStringsArray | string, slots: any[]) {
     let message = ''
     if (Array.isArray(strings)) {
         for (let i = 0; i < strings.length; i++) {
