@@ -3,7 +3,7 @@
     "scripts": {
         "build:cjs": "esbuild src/index.ts --outfile=dist/index.js --format=cjs --minify --sourcemap --platform=node",
         "build:type": "tsc --emitDeclarationOnly --preserveWatchOutput",
-        "build": "pnpm run build:cjs && pnpm run build:type",
+        "build": "pnpm run \"/^build:.*/\"",
         "dev": "pnpm run \"/^build:.*/\" --watch",
         "test": "jest",
         "type-check": "tsc --noEmit",
@@ -37,17 +37,8 @@
     ],
     "sideEffects": false,
     "main": "./dist/index.js",
-    "jsnext:main": "./dist/index.mjs",
-    "esnext": "./dist/index.mjs",
-    "module": "./dist/index.mjs",
     "types": "./dist/index.d.ts",
-    "exports": {
-        ".": {
-            "require": "./dist/index.js",
-            "import": "./dist/index.mjs",
-            "types": "./dist/index.d.ts"
-        }
-    },
+    "exports": "./dist/index.js",
     "files": [
         "dist"
     ],

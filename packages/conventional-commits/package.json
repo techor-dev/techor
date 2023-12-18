@@ -5,7 +5,7 @@
         "build:cjs": "esbuild src/index.ts --bundle --outfile=dist/index.js --format=cjs --minify --sourcemap --platform=node --external:esbuild --external:fast-glob --external:require-from-string --external:@techor/extend --external:@techor/fs --external:upath",
         "build:esm": "esbuild src/index.ts --bundle --outfile=dist/index.mjs --format=esm --minify --sourcemap --platform=node --external:esbuild --external:fast-glob --external:require-from-string --external:@techor/extend --external:@techor/fs --external:upath",
         "build:type": "tsc --emitDeclarationOnly --preserveWatchOutput",
-        "build": "pnpm run build:cjs && pnpm run build:esm && pnpm run build:type",
+        "build": "pnpm run \"/^build:.*/\"",
         "dev": "pnpm run \"/^build:.*/\" --watch",
         "type-check": "tsc --noEmit",
         "lint": "eslint src"
