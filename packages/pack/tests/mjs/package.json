@@ -7,10 +7,13 @@
         ".": {
             "import": "./dist/index.bundle.mjs"
         },
-        "./tree-shaking": "./dist/tree-shaking.bundle.mjs"
+        "./tree-shaking": "./dist/tree-shaking.mjs"
     },
     "sideEffects": false,
     "files": [
         "dist"
-    ]
+    ],
+    "dependencies": {
+        "server-only": "^0.0.1"
+    }
 }

@@ -4,7 +4,7 @@ import path from 'path'
 import { readFileAsNormalizedStrSync } from '../../../fs/src'
 
 beforeAll(() => {
-    execSync('tsx ../../../techor/src/bin pack', { cwd: __dirname, stdio: 'pipe' })
+    execSync('tsx ../../../techor/src/bin pack --declare', { cwd: __dirname, stdio: 'pipe' })
 })
 
 it('generates declarations', () => {

@@ -31,12 +31,16 @@ program.command('pack [entryPaths...]')
     .option('--target [targets...]', 'This sets the target environment for the generated JavaScript and/or CSS code.')
     .option('--mangle-props <regExp>', 'Pass a regular expression to esbuild to tell esbuild to automatically rename all properties that match this regular expression')
     .option('--entry-names <[dir]/[name]>', 'Pass a regular expression to esbuild to tell esbuild to automatically rename all properties that match this regular expression')
-    .option('--no-declare', 'OFF: Emit typescript declarations')
+    .option('--declare', 'Emit typescript declarations')
     .option('--no-minify', 'OFF: Minify the generated code')
     .option('--no-clean', 'OFF: Clean up the previous output directory before the build starts')
     .action(async function (args, options) {
         try {
-            const action = require('@techor/pack/actions/main')
+            const action = require(
+                process.env.NODE_ENV === 'test'
+                    ? '../../../pack/src/actions/main'
+                    : '@techor/pack/actions/main'
+            )
             await action(args, options)
         } catch (error) {
             if (error.code === 'ERR_MODULE_NOT_FOUND') {
@@ -54,7 +58,11 @@ program.command('version <version>')
     .option('-ls, --list', 'List current bumpable dependency tree in workspaces', false)
     .action(async function (args, options) {
         try {
-            const action = require('@techor/version/actions/main')
+            const action = require(
+                process.env.NODE_ENV === 'test'
+                    ? '../../../version/src/actions/main'
+                    : '@techor/version/actions/main'
+            )
             await action(args, options)
         } catch (error) {
             if (error.code === 'ERR_MODULE_NOT_FOUND') {

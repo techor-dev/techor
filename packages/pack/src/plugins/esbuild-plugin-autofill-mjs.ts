@@ -5,10 +5,10 @@ import path from 'path'
 import { changeExt } from 'upath'
 import { explorePathSync } from '@techor/glob'
 
-export function createFillModuleExtPlugin(outext = '.js', outdir = 'src'): Plugin {
-    const resolvedOutdir = path.resolve(outdir)
+export function createAutofillMjsPlugin(outext = '.js', srcdir = 'src'): Plugin {
+    const resolvedOutdir = path.resolve(srcdir)
     return {
-        name: 'fill-module-ext',
+        name: 'autofill-mjs',
         setup(build) {
             const started: any = {}
             started.promise = new Promise(resolve => {
@@ -23,7 +23,7 @@ export function createFillModuleExtPlugin(outext = '.js', outdir = 'src'): Plugi
                     const currentDirPath = path.dirname(args.path)
                     return {
                         contents: content
-                            .replace(/((?:(?:import|export)(?:.*from | ))|(?:(?:import))\()'((\.(?:\.)?\/.*)|\.)'/gmi,
+                            .replace(/((?:(?:import|export)(?:.*from | ))|(?:(?:import|require))\()'((\.(?:\.)?\/.*)|\.)'/gmi,
                                 (...matches) => {
                                     const modulePath: string = matches[2]
                                     const parsedModulePath = path.parse(modulePath)

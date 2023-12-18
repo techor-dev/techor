@@ -6,7 +6,7 @@ import prettyBytes from 'pretty-bytes'
 import fs from 'fs'
 import isEqual from 'lodash.isequal'
 import { esbuildOptionNames } from '../utils/esbuild-option-names'
-import { createFillModuleExtPlugin } from '../plugins/esbuild-plugin-fill-module-ext'
+import { createAutofillMjsPlugin } from '../plugins/esbuild-plugin-autofill-mjs'
 import extend from '@techor/extend'
 import exploreConfig from 'explore-config'
 import { execaCommand } from 'execa'
@@ -29,9 +29,6 @@ module.exports = async function action(specifiedEntries: string[], options: any 
     const externalDependencies = []
     dependencies && externalDependencies.push(...Object.keys(dependencies))
     peerDependencies && externalDependencies.push(...Object.keys(peerDependencies))
-    if (options.declare === undefined) {
-        options.declare = !!pkg.types
-    }
     if (options.srcdir) upath.normalize(options.srcdir)
     if (options.clean && fs.existsSync(options.outdir)) {
         fs.rmSync(options.outdir, { force: true, recursive: true })
@@ -75,9 +72,6 @@ module.exports = async function action(specifiedEntries: string[], options: any 
         if (eachOptions.outdir) eachOptions.outdir = upath.normalize(eachOptions.outdir)
         if (eachOptions.bundle === undefined) eachOptions.bundle = options.bundle
         if (eachOptions.outfile) {
-            if (eachOptions.bundle) {
-                eachOptions.outfile = eachOptions.outfile.replace('.bundle', '')
-            }
             eachOptions.outfile = upath.normalize(eachOptions.outfile)
             if (outputFilePaths.includes(eachOptions.outfile)) {
                 return
@@ -117,7 +111,7 @@ module.exports = async function action(specifiedEntries: string[], options: any 
             platform: eachOptions.platform || options.platform,
             metafile: true,
             bundle: eachOptions.bundle,
-            entryNames: options.entryNames ? options.entryNames : (eachOptions.bundle ? '[dir]/[name].bundle' : '[dir]/[name]'),
+            entryNames: options.entryNames ? options.entryNames : '[dir]/[name]',
             format: eachOptions.format,
             keepNames: options.keepNames,
             resolveExtensions: options.resolveExtensions,
@@ -137,11 +131,9 @@ module.exports = async function action(specifiedEntries: string[], options: any 
             delete buildOptions.external
         }
 
-        // if (!eachOptions.bundle && eachOptions.format === 'esm') {
-        //     buildOptions.plugins.push(createFillModuleExtPlugin(options.esmExt))
-        // }
-
-        // buildOptions.plugins.push(createShakableLibPlugin({ srcdir: options.srcdir }))
+        if (!eachOptions.bundle && eachOptions.format === 'esm') {
+            buildOptions.plugins.push(createAutofillMjsPlugin(options.esmExt, options.srcdir))
+        }
 
         // Fix ERROR: Invalid option in build() call
         delete buildOptions['watch']
