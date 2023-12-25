@@ -2,8 +2,8 @@
     "name": "@test/css",
     "version": "1.0.0",
     "private": true,
-    "main": "./dist/index.bundle.css",
-    "style": "./dist/index.bundle.css",
+    "main": "./dist/index.css",
+    "style": "./dist/index.css",
     "files": [
         "dist"
     ]
