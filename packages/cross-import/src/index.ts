@@ -27,6 +27,9 @@ export default function crossImport(modulePath: string): any {
             interopDefault: true,
             cache: false,
             debug: !!process.env.DEBUG,
+            onError(error) {
+                throw error
+            },
             transform: (options) => {
                 if (process.env.DEBUG) {
                     console.log('[cross-import] jiti transform')
