@@ -2,7 +2,7 @@
     "yaml.format.singleQuote": true,
     "javascript.format.semicolons": "remove",
     "editor.codeActionsOnSave": {
-        "source.fixAll": true
+        "source.fixAll": "explicit"
     },
     "[yaml]": {
         "editor.insertSpaces": true,
