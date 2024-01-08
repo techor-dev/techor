@@ -89,7 +89,7 @@ module.exports = async function action(specifiedEntries: string[], options: any 
                 }
             })
         }
-        if (eachOptions.bundle && options.forceIifeBundle) {
+        if (eachOptions.format === 'iife' && eachOptions.bundle && options.forceIifeBundle) {
             external = []
         }
         const eachOutdir = eachOptions.outdir || options.outdir
