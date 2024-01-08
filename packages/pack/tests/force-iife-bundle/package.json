@@ -1,0 +1,12 @@
+{
+    "name": "@test/force-iife-bundle",
+    "version": "1.0.0",
+    "private": true,
+    "browser": "./dist/iife.bundle.js",
+    "files": [
+        "dist"
+    ],
+    "dependencies": {
+        "server-only": "^0.0.1"
+    }
+}

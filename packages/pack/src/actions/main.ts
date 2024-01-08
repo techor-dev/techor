@@ -59,7 +59,7 @@ module.exports = async function action(specifiedEntries: string[], options: any 
     } = {}) => {
         let eachOutExt = eachOptions.ext || eachOptions.outfile && upath.extname(eachOptions.outfile) || undefined
         const outExtension = { '.css': '.css' }
-        const external = [
+        let external = [
             ...externalDependencies,
             ...options.external
         ]
@@ -88,6 +88,9 @@ module.exports = async function action(specifiedEntries: string[], options: any 
                     return true
                 }
             })
+        }
+        if (eachOptions.bundle && options.forceIifeBundle) {
+            external = []
         }
         const eachOutdir = eachOptions.outdir || options.outdir
 

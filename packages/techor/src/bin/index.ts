@@ -34,6 +34,7 @@ program.command('pack [entryPaths...]')
     .option('--declare', 'Emit typescript declarations')
     .option('--no-minify', 'OFF: Minify the generated code')
     .option('--no-clean', 'OFF: Clean up the previous output directory before the build starts')
+    .option('--no-force-iife-bundle', 'OFF: No external packages when the output format is iife')
     .action(async function (args, options) {
         try {
             const action = require(
