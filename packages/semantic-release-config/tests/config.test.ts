@@ -9,11 +9,15 @@ test('Customize config and extend default', () => {
             'next',
             'next-major',
             {
+                name: 'alpha',
+                prerelease: true
+            },
+            {
                 name: 'beta',
                 prerelease: true
             },
             {
-                name: 'alpha',
+                name: 'rc',
                 prerelease: true
             }
         ],
@@ -40,11 +44,15 @@ test('Disable the @semantic-release/github plugin', () => {
             'next',
             'next-major',
             {
+                name: 'alpha',
+                prerelease: true
+            },
+            {
                 name: 'beta',
                 prerelease: true
             },
             {
-                name: 'alpha',
+                name: 'rc',
                 prerelease: true
             }
         ],

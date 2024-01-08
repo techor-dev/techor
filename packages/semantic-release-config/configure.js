@@ -12,11 +12,15 @@ const defaultConfig = {
         'next',
         'next-major',
         {
+            name: 'alpha',
+            prerelease: true
+        },
+        {
             name: 'beta',
             prerelease: true
         },
         {
-            name: 'alpha',
+            name: 'rc',
             prerelease: true
         }
     ],
