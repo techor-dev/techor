@@ -18,6 +18,7 @@ program.command('pack [entryPaths...]')
     .option('-w, --watch', 'Rebuild whenever a file changes', false)
     .option('-s, --sourcemap', 'Emit a source map', process.env.NODE_ENV === 'production')
     .option('-p, --platform <node,browser,neutral>', 'Platform target', 'browser')
+    .option('-o, --outfile <name>', 'The output file', '')
     .option('-o, --outdir <dir>', 'The output directory for the build operation', 'dist')
     .option('--serve', 'Serve mode starts a web server that serves your code to your browser on your device', false)
     .option('--bundle', 'Inline any imported dependencies into the file itself', false)
@@ -34,7 +35,7 @@ program.command('pack [entryPaths...]')
     .option('--declare', 'Emit typescript declarations')
     .option('--no-minify', 'OFF: Minify the generated code')
     .option('--no-clean', 'OFF: Clean up the previous output directory before the build starts')
-    .option('--no-force-iife-bundle', 'OFF: No external packages when the output format is iife')
+    .option('--no-external', 'OFF: No external packages')
     .action(async function (args, options) {
         try {
             const action = require(

@@ -12,7 +12,6 @@ import exploreConfig from 'explore-config'
 import { execaCommand } from 'execa'
 import prettyHartime from 'pretty-hrtime'
 import { readJSONFileSync } from '@techor/fs'
-import { createShakableLibPlugin } from '../plugins/shakable-lib'
 import { changeExt } from 'upath'
 import { explorePathsSync } from '@techor/glob'
 import clsx from 'clsx'
@@ -59,7 +58,7 @@ module.exports = async function action(specifiedEntries: string[], options: any 
     } = {}) => {
         let eachOutExt = eachOptions.ext || eachOptions.outfile && upath.extname(eachOptions.outfile) || undefined
         const outExtension = { '.css': '.css' }
-        let external = [
+        const external = options.external === false ? [] : [
             ...externalDependencies,
             ...options.external
         ]
@@ -89,9 +88,7 @@ module.exports = async function action(specifiedEntries: string[], options: any 
                 }
             })
         }
-        if (eachOptions.format === 'iife' && eachOptions.bundle && options.forceIifeBundle) {
-            external = []
-        }
+
         const eachOutdir = eachOptions.outdir || options.outdir
 
         /**
@@ -201,15 +198,22 @@ module.exports = async function action(specifiedEntries: string[], options: any 
                 foundJSEntries.push(foundEntry)
             }
         }
+        if (options.outfile && (foundCSSEntries.length > 1 || foundJSEntries.length > 1)) {
+            throw new Error('Cannot specify `outfile` option when multiple entries are specified')
+        }
         if (foundCSSEntries.length) {
-            addBuildTask(foundCSSEntries)
+            addBuildTask(foundCSSEntries, { outfile: options.outfile })
         }
         if (foundJSEntries.length) {
             options.format.forEach((eachFormat: string) => addBuildTask(foundJSEntries, {
-                format: eachFormat
+                format: eachFormat,
+                outfile: options.outfile
             }))
         }
     } else {
+        if (options.outfile) {
+            throw new Error('Cannot specify `outfile` option when no entry is specified')
+        }
         /* Read entries from `package.json` automatically */
         if (pkg.exports) {
             (function handleExports(eachExports: any, eachParentKey: string, eachOptions?: { format?: string, outfile?: string, platform?: string }) {
@@ -310,6 +314,7 @@ module.exports = async function action(specifiedEntries: string[], options: any 
                     execaCommand(clsx(
                         'npx tsc --emitDeclarationOnly --preserveWatchOutput --declaration',
                         options.outdir && '--outDir ' + options.outdir,
+                        options.outfile && '--outFile ' + options.outfile,
                         options.watch && '--watch --incremental'
                     ), {
                         stdio: 'inherit',

@@ -49,12 +49,6 @@ importers:
         specifier: ''
         version: 2.4.6
 
-  force-iife-bundle:
-    dependencies:
-      server-only:
-        specifier: ^0.0.1
-        version: 0.0.1
-
   mjs:
     dependencies:
       server-only:
@@ -62,6 +56,12 @@ importers:
         version: 0.0.1
 
   multi-exports: {}
+
+  specified:
+    dependencies:
+      server-only:
+        specifier: ^0.0.1
+        version: 0.0.1
 
   specified-ext: {}
 
