@@ -57,6 +57,6 @@
         "dedent": "^0.7.0"
     },
     "devDependencies": {
-        "conventional-changelog-core": "^4.2.4"
+        "conventional-changelog-core": "^7.0.0"
     }
 }

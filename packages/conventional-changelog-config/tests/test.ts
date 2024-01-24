@@ -52,6 +52,7 @@ if (process.platform === 'win32') {
                     'New starts with `New` and sentense case'
                 ],
                 (changelog) => {
+                    expect(changelog).toMatch('[@hparra](https://github.com/hparra)')
                     expect(changelog).toMatch('Amazing new module')
                     expect(changelog).toMatch('Compiler')
                     expect(changelog).toMatch('Avoid a bug')

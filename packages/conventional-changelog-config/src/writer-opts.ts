@@ -5,13 +5,14 @@ import footerPartialPath from './templates/footer.hbs'
 import commitPartialPath from './templates/commit.hbs'
 import { readFileSync } from 'fs'
 import path from 'path'
+import https from 'node:https'
 
 const mainTemplate = readFileSync(path.resolve(__dirname, mainTemplatePath), 'utf-8')
 const footerPartial = readFileSync(path.resolve(__dirname, footerPartialPath), 'utf-8')
 const commitPartial = readFileSync(path.resolve(__dirname, commitPartialPath), 'utf-8')
 
 export default {
-    transform: (commit, context) => {
+    transform: async (commit, context) => {
         const issues = []
         if (commit.header) {
             commit.header = commit.header
@@ -41,17 +42,15 @@ export default {
         }
 
         if (typeof commit.subject === 'string') {
-            let url = context.repository
-                ? `${context.host}/${context.owner}/${context.repository}`
-                : context.repoUrl
-            if (url) {
-                url = `${url}/issues/`
-                // Issue URLs.
-                commit.subject = commit.subject.replace(/#([0-9]+)/g, (_, issue) => {
-                    issues.push(issue)
-                    return `[#${issue}](${url}${issue})`
-                })
-            }
+            // Issue URLs.
+            const issuesUrl = context.packageData.bugs.url + '/'
+
+            commit.subject = commit.subject.replace(/#([0-9]+)/g, (_, issue) => {
+                issues.push(issue)
+                
+                return `[#${issue}](${issuesUrl}${issue})`
+            })
+
             if (context.host) {
                 // User URLs.
                 commit.subject = commit.subject.replace(/(?<!['`])@([a-z0-9](?:-?[a-z0-9]){0,38})(?<!['])/gi, (_, username) => {
@@ -61,6 +60,26 @@ export default {
 
                     return `[@${username}](${context.host}/${username})`
                 })
+            }
+
+            for (const eachIssue of issues) {
+                const response = await new Promise<string>((resolve) => {
+                    https.get(
+                        `https://api.github.com/repos/${context.owner}/${context.repository}/issues/${eachIssue}`, 
+                        { headers: { 'User-Agent': context.owner } },
+                        response => {
+                            let data = ''
+                            response.on('data', (chunk) => data += chunk)
+                            response.on('end', () => resolve(data))
+                        }
+                    )
+                })
+                try {
+                    const username = JSON.parse(response).user?.login
+                    if (username) {
+                        commit.subject += ` [@${username}](${context.host}/${username})`
+                    }
+                } catch { /* empty */ }
             }
         }
 
