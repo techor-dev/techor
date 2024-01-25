@@ -52,11 +52,12 @@
         "dist"
     ],
     "dependencies": {
-        "techor-conventional-commits": "workspace:^",
         "compare-func": "^2.0.0",
-        "dedent": "^0.7.0"
+        "dedent": "^0.7.0",
+        "techor-conventional-commits": "workspace:^"
     },
     "devDependencies": {
-        "conventional-changelog-core": "^7.0.0"
+        "conventional-changelog-core": "^7.0.0",
+        "semantic-release": "^23.0.0"
     }
 }
