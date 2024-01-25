@@ -42,44 +42,49 @@ export default {
         }
 
         if (typeof commit.subject === 'string') {
-            // Issue URLs.
-            const issuesUrl = context.packageData.bugs.url + '/'
+            const url = context.repository
+                ? `${context.host}/${context.owner}/${context.repository}`
+                : context.repoUrl
+            if (url) {
+                 // Issue URLs.
+                const issuesUrl = `${url}/issues/`
 
-            commit.subject = commit.subject.replace(/#([0-9]+)/g, (_, issue) => {
-                issues.push(issue)
-                
-                return `[#${issue}](${issuesUrl}${issue})`
-            })
-
-            if (context.host) {
-                // User URLs.
-                commit.subject = commit.subject.replace(/(?<!['`])@([a-z0-9](?:-?[a-z0-9]){0,38})(?<!['])/gi, (_, username) => {
-                    if (username.includes('/')) {
-                        return `@${username}`
-                    }
-
-                    return `[@${username}](${context.host}/${username})`
+                commit.subject = commit.subject.replace(/#([0-9]+)/g, (_, issue) => {
+                    issues.push(issue)
+                    
+                    return `[#${issue}](${issuesUrl}${issue})`
                 })
-            }
 
-            for (const eachIssue of issues) {
-                const response = await new Promise<string>((resolve) => {
-                    https.get(
-                        `https://api.github.com/repos/${context.owner}/${context.repository}/issues/${eachIssue}`, 
-                        { headers: { 'User-Agent': context.owner } },
-                        response => {
-                            let data = ''
-                            response.on('data', (chunk) => data += chunk)
-                            response.on('end', () => resolve(data))
+                if (context.host) {
+                    // User URLs.
+                    commit.subject = commit.subject.replace(/(?<!['`])@([a-z0-9](?:-?[a-z0-9]){0,38})(?<!['])/gi, (_, username) => {
+                        if (username.includes('/')) {
+                            return `@${username}`
                         }
-                    )
-                })
-                try {
-                    const username = JSON.parse(response).user?.login
-                    if (username) {
-                        commit.subject += ` [@${username}](${context.host}/${username})`
-                    }
-                } catch { /* empty */ }
+
+                        return `[@${username}](${context.host}/${username})`
+                    })
+                }
+
+                for (const eachIssue of issues) {
+                    const response = await new Promise<string>((resolve) => {
+                        https.get(
+                            `https://api.github.com/repos/${context.owner}/${context.repository}/issues/${eachIssue}`, 
+                            { headers: { 'User-Agent': context.owner } },
+                            response => {
+                                let data = ''
+                                response.on('data', (chunk) => data += chunk)
+                                response.on('end', () => resolve(data))
+                            }
+                        )
+                    })
+                    try {
+                        const username = JSON.parse(response).user?.login
+                        if (username) {
+                            commit.subject += ` [@${username}](${context.host}/${username})`
+                        }
+                    } catch { /* empty */ }
+                }
             }
         }
 
