@@ -14,6 +14,9 @@
         "clean": "rm -rf ./packages/**/*dist && rm -rf ./{examples,packages}/**/*node_modules"
     },
     "packageManager": "pnpm@8.6.10",
+    "bugs": {
+        "url": "https://github.com/1aron/techor/issues"
+    },
     "engines": {
         "node": "^18.16.1"
     },
