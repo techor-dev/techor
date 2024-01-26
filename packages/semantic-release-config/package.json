@@ -38,21 +38,15 @@
         "rules.js",
         "release.config.js"
     ],
-    "peerDependencies": {
-        "@semantic-release/commit-analyzer": "^10",
-        "@semantic-release/exec": "^6.0.3",
-        "semantic-release": "^23"
-    },
     "dependencies": {
+        "@semantic-release/commit-analyzer": "^10.0.4",
+        "@semantic-release/exec": "^6.0.3",
         "@techor/extend": "workspace:^",
         "@techor/fs": "workspace:^",
         "@techor/log": "workspace:^",
         "@techor/npm": "workspace:^",
         "conventional-changelog-techor": "workspace:^",
+        "semantic-release": "^23.0.0",
         "techor-conventional-commits": "workspace:^"
-    },
-    "devDependencies": {
-        "@semantic-release/commit-analyzer": "^10.0.4",
-        "semantic-release": "^23.0.0"
     }
 }

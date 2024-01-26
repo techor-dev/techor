@@ -310,6 +310,9 @@ importers:
 
   packages/semantic-release-config:
     dependencies:
+      '@semantic-release/commit-analyzer':
+        specifier: ^10.0.4
+        version: 10.0.4(semantic-release@23.0.0)
       '@semantic-release/exec':
         specifier: ^6.0.3
         version: 6.0.3(semantic-release@23.0.0)
@@ -328,16 +331,12 @@ importers:
       conventional-changelog-techor:
         specifier: workspace:^
         version: link:../conventional-changelog-config
-      techor-conventional-commits:
-        specifier: workspace:^
-        version: link:../conventional-commits
-    devDependencies:
-      '@semantic-release/commit-analyzer':
-        specifier: ^10.0.4
-        version: 10.0.4(semantic-release@23.0.0)
       semantic-release:
         specifier: ^23.0.0
         version: 23.0.0
+      techor-conventional-commits:
+        specifier: workspace:^
+        version: link:../conventional-commits
 
   packages/techor:
     dependencies:
@@ -1589,7 +1588,7 @@ packages:
       semantic-release: 23.0.0
     transitivePeerDependencies:
       - supports-color
-    dev: true
+    dev: false
 
   /@semantic-release/commit-analyzer@11.1.0(semantic-release@23.0.0):
     resolution: {integrity: sha512-cXNTbv3nXR2hlzHjAMgbuiQVtvWHTlwwISt60B+4NZv01y/QRY7p2HcJm8Eh2StzcTJoNnflvKjHH/cjFS7d5g==}
@@ -2687,7 +2686,7 @@ packages:
     engines: {node: '>=14'}
     dependencies:
       compare-func: 2.0.0
-    dev: true
+    dev: false
 
   /conventional-changelog-angular@7.0.0:
     resolution: {integrity: sha512-ROjNchA9LgfNMTTFSIWPzebCwOGFdgkEq45EnvvrmSLvCtAw0HSmrCs7/ty+wAeYUZyNay0YMUNYFTRL72PkBQ==}
@@ -2729,7 +2728,7 @@ packages:
     dependencies:
       lodash.ismatch: 4.4.0
       modify-values: 1.0.1
-    dev: true
+    dev: false
 
   /conventional-commits-filter@4.0.0:
     resolution: {integrity: sha512-rnpnibcSOdFcdclpFwWa+pPlZJhXE7l+XK04zxhbWrhgpR96h33QLz8hITTXbcYICxVr3HZFtbtUAQ+4LdBo9A==}
@@ -3873,7 +3872,7 @@ packages:
   /import-from@4.0.0:
     resolution: {integrity: sha512-P9J71vT5nLlDeV8FHs5nNxaLbrpfAV5cF5srvbZfpwpcJoM/xZR3hiv+q+SAnuSmuGbXMWud063iIMx/V/EWZQ==}
     engines: {node: '>=12.2'}
-    dev: true
+    dev: false
 
   /import-local@3.1.0:
     resolution: {integrity: sha512-ASB07uLtnDs1o6EHjKpX34BKYDSqnFerfTOJL2HvMqF70LnxpjkzDB8J44oT9pu4AMPkQwf8jl6szgvNd2tRIg==}
@@ -4876,7 +4875,7 @@ packages:
 
   /lodash.ismatch@4.4.0:
     resolution: {integrity: sha512-fPMfXjGQEV9Xsq/8MTSgUf255gawYRbjwMyDbcvDhXgV7enSZA0hynz6vMPnpAb5iONEzBHBPsT+0zes5Z301g==}
-    dev: true
+    dev: false
 
   /lodash.isplainobject@4.0.6:
     resolution: {integrity: sha512-oSXzaWypCMHkPC3NvBEaPHf0KsA5mvPrOPgQWDsbg8n7orZ290M0BmC/jgRZ4vcJ6DTAhjrsSYgdsW/F+MFOBA==}
@@ -5116,7 +5115,7 @@ packages:
   /modify-values@1.0.1:
     resolution: {integrity: sha512-xV2bxeN6F7oYjZWTe/YPAy6MN2M+sL4u/Rlm2AHCIVGfo2p1yGmBHQ6vHehl4bRTZBdHu3TSkWdYgkwpYzAGSw==}
     engines: {node: '>=0.10.0'}
-    dev: true
+    dev: false
 
   /ms@2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
