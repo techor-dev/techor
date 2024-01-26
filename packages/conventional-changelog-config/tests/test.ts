@@ -6,7 +6,7 @@ import commit from '../../../utils/commit'
 import initFakeGit from '../../../utils/init-fake-git'
 import { writeFileSync } from '../../fs/src'
 
-const config = require('../dist')
+const config = require('../src')
 const conventionalChangelogCore = require('conventional-changelog-core')
 
 if (process.platform === 'win32') {

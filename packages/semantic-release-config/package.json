@@ -36,10 +36,10 @@
     "files": [
         "configure.js",
         "rules.js",
-        "release.config.js"
+        "release.config.js",
+        "release.config.mjs"
     ],
     "dependencies": {
-        "@semantic-release/commit-analyzer": "^10.0.4",
         "@semantic-release/exec": "^6.0.3",
         "@techor/extend": "workspace:^",
         "@techor/fs": "workspace:^",

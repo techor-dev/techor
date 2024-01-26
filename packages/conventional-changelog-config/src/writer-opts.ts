@@ -1,15 +1,12 @@
 import compareFunc from 'compare-func'
 import { commits } from 'techor-conventional-commits'
-import mainTemplatePath from './templates/template.hbs'
-import footerPartialPath from './templates/footer.hbs'
-import commitPartialPath from './templates/commit.hbs'
 import { readFileSync } from 'fs'
 import path from 'path'
 import https from 'node:https'
 
-const mainTemplate = readFileSync(path.resolve(__dirname, mainTemplatePath), 'utf-8')
-const footerPartial = readFileSync(path.resolve(__dirname, footerPartialPath), 'utf-8')
-const commitPartial = readFileSync(path.resolve(__dirname, commitPartialPath), 'utf-8')
+const mainTemplate = readFileSync(path.resolve(__dirname, 'templates/template.hbs'), 'utf-8')
+const footerPartial = readFileSync(path.resolve(__dirname, 'templates/footer.hbs'), 'utf-8')
+const commitPartial = readFileSync(path.resolve(__dirname, 'templates/commit.hbs'), 'utf-8')
 
 export default {
     transform: async (commit, context) => {
@@ -51,7 +48,7 @@ export default {
 
                 commit.subject = commit.subject.replace(/#([0-9]+)/g, (_, issue) => {
                     issues.push(issue)
-                    
+
                     return `[#${issue}](${issuesUrl}${issue})`
                 })
 
@@ -69,7 +66,7 @@ export default {
                 for (const eachIssue of issues) {
                     const response = await new Promise<string>((resolve) => {
                         https.get(
-                            `https://api.github.com/repos/${context.owner}/${context.repository}/issues/${eachIssue}`, 
+                            `https://api.github.com/repos/${context.owner}/${context.repository}/issues/${eachIssue}`,
                             { headers: { 'User-Agent': context.owner } },
                             response => {
                                 let data = ''
