@@ -18,7 +18,7 @@
         "url": "https://github.com/1aron/techor/issues"
     },
     "engines": {
-        "node": "^18.16.1"
+        "node": "^20.11.0"
     },
     "repository": {
         "type": "git",
@@ -29,7 +29,7 @@
         "@techor/pack": "workspace:^",
         "@techor/version": "workspace:^",
         "@types/fs-extra": "^9.0.13",
-        "@types/node": "^18.11.9",
+        "@types/node": "^20.11.0",
         "commitlint-config-techor": "workspace:^",
         "conventional-changelog-techor": "workspace:^",
         "eslint-config-techor": "workspace:^",
