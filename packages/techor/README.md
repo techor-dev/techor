@@ -197,7 +197,7 @@ on:
 jobs:
     version:
         timeout-minutes: 15
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-latest
         strategy:
             matrix:
                 node-version: [20]
