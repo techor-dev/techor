@@ -42,88 +42,30 @@ module.exports = {
         }
 
         if (typeof commit.subject === 'string') {
-            const url = context.repository
-                ? `${context.host}/${context.owner}/${context.repository}`
-                : context.repoUrl
-            if (url) {
-                // Issue URLs.
-                const issuesUrl = `${url}/issues/`
-
-                commit.subject = commit.subject.replace(/#([0-9]+)/g, (_, issue) => {
-                    issues.push(issue)
-
-                    return `[#${issue}](${issuesUrl}${issue})`
-                })
-
-                if (context.host) {
-                    // User URLs.
-                    commit.subject = commit.subject.replace(/(?<!['`])@([a-z0-9](?:-?[a-z0-9]){0,38})(?<!['])/gi, (_, username) => {
-                        if (username.includes('/')) {
-                            return `@${username}`
+            if (process.env.NODE_ENV !== 'test') {
+                // get author by commit hash
+                try {
+                    const response = await new Promise<string>((resolve) => {
+                        const url = `https://api.github.com/repos/${context.owner}/${context.repository}/commits/${commit.hash}`
+                        const headers = {
+                            'User-Agent': context.owner
                         }
-
-                        return `[@${username}](${context.host}/${username})`
+                        if (process.env.GITHUB_TOKEN) {
+                            headers['Authorization'] = `token ${process.env.GITHUB_TOKEN}`
+                        }
+                        https.get(url, { headers },
+                            response => {
+                                let data = ''
+                                response.on('data', (chunk) => data += chunk)
+                                response.on('end', async () => {
+                                    resolve(data)
+                                })
+                            }
+                        )
                     })
-                }
-
-                if (process.env.NODE_ENV !== 'test') {
-                    // get issuer by #issue
-                    for (const eachIssue of issues) {
-                        try {
-                            const response = await new Promise<string>((resolve) => {
-                                const url = `https://api.github.com/repos/${context.owner}/${context.repository}/issues/${eachIssue}`
-                                const headers = {
-                                    'User-Agent': context.owner
-                                }
-                                if (process.env.GITHUB_TOKEN) {
-                                    headers['Authorization'] = `token ${process.env.GITHUB_TOKEN}`
-                                }
-                                https.get(url, { headers },
-                                    response => {
-                                        let data = ''
-                                        response.on('data', (chunk) => data += chunk)
-                                        response.on('end', async () => {
-                                            resolve(data)
-                                        })
-                                    }
-                                )
-                            })
-                            const user = JSON.parse(response).user
-                            if (user) {
-                                commit.subject += ` [@${user.login}](${user.html_url})`
-                            }
-                        } catch (error) {
-                            console.log(new Error(`Can't get issuer by #${eachIssue}`, { cause: error }))
-                        }
-                    }
-
-                    // get author by commit hash
-                    try {
-                        const response = await new Promise<string>((resolve) => {
-                            const url = `https://api.github.com/repos/${context.owner}/${context.repository}/commits/${commit.hash}`
-                            const headers = {
-                                'User-Agent': context.owner
-                            }
-                            if (process.env.GITHUB_TOKEN) {
-                                headers['Authorization'] = `token ${process.env.GITHUB_TOKEN}`
-                            }
-                            https.get(url, { headers },
-                                response => {
-                                    let data = ''
-                                    response.on('data', (chunk) => data += chunk)
-                                    response.on('end', async () => {
-                                        resolve(data)
-                                    })
-                                }
-                            )
-                        })
-                        const author = JSON.parse(response).author
-                        if (author) {
-                            commit.subject += ` [@${author.login}](${author.html_url})`
-                        }
-                    } catch (error) {
-                        console.log(new Error(`Can't get author by commit hash ${commit.hash}`, { cause: error }))
-                    }
+                    commit.author = JSON.parse(response).author
+                } catch (error) {
+                    console.log(new Error(`Can't get author by commit hash ${commit.hash}`, { cause: error }))
                 }
             }
         }

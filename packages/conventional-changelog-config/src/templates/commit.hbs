@@ -5,7 +5,7 @@
 {{~/if}}
 
 {{~!-- commit link --}} {{#if @root.linkReferences~}}
-<sub><sup>[{{shortHash}}](
+<sub><sup>[@{{author.login}}]({{author.html_url}}) [{{shortHash}}](
         {{~#if @root.repository}}
         {{~#if @root.host}}
         {{~@root.host}}/
@@ -24,8 +24,7 @@
 
 {{~!-- commit references --}}
 {{~#if references~}}
-
-{{~#each references}} {{#if @root.linkReferences~}}
+<sub><sup>{{~#each references}} {{#if @root.linkReferences~}}
 [
 {{~#if this.owner}}
 {{~this.owner}}/
@@ -55,6 +54,6 @@
 {{~this.owner}}/
 {{~/if}}
 {{~this.repository}}#{{this.issue}}
-{{~/if}}{{/each}}
+{{~/if}}{{/each}}</sup></sub>
 {{~/if}}
 

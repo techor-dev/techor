@@ -62,7 +62,7 @@ if (process.platform === 'win32') {
                 expect(chunk).toMatch('Compiler')
                 expect(chunk).toMatch('Avoid a bug')
                 expect(chunk).toMatch('Make it faster')
-                expect(chunk).toMatch('[#1](https://github.com/conventional-changelog/conventional-changelog/issues/1) [#2](https://github.com/conventional-changelog/conventional-changelog/issues/2)')
+                expect(chunk).toMatch('#1 #2')
                 expect(chunk).toMatch('New Features')
                 expect(chunk).toMatch('Bug Fixes')
                 expect(chunk).toMatch('Performance Upgrades')
@@ -78,11 +78,11 @@ if (process.platform === 'win32') {
                 expect(chunk).not.toMatch('*** - **')
                 expect(chunk).not.toMatch(': Not backward compatible.')
                 // should replace #[0-9]+ with GitHub issue URL
-                expect(chunk).toMatch('[#133](https://github.com/conventional-changelog/conventional-changelog/issues/133)')
+                expect(chunk).toMatch('#133')
                 // should remove the issues that already appear in the subject
-                expect(chunk).toMatch('[#88](https://github.com/conventional-changelog/conventional-changelog/issues/88)')
+                expect(chunk).toMatch('#88')
                 // should replace @username with GitHub user URL
-                expect(chunk).toMatch('[@1aron](https://github.com/1aron)')
+                expect(chunk).toMatch('@1aron')
             }
         }, 10000)
 
