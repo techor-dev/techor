@@ -44,6 +44,7 @@
     },
     "devDependencies": {
         "conventional-changelog-core": "^7.0.0",
+        "dotenv": "^16.4.1",
         "semantic-release": "^23.0.0"
     }
 }

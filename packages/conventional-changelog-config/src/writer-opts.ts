@@ -66,24 +66,64 @@ module.exports = {
                     })
                 }
 
-                for (const eachIssue of issues) {
-                    const response = await new Promise<string>((resolve) => {
-                        https.get(
-                            `https://api.github.com/repos/${context.owner}/${context.repository}/issues/${eachIssue}`,
-                            { headers: { 'User-Agent': context.owner } },
-                            response => {
-                                let data = ''
-                                response.on('data', (chunk) => data += chunk)
-                                response.on('end', () => resolve(data))
+                if (process.env.NODE_ENV !== 'test') {
+                    // get issuer by #issue
+                    for (const eachIssue of issues) {
+                        try {
+                            const response = await new Promise<string>((resolve) => {
+                                const url = `https://api.github.com/repos/${context.owner}/${context.repository}/issues/${eachIssue}`
+                                const headers = {
+                                    'User-Agent': context.owner
+                                }
+                                if (process.env.GITHUB_TOKEN) {
+                                    headers['Authorization'] = `token ${process.env.GITHUB_TOKEN}`
+                                }
+                                https.get(url, { headers },
+                                    response => {
+                                        let data = ''
+                                        response.on('data', (chunk) => data += chunk)
+                                        response.on('end', async () => {
+                                            resolve(data)
+                                        })
+                                    }
+                                )
+                            })
+                            const user = JSON.parse(response).user
+                            if (user) {
+                                commit.subject += ` [@${user.login}](${user.html_url})`
                             }
-                        )
-                    })
-                    try {
-                        const username = JSON.parse(response).user?.login
-                        if (username) {
-                            commit.subject += ` [@${username}](${context.host}/${username})`
+                        } catch (error) {
+                            console.log(new Error(`Can't get issuer by #${eachIssue}`, { cause: error }))
                         }
-                    } catch { /* empty */ }
+                    }
+
+                    // get author by commit hash
+                    try {
+                        const response = await new Promise<string>((resolve) => {
+                            const url = `https://api.github.com/repos/${context.owner}/${context.repository}/commits/${commit.hash}`
+                            const headers = {
+                                'User-Agent': context.owner
+                            }
+                            if (process.env.GITHUB_TOKEN) {
+                                headers['Authorization'] = `token ${process.env.GITHUB_TOKEN}`
+                            }
+                            https.get(url, { headers },
+                                response => {
+                                    let data = ''
+                                    response.on('data', (chunk) => data += chunk)
+                                    response.on('end', async () => {
+                                        resolve(data)
+                                    })
+                                }
+                            )
+                        })
+                        const author = JSON.parse(response).author
+                        if (author) {
+                            commit.subject += ` [@${author.login}](${context.html_url})`
+                        }
+                    } catch (error) {
+                        console.log(new Error(`Can't get author by commit hash ${commit.hash}`, { cause: error }))
+                    }
                 }
             }
         }

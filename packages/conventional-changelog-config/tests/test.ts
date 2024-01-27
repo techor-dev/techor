@@ -3,9 +3,12 @@ import path, { resolve } from 'path'
 import exec from '../../../utils/exec'
 import commit from '../../../utils/commit'
 import initFakeGit from '../../../utils/init-fake-git'
+import dotenv from 'dotenv'
 
 const createPreset = require('../dist')
 const conventionalChangelogCore = require('conventional-changelog-core')
+
+dotenv.config({ path: path.resolve(__dirname, '../../../.env') })
 
 if (!fs.existsSync(path.join(__dirname, './dist'))) {
     fs.mkdirSync(path.join(__dirname, './dist'))
@@ -54,8 +57,7 @@ if (process.platform === 'win32') {
                 cwd: process.cwd()
             })) {
                 chunk = chunk.toString()
-                writeFile(resolve(__dirname, './dist/CHANGELOG-1.md'), chunk, () => { })
-                expect(chunk).toMatch('[@hparra](https://github.com/hparra)')
+                writeFileSync(resolve(__dirname, './dist/CHANGELOG-1.md'), chunk)
                 expect(chunk).toMatch('Amazing new module')
                 expect(chunk).toMatch('Compiler')
                 expect(chunk).toMatch('Avoid a bug')
@@ -91,7 +93,7 @@ if (process.platform === 'win32') {
                 cwd: process.cwd()
             })) {
                 chunk = chunk.toString()
-                writeFile(resolve(__dirname, './dist/CHANGELOG-2.md'), chunk, () => { })
+                writeFileSync(resolve(__dirname, './dist/CHANGELOG-2.md'), chunk)
                 expect(chunk).toMatch('`it` alias for `test`')
                 // not to include provious changes
                 expect(chunk).not.toMatch('Breaking Changes')
