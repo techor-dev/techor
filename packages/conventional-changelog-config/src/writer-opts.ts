@@ -119,7 +119,7 @@ module.exports = {
                         })
                         const author = JSON.parse(response).author
                         if (author) {
-                            commit.subject += ` [@${author.login}](${context.html_url})`
+                            commit.subject += ` [@${author.login}](${author.html_url})`
                         }
                     } catch (error) {
                         console.log(new Error(`Can't get author by commit hash ${commit.hash}`, { cause: error }))
