@@ -1,14 +1,17 @@
 import compareFunc from 'compare-func'
 import { commits } from 'techor-conventional-commits'
+import mainTemplatePath from './templates/template.hbs'
+import footerPartialPath from './templates/footer.hbs'
+import commitPartialPath from './templates/commit.hbs'
 import { readFileSync } from 'fs'
 import path from 'path'
 import https from 'node:https'
 
-const mainTemplate = readFileSync(path.resolve(__dirname, 'templates/template.hbs'), 'utf-8')
-const footerPartial = readFileSync(path.resolve(__dirname, 'templates/footer.hbs'), 'utf-8')
-const commitPartial = readFileSync(path.resolve(__dirname, 'templates/commit.hbs'), 'utf-8')
+const mainTemplate = readFileSync(path.resolve(__dirname, mainTemplatePath), 'utf-8')
+const footerPartial = readFileSync(path.resolve(__dirname, footerPartialPath), 'utf-8')
+const commitPartial = readFileSync(path.resolve(__dirname, commitPartialPath), 'utf-8')
 
-export default {
+module.exports = {
     transform: async (commit, context) => {
         const issues = []
         if (commit.header) {
@@ -43,7 +46,7 @@ export default {
                 ? `${context.host}/${context.owner}/${context.repository}`
                 : context.repoUrl
             if (url) {
-                 // Issue URLs.
+                // Issue URLs.
                 const issuesUrl = `${url}/issues/`
 
                 commit.subject = commit.subject.replace(/#([0-9]+)/g, (_, issue) => {

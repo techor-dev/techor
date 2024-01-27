@@ -24,7 +24,6 @@
     },
     "peerDependencies": {
         "@types/node": "",
-        "turbo": "",
         "typescript": ""
     },
     "dependencies": {
@@ -32,8 +31,6 @@
         "@techor/version": "workspace:^",
         "@techor/jest": "workspace:^",
         "commitlint-config-techor": "workspace:^",
-        "conventional-changelog-techor": "workspace:^",
-        "eslint-config-techor": "workspace:^",
-        "semantic-release-config-techor": "workspace:^"
+        "eslint-config-techor": "workspace:^"
     }
 }

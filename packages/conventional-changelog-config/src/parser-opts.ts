@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     headerPattern: /^([A-Z]\w*)(?:\(([0-9A-Z`_#~].*)\))?: ([0-9A-Z`_#~].*)$/,
     headerCorrespondence: [
         'type',

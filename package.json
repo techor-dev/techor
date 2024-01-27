@@ -48,5 +48,8 @@
     "dependencies": {
         "cross-env": "^7.0.3",
         "turbo": "^1.11.2"
+    },
+    "resolutions": {
+        "@semantic-release/commit-analyzer": "11.0.0"
     }
 }

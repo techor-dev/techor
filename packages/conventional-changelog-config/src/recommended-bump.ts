@@ -1,7 +1,7 @@
 const parserOpts = require('./parser-opts')
 const { commits: aronCommits } = require('techor-conventional-commits')
 
-export default {
+module.exports = {
     parserOpts,
     whatBump: (commits) => {
         let level = null

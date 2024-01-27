@@ -70,16 +70,16 @@ test('Revert commit and +0.0.1', async () => {
 test('Exclude commits if they have a matching revert commits', async () => {
     const logSpy = createLogSpy()
     const commits = commitFalsely(
-        { message: 'Feat(Scope): First feature', hash: '123', },
+        'Fix(Scope): First fix',
         { message: 'Revert: Feat(Scope): First feature\n\nThis reverts commit 123.\n', hash: '456', },
-        'Fix(Scope): First fix'
+        { message: 'Feat(Scope): First feature', hash: '123', }
     )
     const releaseType = await analyzeCommits(
         { preset: 'techor', releaseRules },
         { cwd: process.cwd(), commits, logger: console }
     )
     expect(releaseType).toBe('patch')
-    expect(logSpy).toHaveBeenCalledWith('Analyzing commit: %s', commits[2].message)
+    expect(logSpy).toHaveBeenCalledWith('Analyzing commit: %s', commits[0].message)
     expect(logSpy).toHaveBeenCalledWith('The release type for the commit is %s', 'patch')
     expect(logSpy).toHaveBeenCalledWith('Analysis of %s commits complete: %s release', 3, 'patch')
     logSpy.mockRestore()
