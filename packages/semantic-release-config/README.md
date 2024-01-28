@@ -55,10 +55,24 @@
 <br>
 
 ## Getting Started
-
 Skip if you have already run `npm install techor`:
 ```
 npm install semantic-release-config-techor -D
+```
+You can also install this package only on CI.
+
+### Set up your package.json
+- Add the `publishConfig`
+- Add the `resolutions` to fix [Cannot find module 'conventional-changelog-*' #589](https://github.com/semantic-release/commit-analyzer/issues/589)
+```json
+{
+    "publishConfig": {
+        "access": "public"
+    },
+    "resolutions": {
+        "@semantic-release/commit-analyzer": "11.0.0"
+    }
+}
 ```
 
 ### Configuration
@@ -122,6 +136,11 @@ module.exports = configure({
         }
     }
 })
+```
+
+### Run the command
+```bash
+npm exec semantic-release
 ```
 
 <br>
