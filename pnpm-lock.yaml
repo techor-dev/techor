@@ -132,9 +132,6 @@ importers:
       '@typescript-eslint/parser':
         specifier: ''
         version: 6.19.1(eslint@8.56.0)(typescript@5.3.3)
-      eslint:
-        specifier: ''
-        version: 8.56.0
 
   packages/explore-config:
     dependencies:
