@@ -22,15 +22,13 @@
     "publishConfig": {
         "access": "public"
     },
-    "peerDependencies": {
-        "@types/node": "",
-        "typescript": ""
-    },
     "dependencies": {
         "@techor/pack": "workspace:^",
         "@techor/version": "workspace:^",
         "@techor/jest": "workspace:^",
         "commitlint-config-techor": "workspace:^",
-        "eslint-config-techor": "workspace:^"
+        "eslint-config-techor": "workspace:^",
+        "@types/node": "*",
+        "typescript": "*"
     }
 }
