@@ -27,7 +27,9 @@
         "@techor/version": "workspace:^",
         "@techor/jest": "workspace:^",
         "commitlint-config-techor": "workspace:^",
-        "eslint-config-techor": "workspace:^",
+        "eslint-config-techor": "workspace:^"
+    },
+    "peerDependencies": {
         "@types/node": "*",
         "typescript": "*"
     }

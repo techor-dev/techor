@@ -35,7 +35,9 @@
     },
     "dependencies": {
         "@techor/jest": "workspace:^",
-        "jest-environment-jsdom": "^29.3.1",
+        "jest-environment-jsdom": "^29.3.1"
+    },
+    "peerDependencies": {
         "jest": "*",
         "ts-jest": "*",
         "ts-node": "*"

@@ -40,13 +40,15 @@
         "release.config.mjs"
     ],
     "dependencies": {
-        "@semantic-release/exec": "^6.0.3",
         "@techor/extend": "workspace:^",
         "@techor/fs": "workspace:^",
         "@techor/log": "workspace:^",
         "@techor/npm": "workspace:^",
         "conventional-changelog-techor": "workspace:^",
-        "semantic-release": "^23.0.0",
         "techor-conventional-commits": "workspace:^"
+    },
+    "peerDependencies": {
+        "semantic-release": "^23.0.0",
+        "@semantic-release/exec": "^6.0.3"
     }
 }
