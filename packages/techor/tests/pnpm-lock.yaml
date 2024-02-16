@@ -63,6 +63,8 @@ importers:
 
   multi-exports: {}
 
+  npm: {}
+
   specified:
     dependencies:
       server-only:

@@ -57,6 +57,7 @@
     "dependencies": {
         "@techor/fs": "workspace:^",
         "@techor/log": "workspace:^",
+        "@techor/npm": "workspace:^",
         "commander": "^11.0.0",
         "@techor/extend": "workspace:^",
         "@techor/glob": "workspace:^",

@@ -26,8 +26,6 @@
     },
     "devDependencies": {
         "@techor/jest": "workspace:^",
-        "@techor/pack": "workspace:^",
-        "@techor/version": "workspace:^",
         "@types/fs-extra": "^9.0.13",
         "@types/node": "^20.11.0",
         "commitlint-config-techor": "workspace:^",

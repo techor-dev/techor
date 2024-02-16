@@ -21,12 +21,6 @@ importers:
       '@techor/jest':
         specifier: workspace:^
         version: link:packages/jest
-      '@techor/pack':
-        specifier: workspace:^
-        version: link:packages/pack
-      '@techor/version':
-        specifier: workspace:^
-        version: link:packages/version
       '@types/fs-extra':
         specifier: ^9.0.13
         version: 9.0.13
@@ -232,72 +226,11 @@ importers:
         specifier: ^4.1.0
         version: 4.1.0
 
-  packages/pack:
-    dependencies:
-      '@techor/extend':
-        specifier: workspace:^
-        version: link:../extend
-      '@techor/fs':
-        specifier: workspace:^
-        version: link:../fs
-      '@techor/glob':
-        specifier: workspace:^
-        version: link:../glob
-      '@techor/log':
-        specifier: workspace:^
-        version: link:../log
-      clsx:
-        specifier: ^2.0.0
-        version: 2.1.0
-      cross-import:
-        specifier: workspace:^
-        version: link:../cross-import
-      esbuild:
-        specifier: ^0.18.11
-        version: 0.18.20
-      explore-config:
-        specifier: workspace:^
-        version: link:../explore-config
-      lodash.isequal:
-        specifier: ^4.5.0
-        version: 4.5.0
-      npm:
-        specifier: ^9.7.2
-        version: 9.9.2
-      techor:
-        specifier: workspace:^
-        version: link:../techor
-      upath:
-        specifier: ^2.0.1
-        version: 2.0.1
-    devDependencies:
-      dedent:
-        specifier: ^0.7.0
-        version: 0.7.0
-      execa:
-        specifier: ^7.1.1
-        version: 7.2.0
-      pkg-types:
-        specifier: ^1.0.1
-        version: 1.0.3
-      pretty-bytes:
-        specifier: ^6.1.0
-        version: 6.1.1
-      pretty-hrtime:
-        specifier: ^1.0.3
-        version: 1.0.3
-
   packages/repo:
     dependencies:
       '@techor/jest':
         specifier: workspace:^
         version: link:../jest
-      '@techor/pack':
-        specifier: workspace:^
-        version: link:../pack
-      '@techor/version':
-        specifier: workspace:^
-        version: link:../version
       '@types/node':
         specifier: '*'
         version: 20.11.17
@@ -352,6 +285,9 @@ importers:
       '@techor/log':
         specifier: workspace:^
         version: link:../log
+      '@techor/npm':
+        specifier: workspace:^
+        version: link:../npm
       clsx:
         specifier: ^2.0.0
         version: 2.1.0
@@ -386,24 +322,6 @@ importers:
       dedent:
         specifier: ^0.7.0
         version: 0.7.0
-
-  packages/version:
-    dependencies:
-      '@techor/fs':
-        specifier: workspace:^
-        version: link:../fs
-      '@techor/glob':
-        specifier: workspace:^
-        version: link:../glob
-      '@techor/log':
-        specifier: workspace:^
-        version: link:../log
-      '@techor/npm':
-        specifier: workspace:^
-        version: link:../npm
-      techor:
-        specifier: workspace:^
-        version: link:../techor
 
 packages:
 
@@ -3266,6 +3184,7 @@ packages:
       onetime: 6.0.0
       signal-exit: 3.0.7
       strip-final-newline: 3.0.0
+    dev: false
 
   /execa@8.0.1:
     resolution: {integrity: sha512-VyhnebXciFV2DESc+p6B+y0LjSm0krU4OgJN44qFAhBY0TJ+1V61tYD2+wHusZ6F9n5K+vl8k0sTy7PEfV4qpg==}
@@ -3845,6 +3764,7 @@ packages:
   /human-signals@4.3.1:
     resolution: {integrity: sha512-nZXjEF2nbo7lIw3mgYjItAfgQXog3OjJogSbKa2CQIIvSGWcKgeJnQlNXip6NglNzYH45nSRiEVimMvYL8DDqQ==}
     engines: {node: '>=14.18.0'}
+    dev: false
 
   /human-signals@5.0.0:
     resolution: {integrity: sha512-AXcZb6vzzrFAUE61HnN4mpLqd/cSIwNQjtNWR0euPm6y0iqx3G4gOXaIDdtdDwZmhwe82LA6+zinmW4UBWVePQ==}
@@ -4760,6 +4680,7 @@ packages:
 
   /jsonc-parser@3.2.1:
     resolution: {integrity: sha512-AilxAyFOAcK5wA1+LeaySVBrHsGQvUFCDWXKpZjzaL0PqW+xfBOttn8GNtWKFWqneyMZj41MWF9Kl6iPWLwgOA==}
+    dev: false
 
   /jsonfile@6.1.0:
     resolution: {integrity: sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==}
@@ -5120,6 +5041,7 @@ packages:
       pathe: 1.1.2
       pkg-types: 1.0.3
       ufo: 1.4.0
+    dev: false
 
   /ms@2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
@@ -5289,83 +5211,6 @@ packages:
       - qrcode-terminal
       - read
       - semver
-      - spdx-expression-parse
-      - ssri
-      - supports-color
-      - tar
-      - text-table
-      - tiny-relative-date
-      - treeverse
-      - validate-npm-package-name
-      - which
-      - write-file-atomic
-
-  /npm@9.9.2:
-    resolution: {integrity: sha512-D3tV+W0PzJOlwo8YmO6fNzaB1CrMVYd1V+2TURF6lbCbmZKqMsYgeQfPVvqiM3zbNSJPhFEnmlEXIogH2Vq7PQ==}
-    engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
-    hasBin: true
-    dev: false
-    bundledDependencies:
-      - '@isaacs/string-locale-compare'
-      - '@npmcli/arborist'
-      - '@npmcli/config'
-      - '@npmcli/fs'
-      - '@npmcli/map-workspaces'
-      - '@npmcli/package-json'
-      - '@npmcli/promise-spawn'
-      - '@npmcli/run-script'
-      - abbrev
-      - archy
-      - cacache
-      - chalk
-      - ci-info
-      - cli-columns
-      - cli-table3
-      - columnify
-      - fastest-levenshtein
-      - fs-minipass
-      - glob
-      - graceful-fs
-      - hosted-git-info
-      - ini
-      - init-package-json
-      - is-cidr
-      - json-parse-even-better-errors
-      - libnpmaccess
-      - libnpmdiff
-      - libnpmexec
-      - libnpmfund
-      - libnpmhook
-      - libnpmorg
-      - libnpmpack
-      - libnpmpublish
-      - libnpmsearch
-      - libnpmteam
-      - libnpmversion
-      - make-fetch-happen
-      - minimatch
-      - minipass
-      - minipass-pipeline
-      - ms
-      - node-gyp
-      - nopt
-      - normalize-package-data
-      - npm-audit-report
-      - npm-install-checks
-      - npm-package-arg
-      - npm-pick-manifest
-      - npm-profile
-      - npm-registry-fetch
-      - npm-user-validate
-      - npmlog
-      - p-map
-      - pacote
-      - parse-conflict-json
-      - proc-log
-      - qrcode-terminal
-      - read
-      - semver
-      - sigstore
       - spdx-expression-parse
       - ssri
       - supports-color
@@ -5645,6 +5490,7 @@ packages:
 
   /pathe@1.1.2:
     resolution: {integrity: sha512-whLdWMYL2TwI08hn8/ZqAbrVemu0LNaNNJZX73O6qaIdCTfXutsLhMkjdENX0qhsQ9uIimo4/aQOmXkoon2nDQ==}
+    dev: false
 
   /pend@1.2.0:
     resolution: {integrity: sha512-F3asv42UuXchdzt+xXqfW1OGlVBe+mxa2mqI0pg5yAHZPvFmY3Y6drSf/GQ1A86WgWEN9Kzh/WrgKa6iGcHXLg==}
@@ -5686,6 +5532,7 @@ packages:
       jsonc-parser: 3.2.1
       mlly: 1.5.0
       pathe: 1.1.2
+    dev: false
 
   /prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
@@ -5694,6 +5541,7 @@ packages:
   /pretty-bytes@6.1.1:
     resolution: {integrity: sha512-mQUvGU6aUFQ+rNvTIAcZuWGRT9a6f6Yrg9bHs4ImKF+HZCEK+plBvnAZYSIQztknZF2qnzNtr6F8s0+IuptdlQ==}
     engines: {node: ^14.13.1 || >=16.0.0}
+    dev: false
 
   /pretty-format@27.5.1:
     resolution: {integrity: sha512-Qb1gy5OrP5+zDf2Bvnzdl3jsTf1qXVMazbvCoKhtKqVs4/YK4ozX4gKQJJVyNe+cajNPn0KoC0MC3FUmaHWEmQ==}
@@ -5715,6 +5563,7 @@ packages:
   /pretty-hrtime@1.0.3:
     resolution: {integrity: sha512-66hKPCr+72mlfiSjlEB1+45IjXSqvVAIy6mocupoww4tBFE9R9IhwwUGoI4G++Tc9Aq+2rxOt0RFU6gPcrte0A==}
     engines: {node: '>= 0.8'}
+    dev: false
 
   /process-nextick-args@2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
@@ -6726,6 +6575,7 @@ packages:
 
   /ufo@1.4.0:
     resolution: {integrity: sha512-Hhy+BhRBleFjpJ2vchUNN40qgkh0366FWJGqVLYBHev0vpHTrXSA0ryT+74UiW6KWsldNurQMKGqCm1M2zBciQ==}
+    dev: false
 
   /uglify-js@3.17.4:
     resolution: {integrity: sha512-T9q82TJI9e/C1TAxYvfb16xO120tMVFZrGA3f9/P4424DNu6ypK103y0GPFVa17yotwSyZW5iYXgjYHkGrJW/g==}
