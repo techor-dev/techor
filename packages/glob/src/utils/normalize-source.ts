@@ -1,7 +1,7 @@
-import { normalize } from 'upath'
+import upath from 'upath'
 
 export default function normalizeSource(source: string | string[]): string | string[] {
     return Array.isArray(source)
-        ? source.map(normalize)
-        : normalize(source)
+        ? source.map(upath.normalize)
+        : upath.normalize(source)
 }

@@ -1,7 +1,8 @@
 {
     "name": "explore-config",
     "scripts": {
-        "build:cjs": "esbuild src/index.ts --outfile=dist/index.js --format=cjs --minify --sourcemap --platform=node",
+        "build:cjs": "esbuild src/index.ts --bundle --outfile=dist/index.js --format=cjs --minify --sourcemap --platform=node --external:@techor/extend --external:@techor/log --external:@techor/log --external:@techor/glob --external:cross-import",
+        "build:esm": "esbuild src/index.ts --bundle --outfile=dist/index.mjs --format=esm --minify --sourcemap --platform=node --external:@techor/extend --external:@techor/log --external:@techor/log --external:@techor/glob --external:cross-import",
         "build:type": "tsc --emitDeclarationOnly --preserveWatchOutput",
         "build": "pnpm run \"/^build:.*/\"",
         "dev": "pnpm run \"/^build:.*/\" --watch",
@@ -37,8 +38,17 @@
     ],
     "sideEffects": false,
     "main": "./dist/index.js",
+    "jsnext:main": "./dist/index.mjs",
+    "esnext": "./dist/index.mjs",
+    "module": "./dist/index.mjs",
     "types": "./dist/index.d.ts",
-    "exports": "./dist/index.js",
+    "exports": {
+        ".": {
+            "require": "./dist/index.js",
+            "import": "./dist/index.mjs",
+            "types": "./dist/index.d.ts"
+        }
+    },
     "files": [
         "dist"
     ],

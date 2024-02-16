@@ -1,11 +1,13 @@
 {
     "name": "techor",
     "scripts": {
-        "build": "esbuild src/bin/index.ts --outfile=dist/bin/index.js --format=cjs --target=esnext --platform=node",
+        "build": "tsx src/bin pack --platform node",
         "dev": "pnpm run build --watch",
+        "test": "cd tests && pnpm i && cd ../ && jest",
         "type-check": "tsc --noEmit",
         "lint": "eslint src"
     },
+    "type": "module",
     "license": "MIT",
     "description": "Author technology like a top leader",
     "author": {
@@ -43,7 +45,7 @@
         "esmodule"
     ],
     "bin": {
-        "techor": "./dist/bin/index.js"
+        "techor": "./dist/bin/index.bundle.mjs"
     },
     "files": [
         "dist"
@@ -55,6 +57,20 @@
     "dependencies": {
         "@techor/fs": "workspace:^",
         "@techor/log": "workspace:^",
-        "commander": "^11.0.0"
+        "commander": "^11.0.0",
+        "@techor/extend": "workspace:^",
+        "@techor/glob": "workspace:^",
+        "clsx": "^2.0.0",
+        "esbuild": "^0.18.11",
+        "explore-config": "workspace:^",
+        "lodash.isequal": "^4.5.0",
+        "upath": "^2.0.1",
+        "execa": "^7.1.1",
+        "pkg-types": "^1.0.1",
+        "pretty-bytes": "^6.1.0",
+        "pretty-hrtime": "^1.0.3"
+    },
+    "devDependencies": {
+        "dedent": "^0.7.0"
     }
 }
