@@ -240,6 +240,9 @@ importers:
       eslint-config-techor:
         specifier: workspace:^
         version: link:../eslint-config
+      techor:
+        specifier: workspace:^
+        version: link:../techor
       typescript:
         specifier: '*'
         version: 5.3.3

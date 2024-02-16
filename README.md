@@ -58,10 +58,10 @@
 - [semantic-release-config-techor](https://github.com/1aron/techor/tree/main/packages/semantic-release-config) - Techor's semantic release config for publishing workspace packages
 
 ##### Packing
-- [pack](https://github.com/1aron/techor/tree/main/packages/techor#pack) - Bundling your TypeScript and CSS packages with zero configuration
+- [pack](https://github.com/1aron/techor/tree/main/packages/techor/pack.md) - Bundling your TypeScript and CSS packages with zero configuration
 
 ##### Versioning
-- [version](https://github.com/1aron/techor/tree/main/packages/techor#version) - Smartly bump all workspace-dependent packages to specific versions
+- [version](https://github.com/1aron/techor/tree/main/packages/techor/version.md) - Smartly bump all workspace-dependent packages to specific versions
 
 ##### Linting
 - [eslint-config-techor](https://github.com/1aron/techor/tree/main/packages/eslint-config) - Techor's eslint config

@@ -23,6 +23,7 @@
         "access": "public"
     },
     "dependencies": {
+        "techor": "workspace:^",
         "@techor/jest": "workspace:^",
         "commitlint-config-techor": "workspace:^",
         "eslint-config-techor": "workspace:^"
