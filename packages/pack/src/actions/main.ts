@@ -15,8 +15,15 @@ import { readJSONFileSync } from '@techor/fs'
 import { changeExt } from 'upath'
 import { explorePathsSync } from '@techor/glob'
 import clsx from 'clsx'
+import { extname } from 'path'
 
 declare type BuildTask = { options?: BuildOptions, metafile?: Metafile, run: () => Promise<any> }
+
+const FORMAT_OF_EXT = {
+    'js': 'cjs',
+    'cjs': 'cjs',
+    'mjs': 'esm'
+}
 
 module.exports = async function action(specifiedEntries: string[], options: any = {}) {
     // if (!specifiedEntries.length) {
@@ -220,11 +227,7 @@ module.exports = async function action(specifiedEntries: string[], options: any 
                 if (typeof eachExports === 'string') {
                     const exportsExt = upath.extname(eachExports).slice(1)
                     addBuildTask([exploreMapptedEntry(eachExports, '.{js,ts,jsx,tsx,mjs,mts}')], {
-                        format: {
-                            'js': 'cjs',
-                            'cjs': 'cjs',
-                            'mjs': 'esm'
-                        }[exportsExt],
+                        format: FORMAT_OF_EXT[exportsExt],
                         outfile: options.outfile || eachExports,
                         platform: options.platform,
                         bundle: eachExports.includes('.bundle') || undefined
@@ -287,11 +290,13 @@ module.exports = async function action(specifiedEntries: string[], options: any 
         }
         if (pkg.bin) {
             if (typeof pkg.bin === 'string') {
-                addBuildTask([exploreMapptedEntry(pkg.bin, '.{js,ts,jsx,tsx,mjs,mts}')], { format: 'cjs', platform: 'node', outfile: pkg.bin, bundle: pkg.bin.includes('.bundle') || undefined })
+                const ext = extname(pkg.bin).slice(1)
+                addBuildTask([exploreMapptedEntry(pkg.bin, '.{js,ts,jsx,tsx,mjs,mts}')], { format: FORMAT_OF_EXT[ext], platform: 'node', outfile: pkg.bin, bundle: pkg.bin.includes('.bundle') || undefined })
             } else {
                 for (const eachCommandName in pkg.bin) {
                     const eachCommandFile = pkg.bin[eachCommandName]
-                    addBuildTask([exploreMapptedEntry(eachCommandFile, '.{js,ts,jsx,tsx,mjs,mts}')], { format: 'cjs', platform: 'node', outfile: eachCommandFile, bundle: eachCommandFile.includes('.bundle') || undefined })
+                    const ext = extname(eachCommandFile).slice(1)
+                    addBuildTask([exploreMapptedEntry(eachCommandFile, '.{js,ts,jsx,tsx,mjs,mts}')], { format: FORMAT_OF_EXT[ext], platform: 'node', outfile: eachCommandFile, bundle: eachCommandFile.includes('.bundle') || undefined })
                 }
             }
         }

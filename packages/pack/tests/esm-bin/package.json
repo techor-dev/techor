@@ -1,0 +1,12 @@
+{
+    "name": "@test/esm-bin",
+    "version": "1.0.0",
+    "private": true,
+    "bin": "./dist/bin/index.mjs",
+    "files": [
+        "dist"
+    ],
+    "dependencies": {
+        "ora": "^8.0.1"
+    }
+}
