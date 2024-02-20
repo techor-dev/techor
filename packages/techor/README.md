@@ -90,91 +90,17 @@ When the package is ready, including the dependencies setup, run `npm i` in the 
 
 Most workspace packages will pre-set script commands, such as `build`, `test`, and `lint`. Since features depend on each other, builds will be executed sequentially.
 
-You can now use [Turborepo](https://turbo.build/repo) to easily build complex systems and run commands in one-linear.
-
-![turborepo-excalidraw](https://user-images.githubusercontent.com/33840671/204613029-cc4eaef9-ed82-400f-aa65-a1f1ec5864c7.jpeg)
-
-Set up the `/turbo.json`:
-
-```json
-{
-    "$schema": "https://turbo.build/schema.json",
-    "pipeline": {
-        "dev": {
-            "cache": false,
-            "dependsOn": ["^build"],
-            "outputs": ["dist/**"]
-        },
-        "build": {
-            "dependsOn": ["^build"],
-            "outputs": ["dist/**"]
-        },
-        "test": {
-            "outputs": [],
-            "inputs": [
-                "src/**/*.tsx",
-                "src/**/*.ts",
-                "tests/**/*.ts"
-            ]
-        },
-        "lint": {
-            "outputs": []
-        },
-        "type-check": {
-            "outputs": ["dist/**"]
-        }
-    }
-}
-```
-
 Set up the scripts of `/package.json`:
 ```json
 {
     "scripts": {
-        "dev": "turbo run dev",
-        "build": "turbo run build",
-        "test": "turbo run test --parallel",
-        "lint": "turbo run lint --parallel",
-        "type-check": "turbo run type-check --parallel"
+        "dev": "pnpm dev",
+        "build": "pnpm build",
+        "test": "pnpm --parallel test",
+        "lint": "pnpm --parallel lint",
+        "type-check": "pnpm --parallel type-check"
     }
 }
-```
-In most cases, `dev` and `build` cannot add the `--parallel` flag, which breaks their dependencies.
-
-Typical workspace scripts for authoring a package:
-
-```json
-{
-    "scripts": {
-        "build": "ts-node ../techor/src/bin pack",
-        "dev": "pnpm run build --watch",
-        "test": "jest",
-        "type-check": "tsc --noEmit",
-        "lint": "eslint src"
-    }
-}
-```
-
-From now on, you only need to **run the command in the project root** after opening the project.
-
-```bash
-pnpm run dev
-```
-Build your application or package:
-```bash
-pnpm run build
-```
-Test your business logic or UI by running scripts:
-```bash
-pnpm run test
-```
-Find and fix problems in JavaScript code before building:
-```bash
-pnpm run lint
-```
-Improve reliability with TypeScript's type checking:
-```bash
-pnpm run type-check
 ```
 
 ### Continuous Integration
