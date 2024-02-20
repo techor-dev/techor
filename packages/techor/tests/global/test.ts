@@ -15,6 +15,9 @@ it('should bundle all deps', () => {
 })
 
 it('should be minifined', () => {
-    expect(readFileSync(join(__dirname, './dist/global.min.js'), 'utf-8')).toBe('(()=>{(function(){"use strict";function c(t){const e=typeof t;return t!==null&&(e==="object"||e==="function")}console.log(c({foo:"bar"})),globalThis.effect1="created";function o(){globalThis.effect2="created"}o()})();})();\n')
+    expect(readFileSync(join(__dirname, './dist/global.min.js'), 'utf-8')).toBe('(function(){"use strict";function isObject(value){const type=typeof value;return value!==null&&(type==="object"||type==="function")}console.log(isObject({foo:"bar"}));globalThis.effect1="created";function effect2(){globalThis.effect2="created"}effect2()})();\n')
 })
 
+it('should not contain @swc/helpers', () => {
+    expect(readFileSync(join(__dirname, './dist/global.min.js'), 'utf-8')).not.toContain('@swc/helpers')
+})

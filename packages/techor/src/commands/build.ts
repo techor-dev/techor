@@ -19,10 +19,9 @@ import { BuildCommonOptions, Config, default as defaultConfig } from '../config'
 
 // core plugins
 import esmShim from '../plugins/esm-shim'
-import esbuildTransform from '../plugins/esbuild-transform'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
-import swc from '@rollup/plugin-swc'
+import swc from '../plugins/swc'
 import exploreConfig from 'explore-config'
 
 const FORMAT_OF_EXT = {
@@ -119,9 +118,6 @@ export default (program: Command) => program.command('build [entryPaths...]')
                         }
                     }
                 }
-                if (config.build.esbuildTransform || outputOptions.minify) {
-                    (outputOptions.output.plugins as RollupOutputOptions['plugins'][]).push(esbuildTransform())
-                }
                 let buildOptions = buildMap.get(input)
                 if (buildOptions) {
                     // 合併同一個 input 來源並對應多個 RollupOutputOptions 避免重新 parse 相同的 input
@@ -135,7 +131,7 @@ export default (program: Command) => program.command('build [entryPaths...]')
                     buildOptions.input.external = (config.build.external && !isGlobalFile) && getWideExternal(config.build.external || []);
                     (buildOptions.input.plugins as RollupInputPluginOption[]).unshift(
                         ...[
-                            config.build.swc && swc(config.build.swc),
+                            (config.build.swc || outputOptions.minify) && swc({ ...config.build.swc, minify: outputOptions.minify }),
                             config.build.commonjs && commonjs(config.build.commonjs),
                             config.build.nodeResolve && nodeResolve(config.build.nodeResolve),
                             config.build.esmShim && esmShim(),

@@ -1,6 +1,5 @@
 import { InputOptions as RollupInputOptions, OutputOptions as RollupOutputOptions } from 'rollup'
-import { TransformOptions as ESBuildTransformOptions } from 'esbuild'
-import { Options as SWCOptions } from '@swc/core'
+import type { Options as SWCOptions } from './plugins/swc'
 import { RollupNodeResolveOptions } from '@rollup/plugin-node-resolve'
 import { RollupCommonJSOptions } from '@rollup/plugin-commonjs'
 
@@ -22,7 +21,15 @@ const config: Config = {
             exportConditions: ['node', 'import', 'require', 'default']
         },
         commonjs: { extensions: ['.js', '.ts'] },
-        swc: {},
+        swc: {
+            include: /\.[jt]sx?$/,
+            exclude: ['node_modules'],
+            jsc: {
+                target: 'esnext',
+                keepClassNames: true,
+                externalHelpers: false
+            }
+        },
         esmShim: true
     }
 }
@@ -53,8 +60,6 @@ export interface BuildOptions extends BuildCommonOptions {
     swc?: SWCOptions | false
     // https://github.com/rollup/plugins/tree/master/packages/node-resolve#options
     nodeResolve?: RollupNodeResolveOptions | false;
-    // https://esbuild.github.io/api/#transform
-    esbuildTransform?: ESBuildTransformOptions | false
     // We made `techor-esm-shim` because `@rollup/plugin-esm-shim` breaks the source code.
     esmShim?: boolean
     // https://github.com/rollup/plugins/tree/master/packages/commonjs#options
