@@ -72,7 +72,7 @@ export default (program: Command) => program.command('build [entryPaths...]')
         try {
             const useConfig = exploreConfig('techor.config.*') as Config
             const config = extend(defaultConfig, useConfig, { build: commandBuildOptions }) as Config
-            if (this.args.includes('dev')) {
+            if (process.argv.includes('dev')) {
                 process.env.NODE_ENV = 'development'
                 config.build.watch = true
             } else {
