@@ -320,7 +320,6 @@ export default (program: Command) => program.command('build [entryPaths...]')
                                             const eachOutputResults = []
                                             await output(event.result, eachBuildOptions.outputOptionsList, eachOutputResults)
                                             printOutputResults(eachOutputResults, buildStartTime)
-                                            if (config.build.declare) console.log('')
                                         }
                                         if (event.code === 'ERROR') {
                                             console.error(event.error)
