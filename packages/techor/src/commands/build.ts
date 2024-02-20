@@ -49,7 +49,7 @@ const SRCFILE_EXT = '.{js,ts,jsx,cjs,tsx,mjs,mts}'
 declare type OutputResults = (BuildOutputOptions & { artifact: (RollupOutputAsset | RollupOutputChunk) })[]
 declare type BuildOutputOptions = BuildCommonOptions & { output: RollupOutputOptions }
 declare type BuildOptions = {
-    rollupInput: RollupInputOptions,
+    input: RollupInputOptions,
     outputOptionsList: BuildOutputOptions[]
 }
 
@@ -126,12 +126,12 @@ export default (program: Command) => program.command('build [entryPaths...]')
                     (buildOptions.outputOptionsList).push(outputOptions)
                 } else {
                     buildOptions = {
-                        rollupInput: config.build.input,
                         outputOptionsList: [outputOptions]
                     } as BuildOptions
-                    buildOptions.rollupInput.input = input
-                    buildOptions.rollupInput.external = (config.build.external && !isGlobalFile) && getWideExternal(config.build.external || []);
-                    (buildOptions.rollupInput.plugins as RollupInputPluginOption[]).unshift(
+                    buildOptions.input = extend({}, config.build.input)
+                    buildOptions.input.input = input
+                    buildOptions.input.external = (config.build.external && !isGlobalFile) && getWideExternal(config.build.external || []);
+                    (buildOptions.input.plugins as RollupInputPluginOption[]).unshift(
                         ...[
                             config.build.swc && swc(config.build.swc),
                             config.build.commonjs && commonjs(config.build.commonjs),
@@ -235,7 +235,7 @@ export default (program: Command) => program.command('build [entryPaths...]')
                 return
             }
 
-            log.i`Start watching for file changes...`
+            if (config.build.watch) log.i`Start watching for file changes...`
             const outputResults: OutputResults = []
             const printOutputResults = (eachOutputResults: OutputResults, eachBuildStartTime: [number, number]) => {
                 const buildTime = process.hrtime(eachBuildStartTime)
@@ -283,33 +283,27 @@ export default (program: Command) => program.command('build [entryPaths...]')
                 log.ok(clsx(`Built **${chunks.length}** chunks`, config.build.declare && `and types`, `in ${prettyHartime(buildTime).replace(' ', '')}`))
             }
             const buildStartTime = process.hrtime()
-            const buildingInputs = []
+            const output = async (rollupBuild: RollupBuild, eachOutputOptionsList: BuildOutputOptions[], outputResults: OutputResults) => {
+                await Promise.all(
+                    eachOutputOptionsList.map(async (eachOutputOptions) => {
+                        const result = await rollupBuild.write(eachOutputOptions.output)
+                        result.output
+                            .forEach((chunkOrAsset) => {
+                                outputResults.push({
+                                    ...eachOutputOptions,
+                                    artifact: chunkOrAsset
+                                })
+                            })
+                    })
+                )
+            }
             await Promise.all(
                 [
                     ...Array.from(buildMap.entries())
                         .map(async ([input, eachBuildOptions]) => {
-                            buildingInputs.push(input)
-                            const output = async (rollupBuild: RollupBuild, outputResults: OutputResults) => {
-                                await Promise.all(
-                                    eachBuildOptions.outputOptionsList.map(async (eachOutputOptions) => {
-                                        const result = await rollupBuild.generate(eachOutputOptions.output)
-                                        result.output = result.output
-                                            .filter((chunkOrAsset) => {
-                                                outputResults.push({
-                                                    ...eachOutputOptions,
-                                                    artifact: chunkOrAsset
-                                                })
-                                                return true
-                                            }) as RollupOutput['output']
-                                        if (result.output.length) {
-                                            await rollupBuild.write(eachOutputOptions.output)
-                                        }
-                                    })
-                                )
-                            }
                             if (config.build.watch) {
                                 const watcher = rollupWatch({
-                                    ...eachBuildOptions.rollupInput,
+                                    ...eachBuildOptions.input,
                                     watch: {
                                         skipWrite: true
                                     }
@@ -322,7 +316,7 @@ export default (program: Command) => program.command('build [entryPaths...]')
                                         }
                                         if (event.code === 'BUNDLE_END') {
                                             const eachOutputResults = []
-                                            await output(event.result, eachOutputResults)
+                                            await output(event.result, eachBuildOptions.outputOptionsList, eachOutputResults)
                                             printOutputResults(eachOutputResults, buildStartTime)
                                             if (config.build.declare) console.log('')
                                         }
@@ -335,8 +329,8 @@ export default (program: Command) => program.command('build [entryPaths...]')
                                     log`[${event.toUpperCase()}] ${relative(process.cwd(), id)}`
                                 })
                             } else {
-                                const rollupBuild = await rollup(eachBuildOptions.rollupInput)
-                                await output(rollupBuild, outputResults)
+                                const rollupBuild = await rollup(eachBuildOptions.input)
+                                await output(rollupBuild, eachBuildOptions.outputOptionsList, outputResults)
                                 if (rollupBuild) {
                                     // closes the rollupBuild
                                     await rollupBuild.close()
