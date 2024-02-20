@@ -3,13 +3,13 @@
     "version": "1.0.0",
     "private": true,
     "sideEffects": false,
-    "main": "./dist/index.bundle.js",
-    "module": "./dist/index.bundle.mjs",
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
     "types": "./dist/index.d.ts",
     "exports": {
         ".": {
-            "require": "./dist/index.bundle.js",
-            "import": "./dist/index.bundle.mjs"
+            "require": "./dist/index.js",
+            "import": "./dist/index.mjs"
         }
     },
     "files": [

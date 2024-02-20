@@ -1,8 +1,8 @@
 import dedent from 'dedent'
 import chalk from 'chalk'
 
-export function parseError(error: any) {
-    const { message, stack } = typeof error === 'string' ? new Error(error as any) : error
+export function parseError(error: Error) {
+    const { message, stack } = error
     const stackTree = {}
     dedent(stack
         .replace(message, '')
@@ -10,21 +10,21 @@ export function parseError(error: any) {
     )
         .split('\n')
         .forEach((line: string) => {
-            stackTree[
-                line
-                    .split(' ')
-                    .map((eachSplit) => eachSplit
-                        .replace(/^\((.+)\)$/, `${chalk.cyan('$1')}`)
-                        .replace(/\./g, `${chalk.dim('.')}`)
-                        .replace(/^at$/, m => chalk.dim(m))
-                    )
-                    .join(' ')
-            ] = null
+            const text = line
+                .split(' ')
+                .map((eachSplit) => eachSplit
+                    .replace(/^\((.+)\)$/, `${chalk.gray('$1')}`)
+                    .replace(/\./g, `${chalk.dim('.')}`)
+                    .replace(/^at$/, m => chalk.dim(m))
+                )
+                .join(' ')
+            if (text)
+                stackTree[text] = null
         })
     return {
         message: message
             .trim()
             .replace(/Error: /g, ''),
-        stackTree
+        stackTree: Object.keys(stackTree).length ? stackTree : null
     }
 }

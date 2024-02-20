@@ -1,2 +1,3 @@
-export * from './options'
-console.log('node')
+export * from './a'
+export * from './b'
+export default 'main'

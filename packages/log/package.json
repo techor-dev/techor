@@ -1,9 +1,9 @@
 {
     "name": "@techor/log",
+    "type": "module",
     "license": "MIT",
     "scripts": {
-        "build:cjs": "esbuild src/index.ts --bundle --outfile=dist/index.js --format=cjs --minify --sourcemap --platform=node",
-        "build:esm": "esbuild src/index.ts --bundle --outfile=dist/index.mjs --format=esm --minify --sourcemap --platform=node",
+        "build:main": "rollup --config rollup.config.mjs",
         "build:type": "tsc --emitDeclarationOnly --preserveWatchOutput",
         "build": "pnpm run \"/^build:.*/\"",
         "dev": "pnpm run \"/^build:.*/\" --watch",
@@ -32,14 +32,13 @@
         "chalk",
         "semantic"
     ],
-    "main": "./dist/index.js",
-    "jsnext:main": "./dist/index.mjs",
+    "main": "./dist/index.cjs",
     "esnext": "./dist/index.mjs",
     "module": "./dist/index.mjs",
     "types": "./dist/index.d.ts",
     "exports": {
         ".": {
-            "require": "./dist/index.js",
+            "require": "./dist/index.cjs",
             "import": "./dist/index.mjs",
             "types": "./dist/index.d.ts"
         }

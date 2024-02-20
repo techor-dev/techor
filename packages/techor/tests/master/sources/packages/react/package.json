@@ -37,7 +37,6 @@
     ],
     "sideEffects": false,
     "main": "./dist/index.js",
-    "jsnext:main": "./dist/index.mjs",
     "esnext": "./dist/index.mjs",
     "module": "./dist/index.mjs",
     "types": "./dist/index.d.ts",

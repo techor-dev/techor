@@ -108,5 +108,3 @@ export default function extend(...sources: any[]) {
 
     return target
 }
-
-export { extend }

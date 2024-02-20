@@ -1,4 +1,4 @@
-import jiti from 'jiti/dist/jiti'
+import jiti from 'jiti'
 import { transform } from 'sucrase'
 
 export default function crossImport(modulePath: string): any {

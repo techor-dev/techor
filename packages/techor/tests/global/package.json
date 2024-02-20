@@ -1,0 +1,13 @@
+{
+    "name": "@test/global",
+    "version": "1.0.0",
+    "private": true,
+    "main": "dist/global.js",
+    "browser": "dist/global.min.js",
+    "files": [
+        "dist"
+    ],
+    "dependencies": {
+        "is-obj": "^3.0.0"
+    }
+}

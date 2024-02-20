@@ -1,11 +1,12 @@
 export default class Person {
     constructor(
-        public readonly name: string,
-        public readonly age: number,
+        name: string,
+        age: number
     ) { }
     sex: string
     weight: number
     height: number
 }
 
-const person = new Person('John', 18)
+export { Foo } from './foo'
+export const person = new Person('John', 18)

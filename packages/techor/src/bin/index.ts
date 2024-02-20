@@ -2,15 +2,9 @@
 
 import { Command } from 'commander'
 import { readJSONFileSync } from '@techor/fs'
-import log from '@techor/log'
-import path from 'path'
-import { fileURLToPath } from 'url'
-import { dirname } from 'path'
+import { dirname, resolve } from 'path'
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
-
-const { version, name, description } = readJSONFileSync(path.resolve(__dirname, '../../package.json'))
+const { version, name, description } = readJSONFileSync(resolve(dirname(fileURLToPath(import.meta.url)), '../../package.json'))
 const program = new Command()
 
 program
@@ -18,10 +12,11 @@ program
     .description(description)
     .version(version || '0.0.0')
 
-import commandPack from '../commands/pack'
+import commandBuild from '../commands/build'
 import commandVersion from '../commands/version'
+import { fileURLToPath } from 'url'
 
-commandPack(program)
+commandBuild(program)
 commandVersion(program)
 
 program.parse()

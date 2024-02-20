@@ -1,8 +1,10 @@
 {
     "name": "conventional-changelog-techor",
     "scripts": {
-        "build": "esbuild src/index.ts --bundle --outfile=dist/index.js --format=cjs --minify --loader:.hbs=file --asset-names=[dir]/[name] --platform=node --external:esbuild --external:fast-glob --external:require-from-string --external:@techor/extend --external:@techor/fs --external:upath",
-        "dev": "pnpm build --watch",
+        "build:main": "rollup --config rollup.config.mjs",
+        "build:type": "tsc --emitDeclarationOnly --preserveWatchOutput",
+        "build": "pnpm run \"/^build:.*/\"",
+        "dev": "pnpm run \"/^build:.*/\" --watch",
         "test": "pnpm build && jest",
         "type-check": "tsc --noEmit",
         "lint": "eslint src"
@@ -34,6 +36,7 @@
         "preset"
     ],
     "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
     "files": [
         "dist"
     ],

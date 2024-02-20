@@ -1,9 +1,9 @@
 import type { Command } from 'commander'
 import { explorePathsSync } from '@techor/glob'
-import path from 'path'
-import log, { paint } from '@techor/log'
-import { readJSONFileSync, writeFileSync } from '@techor/fs'
 import { readPNPMWorkspaces, readWorkspaces, explorePackageManager } from '@techor/npm'
+import path from 'path'
+import log from '@techor/log'
+import { readJSONFileSync, writeFileSync } from '@techor/fs'
 
 export default (program: Command) => program.command('version <version>')
     .description('Bump to specific version for workspace\'s packages')
@@ -71,14 +71,14 @@ export default (program: Command) => program.command('version <version>')
         const workspaceDepsTree = {}
         for (const name in packagesOfName) {
             const { dependencies, peerDependencies, devDependencies } = packagesOfName[name]
-            const workspacePackage: any = workspaceDepsTree[paint('**' + name + '**')] = {}
+            const workspacePackage: any = workspaceDepsTree[log.paint('**' + name + '**')] = {}
             const analyzeDeps = (eachDeps, key: string) => {
                 if (eachDeps) {
                     workspacePackage[key] = {}
                     for (const dependencyName in eachDeps) {
                         if (dependencyName in packagesOfName) {
                             const eachDependencyVersion = eachDeps[dependencyName]
-                            workspacePackage[key][paint('**' + dependencyName + '**')] = eachDependencyVersion || null
+                            workspacePackage[key][log.paint('**' + dependencyName + '**')] = eachDependencyVersion || null
                         }
                     }
                 }
@@ -87,8 +87,8 @@ export default (program: Command) => program.command('version <version>')
             analyzeDeps(peerDependencies, 'peerDependencies')
             analyzeDeps(devDependencies, 'devDependencies')
             /* 防止沒有印出空 {} 的項目 */
-            if (!Object.keys(workspaceDepsTree[paint('**' + name + '**')]).length) {
-                workspaceDepsTree[paint('**' + name + '**')] = null
+            if (!Object.keys(workspaceDepsTree[log.paint('**' + name + '**')]).length) {
+                workspaceDepsTree[log.paint('**' + name + '**')] = null
             }
         }
         log`📦`

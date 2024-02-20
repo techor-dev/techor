@@ -4,18 +4,18 @@ import path from 'path'
 import { readFileAsNormalizedStrSync } from '../../../fs/src'
 
 beforeAll(() => {
-    execSync('tsx ../../src/bin pack --declare', { cwd: __dirname, stdio: 'pipe' })
+    execSync('tsx ../../src/bin build --declare', { cwd: __dirname, stdio: 'pipe' })
 })
 
 it('generates declarations', () => {
     expect(readFileAsNormalizedStrSync(path.join(__dirname, 'dist/index.d.ts'))).toEqual(dedent`
         export default class Person {
-            readonly name: string;
-            readonly age: number;
             constructor(name: string, age: number);
             sex: string;
             weight: number;
             height: number;
-        }\n
+        }
+        export { Foo } from './foo';
+        export declare const person: Person;\n
     `)
 })

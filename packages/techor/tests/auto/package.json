@@ -1,0 +1,11 @@
+{
+    "name": "@test/basic-auto",
+    "version": "1.0.0",
+    "private": true,
+    "main": "dist/index.cjs",
+    "module": "dist/index.mjs",
+    "browser": "dist/index.js",
+    "files": [
+        "dist"
+    ]
+}

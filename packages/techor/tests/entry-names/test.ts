@@ -3,9 +3,11 @@ import path from 'path'
 import { existsSync } from 'fs'
 
 beforeAll(() => {
-    execSync(`tsx ../../src/bin pack "src/**/*.ts" --format esm --bundle`, { cwd: __dirname, stdio: 'inherit' })
+    execSync(`tsx ../../src/bin build "src/**/*.ts" --formats esm`, { cwd: __dirname })
 })
 
 it('contains bundled files', () => {
-    expect(existsSync(path.join(__dirname, 'dist/index.bundle.mjs'))).toBeDefined()
+    expect(existsSync(path.join(__dirname, 'dist/a.mjs'))).toBeDefined()
+    expect(existsSync(path.join(__dirname, 'dist/b.mjs'))).toBeDefined()
+    expect(existsSync(path.join(__dirname, 'dist/index.mjs'))).toBeDefined()
 })

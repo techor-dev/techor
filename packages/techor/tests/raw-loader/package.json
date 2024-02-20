@@ -1,0 +1,9 @@
+{
+    "name": "@test/raw-loader",
+    "version": "1.0.0",
+    "private": true,
+    "module": "dist/index.mjs",
+    "files": [
+        "dist"
+    ]
+}

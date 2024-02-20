@@ -14,7 +14,7 @@ beforeAll(() => {
 
 it('bump to specific version for all workspaces', () => {
     process.chdir(tmpDir)
-    execSync('tsx ../../../src/bin version 2.0.0-beta.200', { cwd: tmpDir, stdio: 'inherit' })
+    execSync('tsx ../../../src/bin version 2.0.0-beta.200', { cwd: tmpDir, stdio: 'pipe' })
     const workspacePackagePaths = readWorkspaces().map((eachWorkspace) => path.join(eachWorkspace, '*package.json'))
     for (const eachPackagePath of explorePathsSync(workspacePackagePaths)) {
         const eachPackageRaw = readFileSync(path.resolve(eachPackagePath), { encoding: 'utf8' })

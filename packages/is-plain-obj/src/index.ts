@@ -3,5 +3,3 @@ export default function aPlainObj(target: any) {
         ? false
         : (target?.constructor?.name === 'Object' || typeof target === 'object' && !target?.__proto__) // for Object.create({})
 }
-
-export { aPlainObj }

@@ -21,15 +21,25 @@ import chalk from 'chalk'
 // @ts-ignore
 const log: Log = ((strings, ...slots) => {
     if (strings instanceof Error) {
-        const { message, stackTree } = parseError(strings)
+        const error = strings
+        const { message, stackTree } = parseError(error)
         console.log('')
-        console.log(chalk.bgRed.bold.white(' 𝗫 ERROR ') + ' ' + chalk.bold.red(message))
-        console.log(treeify(stackTree, {
-            spacerNeighbour: chalk.redBright.dim('│  '),
-            keyNoNeighbour: chalk.redBright.dim('└ '),
-            keyNeighbour: chalk.redBright.dim('├ '),
-            separator: chalk.redBright.dim(': ')
-        }))
+        console.log(chalk.bgRed.bold.white(` 𝗫 ${error.name || error['code'] || 'Error'} `) + ' ' + chalk.bold.red(message))
+        if (stackTree) {
+            console.log(treeify(stackTree, {
+                spacerNeighbour: chalk.redBright.dim('│  '),
+                keyNoNeighbour: chalk.redBright.dim('└ '),
+                keyNeighbour: chalk.redBright.dim('├ '),
+                separator: chalk.redBright.dim(': ')
+            }))
+        } else {
+            console.log('')
+            console.log({ ...error })
+        }
+        if (error.cause) {
+            console.log('')
+            console.log(chalk.redBright('Caused by:') + ' ' + error.cause)
+        }
         console.log('')
         return message
     } else {
@@ -54,7 +64,8 @@ Object.assign(log, {
     conflict,
     ok,
     tree,
-    paint
+    paint,
+    chalk
 })
 
 export { log }
@@ -76,4 +87,6 @@ export interface Log {
     a: Log, add: Log
     // load: (event: string, message: string, options: any) => any
     tree: (object: object | JSON) => void
+    paint: typeof paint
+    chalk: typeof chalk
 }

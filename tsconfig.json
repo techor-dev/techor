@@ -18,4 +18,7 @@
             "esnext"
         ]
     },
+    "include": [
+        "**/tests/**/*"
+    ]
 }

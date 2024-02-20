@@ -2,7 +2,6 @@
     "name": "@test/force-bundle",
     "version": "1.0.0",
     "private": true,
-    "main": "./dist/index.bundle.js",
     "files": [
         "dist"
     ],

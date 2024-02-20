@@ -26,6 +26,7 @@
     },
     "devDependencies": {
         "@techor/jest": "workspace:^",
+        "@techor/jest-dom": "workspace:^",
         "@types/fs-extra": "^9.0.13",
         "@types/node": "^20.11.0",
         "commitlint-config-techor": "workspace:^",
@@ -36,14 +37,20 @@
         "jest-puppeteer": "^6.1.1",
         "parent-module": "^3.0.0",
         "puppeteer": "^21.0.1",
+        "rollup": "^4.11.0",
         "semantic-release-config-techor": "workspace:^",
         "strip-ansi": "^7.0.1",
-        "sucrase": "^3.32.0",
         "tmp": "^0.2.1",
         "ts-dedent": "^2.2.0",
-        "tsx": "^3.12.6"
+        "tsx": "^4.7.1",
+        "typescript": "^5.3.3"
     },
     "dependencies": {
+        "@rollup/plugin-commonjs": "^25.0.7",
+        "@rollup/plugin-node-resolve": "^15.2.3",
+        "@rollup/plugin-swc": "^0.3.0",
+        "@rollup/plugin-typescript": "^11.1.6",
+        "@rollup/pluginutils": "^5.1.0",
         "cross-env": "^7.0.3",
         "turbo": "^1.11.2"
     },

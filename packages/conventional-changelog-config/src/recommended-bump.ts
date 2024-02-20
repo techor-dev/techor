@@ -1,7 +1,7 @@
-const parserOpts = require('./parser-opts')
-const { commits: aronCommits } = require('techor-conventional-commits')
+import parserOpts from './parser-opts'
+import { commits as techorCommits } from 'techor-conventional-commits'
 
-module.exports = {
+export default {
     parserOpts,
     whatBump: (commits) => {
         let level = null
@@ -9,7 +9,7 @@ module.exports = {
         let MinorCount = 0
         let patchCount = 0
         commits.forEach(({ type }) => {
-            const conventionalCommit = aronCommits.find(({ type: eachType }) => eachType === type)
+            const conventionalCommit = techorCommits.find(({ type: eachType }) => eachType === type)
             if (conventionalCommit) {
                 switch (conventionalCommit.release) {
                     case 'major':

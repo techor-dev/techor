@@ -1,11 +1,10 @@
-import fs, { writeFile, writeFileSync } from 'fs'
+import fs, { writeFileSync } from 'fs'
 import path, { resolve } from 'path'
 import exec from '../../../utils/exec'
 import commit from '../../../utils/commit'
 import initFakeGit from '../../../utils/init-fake-git'
 import dotenv from 'dotenv'
-
-const createPreset = require('../dist')
+import createPreset from '../dist'
 const conventionalChangelogCore = require('conventional-changelog-core')
 
 dotenv.config({ path: path.resolve(__dirname, '../../../.env') })

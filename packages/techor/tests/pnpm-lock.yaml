@@ -16,6 +16,8 @@ importers:
 
   args-externals: {}
 
+  auto: {}
+
   b: {}
 
   c:
@@ -24,15 +26,7 @@ importers:
         specifier: ''
         version: link:../a
 
-  css: {}
-
-  css-args: {}
-
-  css-bundle: {}
-
   dev-dependency: {}
-
-  entry-names: {}
 
   esm-bin:
     dependencies:
@@ -55,23 +49,27 @@ importers:
         specifier: ''
         version: 2.4.6
 
-  mjs:
+  global:
     dependencies:
-      server-only:
-        specifier: ^0.0.1
-        version: 0.0.1
+      is-obj:
+        specifier: ^3.0.0
+        version: 3.0.0
+
+  minify: {}
 
   multi-exports: {}
 
   npm: {}
+
+  raw-loader: {}
+
+  shim: {}
 
   specified:
     dependencies:
       server-only:
         specifier: ^0.0.1
         version: 0.0.1
-
-  specified-ext: {}
 
   standard:
     dependencies:
@@ -557,6 +555,11 @@ packages:
   /is-number@7.0.0:
     resolution: {integrity: sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==}
     engines: {node: '>=0.12.0'}
+    dev: false
+
+  /is-obj@3.0.0:
+    resolution: {integrity: sha512-IlsXEHOjtKhpN8r/tRFj2nDyTmHvcfNeu/nrRIcXE17ROeatXchkojffa1SpdqW4cr/Fj6QkEf/Gn4zf6KKvEQ==}
+    engines: {node: '>=12'}
     dev: false
 
   /is-unicode-supported@1.3.0:

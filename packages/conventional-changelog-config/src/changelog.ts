@@ -1,4 +1,7 @@
-module.exports = {
-    parserOpts: require('./parser-opts'),
-    writerOpts: require('./writer-opts')
+import parserOpts from './parser-opts'
+import writerOpts from './writer-opts'
+
+export default {
+    parserOpts,
+    writerOpts
 }

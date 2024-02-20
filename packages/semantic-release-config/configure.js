@@ -1,9 +1,9 @@
 const path = require('path')
 const releaseRules = require('./rules')
-const extend = require('@techor/extend').default
+const extend = require('@techor/extend')
 const { explorePackageManager, readPNPMWorkspaces, readWorkspaces, queryWorkspaces } = require('@techor/npm')
 const { readJSONFileSync } = require('@techor/fs')
-const log = require('@techor/log').default
+const log = require('@techor/log')
 
 const defaultConfig = {
     branches: [
