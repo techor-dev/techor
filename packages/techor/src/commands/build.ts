@@ -72,7 +72,12 @@ export default (program: Command) => program.command('build [entryPaths...]')
         try {
             const useConfig = exploreConfig('techor.config.*') as Config
             const config = extend(defaultConfig, useConfig, { build: commandBuildOptions }) as Config
-
+            if (this.args.includes('dev')) {
+                process.env.NODE_ENV = 'development'
+                config.build.watch = true
+            } else {
+                process.env.NODE_ENV = 'production'
+            }
             if (file !== undefined) config.build.output.file = file
             if (external !== undefined) config.build.external = external
 
@@ -82,9 +87,6 @@ export default (program: Command) => program.command('build [entryPaths...]')
             const buildMap = new Map<RollupInputOptions['input'], BuildOptions>()
 
             if (config.build.declare === undefined && types) config.build.declare = true
-            if (this.args[0] === 'dev') {
-                config.build.watch = true
-            }
 
             if (Array.isArray(config.build.external)) {
                 if (dependencies) config.build.external.push(...Object.keys(dependencies))
