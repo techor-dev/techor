@@ -85,7 +85,7 @@ export default async function build() {
             } else {
                 entries = normalize(entries)
             }
-            let isGlobalFile: boolean
+            let forceBundle: boolean
             const extendedBuild = extend(config.build, { output: rollupOutputOptions }) as BuildOutputOptions
             // single entry
             if (extendedBuild.output.file) {
@@ -93,9 +93,11 @@ export default async function build() {
                     extendedBuild.output.format = config.build.formatOfExt[extname(extendedBuild.output.file)]
                 }
                 const fileBasenameSplits = basename(extendedBuild.output.file).split('.')
-                if (fileBasenameSplits.includes('min')) extendedBuild.minify = true
-                isGlobalFile = fileBasenameSplits.includes('global')
-                if (isGlobalFile || fileBasenameSplits.includes('iife')) extendedBuild.output.format = 'iife'
+                if (fileBasenameSplits.includes('min')) {
+                    forceBundle = true
+                    extendedBuild.minify = true
+                }
+                if (fileBasenameSplits.includes('global') || fileBasenameSplits.includes('iife')) extendedBuild.output.format = 'iife'
                 for (const [eachInput, eachBuildOptions] of buildMap) {
                     for (const eachOutputOptions of eachBuildOptions.outputOptionsList) {
                         if (normalize(eachOutputOptions.output.file) === normalize(extendedBuild.output.file)) {
@@ -134,7 +136,7 @@ export default async function build() {
                     }
                 } as RollupInputOptions, config.build.input)
                 buildOptions.input.input = entries
-                buildOptions.input.external = (config.build.input.external && !isGlobalFile) && getWideExternal(config.build.input.external);
+                buildOptions.input.external = (config.build.input.external && !forceBundle) && getWideExternal(config.build.input.external);
                 (buildOptions.input.plugins as RollupInputPluginOption[]).unshift(
                     ...[
                         (config.build.swc || extendedBuild.minify) && swc({ ...config.build.swc, minify: extendedBuild.minify }),

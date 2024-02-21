@@ -7,11 +7,11 @@ beforeAll(() => {
 })
 
 it('generate iife format', () => {
-    expect(readFileSync(join(__dirname, './dist/global.js'), 'utf-8')).toContain('(function () {')
+    expect(readFileSync(join(__dirname, './dist/global.js'), 'utf-8')).toContain('(function (isObject)')
 })
 
 it('should bundle all deps', () => {
-    expect(readFileSync(join(__dirname, './dist/global.js'), 'utf-8')).toContain('function isObject(value)')
+    expect(readFileSync(join(__dirname, './dist/global.min.js'), 'utf-8')).toContain('function isObject(value)')
 })
 
 it('should be minifined', () => {
