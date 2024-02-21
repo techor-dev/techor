@@ -87,43 +87,46 @@ export default async function build() {
                 entries = normalize(entries)
             }
             let isGlobalFile: boolean
-            const extendedOutputOptions = extend(config.build, { output: rollupOutputOptions }) as BuildOutputOptions
+            const extendedBuild = extend(config.build, { output: rollupOutputOptions }) as BuildOutputOptions
             // single entry
-            if (extendedOutputOptions.output.file) {
-                if (!extendedOutputOptions.output.format) {
-                    extendedOutputOptions.output.format = config.build.formatOfExt[extname(extendedOutputOptions.output.file)]
+            if (extendedBuild.output.file) {
+                if (!extendedBuild.output.format) {
+                    extendedBuild.output.format = config.build.formatOfExt[extname(extendedBuild.output.file)]
                 }
-                const fileBasenameSplits = basename(extendedOutputOptions.output.file).split('.')
-                if (fileBasenameSplits.includes('min')) extendedOutputOptions.minify = true
+                const fileBasenameSplits = basename(extendedBuild.output.file).split('.')
+                if (fileBasenameSplits.includes('min')) extendedBuild.minify = true
                 isGlobalFile = fileBasenameSplits.includes('global')
-                if (isGlobalFile || fileBasenameSplits.includes('iife')) extendedOutputOptions.output.format = 'iife'
+                if (isGlobalFile || fileBasenameSplits.includes('iife')) extendedBuild.output.format = 'iife'
                 for (const [eachInput, eachBuildOptions] of buildMap) {
                     for (const eachOutputOptions of eachBuildOptions.outputOptionsList) {
-                        if (normalize(eachOutputOptions.output.file) === normalize(extendedOutputOptions.output.file)) {
-                            if (process.env.DEBUG) console.log('[DEBUG] extendedOutputOptions', extendedOutputOptions)
+                        if (normalize(eachOutputOptions.output.file) === normalize(extendedBuild.output.file)) {
+                            if (process.env.DEBUG) console.log('[DEBUG] extendedBuild', extendedBuild)
                             return
                         }
                     }
                 }
             } else {
-                extendedOutputOptions.output.entryFileNames = (chunkInfo) => {
-                    return `${chunkInfo.name}${config.build.extOfFormat[extendedOutputOptions.output.format]}`
+                extendedBuild.output.entryFileNames = (chunkInfo) => {
+                    return `${chunkInfo.name}${config.build.extOfFormat[extendedBuild.output.format]}`
                 }
+            }
+            if (extendedBuild.output.preserveModules && !extendedBuild.output.preserveModulesRoot) {
+                extendedBuild.output.preserveModulesRoot = extendedBuild.srcDir
             }
             let buildOptions = buildMap.get(entries)
             if (buildOptions) {
                 // 合併同一個 input 來源並對應多個 RollupOutputOptions 避免重新 parse 相同的 input
-                (buildOptions.outputOptionsList).push(extendedOutputOptions)
+                (buildOptions.outputOptionsList).push(extendedBuild)
             } else {
                 buildOptions = {
-                    outputOptionsList: [extendedOutputOptions]
+                    outputOptionsList: [extendedBuild]
                 } as BuildOptions
                 buildOptions.input = extend({
                     onwarn: (warning, warn) => {
                         switch (warning.code) {
                             case 'MODULE_LEVEL_DIRECTIVE':
                                 // https://github.com/Ephem/rollup-plugin-preserve-directives?tab=readme-ov-file#rollup-warning
-                                if (config.build.preserveDirectives && extendedOutputOptions.output.preserveModules) {
+                                if (config.build.preserveDirectives && extendedBuild.output.preserveModules) {
                                     return
                                 }
                                 break
@@ -135,11 +138,11 @@ export default async function build() {
                 buildOptions.input.external = (config.build.input.external && !isGlobalFile) && getWideExternal(config.build.input.external);
                 (buildOptions.input.plugins as RollupInputPluginOption[]).unshift(
                     ...[
-                        (config.build.swc || extendedOutputOptions.minify) && swc({ ...config.build.swc, minify: extendedOutputOptions.minify }),
+                        (config.build.swc || extendedBuild.minify) && swc({ ...config.build.swc, minify: extendedBuild.minify }),
                         config.build.commonjs && commonjs(config.build.commonjs),
                         config.build.nodeResolve && nodeResolve(config.build.nodeResolve),
                         config.build.esmShim && esmShim(),
-                        (config.build.preserveDirectives && !extendedOutputOptions.output.file) && preserveDirectives(config.build.preserveDirectives),
+                        (config.build.preserveDirectives && !extendedBuild.output.file) && preserveDirectives(config.build.preserveDirectives),
                     ]
                         .filter((existence) => existence)
                 )

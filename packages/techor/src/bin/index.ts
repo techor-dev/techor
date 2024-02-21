@@ -11,10 +11,10 @@ const { version, name, description } = readJSONFileSync(resolve(dirname(fileURLT
 switch (process.argv.slice(2)[0]) {
     case 'build':
     case 'dev':
-        await (await import('../commands/build')).default()
+        import('../commands/build').then(({ default: build }) => build())
         break
     case 'version':
-        await (await import('../commands/version')).default()
+        import('../commands/version').then(({ default: version }) => version())
         break
     default:
         const { _, ...flags } = yargsParser(process.argv.slice(1), { alias: { v: 'version' } })

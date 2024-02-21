@@ -48,13 +48,11 @@
     "bin": {
         "techor": "./dist/bin/index.mjs"
     },
-    "main": "./dist/index.cjs",
     "esnext": "./dist/index.mjs",
     "module": "./dist/index.mjs",
     "types": "./dist/index.d.ts",
     "exports": {
         ".": {
-            "require": "./dist/index.cjs",
             "import": "./dist/index.mjs",
             "types": "./dist/index.d.ts"
         }
