@@ -54,7 +54,9 @@ const config: Config = {
             '.mjs': 'esm'
         },
         sourceExtensions: ['js', 'jsx', 'ts', 'tsx', 'cjs', 'cts', 'mjs', 'mts'],
-
+    },
+    version: {
+        operator: '^'
     }
 }
 
@@ -62,6 +64,7 @@ export default config
 
 export interface Config {
     build: BuildOptions
+    version: VersionOptions
 }
 
 export interface BuildCommonOptions {
@@ -95,4 +98,10 @@ export interface BuildOptions extends BuildCommonOptions {
     extOfFormat?: Record<RollupOutputOptions['format'], string>
     formatOfExt?: Record<string, RollupOutputOptions['format']>
     sourceExtensions?: string[]
+}
+
+export interface VersionOptions {
+    operator?: '^' | '~' | '>' | '>=' | '<' | '<=' | ''
+    workspaces?: string[]
+    list?: boolean
 }

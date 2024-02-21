@@ -34,20 +34,22 @@ declare type BuildOptions = {
 
 export const yargsParserOptions: YargsParserOptions = {
     alias: {
-        f: 'formats',
-        w: 'watch',
-        c: 'clean',
-        o: 'output.file'
+        formats: 'f',
+        watch: 'w',
+        clean: 'c',
+        'output.file': 'o'
     },
     configuration: {
         'strip-aliased': true,
         'strip-dashed': true
-    }
+    },
+    array: ['formats']
 }
 
 export default async function build() {
     const { _, ...cmdConfig } = yargsParser(process.argv.slice(2), yargsParserOptions)
     const [commandName, ...commandInputs] = _ as [string, ...string[]]
+    console.log(cmdConfig)
     try {
         const useConfig = exploreConfig('techor.config.*') as Config
         const config = extend(defaultConfig, useConfig, { build: cmdConfig }) as Config

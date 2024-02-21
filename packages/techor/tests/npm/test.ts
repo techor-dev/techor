@@ -4,10 +4,10 @@ import dedent from 'ts-dedent'
 import stripAnsi from 'strip-ansi'
 
 test('bump to specific version by analyzing dependencies', () => {
-    const outputLog = execSync('tsx ../../src/bin version 1.2.0 --list',
-        { cwd: __dirname, stdio: 'pipe' })
-        .toString()
+    const outputLog = execSync('tsx ../../src/bin version 1.2.0 --list', { cwd: __dirname, stdio: 'pipe' }).toString()
     expect(stripAnsi(outputLog)).toContain(dedent`
+        𝓲 No techor.config.* config file found
+        𝓲 package.json is detected
         📦
         ├ @test/a
         │  └ dependencies

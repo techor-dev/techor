@@ -3,7 +3,7 @@ import path from 'path'
 import { existsSync } from 'fs'
 
 beforeAll(() => {
-    execSync(`tsx ../../src/bin build "src/**/*.ts" --formats esm -o dist/fuck.js`, { cwd: __dirname })
+    execSync(`tsx ../../src/bin build "src/**/*.ts" --formats esm`, { cwd: __dirname })
 })
 
 it('contains bundled files', () => {

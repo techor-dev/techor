@@ -1,7 +1,1 @@
-{
-    "name": "@test/pnpm-c",
-    "private": true,
-    "peerDependencies": {
-        "@test/pnpm-a": "workspace:~"
-    }
-}
+{"name":"@test/pnpm-c","private":true,"peerDependencies":{"@test/pnpm-a":"~1.2.0"},"version":"1.2.0"}

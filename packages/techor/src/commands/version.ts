@@ -4,12 +4,15 @@ import path from 'path'
 import log from '@techor/log'
 import { readJSONFileSync, writeFileSync } from '@techor/fs'
 import yargsParser, { Options as YargsParserOptions } from 'yargs-parser'
+import exploreConfig from 'explore-config'
+import extend from '@techor/extend'
+import { Config, default as defaultConfig } from '../config'
 
 export const yargsParserOptions: YargsParserOptions = {
     alias: {
-        p: 'prefix',
-        w: 'workspaces', // `^`, `~`, `>`, `>=`, `<`, `<=` ', '^'
-        ls: 'list'
+        operator: 'o', // `^`, `~`, `>`, `>=`, `<`, `<=` ', '^'
+        workspaces: 'w',
+        list: 'ls'
     },
     configuration: {
         'strip-aliased': true,
@@ -18,31 +21,32 @@ export const yargsParserOptions: YargsParserOptions = {
 }
 
 export default async function version() {
-    const { _, ...options } = yargsParser(process.argv.slice(2), yargsParserOptions)
+    const { _, ...cmdConfig } = yargsParser(process.argv.slice(2), yargsParserOptions)
     const [commandName, version] = _ as [string, ...string[]]
-
-    if (!options.workspaces) {
+    const useConfig = exploreConfig('techor.config.*') as Config
+    const config = extend(defaultConfig, useConfig, { version: cmdConfig }) as Config
+    if (!config.version.workspaces) {
         const packageManager = explorePackageManager()
         switch (packageManager) {
             case 'pnpm':
-                options.workspaces = readPNPMWorkspaces()
+                config.version.workspaces = readPNPMWorkspaces()
                 break
             case 'npm':
-                options.workspaces = readWorkspaces()
+                config.version.workspaces = readWorkspaces()
                 break
         }
     }
-    if (!options.workspaces?.length) {
+    if (!config.version.workspaces?.length) {
         log.x`workspaces is not defined in package.json`
     }
     const packagesOfPath = {}
     const packagesOfName = {}
-    const workspacePackagePaths = options.workspaces.map((eachWorkspace) => path.join(eachWorkspace, '*package.json'))
+    const workspacePackagePaths = config.version.workspaces.map((eachWorkspace) => path.join(eachWorkspace, '*package.json'))
     const resolveVersion = (eachVersion: string) => {
         if (eachVersion.startsWith('workspace:')) {
             return eachVersion.replace('workspace:', '') + version
         } else if (eachVersion === '') {
-            return options.prefix + version
+            return config.version.operator + version
         }
     }
     const updateDependencies = (eachDependencies) => {
@@ -73,7 +77,7 @@ export default async function version() {
         dependencies && updateDependencies(dependencies)
         devDependencies && updateDependencies(devDependencies)
         peerDependencies && updateDependencies(peerDependencies)
-        if (!options.list) {
+        if (!config.version.list) {
             writeFileSync(eachPackagePath, eachPackage)
         }
     }
