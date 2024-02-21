@@ -1,0 +1,27 @@
+{
+    "name": "@test/react",
+    "version": "1.0.0",
+    "private": true,
+    "main": "./dist/App.cjs",
+    "module": "./dist/App.mjs",
+    "types": "./dist/App.d.ts",
+    "jsnext:main": "./dist/App.mjs",
+    "esnext": "./dist/App.mjs",
+    "exports": {
+        ".": {
+            "require": "./dist/App.cjs",
+            "import": "./dist/App.mjs",
+            "types": "./dist/App.d.ts"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "dependencies": {
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    },
+    "devDependencies": {
+        "@types/react": "^18.2.57"
+    }
+}

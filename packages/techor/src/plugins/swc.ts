@@ -43,7 +43,7 @@ export default function swc({ tsconfigFile, include, exclude, minify, ...options
                 sourceMaps: true,
                 ...extend(swcOptions, {
                     jsc: {
-                        parser: /\.ts?$/.test(id)
+                        parser: /\.tsx?$/.test(id)
                             ? { syntax: 'typescript', tsx: /\.tsx$/.test(id) }
                             : { syntax: 'ecmascript', jsx: /\.jsx$/.test(id) }
                     }
