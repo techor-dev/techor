@@ -49,7 +49,6 @@ export const yargsParserOptions: YargsParserOptions = {
 export default async function build() {
     const { _, ...cmdConfig } = yargsParser(process.argv.slice(2), yargsParserOptions)
     const [commandName, ...commandInputs] = _ as [string, ...string[]]
-    console.log(cmdConfig)
     try {
         const useConfig = exploreConfig('techor.config.*') as Config
         const config = extend(defaultConfig, useConfig, { build: cmdConfig }) as Config
