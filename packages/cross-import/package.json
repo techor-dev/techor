@@ -57,7 +57,7 @@
     "files": [
         "dist"
     ],
-    "devDependencies": {
+    "dependencies": {
         "sucrase": "^3.35.0"
     }
 }
