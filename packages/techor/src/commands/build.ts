@@ -16,7 +16,7 @@ import clsx from 'clsx'
 import getWideExternal from '../utils/get-wide-external'
 import { BuildCommonOptions, Config, default as defaultConfig } from '../config'
 import yargsParser, { Options as YargsParserOptions } from 'yargs-parser'
-import exploreConfig from 'explore-config'
+import loadConfig from '../load-config'
 
 // core plugins
 import esmShim from '../plugins/esm-shim'
@@ -50,7 +50,7 @@ export default async function build() {
     const { _, ...cmdConfig } = yargsParser(process.argv.slice(2), yargsParserOptions)
     const [commandName, ...commandInputs] = _ as [string, ...string[]]
     try {
-        const useConfig = exploreConfig('techor.config.*') as Config
+        const useConfig = loadConfig()
         const config = extend(defaultConfig, useConfig, { build: cmdConfig }) as Config
         if (commandName === 'dev') {
             process.env.NODE_ENV = 'development'
@@ -59,7 +59,7 @@ export default async function build() {
             process.env.NODE_ENV = 'production'
         }
 
-        if (process.env.DEBUG) console.log('[DEBUG] cmdConfig', cmdConfig)
+        if (process.env.DEBUG) console.log('[techor] cmdConfig', cmdConfig)
         const pkg: PackageJson = readJSONFileSync('package.json') || {}
         const { dependencies, peerDependencies, optionalDependencies, types } = pkg
         const buildMap = new Map<RollupInputOptions['input'], BuildOptions>()
@@ -101,7 +101,7 @@ export default async function build() {
                 for (const [eachInput, eachBuildOptions] of buildMap) {
                     for (const eachOutputOptions of eachBuildOptions.outputOptionsList) {
                         if (normalize(eachOutputOptions.output.file) === normalize(extendedBuild.output.file)) {
-                            if (process.env.DEBUG) console.log('[DEBUG] extendedBuild', extendedBuild)
+                            if (process.env.DEBUG) console.log('[techor] extendedBuild', extendedBuild)
                             return
                         }
                     }
@@ -147,7 +147,7 @@ export default async function build() {
                     ]
                         .filter((existence) => existence)
                 )
-                if (process.env.DEBUG) console.log('[DEBUG] buildOptions', buildOptions)
+                if (process.env.DEBUG) console.log('[techor] buildOptions', buildOptions)
                 buildMap.set(entries, buildOptions)
             }
         }

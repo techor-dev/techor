@@ -55,9 +55,6 @@
         "access": "public"
     },
     "dependencies": {
-        "@techor/extend": "workspace:^",
-        "@techor/log": "workspace:^",
-        "@techor/glob": "workspace:^",
         "cross-import": "workspace:^"
     }
 }

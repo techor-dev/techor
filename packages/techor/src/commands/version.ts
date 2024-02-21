@@ -7,6 +7,7 @@ import yargsParser, { Options as YargsParserOptions } from 'yargs-parser'
 import exploreConfig from 'explore-config'
 import extend from '@techor/extend'
 import { Config, default as defaultConfig } from '../config'
+import loadConfig from '../load-config'
 
 export const yargsParserOptions: YargsParserOptions = {
     alias: {
@@ -23,7 +24,7 @@ export const yargsParserOptions: YargsParserOptions = {
 export default async function version() {
     const { _, ...cmdConfig } = yargsParser(process.argv.slice(2), yargsParserOptions)
     const [commandName, version] = _ as [string, ...string[]]
-    const useConfig = exploreConfig('techor.config.*') as Config
+    const useConfig = loadConfig()
     const config = extend(defaultConfig, useConfig, { version: cmdConfig }) as Config
     if (!config.version.workspaces) {
         const packageManager = explorePackageManager()

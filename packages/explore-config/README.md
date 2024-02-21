@@ -62,24 +62,31 @@ npm install explore-config
 
 ## Usage
 ```ts
-exploreConfig(
-    sources: Pattern | Pattern[],
-    options?: {
-        cwd?: string,
-        keys?: string[],
-        on?: {
-            found?: (foundPath: string) => void,
-            notFound?: () => void
-        }
-    }
-): any
+exploreConfig(name: string, options: ExploreConfigOptions)
 ```
-
 ```ts
 import exploreConfig from 'explore-config'
 
-config = exploreConfig('master.css.*')
-// {...}
+ /**
+  * 1. explore -> techor.config.js
+  * 2. explore -> techor.config.ts
+  * 3. explore -> techor.config.cjs
+  * 4. explore -> techor.config.cts
+  * 5. explore -> techor.config.mjs
+  * 6. explore -> techor.config.mts
+  * */
+const config = exploreConfig('techor.config')
+
+console.log(config)
+// -> {...}
+```
+```ts
+export interface ExploreConfigOptions {
+    extensions?: ('js' | 'ts' | 'cjs' | 'cts' | 'mjs' | 'mts')[]
+    resolvedKeys?: string[]
+    cwd?: string
+    found?: (basename: string, configPath: string) => void
+}
 ```
 
 <br>
