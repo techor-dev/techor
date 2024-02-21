@@ -5,15 +5,19 @@ import { RollupCommonJSOptions } from '@rollup/plugin-commonjs'
 
 const config: Config = {
     build: {
-        dir: 'dist',
         srcDir: 'src',
         formats: ['cjs', 'esm'],
+        watch: false,
+        minify: false,
+        declare: undefined,
         clean: true,
         input: {
             plugins: [],
             external: []
         },
         output: {
+            dir: 'dist',
+            preserveModules: true,
             plugins: []
         },
         nodeResolve: {
@@ -30,7 +34,27 @@ const config: Config = {
                 externalHelpers: false
             }
         },
-        esmShim: true
+        esmShim: true,
+        preserveDirectives: {},
+        extOfFormat: {
+            esm: '.mjs',
+            es: '.mjs',
+            module: '.mjs',
+            cjs: '.cjs',
+            commonjs: '.cjs',
+            iife: '.js',
+            amd: '.js',
+            umd: '.js',
+            system: '.js',
+            systemjs: '.js'
+        },
+        formatOfExt: {
+            '.js': 'umd',
+            '.cjs': 'cjs',
+            '.mjs': 'esm'
+        },
+        sourceExtensions: ['js', 'jsx', 'ts', 'tsx', 'cjs', 'cts', 'mjs', 'mts'],
+
     }
 }
 
@@ -42,7 +66,6 @@ export interface Config {
 
 export interface BuildCommonOptions {
     srcDir?: string
-    dir?: string
     clean?: boolean
     watch?: boolean
     minify?: boolean
@@ -62,6 +85,14 @@ export interface BuildOptions extends BuildCommonOptions {
     nodeResolve?: RollupNodeResolveOptions | false;
     // We made `techor-esm-shim` because `@rollup/plugin-esm-shim` breaks the source code.
     esmShim?: boolean
-    // https://github.com/rollup/plugins/tree/master/packages/commonjs#options
+    // https://github.com/Ephem/rollup-plugin-preserve-directives
+    preserveDirectives?: {
+        suppressPreserveModulesWarning?: boolean;
+        include?: string[];
+        exclude?: string[];
+    } | false
     commonjs?: RollupCommonJSOptions | false
+    extOfFormat?: Record<RollupOutputOptions['format'], string>
+    formatOfExt?: Record<string, RollupOutputOptions['format']>
+    sourceExtensions?: string[]
 }

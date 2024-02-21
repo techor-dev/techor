@@ -20,6 +20,7 @@ module.exports = {
     ],
     rules: {
         'linebreak-style': 0,
+        'no-case-declarations': 'off',
         indent: [
             'off',
             4

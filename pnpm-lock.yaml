@@ -324,9 +324,6 @@ importers:
       clsx:
         specifier: ^2.0.0
         version: 2.1.0
-      commander:
-        specifier: ^11.0.0
-        version: 11.1.0
       escodegen:
         specifier: ^2.1.0
         version: 2.1.0
@@ -360,6 +357,9 @@ importers:
       rollup:
         specifier: ^4.11.0
         version: 4.11.0
+      rollup-plugin-preserve-directives:
+        specifier: ^0.4.0
+        version: 0.4.0(rollup@4.11.0)
       rollup-plugin-swc-minify:
         specifier: ^1.1.0
         version: 1.1.0(rollup@4.11.0)
@@ -375,6 +375,9 @@ importers:
       wide-align:
         specifier: ^1.1.5
         version: 1.1.5
+      yargs-parser:
+        specifier: ^21.1.1
+        version: 21.1.1
     devDependencies:
       dedent:
         specifier: ^0.7.0
@@ -2933,11 +2936,6 @@ packages:
     engines: {node: '>= 0.8'}
     dependencies:
       delayed-stream: 1.0.0
-
-  /commander@11.1.0:
-    resolution: {integrity: sha512-yPVavfyCcRhmorC7rWlkHn15b4wDVgVmBA7kV4QVBsF7kv/9TKJAbAXVTxvTnwP8HHKjRCJDClKbciiYS7p0DQ==}
-    engines: {node: '>=16'}
-    dev: false
 
   /commander@4.1.1:
     resolution: {integrity: sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==}
@@ -6279,6 +6277,16 @@ packages:
     hasBin: true
     dependencies:
       glob: 7.2.3
+
+  /rollup-plugin-preserve-directives@0.4.0(rollup@4.11.0):
+    resolution: {integrity: sha512-gx4nBxYm5BysmEQS+e2tAMrtFxrGvk+Pe5ppafRibQi0zlW7VYAbEGk6IKDw9sJGPdFWgVTE0o4BU4cdG0Fylg==}
+    peerDependencies:
+      rollup: 2.x || 3.x || 4.x
+    dependencies:
+      '@rollup/pluginutils': 5.1.0(rollup@4.11.0)
+      magic-string: 0.30.7
+      rollup: 4.11.0
+    dev: false
 
   /rollup-plugin-swc-minify@1.1.0(rollup@4.11.0):
     resolution: {integrity: sha512-oVGLF95v1tdyQdEk1QFu2Imd54c+x62NHT198sifMwy9rT/nfamK260cGZ8Dgg3hUp+KQVFY2WcbmjZpmSk60A==}
