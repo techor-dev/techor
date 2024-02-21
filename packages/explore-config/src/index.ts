@@ -34,7 +34,7 @@ export default function exploreConfig(name: string, options: ExploreConfigOption
             if (config) break
         }
         if (!config) config = configModule
-        options?.found(foundBasename, foundConfigPath)
+        options?.found?.(foundBasename, foundConfigPath)
     }
     return config
 }
