@@ -136,10 +136,18 @@ export default async function build() {
                     }
                 } as RollupInputOptions, config.build.input)
                 buildOptions.input.input = entries
-                buildOptions.input.external = (config.build.input.external && !forceBundle) && getWideExternal(config.build.input.external);
+                buildOptions.input.external = (config.build.input.external && !forceBundle) && getWideExternal(config.build.input.external)
+                const extendedSWCOptions: Config['build']['swc'] = extend(config.build.swc)
+                if (extendedBuild.minify) {
+                    extendedSWCOptions.minify = true
+
+                } else {
+                    delete extendedSWCOptions.minify
+                    delete extendedSWCOptions.jsc.minify
+                }
                 (buildOptions.input.plugins as RollupInputPluginOption[]).unshift(
                     ...[
-                        (config.build.swc || extendedBuild.minify) && swc({ ...config.build.swc, minify: extendedBuild.minify }),
+                        swc(extendedSWCOptions),
                         config.build.commonjs && commonjs(config.build.commonjs),
                         config.build.nodeResolve && nodeResolve(config.build.nodeResolve),
                         config.build.esmShim && esmShim(),

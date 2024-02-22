@@ -31,6 +31,7 @@ const config: Config = {
             jsc: {
                 target: 'esnext',
                 externalHelpers: false,
+                keepClassNames: true,
                 minify: {
                     mangle: true,
                     compress: true
@@ -86,7 +87,7 @@ export interface BuildOptions extends BuildCommonOptions {
     // https://rollupjs.org/javascript-api/#outputoptions-object
     output?: RollupOutputOptions
     // https://swc.rs/docs/configuration/compilation
-    swc?: SWCOptions | false
+    swc?: SWCOptions
     // https://github.com/rollup/plugins/tree/master/packages/node-resolve#options
     nodeResolve?: RollupNodeResolveOptions | false;
     // We made `techor-esm-shim` because `@rollup/plugin-esm-shim` breaks the source code.
