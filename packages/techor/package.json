@@ -73,6 +73,7 @@
         "@techor/glob": "workspace:^",
         "@techor/log": "workspace:^",
         "@techor/npm": "workspace:^",
+        "acorn": "^8.11.3",
         "clsx": "^2.0.0",
         "escodegen": "^2.1.0",
         "execa": "^7.2.0",
@@ -80,7 +81,6 @@
         "hrtime": "^0.5.0",
         "load-tsconfig": "^0.2.5",
         "lodash.isequal": "^4.5.0",
-        "magic-string": "^0.30.7",
         "pkg-types": "^1.0.1",
         "pretty-bytes": "^6.1.0",
         "pretty-hrtime": "^1.0.3",
@@ -94,6 +94,7 @@
         "yargs-parser": "^21.1.1"
     },
     "devDependencies": {
+        "@types/escodegen": "^0.0.10",
         "dedent": "^0.7.0"
     }
 }

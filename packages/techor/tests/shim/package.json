@@ -2,8 +2,6 @@
     "name": "@test/shim",
     "version": "1.0.0",
     "private": true,
-    "main": "dist/index.cjs",
-    "module": "dist/index.mjs",
     "files": [
         "dist"
     ]

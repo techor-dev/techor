@@ -309,6 +309,9 @@ importers:
       '@techor/npm':
         specifier: workspace:^
         version: link:../npm
+      acorn:
+        specifier: ^8.11.3
+        version: 8.11.3
       clsx:
         specifier: ^2.0.0
         version: 2.1.0
@@ -330,9 +333,6 @@ importers:
       lodash.isequal:
         specifier: ^4.5.0
         version: 4.5.0
-      magic-string:
-        specifier: ^0.30.7
-        version: 0.30.7
       pkg-types:
         specifier: ^1.0.1
         version: 1.0.3
@@ -367,6 +367,9 @@ importers:
         specifier: ^21.1.1
         version: 21.1.1
     devDependencies:
+      '@types/escodegen':
+        specifier: ^0.0.10
+        version: 0.0.10
       dedent:
         specifier: ^0.7.0
         version: 0.7.0
@@ -2138,6 +2141,10 @@ packages:
     dependencies:
       '@babel/types': 7.23.9
     dev: false
+
+  /@types/escodegen@0.0.10:
+    resolution: {integrity: sha512-IVvcNLEFbiL17qiGRGzyfx/u9K6lA5w6wcQSIgv2h4JG3ZAFIY1Be9ITTSPuARIxRpzW54s8OvcF6PdonBbDzg==}
+    dev: true
 
   /@types/estree@1.0.5:
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
