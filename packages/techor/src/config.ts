@@ -30,8 +30,11 @@ const config: Config = {
             exclude: ['node_modules'],
             jsc: {
                 target: 'esnext',
-                keepClassNames: true,
-                externalHelpers: false
+                externalHelpers: false,
+                minify: {
+                    mangle: true,
+                    compress: true
+                }
             }
         },
         esmShim: true,
