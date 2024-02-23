@@ -59,5 +59,8 @@
     ],
     "dependencies": {
         "sucrase": "^3.35.0"
+    },
+    "devDependencies": {
+        "pretty-bytes": "^6.1.0"
     }
 }

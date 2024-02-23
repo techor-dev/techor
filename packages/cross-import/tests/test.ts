@@ -1,14 +1,19 @@
 import crossImport from '../src'
 import fs from 'fs'
 import path from 'path'
+import prettyBytes from 'pretty-bytes'
 
 it('import .ts in .js', () => {
     expect(
         crossImport(path.resolve(__dirname, './foo.ts'))
-    ).toEqual({ 'bar': 'bar', 'foo': 'foo' })
+    ).toEqual({
+        'default': prettyBytes,
+        'bar': 'bar',
+        'foo': 'foo'
+    })
 })
 
-it('read config from file', () => {
+it('read module from file', () => {
     expect(
         crossImport(path.resolve(__dirname, 'home-config.ts')))
         .toEqual({
@@ -21,7 +26,19 @@ it('read config from file', () => {
         })
 })
 
-it('read config with third-party deps', () => {
+it('read module with export .css.ts', () => {
+    expect(
+        crossImport(path.resolve(__dirname, 'export.ts')))
+        .toEqual({
+            'default': {
+                'colors': {
+                    'red': { '50': '#ff0000' }
+                }
+            }
+        })
+})
+
+it('read module with third-party deps', () => {
     expect(
         crossImport(path.resolve(__dirname, 'external.ts')).default
     )

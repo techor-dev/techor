@@ -135,6 +135,10 @@ importers:
       sucrase:
         specifier: ^3.35.0
         version: 3.35.0
+    devDependencies:
+      pretty-bytes:
+        specifier: ^6.1.0
+        version: 6.1.1
 
   packages/eslint-config:
     dependencies:
@@ -5967,7 +5971,6 @@ packages:
   /pretty-bytes@6.1.1:
     resolution: {integrity: sha512-mQUvGU6aUFQ+rNvTIAcZuWGRT9a6f6Yrg9bHs4ImKF+HZCEK+plBvnAZYSIQztknZF2qnzNtr6F8s0+IuptdlQ==}
     engines: {node: ^14.13.1 || >=16.0.0}
-    dev: false
 
   /pretty-format@27.5.1:
     resolution: {integrity: sha512-Qb1gy5OrP5+zDf2Bvnzdl3jsTf1qXVMazbvCoKhtKqVs4/YK4ozX4gKQJJVyNe+cajNPn0KoC0MC3FUmaHWEmQ==}
