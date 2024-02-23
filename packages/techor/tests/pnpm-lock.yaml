@@ -40,14 +40,14 @@ importers:
     dependencies:
       '@techor/extend':
         specifier: ''
-        version: 2.5.2
+        version: 3.0.10
       '@techor/log':
         specifier: ''
-        version: 2.5.2
+        version: 3.0.10
     devDependencies:
       '@techor/is-plain-obj':
         specifier: ''
-        version: 2.4.6
+        version: 3.0.10
 
   global:
     dependencies:
@@ -86,19 +86,22 @@ importers:
 
   standard:
     dependencies:
+      '@techor/extend':
+        specifier: ''
+        version: 3.0.10
       '@techor/log':
         specifier: ''
-        version: 2.5.2
+        version: 3.0.10
     devDependencies:
       '@techor/is-plain-obj':
         specifier: ''
-        version: 2.4.6
+        version: 3.0.10
       '@test/dev-dependency':
         specifier: ''
         version: link:../dev-dependency
       pretty-bytes:
         specifier: ^6.1.0
-        version: 6.1.0
+        version: 6.1.1
       typescript:
         specifier: ^4.9.5
         version: 4.9.5
@@ -107,16 +110,16 @@ importers:
 
 packages:
 
-  /@techor/extend@2.5.2:
-    resolution: {integrity: sha512-bkURmXV0smnjQKSApCJb2PUCbWPjblD7v5jtJJERqyC6Soq+9K3iQjIzB1kuumYE5Kr/+hIxJXyb+y+7gnoKsg==}
+  /@techor/extend@3.0.10:
+    resolution: {integrity: sha512-8psJSywby7aHLVsG7rPiXe/Sc83uq/M8HwpXFLeah+DvAtcKo2tRsdYcAPuZG8hwGcrfCklSVhzO92SZlHW3bQ==}
     dev: false
 
-  /@techor/is-plain-obj@2.4.6:
-    resolution: {integrity: sha512-afzw1nxYls519eprjEK4tmLzQvO1waTAZ7RxzuKMG2n0s65z3gs+72wtYXlZINSGyXVDMBJvqxKHP/+B+faVOA==}
+  /@techor/is-plain-obj@3.0.10:
+    resolution: {integrity: sha512-Fvxccj6Z9O32zs4AkcSjgZCHFbN7eXE9QvVhV6SJqDHMCqMOBMpMUSL/44gpb0wGiqllFExQAhrEdXLJC39roQ==}
     dev: true
 
-  /@techor/log@2.5.2:
-    resolution: {integrity: sha512-EVqfYIfCkpR1CgJOmYySMtUF4uBAaAhdqMEBFK9g9kTaspZX9lCxvQq8En2GgfpFGi6f4U1JgrxVk4mBV1gGcg==}
+  /@techor/log@3.0.10:
+    resolution: {integrity: sha512-9vBoG8kyw9fptnoyNPvRRZ0896wdP6f9Ryl/4tMVKVFEw23jaT5VBL8NIUdFlEZzapw+ClAJ3awmDTK+ilfU4w==}
     dev: false
 
   /@types/prop-types@15.7.11:
@@ -236,8 +239,8 @@ packages:
       strip-ansi: 7.1.0
     dev: false
 
-  /pretty-bytes@6.1.0:
-    resolution: {integrity: sha512-Rk753HI8f4uivXi4ZCIYdhmG1V+WKzvRMg/X+M42a6t7D07RcmopXJMDNk6N++7Bl75URRGsb40ruvg7Hcp2wQ==}
+  /pretty-bytes@6.1.1:
+    resolution: {integrity: sha512-mQUvGU6aUFQ+rNvTIAcZuWGRT9a6f6Yrg9bHs4ImKF+HZCEK+plBvnAZYSIQztknZF2qnzNtr6F8s0+IuptdlQ==}
     engines: {node: ^14.13.1 || >=16.0.0}
     dev: true
 
