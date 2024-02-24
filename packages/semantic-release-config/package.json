@@ -36,8 +36,7 @@
     "files": [
         "configure.js",
         "rules.js",
-        "release.config.js",
-        "release.config.mjs"
+        "release.config.js"
     ],
     "dependencies": {
         "@techor/extend": "workspace:^",
