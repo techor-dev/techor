@@ -51,10 +51,6 @@
         "@rollup/plugin-swc": "^0.3.0",
         "@rollup/plugin-typescript": "^11.1.6",
         "@rollup/pluginutils": "^5.1.0",
-        "cross-env": "^7.0.3",
-        "turbo": "^1.11.2"
-    },
-    "resolutions": {
-        "@semantic-release/commit-analyzer": "11.0.0"
+        "cross-env": "^7.0.3"
     }
 }
