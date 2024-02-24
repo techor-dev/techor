@@ -37,5 +37,8 @@
     "dependencies": {
         "@typescript-eslint/eslint-plugin": "",
         "@typescript-eslint/parser": ""
+    },
+    "peerDependencies": {
+        "eslint": "*"
     }
 }
