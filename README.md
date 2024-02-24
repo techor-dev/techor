@@ -11,11 +11,11 @@
 <p align="center">A monorepo ecosystem integrating first-class packages and build systems</p>
 
 <p align="center">
-    <a aria-label="GitHub release (latest by date including pre-releases)" href="https://github.com/1aron/techor/releases">
+    <a aria-label="GitHub release (latest by date including pre-releases)" href="https://github.com/techor-dev/techor/releases">
         <picture>
-            <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/github/v/release/1aron/techor?include_prereleases&color=212022&label=&style=for-the-badge&logo=github&logoColor=fff">
-            <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/github/v/release/1aron/techor?include_prereleases&color=f6f7f8&label=&style=for-the-badge&logo=github&logoColor=%23000">
-            <img alt="NPM Version" src="https://img.shields.io/github/v/release/1aron/techor?include_prereleases&color=f6f7f8&label=&style=for-the-badge&logo=github">
+            <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/github/v/release/techor-dev/techor?include_prereleases&color=212022&label=&style=for-the-badge&logo=github&logoColor=fff">
+            <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/github/v/release/techor-dev/techor?include_prereleases&color=f6f7f8&label=&style=for-the-badge&logo=github&logoColor=%23000">
+            <img alt="NPM Version" src="https://img.shields.io/github/v/release/techor-dev/techor?include_prereleases&color=f6f7f8&label=&style=for-the-badge&logo=github">
         </picture>
     </a>
     <a aria-label="NPM Package" href="https://www.npmjs.com/package/techor">
@@ -32,11 +32,11 @@
             <img alt="Follow @mastercorg" src="https://img.shields.io/static/v1?label=%20&message=twitter&color=f6f7f8&logo=twitter&style=for-the-badge">
         </picture>
     </a>
-    <a aria-label="Github Actions" href="https://github.com/1aron/techor/actions/workflows/release.yml">
+    <a aria-label="Github Actions" href="https://github.com/techor-dev/techor/actions/workflows/release.yml">
         <picture>
-            <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/github/actions/workflow/status/1aron/techor/release.yml?branch=beta&label=%20&message=twitter&color=212022&logo=githubactions&style=for-the-badge">
-            <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/github/actions/workflow/status/1aron/techor/release.yml?branch=beta&label=%20&message=twitter&color=f6f7f8&logo=githubactions&style=for-the-badge&logoColor=%23000">
-            <img alt="Github release actions" src="https://img.shields.io/github/actions/workflow/status/1aron/techor/release.yml?branch=beta&label=%20&message=twitter&color=f6f7f8&logo=githubactions&style=for-the-badge&logoColor=%23000">
+            <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/github/actions/workflow/status/techor-dev/techor/release.yml?branch=beta&label=%20&message=twitter&color=212022&logo=githubactions&style=for-the-badge">
+            <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/github/actions/workflow/status/techor-dev/techor/release.yml?branch=beta&label=%20&message=twitter&color=f6f7f8&logo=githubactions&style=for-the-badge&logoColor=%23000">
+            <img alt="Github release actions" src="https://img.shields.io/github/actions/workflow/status/techor-dev/techor/release.yml?branch=beta&label=%20&message=twitter&color=f6f7f8&logo=githubactions&style=for-the-badge&logoColor=%23000">
         </picture>
     </a>
 </p>
@@ -46,40 +46,40 @@
 ## Ecosystem
 
 ##### Build System
-- [techor](https://github.com/1aron/techor/tree/main/packages/techor) - A monorepo build system and workflow
+- [techor](https://github.com/techor-dev/techor/tree/main/packages/techor) - A monorepo build system and workflow
 
 ##### Convention
-- [techor-conventional-commits](https://github.com/1aron/techor/tree/main/packages/conventional-commits) - A human-readable set of conventional commits, with version rules and changelog groupings
-- [conventional-changelog-techor](https://github.com/1aron/techor/tree/main/packages/conventional-changelog-config) - Beautiful changelog based on Techor's conventional commits
+- [techor-conventional-commits](https://github.com/techor-dev/techor/tree/main/packages/conventional-commits) - A human-readable set of conventional commits, with version rules and changelog groupings
+- [conventional-changelog-techor](https://github.com/techor-dev/techor/tree/main/packages/conventional-changelog-config) - Beautiful changelog based on Techor's conventional commits
 
 ##### Release
-- [semantic-release-config-techor](https://github.com/1aron/techor/tree/main/packages/semantic-release-config) - Techor's semantic release config for publishing workspace packages
+- [semantic-release-config-techor](https://github.com/techor-dev/techor/tree/main/packages/semantic-release-config) - Techor's semantic release config for publishing workspace packages
 
 ##### Packing
-- [pack](https://github.com/1aron/techor/tree/main/packages/techor/pack.md) - Bundling your TypeScript and CSS packages with zero configuration
+- [pack](https://github.com/techor-dev/techor/tree/main/packages/techor/pack.md) - Bundling your TypeScript and CSS packages with zero configuration
 
 ##### Versioning
-- [version](https://github.com/1aron/techor/tree/main/packages/techor/version.md) - Smartly bump all workspace-dependent packages to specific versions
+- [version](https://github.com/techor-dev/techor/tree/main/packages/techor/version.md) - Smartly bump all workspace-dependent packages to specific versions
 
 ##### Linting
-- [eslint-config-techor](https://github.com/1aron/techor/tree/main/packages/eslint-config) - Techor's eslint config
-- [commitlint-config-techor](https://github.com/1aron/techor/tree/main/packages/commitlint-config) - Check your commits with Techor's commitlint config
+- [eslint-config-techor](https://github.com/techor-dev/techor/tree/main/packages/eslint-config) - Techor's eslint config
+- [commitlint-config-techor](https://github.com/techor-dev/techor/tree/main/packages/commitlint-config) - Check your commits with Techor's commitlint config
 
 ##### Testing
-- [jest](https://github.com/1aron/techor/tree/main/packages/jest) - Techor's jest preset to improve performance
-- [jest-dom](https://github.com/1aron/techor/tree/main/packages/jest-dom) - Techor's jest preset for DOM
+- [jest](https://github.com/techor-dev/techor/tree/main/packages/jest) - Techor's jest preset to improve performance
+- [jest-dom](https://github.com/techor-dev/techor/tree/main/packages/jest-dom) - Techor's jest preset for DOM
 
 ##### Continuous Integration
-- [techor-github-actions](https://github.com/1aron/techor/tree/main/packages/github-actions) - A set of GitHub Actions for techor ecosystem includes PR title checks
+- [techor-github-actions](https://github.com/techor-dev/techor/tree/main/packages/github-actions) - A set of GitHub Actions for techor ecosystem includes PR title checks
 
 ##### Utilities
-- [extend](https://github.com/1aron/techor/tree/main/packages/extend) — Deeply extend objects ~380B
-- [a plain obj](https://github.com/1aron/techor/tree/main/packages/is-plain-obj) — Is it a plain object? ~100B
-- [cross import](https://github.com/1aron/techor/tree/main/packages/cross-import) — Import .ts, .mjs, .cjs files across environments as JavaScript modules
-- [explore config](https://github.com/1aron/techor/tree/main/packages/explore-config) — Explore multi-format JavaScript module configuration
-- [fs](https://github.com/1aron/techor/tree/main/packages/fs) — A human-friendly file system with glob patterns
-- [glob](https://github.com/1aron/techor/tree/main/packages/glob) — A human-friendly set of glob utilities
-- [npm](https://github.com/1aron/techor/tree/main/packages/npm) — Get, query, and read such as package workspaces via NPM/PNPM.
+- [extend](https://github.com/techor-dev/techor/tree/main/packages/extend) — Deeply extend objects ~380B
+- [a plain obj](https://github.com/techor-dev/techor/tree/main/packages/is-plain-obj) — Is it a plain object? ~100B
+- [cross import](https://github.com/techor-dev/techor/tree/main/packages/cross-import) — Import .ts, .mjs, .cjs files across environments as JavaScript modules
+- [explore config](https://github.com/techor-dev/techor/tree/main/packages/explore-config) — Explore multi-format JavaScript module configuration
+- [fs](https://github.com/techor-dev/techor/tree/main/packages/fs) — A human-friendly file system with glob patterns
+- [glob](https://github.com/techor-dev/techor/tree/main/packages/glob) — A human-friendly set of glob utilities
+- [npm](https://github.com/techor-dev/techor/tree/main/packages/npm) — Get, query, and read such as package workspaces via NPM/PNPM.
 
 ## Built on the top
 - [turborepo](https://turbo.build/repo) - A high-performance build system for monorepo
@@ -97,4 +97,4 @@
 - [Master CSS](https://css.master.co/) - A Virtual CSS language with enhanced syntax
 
 ## Contributing
-Please see the documentation [CONTRIBUTING](https://github.com/1aron/techor/blob/beta/.github/CONTRIBUTING.md) for workflow.
+Please see the documentation [CONTRIBUTING](https://github.com/techor-dev/techor/blob/beta/.github/CONTRIBUTING.md) for workflow.

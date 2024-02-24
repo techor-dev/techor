@@ -19,7 +19,7 @@ pnpm run test
 ```
 
 ## Linting
-Follow the [Techor's ESLint Preset](https://github.com/1aron/techor/tree/beta/packages/eslint-config)
+Follow the [Techor's ESLint Preset](https://github.com/techor-dev/techor/tree/beta/packages/eslint-config)
 ```bash
 pnpm run lint
 ```
@@ -35,7 +35,7 @@ pnpm run type-check
 ```
 
 ## Commit Checking
-Follow the [Techor's Conventional Commits](https://github.com/1aron/techor/tree/beta/packages/conventional-commits)
+Follow the [Techor's Conventional Commits](https://github.com/techor-dev/techor/tree/beta/packages/conventional-commits)
 ```bash
 pnpm run commit-check
 ```

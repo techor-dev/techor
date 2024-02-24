@@ -16,7 +16,7 @@ jobs:
                 node-version: [20]
         steps:
             - name: Techor Actions
-              uses: 1aron/techor@v2.5.3
+              uses: techor-dev/techor@v2.5.3
               with:
                   action: "check-pull-request-title"
               env:

@@ -20,7 +20,7 @@ inputs:
     pr-title-check-detail-url:
         description: URL to be used when linking the "Details" in the actions overview.
         required: false
-        default: https://github.com/1aron/techor/tree/main/packages/conventional-commits
+        default: https://github.com/techor-dev/techor/tree/main/packages/conventional-commits
 runs:
     using: docker
     image: .github/actions/Dockerfile

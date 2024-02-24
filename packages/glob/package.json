@@ -19,11 +19,11 @@
     },
     "homepage": "https://aron.tw",
     "bugs": {
-        "url": "https://github.com/1aron/techor/issues"
+        "url": "https://github.com/techor-dev/techor/issues"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/1aron/techor.git",
+        "url": "https://github.com/techor-dev/techor.git",
         "directory": "packages/@techor/glob"
     },
     "keywords": [

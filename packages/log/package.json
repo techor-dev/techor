@@ -17,13 +17,13 @@
         "email": "i@aron.tw",
         "url": "https://aron.tw"
     },
-    "homepage": "https://github.com/1aron/techor",
+    "homepage": "https://github.com/techor-dev/techor",
     "bugs": {
-        "url": "https://github.com/1aron/techor/issues"
+        "url": "https://github.com/techor-dev/techor/issues"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/1aron/techor.git",
+        "url": "https://github.com/techor-dev/techor.git",
         "directory": "packages/log"
     },
     "keywords": [

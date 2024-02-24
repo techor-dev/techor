@@ -10,7 +10,7 @@ module.exports = async function validateTitle(title) {
     if (!result.type) {
         throw new Error(
             `No release type found in pull request title "${title}".` +
-            '\n\nAdd a prefix like "Fix: ", "Feat: " to indicate what kind of release this pull request corresponds to. The title should match the commit mesage format as specified by https://github.com/1aron/techor/tree/main/packages/conventional-commits.'
+            '\n\nAdd a prefix like "Fix: ", "Feat: " to indicate what kind of release this pull request corresponds to. The title should match the commit mesage format as specified by https://github.com/techor-dev/techor/tree/main/packages/conventional-commits.'
         )
     }
 
