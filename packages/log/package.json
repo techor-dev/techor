@@ -48,7 +48,8 @@
     ],
     "sideEffects": false,
     "publishConfig": {
-        "access": "public"
+        "access": "public",
+        "provenance": true
     },
     "devDependencies": {
         "chalk": "^5.2.0",

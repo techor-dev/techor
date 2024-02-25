@@ -38,7 +38,8 @@
     ],
     "sideEffects": false,
     "publishConfig": {
-        "access": "public"
+        "access": "public",
+        "provenance": true
     },
     "main": "./dist/index.cjs",
     "esnext": "./dist/index.mjs",

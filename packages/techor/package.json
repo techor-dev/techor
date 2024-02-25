@@ -62,7 +62,8 @@
     ],
     "sideEffects": false,
     "publishConfig": {
-        "access": "public"
+        "access": "public",
+        "provenance": true
     },
     "dependencies": {
         "@rollup/plugin-commonjs": "^25.0.7",

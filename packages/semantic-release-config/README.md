@@ -67,7 +67,8 @@ You can also install this package only on CI.
 ```json
 {
     "publishConfig": {
-        "access": "public"
+        "access": "public",
+        "provenance": true
     },
     "resolutions": {
         "@semantic-release/commit-analyzer": "11.0.0"
