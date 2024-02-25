@@ -5,6 +5,6 @@ it('only publishs the public packages', () => {
     const config: any = configure()
     expect(config.plugins.filter((eachPlugin) => eachPlugin[0] === '@semantic-release/npm'))
         .toEqual([
-            ["@semantic-release/npm", { "pkgRoot": "public" }]
+            ['@semantic-release/npm', { 'pkgRoot': 'public' }]
         ])
 })
