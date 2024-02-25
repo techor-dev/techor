@@ -11,18 +11,10 @@ const defaultConfig = {
         'main',
         'next',
         'next-major',
-        {
-            name: 'alpha',
-            prerelease: true
-        },
-        {
-            name: 'beta',
-            prerelease: true
-        },
-        {
-            name: 'rc',
-            prerelease: true
-        }
+        { name: 'alpha', prerelease: true },
+        { name: 'beta', prerelease: true },
+        { name: 'rc', prerelease: true },
+        { name: 'canary', prerelease: true }
     ],
     plugins: {
         '@semantic-release/commit-analyzer': { preset: 'techor', releaseRules },
