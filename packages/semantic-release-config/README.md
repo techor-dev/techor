@@ -62,16 +62,13 @@ npm install semantic-release-config-techor -D
 You can also install this package only on CI.
 
 ### Set up your package.json
-- Add the `publishConfig`
-- Add the `resolutions` to fix [Cannot find module 'conventional-changelog-*' #589](https://github.com/semantic-release/commit-analyzer/issues/589)
+- Add `publishConfig.access`
+- Add `publishConfig.provenance`: https://www.npmjs.com/package/@semantic-release/npm#npm-provenance
 ```json
 {
     "publishConfig": {
         "access": "public",
         "provenance": true
-    },
-    "resolutions": {
-        "@semantic-release/commit-analyzer": "11.0.0"
     }
 }
 ```
