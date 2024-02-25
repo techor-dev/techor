@@ -58,6 +58,7 @@ const config: Config = {
             '.mjs': 'esm'
         },
         sourceExtensions: ['js', 'jsx', 'ts', 'tsx', 'cjs', 'cts', 'mjs', 'mts'],
+        tsconfig: 'tsconfig.prod.json'
     },
     version: {
         operator: '^'
@@ -78,6 +79,7 @@ export interface BuildCommonOptions {
     minify?: boolean
     declare?: boolean
     external?: string[]
+    tsconfig?: string
     formats?: RollupOutputOptions['format'][]
 }
 

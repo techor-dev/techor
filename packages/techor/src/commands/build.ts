@@ -137,7 +137,8 @@ export default async function build() {
                 } as RollupInputOptions, config.build.input)
                 buildOptions.input.input = entries
                 buildOptions.input.external = (config.build.input.external && !forceBundle) && getWideExternal(config.build.input.external)
-                const extendedSWCOptions: Config['build']['swc'] = extend(config.build.swc)
+                const extendedSWCOptions: Config['build']['swc'] = extend(
+                    config.build.swc, { tsconfigFile: config.build.tsconfig } as Config['build']['swc'])
                 if (extendedBuild.minify) {
                     extendedSWCOptions.minify = true
 
@@ -357,7 +358,7 @@ export default async function build() {
                 config.build.declare && new Promise<void>((resolve) => {
                     execaCommand(clsx(
                         'npx tsc --emitDeclarationOnly --preserveWatchOutput --declaration',
-                        config.build.output.dir && '--outDir ' + config.build.output.dir,
+                        config.build.output.dir && ' --project ' + config.build.tsconfig,
                         config.build.watch && '--watch'
                     ), {
                         stdio: 'inherit',
