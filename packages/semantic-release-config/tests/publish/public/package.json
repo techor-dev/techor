@@ -1,6 +1,7 @@
 {
     "name": "@tests/semantic-release-config-public",
     "publishConfig": {
-        "access": "public"
+        "access": "public",
+        "provenance": true
     }
 }
