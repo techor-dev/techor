@@ -1,6 +1,5 @@
 import type { Plugin } from 'rollup'
-// @ts-expect-error Cannot find module 'load-tsconfig' or its corresponding type declarations.ts(2307)
-import { loadTsConfig } from 'load-tsconfig'
+import { getTsconfig } from 'get-tsconfig'
 import { Options as SWCOptions, transform } from '@swc/core'
 import extend from '@techor/extend'
 import { FilterPattern, createFilter } from '@rollup/pluginutils'
@@ -13,7 +12,7 @@ export type Options = SWCOptions & {
 
 export default function swc({ tsconfigFile, include, exclude, minify, ...options }: Options = {}): Plugin {
     const filter = createFilter(include, exclude)
-    const compilerOptions = tsconfigFile === false ? {} : loadTsConfig('.', tsconfigFile === true ? undefined : tsconfigFile)?.data?.compilerOptions || {}
+    const compilerOptions = tsconfigFile === false ? {} : getTsconfig('.', tsconfigFile === true ? undefined : tsconfigFile)?.config?.compilerOptions || {}
     let swcOptions = {
         jsc: {
             target: compilerOptions.target,
