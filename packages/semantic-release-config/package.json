@@ -31,6 +31,16 @@
             "require": "./dist/index.cjs",
             "import": "./dist/index.mjs",
             "types": "./dist/index.d.ts"
+        },
+        "./configure": {
+            "require": "./dist/configure.cjs",
+            "import": "./dist/configure.mjs",
+            "types": "./dist/configure.d.ts"
+        },
+        "./rules": {
+            "require": "./dist/rules.cjs",
+            "import": "./dist/rules.mjs",
+            "types": "./dist/rules.d.ts"
         }
     },
     "publishConfig": {
