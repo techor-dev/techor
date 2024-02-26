@@ -1,8 +1,14 @@
 {
     "name": "semantic-release-config-techor",
+    "type": "module",
     "scripts": {
+        "build:main": "rollup --config rollup.config.mjs",
+        "build:type": "tsc --emitDeclarationOnly --preserveWatchOutput",
+        "build": "pnpm run \"/^build:.*/\"",
+        "dev": "pnpm run \"/^build:.*/\" --watch",
         "test": "jest",
-        "lint": "eslint"
+        "type-check": "tsc --noEmit",
+        "lint": "eslint src"
     },
     "license": "MIT",
     "description": "Techor's semantic release config for publishing workspace packages",
@@ -14,6 +20,18 @@
     "homepage": "https://aron.tw",
     "bugs": {
         "url": "https://github.com/techor-dev/techor/issues"
+    },
+    "sideEffects": false,
+    "main": "./dist/index.cjs",
+    "esnext": "./dist/index.mjs",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "require": "./dist/index.cjs",
+            "import": "./dist/index.mjs",
+            "types": "./dist/index.d.ts"
+        }
     },
     "publishConfig": {
         "access": "public",
@@ -33,7 +51,6 @@
         "techor",
         "preset"
     ],
-    "main": "release.config.js",
     "files": [
         "configure.js",
         "rules.js",

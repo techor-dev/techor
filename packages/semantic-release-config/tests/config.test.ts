@@ -1,6 +1,6 @@
-import configure from '../configure'
-import releaseRules from '../rules'
-import defaultConfig from '../config'
+import configure from '../src/configure'
+import releaseRules from '../src/rules'
+import defaultConfig from '../src/config'
 
 test('Customize config and extend default', () => {
     expect(configure()).toEqual({

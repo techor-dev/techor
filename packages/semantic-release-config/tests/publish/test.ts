@@ -1,4 +1,4 @@
-import configure from '../../configure'
+import configure from '../../src/configure'
 
 it('only publishs the public packages', () => {
     process.chdir(__dirname)

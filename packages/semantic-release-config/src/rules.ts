@@ -1,6 +1,6 @@
-const { commits } = require('techor-conventional-commits')
+import { commits } from 'techor-conventional-commits'
 
-module.exports = [
+export default [
     { breaking: true, release: 'major' },
     { revert: true, release: 'patch' },
     ...JSON.parse(JSON.stringify(commits))
