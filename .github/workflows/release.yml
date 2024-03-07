@@ -39,14 +39,3 @@ jobs:
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-            - name: Publish to Marketplace
-              uses: peter-evans/create-pull-request@v3
-              with:
-                token: ${{ secrets.GITHUB_TOKEN }}
-                commit-message: Publish action to Marketplace
-                title: Publish action to Marketplace
-                body: |
-                    Automatically published action to Marketplace.
-                branch: publish-action
-                branch-suffix: timestamp
