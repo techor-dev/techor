@@ -1,3 +1,3 @@
-import fs from 'fs'
+import MasterCSS from '@master/css'
 
-export default fs
+export default MasterCSS

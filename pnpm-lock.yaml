@@ -130,6 +130,9 @@ importers:
         specifier: ^3.35.0
         version: 3.35.0
     devDependencies:
+      '@master/css':
+        specifier: 2.0.0-rc.24
+        version: 2.0.0-rc.24
       pretty-bytes:
         specifier: ^6.1.0
         version: 6.1.1
@@ -1466,6 +1469,23 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: false
 
+  /@master/colors@2.0.0-rc.2:
+    resolution: {integrity: sha512-0vbicbXvHvO7spAvEL4AMAvL+CUr6NTaufng8Oglh+ISsgtXfhkB82n3mS6kNgmwzgf8bOKMkNJRIDotjSMoqg==}
+    dev: true
+
+  /@master/css@2.0.0-rc.24:
+    resolution: {integrity: sha512-whrgo1x1Yhw39CagySPOfSVHLglxaGguSeVCUgTqvw6DH3J0UNpPaMsu7hnhZHnVrrJ9g4rkucFt95w2OdZ6hQ==}
+    hasBin: true
+    dependencies:
+      '@master/colors': 2.0.0-rc.2
+      '@master/normal.css': 2.0.0
+      '@techor/extend': 3.0.17
+    dev: true
+
+  /@master/normal.css@2.0.0:
+    resolution: {integrity: sha512-zXvZwFTP9gvinLH06ElOlcPJRm7cgFVVxoL/uzFb5qiiXZq1TgsjYS57dEHoPirCWZnk987Xwvi9GQJ4AAgzxA==}
+    dev: true
+
   /@nodelib/fs.scandir@2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
@@ -2079,6 +2099,10 @@ packages:
   /@swc/types@0.1.5:
     resolution: {integrity: sha512-myfUej5naTBWnqOCc/MdVOLVjXUXtIA+NpDrDBKJtLLg2shUjBu3cZmB/85RyitKc55+lUUyl7oRfLOvkr2hsw==}
     dev: false
+
+  /@techor/extend@3.0.17:
+    resolution: {integrity: sha512-i/QXjTDpsKRv/FsYXDbB41BfbKEw1DESHY3NVzRyvZgBmMavqbP+Gw87UahHMH/z6eju1zv6WJ1nPJMRvTU8yQ==}
+    dev: true
 
   /@tootallnate/once@2.0.0:
     resolution: {integrity: sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==}

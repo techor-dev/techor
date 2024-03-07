@@ -1,6 +1,6 @@
 import crossImport from '../dist/index.mjs'
 import fs from 'fs'
-import path from 'path'
+import path, { resolve } from 'path'
 import { fileURLToPath } from 'url'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -15,6 +15,11 @@ fs.writeFileSync(configPath, 'module.exports = { a: 0 }')
 const module1 = crossImport(configPath)
 if (module1.a !== 0) {
     throw new Error(`crossImport(${module1}) module1.a !== 0`)
+}
+
+const externalModule = crossImport(resolve(__dirname, 'external.ts'))
+if (!externalModule.default) {
+    throw new Error(`crossImport(${module1}) external is not defined`)
 }
 
 // fs.writeFileSync(configPath, 'module.exports = { b: 0 }')

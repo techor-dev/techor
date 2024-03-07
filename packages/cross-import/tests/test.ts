@@ -38,13 +38,6 @@ it('read module with export .css.ts', () => {
         })
 })
 
-it('read module with third-party deps', () => {
-    expect(
-        crossImport(path.resolve(__dirname, 'external.ts')).default
-    )
-        .toBeDefined()
-})
-
 it('read non-existent file', () => {
     expect(() => {
         crossImport(path.resolve(__dirname, 'idontexist.ts'))

@@ -1,5 +1,5 @@
 import { transform } from 'sucrase'
-import { Module, createRequire } from 'module'
+import { Module } from 'module'
 import { readFileSync } from 'fs'
 import { runInThisContext } from 'vm'
 import { dirname } from 'path'
@@ -26,7 +26,7 @@ export default function crossImport(modulePath: string): any {
         })
         const mod = new Module(__filename)
         mod.filename = __dirname
-        mod.require = createRequire(__filename)
+        mod.require = require
         mod.path = dirname(__filename)
         // Compile wrapped script
         const compiledModule = runInThisContext(Module.wrap(moduleCode), {
