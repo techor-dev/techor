@@ -126,6 +126,9 @@ importers:
 
   packages/cross-import:
     dependencies:
+      jiti:
+        specifier: ^1.21.0
+        version: 1.21.0
       sucrase:
         specifier: ^3.35.0
         version: 3.35.0

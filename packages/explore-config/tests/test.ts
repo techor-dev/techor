@@ -3,13 +3,13 @@ import exploreConfig from '../src'
 it('read .js config', () => {
     const config = exploreConfig('../fixtures/master.css', { cwd: __dirname, extensions: ['js'] })
     expect(config).toEqual({
-        // extends: [
-        //     {
-        //         styles: {
-        //             card: 'inline-flex'
-        //         }
-        //     }
-        // ],
+        extends: [
+            {
+                styles: {
+                    card: 'inline-flex'
+                }
+            }
+        ],
         colors: { primary: '#ff0' }
     })
 })
@@ -17,13 +17,13 @@ it('read .js config', () => {
 it('read .ts config', () => {
     const config = exploreConfig('../fixtures/master.css', { cwd: __dirname, extensions: ['ts'] })
     expect(config).toEqual({
-        // extends: [
-        //     {
-        //         styles: {
-        //             card: 'inline-flex'
-        //         }
-        //     }
-        // ],
+        extends: [
+            {
+                styles: {
+                    card: 'inline-flex'
+                }
+            }
+        ],
         colors: { primary: '#ff0' }
     })
 })
@@ -31,13 +31,13 @@ it('read .ts config', () => {
 it('read .mjs config', () => {
     const config = exploreConfig('../fixtures/master.css', { cwd: __dirname, extensions: ['mjs'] })
     expect(config).toEqual({
-        // extends: [
-        //     {
-        //         styles: {
-        //             card: 'inline-flex'
-        //         }
-        //     }
-        // ],
+        extends: [
+            {
+                styles: {
+                    card: 'inline-flex'
+                }
+            }
+        ],
         colors: { primary: '#ff0' }
     })
 })
