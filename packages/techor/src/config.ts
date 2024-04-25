@@ -22,7 +22,8 @@ const config: Config = {
         },
         nodeResolve: {
             extensions: ['.ts', '.tsx', '.mjs', '.cjs', '.js', '.jsx', '.json'],
-            exportConditions: ['node', 'import', 'require', 'default']
+            exportConditions: ['node', 'import', 'require', 'default'],
+            preferBuiltins: true
         },
         commonjs: { extensions: ['.js', '.ts'] },
         swc: {
