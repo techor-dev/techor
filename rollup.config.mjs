@@ -66,26 +66,30 @@ const DEFAULT_EXTENSIONS = [
     '.json',
 ]
 
-/** @type {import('rollup').RollupOptions} */
-export default {
-    input: 'src/index.ts',
-    output: [
-        { file: 'dist/index.cjs', format: 'cjs' },
-        { file: 'dist/index.mjs', format: 'esm' }
-    ],
-    plugins: [
-        swc(),
-        commonjs({ extensions: ['.js', '.ts'] }),
-        nodeResolve({
-            extensions: DEFAULT_EXTENSIONS,
-            exportConditions: ['node', 'import', 'require', 'default']
-        }),
-        esmShim(),
-        raw('**/*.hbs')
-    ],
-    external: [
-        ...Object.keys(pkg.dependencies || {}),
-        ...Object.keys(pkg.peerDependencies || {}),
-        ...Object.keys(pkg.optionalDependencies || {})
-    ]
+export default function defineConfig(options = {}) {
+    return {
+        input: 'src/index.ts',
+        output: [
+            { file: 'dist/index.cjs', format: 'cjs' },
+            { file: 'dist/index.mjs', format: 'esm' }
+        ],
+        plugins: [
+            swc(),
+            commonjs({
+                extensions: ['.js', '.ts'],
+                ...options.commonjs
+            }),
+            nodeResolve({
+                extensions: DEFAULT_EXTENSIONS,
+                exportConditions: ['node', 'import', 'require', 'default']
+            }),
+            esmShim(),
+            raw('**/*.hbs')
+        ],
+        external: [
+            ...Object.keys(pkg.dependencies || {}),
+            ...Object.keys(pkg.peerDependencies || {}),
+            ...Object.keys(pkg.optionalDependencies || {})
+        ]
+    }
 }

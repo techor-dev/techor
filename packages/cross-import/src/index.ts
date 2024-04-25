@@ -1,8 +1,8 @@
-import { transform } from 'sucrase'
-import { Module } from 'module'
+import { Transform, transform } from 'sucrase'
+import { Module, createRequire } from 'module'
 import { readFileSync } from 'fs'
 import { runInThisContext } from 'vm'
-import { dirname } from 'path'
+import { dirname, join, parse } from 'path'
 
 export default function crossImport(modulePath: string): any {
     if (!modulePath) return
@@ -21,20 +21,27 @@ export default function crossImport(modulePath: string): any {
             console.error(error)
             console.log('[cross-import] fall back to sucrase runtime transform:', modulePath)
         }
-        const { code: moduleCode } = transform(readFileSync(modulePath, 'utf8').toString(), {
-            transforms: ['imports', 'typescript'],
+        const parsedModulePath = parse(modulePath)
+        const sourceCode = readFileSync(modulePath, 'utf8').toString()
+        const transforms: Transform[] = ['imports']
+        if (parsedModulePath.ext === '.ts') {
+            transforms.unshift('typescript')
+        }
+        const { code: moduleCode } = transform(sourceCode, {
+            transforms,
+            filePath: modulePath
         })
-        const mod = new Module(__filename)
-        mod.filename = __dirname
-        mod.require = require
-        mod.path = dirname(__filename)
+        const filename = join(parsedModulePath.dir, parsedModulePath.name + '.js')
+        const mod = new Module(filename, module)
+        mod.filename = filename
+        mod.path = dirname(filename)
+        mod.require = createRequire(filename)
         // Compile wrapped script
         const compiledModule = runInThisContext(Module.wrap(moduleCode), {
-            filename: __filename,
-            lineOffset: 0,
-            displayErrors: false,
+            filename
         })
         compiledModule(mod.exports, mod.require, mod, mod.filename, dirname(mod.filename))
+        mod.loaded = true
         return mod.exports
     }
 }

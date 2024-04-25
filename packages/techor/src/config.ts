@@ -68,8 +68,8 @@ const config: Config = {
 export default config
 
 export interface Config {
-    build: BuildOptions
-    version: VersionOptions
+    build?: BuildOptions
+    version?: VersionOptions
 }
 
 export interface BuildCommonOptions {

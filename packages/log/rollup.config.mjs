@@ -1,6 +1,6 @@
-import commonOptions from '../../rollup.config.mjs'
+import createConfig from '../../rollup.config.mjs'
 
 /** @type {import('rollup').RollupOptions} */
 export default {
-    ...commonOptions
+    ...createConfig()
 }
