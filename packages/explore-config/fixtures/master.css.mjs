@@ -1,9 +1,9 @@
-// import card from './card.css.mjs'
+import card from './card.css.mjs'
 
 export default {
-    // extends: [
-    //     card
-    // ],
+    extends: [
+        card
+    ],
     colors: {
         primary: '#ff0'
     }
