@@ -63,7 +63,6 @@
         "sucrase": "^3.35.0"
     },
     "devDependencies": {
-        "@master/css": "2.0.0-rc.24",
-        "nanoid": "^5.0.7"
+        "@master/css": "2.0.0-rc.24"
     }
 }

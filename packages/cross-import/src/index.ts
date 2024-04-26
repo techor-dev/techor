@@ -1,5 +1,5 @@
 import { transform } from 'sucrase'
-import jiti from 'jiti/dist/jiti'
+import jiti from 'jiti'
 
 export default function crossImport(modulePath: string): any {
     if (!modulePath) return
@@ -27,6 +27,7 @@ export default function crossImport(modulePath: string): any {
             transform: (options) => {
                 return transform(options.source, {
                     transforms: ['imports', 'typescript'],
+                    filePath: options.filename
                 })
             }
         })(modulePath)
