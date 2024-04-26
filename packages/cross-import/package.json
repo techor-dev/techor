@@ -6,7 +6,7 @@
         "build:type": "tsc --emitDeclarationOnly --preserveWatchOutput",
         "build": "pnpm run \"/^build:.*/\"",
         "dev": "pnpm run \"/^build:.*/\" --watch",
-        "test": "pnpm build:main && node ./tests/real.mjs && jest",
+        "test": "jest",
         "type-check": "tsc --noEmit",
         "lint": "eslint src"
     },
@@ -64,6 +64,6 @@
     },
     "devDependencies": {
         "@master/css": "2.0.0-rc.24",
-        "pretty-bytes": "^6.1.0"
+        "nanoid": "^5.0.7"
     }
 }

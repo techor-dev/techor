@@ -1,13 +1,13 @@
 import crossImport from '../src'
-import fs from 'fs'
 import path from 'path'
-import prettyBytes from 'pretty-bytes'
+import { nanoid } from 'nanoid'
+import { writeFileSync } from 'fs'
 
 it('import .ts in .js', () => {
     expect(
-        crossImport(path.resolve(__dirname, './foo.ts'))
+        crossImport(path.resolve(__dirname, 'fixtures/foo.ts'))
     ).toEqual({
-        'default': prettyBytes,
+        'default': nanoid,
         'bar': 'bar',
         'foo': 'foo'
     })
@@ -15,7 +15,7 @@ it('import .ts in .js', () => {
 
 it('read module from file', () => {
     expect(
-        crossImport(path.resolve(__dirname, 'home-config.ts')))
+        crossImport(path.resolve(__dirname, 'fixtures/home-config.ts')))
         .toEqual({
             'default': {
                 'classes': { 'btn': 'font:12' },
@@ -28,7 +28,7 @@ it('read module from file', () => {
 
 it('read module with export .css.ts', () => {
     expect(
-        crossImport(path.resolve(__dirname, 'export.ts')))
+        crossImport(path.resolve(__dirname, 'fixtures/export.ts')))
         .toEqual({
             'default': {
                 'colors': {
@@ -40,9 +40,16 @@ it('read module with export .css.ts', () => {
 
 it('read non-existent file', () => {
     expect(() => {
-        crossImport(path.resolve(__dirname, 'idontexist.ts'))
+        crossImport(path.resolve(__dirname, 'fixtures/idontexist.ts'))
     })
-        .toThrowError()
+        .toThrow()
+})
+
+it('read module with third-party deps', () => {
+    const configPath = path.join(__dirname, 'fixtures/config.tmp.js')
+    writeFileSync(configPath, 'module.exports = { a: 0 }')
+    const module1 = crossImport(configPath)
+    expect(module1).toEqual({ a: 0 })
 })
 
 // Do not test secondary imports in a test environment, inaccurate.

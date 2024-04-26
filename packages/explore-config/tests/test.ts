@@ -1,7 +1,10 @@
+import { dirname } from 'path'
 import exploreConfig from '../src'
 
+const __dirname = dirname(new URL(import.meta.url).pathname)
+
 it('read .js config', () => {
-    const config = exploreConfig('../fixtures/master.css', { cwd: __dirname, extensions: ['js'] })
+    const config = exploreConfig('./fixtures/master.css', { cwd: __dirname, extensions: ['js'] })
     expect(config).toEqual({
         extends: [
             {
@@ -15,7 +18,7 @@ it('read .js config', () => {
 })
 
 it('read .ts config', () => {
-    const config = exploreConfig('../fixtures/master.css', { cwd: __dirname, extensions: ['ts'] })
+    const config = exploreConfig('./fixtures/master.css', { cwd: __dirname, extensions: ['ts'] })
     expect(config).toEqual({
         extends: [
             {
@@ -29,7 +32,7 @@ it('read .ts config', () => {
 })
 
 it('read .mjs config', () => {
-    const config = exploreConfig('../fixtures/master.css', { cwd: __dirname, extensions: ['mjs'] })
+    const config = exploreConfig('./fixtures/master.css', { cwd: __dirname, extensions: ['mjs'] })
     expect(config).toEqual({
         extends: [
             {

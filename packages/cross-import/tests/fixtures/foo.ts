@@ -1,3 +1,3 @@
-export { default } from 'pretty-bytes'
+export { nanoid as default } from 'nanoid'
 export * from './bar'
 export const foo = 'foo'
