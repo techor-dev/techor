@@ -1,5 +1,8 @@
 import { transform } from 'sucrase'
-import jiti from 'jiti'
+/**
+ * Use the jiti/dist/jiti module to prevent bundling of redundant dependencies such as babel.
+ */
+import jiti from 'jiti/dist/jiti'
 
 export default function crossImport(modulePath: string): any {
     if (!modulePath) return
