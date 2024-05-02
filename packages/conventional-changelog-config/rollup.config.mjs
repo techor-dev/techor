@@ -4,5 +4,5 @@ import defineConfig from '../../rollup.config.mjs'
 export default {
     ...defineConfig(),
     input: 'src/index.ts',
-    output: { file: 'dist/index.js', format: 'cjs' },
+    output: { file: 'dist/index.js', format: 'esm' },
 }

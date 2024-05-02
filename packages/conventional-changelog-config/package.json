@@ -1,5 +1,6 @@
 {
     "name": "conventional-changelog-techor",
+    "type": "module",
     "scripts": {
         "build:main": "rollup --config rollup.config.mjs",
         "build:type": "tsc --emitDeclarationOnly --preserveWatchOutput",
@@ -37,6 +38,8 @@
         "preset"
     ],
     "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "exports": "./dist/index.js",
     "types": "./dist/index.d.ts",
     "files": [
         "dist"

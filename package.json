@@ -51,6 +51,8 @@
         "@rollup/plugin-swc": "^0.3.0",
         "@rollup/plugin-typescript": "^11.1.6",
         "@rollup/pluginutils": "^5.1.0",
-        "cross-env": "^7.0.3"
+        "cross-env": "^7.0.3",
+        "get-tsconfig": "^4.7.2",
+        "ts-jest": "^29.1.2"
     }
 }
