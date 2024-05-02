@@ -1,6 +1,6 @@
-const { configure } = require('semantic-release-config-techor')
+import { configure } from 'semantic-release-config-techor'
 
-module.exports = configure({
+export default configure({
     plugins: {
         '@semantic-release/exec': {
             verifyReleaseCmd: 'pnpm run version ${nextRelease.version}'
