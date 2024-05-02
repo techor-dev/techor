@@ -225,6 +225,9 @@ export default async function build() {
             }
 
             if (pkg.browser) {
+                if (typeof pkg.browser !== 'string') {
+                    throw new Error('Not implemented for browser field object.')
+                }
                 addBuild(exploreMapptedEntry(pkg.browser), { format: 'iife', file: pkg.browser })
             }
 
