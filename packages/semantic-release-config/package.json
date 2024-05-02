@@ -6,7 +6,7 @@
         "build:type": "tsc --emitDeclarationOnly --preserveWatchOutput",
         "build": "pnpm run \"/^build:.*/\"",
         "dev": "pnpm run \"/^build:.*/\" --watch",
-        "test": "NODE_OPTIONS=\"$NODE_OPTIONS --experimental-vm-modules\" jest",
+        "test": "cross-env NODE_OPTIONS=\"$NODE_OPTIONS --experimental-vm-modules\" jest",
         "type-check": "tsc --noEmit",
         "lint": "eslint src"
     },

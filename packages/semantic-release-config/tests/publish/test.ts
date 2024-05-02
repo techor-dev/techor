@@ -1,6 +1,6 @@
 import configure from '../../src/configure'
 import path from 'path';
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
+const __dirname = path.normalize(path.dirname(new URL(import.meta.url).pathname));
 
 it('only publishs the public packages', () => {
     process.chdir(__dirname)
