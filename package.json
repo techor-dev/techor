@@ -30,6 +30,7 @@
         "@types/node": "^20.12.8",
         "commitlint-config-techor": "workspace:^",
         "conventional-changelog-techor": "workspace:^",
+        "eslint": "^8.57.0",
         "eslint-config-techor": "workspace:^",
         "eslint-plugin-react-hooks": "^4.6.2",
         "jest-environment-jsdom": "^29.7.0",
