@@ -13,7 +13,6 @@
         "analyze:commit": "semantic-release --debug",
         "clean": "rm -rf ./packages/**/*dist && rm -rf ./{examples,packages}/**/*node_modules"
     },
-    "packageManager": "pnpm@8.6.10",
     "bugs": {
         "url": "https://github.com/techor-dev/techor/issues"
     },
@@ -27,23 +26,23 @@
     "devDependencies": {
         "@techor/jest": "workspace:^",
         "@techor/jest-dom": "workspace:^",
-        "@types/fs-extra": "^9.0.13",
-        "@types/node": "^20.11.0",
+        "@types/fs-extra": "^11.0.4",
+        "@types/node": "^20.12.8",
         "commitlint-config-techor": "workspace:^",
         "conventional-changelog-techor": "workspace:^",
         "eslint-config-techor": "workspace:^",
-        "eslint-plugin-react-hooks": "^4.6.0",
-        "jest-environment-jsdom": "^29.3.1",
-        "jest-puppeteer": "^6.1.1",
-        "parent-module": "^3.0.0",
-        "puppeteer": "^21.0.1",
-        "rollup": "^4.11.0",
+        "eslint-plugin-react-hooks": "^4.6.2",
+        "jest-environment-jsdom": "^29.7.0",
+        "jest-puppeteer": "^10.0.1",
+        "parent-module": "^3.1.0",
+        "puppeteer": "^22.7.1",
+        "rollup": "^4.17.2",
         "semantic-release-config-techor": "workspace:^",
-        "strip-ansi": "^7.0.1",
-        "tmp": "^0.2.1",
+        "strip-ansi": "^7.1.0",
+        "tmp": "^0.2.3",
         "ts-dedent": "^2.2.0",
-        "tsx": "^4.7.1",
-        "typescript": "^5.3.3"
+        "tsx": "^4.8.2",
+        "typescript": "^5.4.5"
     },
     "dependencies": {
         "@rollup/plugin-commonjs": "^25.0.7",
