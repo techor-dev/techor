@@ -1,6 +1,5 @@
 {
     "name": "conventional-changelog-techor",
-    "type": "module",
     "scripts": {
         "build:main": "rollup --config rollup.config.mjs",
         "build:type": "tsc --emitDeclarationOnly --preserveWatchOutput",
