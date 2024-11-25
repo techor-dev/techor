@@ -1,22 +1,24 @@
+/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/no-require-imports */
+const eslint = require('@eslint/js')
+const tseslint = require('typescript-eslint')
+
 module.exports = {
-    env: {
-        node: true,
-        browser: true,
-        es2021: true,
-        jest: true
-    },
     extends: [
-        'eslint:recommended',
-        'plugin:@typescript-eslint/recommended'
+        eslint.configs.recommended,
+        tseslint.configs.recommended,
     ],
-    overrides: [],
-    parser: '@typescript-eslint/parser',
-    parserOptions: {
+    languageOptions: {
         ecmaVersion: 'latest',
-        sourceType: 'module'
+        globals: {
+            node: true,
+            browser: true,
+            es2021: true,
+            jest: true
+        },
     },
-    plugins: [
-        '@typescript-eslint'
+    ignores: [
+        'dist/**'
     ],
     rules: {
         'linebreak-style': 0,
@@ -37,9 +39,7 @@ module.exports = {
         '@typescript-eslint/no-var-requires': 'off',
         '@typescript-eslint/no-unused-vars': 'off',
         '@typescript-eslint/no-explicit-any': 'off',
-        '@typescript-eslint/ban-ts-comment': 'off'
-    },
-    ignorePatterns: [
-        'dist'
-    ]
+        '@typescript-eslint/ban-ts-comment': 'off',
+        '@typescript-eslint/no-unused-expressions': 'off'
+    }
 }

@@ -31,15 +31,17 @@
         "config",
         "typescript"
     ],
-    "main": ".eslintrc.js",
+    "main": "./index.js",
     "files": [
-        ".eslintrc.js"
+        "./index.js",
+        "./recommended.js"
     ],
     "dependencies": {
-        "@typescript-eslint/eslint-plugin": "",
-        "@typescript-eslint/parser": ""
+        "@eslint/js": "",
+        "typescript-eslint": ""
     },
     "peerDependencies": {
-        "eslint": "*"
+        "eslint": "*",
+        "typescript": "*"
     }
 }
