@@ -78,7 +78,6 @@ export default async function build() {
             log.i`Cleaned up **${config.build.output.dir}**`
         }
 
-        // eslint-disable-next-line no-inner-declarations
         function addBuild(entries: string | string[], rollupOutputOptions: RollupOutputOptions) {
             if (Array.isArray(entries)) {
                 entries = entries.map((eachEntry) => normalize(eachEntry))
@@ -269,7 +268,6 @@ export default async function build() {
                         throw new Error('Not implemented for assets.')
                     case 'chunk':
                         chunks.push(eachOutputResult.artifact)
-                        // eslint-disable-next-line no-case-declarations
                         colSizes[1] = Math.max(colSizes[1] || 0, resolveFilename(eachOutputResult).length)
                         colSizes[2] = Math.max(colSizes[2] || 0, eachOutputResult.output.format.length)
                         colSizes[3] = Math.max(colSizes[3] || 0, prettyBytes(eachOutputResult.artifact.code.length, { space: false }).length)
