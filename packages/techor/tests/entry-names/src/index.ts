@@ -1,5 +1,5 @@
-const a = 'a';
-const b = 'b';
-const c = 'c';
+const a = 'a'
+const b = 'b'
+const c = 'c'
 
-export { a, b, c };
+export { a, b, c }

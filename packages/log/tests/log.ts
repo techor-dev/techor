@@ -1,4 +1,4 @@
-import log from './src'
+import log from '../src'
 
 log(new Error('Foo'))
 

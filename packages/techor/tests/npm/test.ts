@@ -1,4 +1,3 @@
-/* eslint-disable no-irregular-whitespace */
 import { execSync } from 'child_process'
 import dedent from 'ts-dedent'
 import stripAnsi from 'strip-ansi'

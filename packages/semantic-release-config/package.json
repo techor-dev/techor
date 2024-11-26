@@ -8,7 +8,7 @@
         "dev": "pnpm run \"/^build:.*/\" --watch",
         "test": "cross-env NODE_OPTIONS=\"$NODE_OPTIONS --experimental-vm-modules\" jest",
         "type-check": "tsc --noEmit",
-        "lint": "eslint src"
+        "lint": "eslint"
     },
     "license": "MIT",
     "description": "Techor's semantic release config for publishing workspace packages",

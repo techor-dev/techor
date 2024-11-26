@@ -11,6 +11,9 @@
     "bugs": {
         "url": "https://github.com/techor-dev/techor/issues"
     },
+    "scripts": {
+        "lint": "eslint"
+    },
     "publishConfig": {
         "access": "public",
         "provenance": true
@@ -34,12 +37,12 @@
     "main": "./index.js",
     "files": [
         "./index.js",
-        "./core.js",
         "configs"
     ],
     "dependencies": {
         "@eslint/js": "",
         "@typescript-eslint/eslint-plugin": "^8.0.0",
+        "@typescript-eslint/parser": "^8.0.0",
         "typescript-eslint": ""
     },
     "peerDependencies": {

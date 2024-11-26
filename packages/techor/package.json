@@ -7,7 +7,7 @@
         "dev": "pnpm run \"/^build:.*/\" --watch",
         "test": "cd tests && pnpm i && cd ../ && jest",
         "type-check": "tsc --noEmit",
-        "lint": "eslint src"
+        "lint": "eslint"
     },
     "type": "module",
     "license": "MIT",

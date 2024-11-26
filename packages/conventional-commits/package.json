@@ -8,7 +8,7 @@
         "build": "pnpm run \"/^build:.*/\"",
         "dev": "pnpm run \"/^build:.*/\" --watch",
         "type-check": "tsc --noEmit",
-        "lint": "eslint src"
+        "lint": "eslint"
     },
     "description": "A human-readable set of conventional commits, with version rules and changelog groupings",
     "author": {

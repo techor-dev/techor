@@ -1,3 +1,3 @@
-const b = 'b';
+const b = 'b'
 
-export { b };
+export { b }

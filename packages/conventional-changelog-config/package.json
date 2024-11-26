@@ -7,7 +7,7 @@
         "dev": "pnpm run \"/^build:.*/\" --watch",
         "test": "pnpm build && jest",
         "type-check": "tsc --noEmit",
-        "lint": "eslint src"
+        "lint": "eslint"
     },
     "license": "MIT",
     "description": "Beautiful changelog based on Techor's conventional commits",

@@ -8,7 +8,7 @@
         "dev": "pnpm run \"/^build:.*/\" --watch",
         "test": "jest",
         "type-check": "tsc --noEmit",
-        "lint": "eslint src"
+        "lint": "eslint"
     },
     "license": "MIT",
     "description": "Explore multi-format JavaScript module configuration",

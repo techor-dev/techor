@@ -1,4 +1,4 @@
-import extend from './src'
+import extend from '../src'
 
 it('overview', () => {
     expect(

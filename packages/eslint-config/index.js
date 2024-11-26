@@ -1,13 +1,12 @@
-/* eslint-disable no-undef */
-/* eslint-disable @typescript-eslint/no-require-imports */
-
+const base = require('./configs/base')
+const stylistic = require('./configs/stylistic')
 const typescript = require('./configs/typescript')
-const core = require('./core')
 
-/** @type {import('@typescript-eslint/utils/ts-eslint').ClassicConfig} */
+/** @type {import('eslint').Linter.LegacyConfig} */
 module.exports = {
     configs: {
-        core,
+        base,
+        stylistic,
         typescript
     },
     env: {
@@ -21,8 +20,11 @@ module.exports = {
         ecmaVersion: 'latest',
         sourceType: 'module'
     },
-    rules: core.rules,
-    ignorePatterns: core.ignores,
+    rules: {
+        ...stylistic.rules,
+        ...typescript.rules
+    },
+    ignorePatterns: base.ignores,
     parser: '@typescript-eslint/parser',
     plugins: ['@typescript-eslint'],
     extends: [

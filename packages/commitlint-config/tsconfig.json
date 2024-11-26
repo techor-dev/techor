@@ -10,9 +10,6 @@
         "tests/**/*.ts",
         "jest.config.ts",
         "eslint.config.mjs",
-        "rollup.config.mjs",
-    ],
-    "exclude": [
-        "src/**/*.test.ts"
+        "rollup.config.mjs"
     ]
 }

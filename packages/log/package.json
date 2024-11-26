@@ -9,7 +9,7 @@
         "dev": "pnpm run \"/^build:.*/\" --watch",
         "test": "jest",
         "type-check": "tsc --noEmit",
-        "lint": "eslint src"
+        "lint": "eslint"
     },
     "description": "A set of human-friendly and beautiful console log syntax",
     "author": {

@@ -1,7 +1,8 @@
 {
     "name": "commitlint-config-techor",
     "scripts": {
-        "test": "jest"
+        "test": "jest",
+        "lint": "eslint"
     },
     "license": "MIT",
     "description": "Check your commits with Techor's commitlint config",
