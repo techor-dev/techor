@@ -27,7 +27,7 @@ import preserveDirectives from 'rollup-plugin-preserve-directives'
 
 declare type OutputResult = (BuildOutputOptions & { artifact: (RollupOutputAsset | RollupOutputChunk) })
 declare type BuildOutputOptions = BuildCommonOptions & { output: RollupOutputOptions }
-declare type BuildOptions = {
+declare interface BuildOptions {
     input: RollupInputOptions,
     outputOptionsList: BuildOutputOptions[]
 }
