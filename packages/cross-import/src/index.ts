@@ -15,7 +15,6 @@ export default function crossImport(modulePath: string): any {
     } catch { /* empty */ }
     try {
         if (process.env.DEBUG) console.log('[cross-import] require:', modulePath)
-        // eslint-disable-next-line @typescript-eslint/no-require-imports
         return require(modulePath)
     } catch (error) {
         if (process.env.DEBUG) {

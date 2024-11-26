@@ -25,7 +25,7 @@ function cloneSpecificValue(val) {
 /**
  * Recursive cloning array.
  */
-function deepCloneArray(arr) {
+function deepCloneArray(arr: any[]) {
     const clone = []
     arr.forEach(function (item, index) {
         if (typeof item === 'object' && item !== null) {

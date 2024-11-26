@@ -1,21 +1,28 @@
 /* eslint-disable no-undef */
 /* eslint-disable @typescript-eslint/no-require-imports */
 
-const recommended = require('./recommended')
+const typescript = require('./configs/typescript')
+const core = require('./core')
 
 /** @type {import('@typescript-eslint/utils/ts-eslint').ClassicConfig} */
 module.exports = {
     configs: {
-        recommended
+        core,
+        typescript
     },
-    env: recommended.languageOptions.globals,
+    env: {
+        node: true,
+        browser: true,
+        es2021: true,
+        jest: true
+    },
     overrides: [],
     parserOptions: {
-        ecmaVersion: recommended.languageOptions.ecmaVersion,
-        sourceType: recommended.languageOptions.sourceType
+        ecmaVersion: 'latest',
+        sourceType: 'module'
     },
-    rules: recommended.rules,
-    ignorePatterns: recommended.ignores,
+    rules: core.rules,
+    ignorePatterns: core.ignores,
     parser: '@typescript-eslint/parser',
     plugins: ['@typescript-eslint'],
     extends: [

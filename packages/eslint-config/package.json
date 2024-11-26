@@ -34,10 +34,12 @@
     "main": "./index.js",
     "files": [
         "./index.js",
-        "./recommended.js"
+        "./core.js",
+        "configs"
     ],
     "dependencies": {
         "@eslint/js": "",
+        "@typescript-eslint/eslint-plugin": "^8.0.0",
         "typescript-eslint": ""
     },
     "peerDependencies": {
