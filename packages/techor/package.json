@@ -6,7 +6,7 @@
         "build": "pnpm run \"/^build:.*/\"",
         "dev": "pnpm run \"/^build:.*/\" --watch",
         "test": "cd tests && pnpm i && cd ../ && jest",
-        "type-check": "tsc --noEmit",
+        "type-check": "cd tests && pnpm i && cd ../ && tsc --noEmit",
         "lint": "eslint"
     },
     "type": "module",
