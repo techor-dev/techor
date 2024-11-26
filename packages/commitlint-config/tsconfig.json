@@ -8,8 +8,5 @@
         "src/**/*.ts",
         "src/**/*.d.ts",
         "tests/**/*.ts",
-        "jest.config.ts",
-        "eslint.config.mjs",
-        "rollup.config.mjs"
     ]
 }

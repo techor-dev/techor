@@ -1,4 +1,4 @@
-import swc from '@rollup/plugin-swc'
+import { swc } from 'rollup-plugin-swc3'
 import commonjs from '@rollup/plugin-commonjs'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import { readFileSync } from 'fs'
@@ -74,7 +74,9 @@ export default function defineConfig(options = {}) {
             { file: 'dist/index.mjs', format: 'esm' }
         ],
         plugins: [
-            swc(),
+            swc({
+                tsconfig: 'tsconfig.prod.json',
+            }),
             commonjs({
                 extensions: ['.js', '.ts'],
                 ...options.commonjs

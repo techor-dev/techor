@@ -1,4 +1,4 @@
-const parser = require('@typescript-eslint/parser')
+const tseslint = require('typescript-eslint')
 const ts = require('@typescript-eslint/eslint-plugin')
 
 /** @type {import('eslint').Linter.Config} */
@@ -24,9 +24,8 @@ module.exports = {
         '@typescript-eslint': ts,
     },
     languageOptions: {
-        parser,
+        parser: tseslint.parser,
         parserOptions: {
-            projectService: true,
             sourceType: 'module'
         },
         ecmaVersion: 'latest',
@@ -37,5 +36,5 @@ module.exports = {
             jest: true
         }
     },
-    files: ['**/*.ts', '**/*.tsx', '**/*.mts', '**/*.cts']
+    files: [ '**/*.ts', '**/*.tsx', '**/*.cts', '**/*.mts'],
 }

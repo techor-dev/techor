@@ -8,9 +8,6 @@
         "url": "https://aron.tw"
     },
     "homepage": "https://aron.tw",
-    "scripts": {
-        "lint": "eslint"
-    },
     "bugs": {
         "url": "https://github.com/techor-dev/techor/issues"
     },

@@ -6,5 +6,9 @@ module.exports = {
         'indent': ['off', 4],
         'quotes': ['error', 'single', { 'allowTemplateLiterals': true }],
         'semi': ['error', 'never']
-    }
+    },
+    files: [
+        '**/*.js', '**/*.jsx', '**/*.mjs', '**/*.cjs',
+        '**/*.ts', '**/*.tsx', '**/*.cts', '**/*.mts'
+    ],
 }

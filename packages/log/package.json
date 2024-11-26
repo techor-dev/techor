@@ -4,7 +4,7 @@
     "license": "MIT",
     "scripts": {
         "build:main": "rollup --config rollup.config.mjs",
-        "build:type": "tsc --emitDeclarationOnly --preserveWatchOutput",
+        "build:type": "tsc --emitDeclarationOnly --preserveWatchOutput --project tsconfig.prod.json",
         "build": "pnpm run \"/^build:.*/\"",
         "dev": "pnpm run \"/^build:.*/\" --watch",
         "test": "jest",

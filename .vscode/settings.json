@@ -1,4 +1,5 @@
 {
+    "eslint.useFlatConfig": true,
     "yaml.format.singleQuote": true,
     "javascript.format.semicolons": "remove",
     "editor.codeActionsOnSave": {
