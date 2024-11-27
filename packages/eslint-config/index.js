@@ -1,13 +1,15 @@
 const base = require('./configs/base')
 const stylistic = require('./configs/stylistic')
 const typescript = require('./configs/typescript')
+const react = require('./configs/react')
 
 /** @type {import('eslint').Linter.LegacyConfig} */
 module.exports = {
     configs: {
         base,
         stylistic,
-        typescript
+        typescript,
+        react
     },
     env: {
         node: true,
