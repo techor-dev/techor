@@ -36,5 +36,5 @@ module.exports = {
             jest: true
         }
     },
-    files: [ '**/*.ts', '**/*.tsx', '**/*.cts', '**/*.mts'],
+    files: ['**/*.{ts,tsx,mts,cts}'],
 }

@@ -46,6 +46,8 @@
     },
     "peerDependencies": {
         "eslint": "*",
-        "typescript": "*"
+        "typescript": "*",
+        "eslint-plugin-react": "*",
+        "eslint-plugin-react-hooks": "*"
     }
 }
