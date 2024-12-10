@@ -7,8 +7,5 @@ module.exports = {
         'quotes': ['error', 'single', { 'allowTemplateLiterals': true }],
         'semi': ['error', 'never']
     },
-    files: [
-        '**/*.js', '**/*.jsx', '**/*.mjs', '**/*.cjs',
-        '**/*.ts', '**/*.tsx', '**/*.cts', '**/*.mts'
-    ],
+    files: ['**/*.{js,mjs,cjs,ts,cts,mts,jsx,mjsx,tsx,mtsx}'],
 }

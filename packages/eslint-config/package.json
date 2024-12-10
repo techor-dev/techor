@@ -48,6 +48,7 @@
         "eslint": "*",
         "typescript": "*",
         "eslint-plugin-react": "*",
-        "eslint-plugin-react-hooks": "*"
+        "eslint-plugin-react-hooks": "*",
+        "eslint-plugin-react-refresh": "*"
     }
 }

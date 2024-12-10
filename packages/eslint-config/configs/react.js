@@ -1,17 +1,19 @@
-const reactPlugin = require('eslint-plugin-react')
-const reactHooksPlugin = require('eslint-plugin-react-hooks')
+const react = require('eslint-plugin-react')
+const reactHooks = require('eslint-plugin-react-hooks')
+const reactRefresh = require('eslint-plugin-react-refresh')
 
 /** @type {import('eslint').Linter.Config} */
 module.exports = {
-    ...reactPlugin.configs.flat.recommended,
+    ...react.configs.flat.recommended,
     rules: {
-        ...reactPlugin.configs['jsx-runtime'].rules,
-        ...reactHooksPlugin.configs.recommended.rules,
+        ...react.configs['jsx-runtime'].rules,
+        ...reactHooks.configs.recommended.rules,
         'react/display-name': 'off'
     },
     plugins: {
-        'react': reactPlugin,
-        'react-hooks': reactHooksPlugin,
+        'react': react,
+        'react-hooks': reactHooks,
+        'react-refresh': reactRefresh,
     },
-    files: ['**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}'],
+    files: ['**/*.{js,mjs,cjs,ts,cts,mts,jsx,mjsx,tsx,mtsx}'],
 }
