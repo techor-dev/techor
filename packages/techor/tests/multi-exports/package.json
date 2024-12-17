@@ -8,6 +8,7 @@
     "types": "./dist/index.d.ts",
     "exports": {
         ".": {
+            "types": "./dist/index.d.ts",
             "node": {
                 "require": "./dist/index.cjs",
                 "import": "./dist/index.mjs"
@@ -19,8 +20,7 @@
             "default": {
                 "require": "./dist/a.cjs",
                 "import": "./dist/a.mjs"
-            },
-            "types": "./dist/index.d.ts"
+            }
         },
         "./b": {
             "require": "./dist/b.cjs",

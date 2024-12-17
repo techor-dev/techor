@@ -103,9 +103,9 @@ Simultaneously output `cjs`, `esm`, `iife`, `type declarations` respectively acc
     "esnext": "dist/index.js",
     "exports": {
         ".": {
+            "types": "./dist/index.d.ts",
             "require": "./dist/index.js",
-            "import": "./dist/index.js",
-            "types": "./dist/index.d.ts"
+            "import": "./dist/index.js"
         }
     },
     "files": [

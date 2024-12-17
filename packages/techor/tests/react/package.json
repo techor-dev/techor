@@ -9,9 +9,9 @@
     "esnext": "./dist/App.mjs",
     "exports": {
         ".": {
+            "types": "./dist/App.d.ts",
             "require": "./dist/App.cjs",
-            "import": "./dist/App.mjs",
-            "types": "./dist/App.d.ts"
+            "import": "./dist/App.mjs"
         }
     },
     "files": [
