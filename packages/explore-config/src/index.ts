@@ -1,6 +1,6 @@
 import crossImport from 'cross-import'
 import { existsSync } from 'fs'
-import { resolve } from 'path'
+import { parse, resolve } from 'path'
 
 export interface ExploreConfigOptions {
     extensions?: ('js' | 'ts' | 'cjs' | 'cts' | 'mjs' | 'mts')[]
@@ -18,13 +18,23 @@ export default function exploreConfig(name: string, options: ExploreConfigOption
     // try to find the config file with the given name and options.extensions
     let foundConfigPath: string | undefined
     let foundBasename: string | undefined
-    for (const eachExtension of options.extensions) {
-        const eachBasename = name + '.' + eachExtension
-        const eachPath = resolve(options.cwd || '', eachBasename)
-        if (existsSync(eachPath)) {
-            foundConfigPath = eachPath
-            foundBasename = eachBasename
-            break
+    if (options.extensions.find(ext => name.endsWith('.' + ext))) {
+        const resolvedPath = resolve(options.cwd || '', name)
+        if (existsSync(resolvedPath)) {
+            foundConfigPath = resolvedPath
+            foundBasename = parse(name).base
+        }
+    } else {
+        for (const eachExtension of options.extensions) {
+            const eachBasename = name.endsWith('.' + eachExtension)
+                ? name
+                : name + '.' + eachExtension
+            const eachPath = resolve(options.cwd || '', eachBasename)
+            if (existsSync(eachPath)) {
+                foundConfigPath = eachPath
+                foundBasename = eachBasename
+                break
+            }
         }
     }
     if (foundConfigPath) {
