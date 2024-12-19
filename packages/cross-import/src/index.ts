@@ -1,7 +1,3 @@
-import { transform } from 'sucrase'
-/**
- * Use the jiti/dist/jiti module to prevent bundling of redundant dependencies such as babel.
- */
 import { createJiti } from 'jiti'
 
 export default function crossImport(modulePath: string): any {
@@ -21,15 +17,11 @@ export default function crossImport(modulePath: string): any {
             console.error(error)
             console.log('[cross-import] fall back to sucrase runtime transform:', modulePath)
         }
-        return createJiti(__filename, {
+        return createJiti(import.meta.url, {
             cache: false,
             debug: !!process.env.DEBUG,
-            transform: (options) => {
-                return transform(options.source, {
-                    transforms: ['imports', 'typescript'],
-                    filePath: options.filename
-                })
-            }
+            fsCache: false,
+            moduleCache: false,
         })(modulePath)
     }
 }
