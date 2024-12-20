@@ -15,7 +15,7 @@ export default function crossImport(modulePath: string): any {
     } catch (error) {
         if (process.env.DEBUG) {
             console.error(error)
-            console.log('[cross-import] fall back to sucrase runtime transform:', modulePath)
+            console.log('[cross-import] fall back to jiti runtime transform:', modulePath)
         }
         return createJiti(__dirname, {
             cache: false,

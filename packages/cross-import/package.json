@@ -59,8 +59,7 @@
         "dist"
     ],
     "dependencies": {
-        "jiti": "^2.4.1",
-        "sucrase": "^3.35.0"
+        "jiti": "^2.4.1"
     },
     "devDependencies": {
         "@master/css": "2.0.0-rc.24"
