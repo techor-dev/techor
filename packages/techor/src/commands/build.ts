@@ -17,6 +17,7 @@ import getWideExternal from '../utils/get-wide-external'
 import { BuildCommonOptions, Config, default as defaultConfig } from '../config'
 import yargsParser, { Options as YargsParserOptions } from 'yargs-parser'
 import loadConfig from '../load-config'
+import replace from '@rollup/plugin-replace'
 
 // core plugins
 import esmShim from '../plugins/esm-shim'
@@ -97,6 +98,8 @@ export default async function build() {
                     extendedBuild.minify = true
                 }
                 if (fileBasenameSplits.includes('global') || fileBasenameSplits.includes('iife')) extendedBuild.output.format = 'iife'
+                extendedBuild.env = fileBasenameSplits.includes('development') ? 'development' : 'production'
+
                 for (const [eachInput, eachBuildOptions] of buildMap) {
                     for (const eachOutputOptions of eachBuildOptions.outputOptionsList) {
                         if (normalize(eachOutputOptions.output.file) === normalize(extendedBuild.output.file)) {
@@ -147,6 +150,10 @@ export default async function build() {
                 }
                 (buildOptions.input.plugins as RollupInputPluginOption[]).unshift(
                     ...[
+                        replace({
+                            preventAssignment: true,
+                            'process.env.NODE_ENV': JSON.stringify(extendedBuild.env)
+                        }),
                         swc(extendedSWCOptions),
                         config.build.commonjs && commonjs(config.build.commonjs),
                         config.build.nodeResolve && nodeResolve(config.build.nodeResolve),
@@ -208,6 +215,8 @@ export default async function build() {
                                     case 'import':
                                         handleExports(eachUnknowExports, 'esm')
                                         break
+                                    default:
+                                        handleExports(eachUnknowExports, eachFormat)
                                 }
                             }
                         }

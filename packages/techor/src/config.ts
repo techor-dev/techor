@@ -82,6 +82,7 @@ export interface BuildCommonOptions {
     external?: string[]
     tsconfig?: string
     formats?: RollupOutputOptions['format'][]
+    env?: 'development' | 'production'
 }
 
 export interface BuildOptions extends BuildCommonOptions {

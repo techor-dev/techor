@@ -1,0 +1,21 @@
+{
+    "name": "@test/env",
+    "version": "1.0.0",
+    "private": true,
+    "files": [
+        "dist"
+    ],
+    "browser": "./dist/global.min.js",
+    "exports": {
+        ".": {
+            "import": {
+                "development": "./dist/index.development.mjs",
+                "default": "./dist/index.mjs"
+            },
+            "require": {
+                "development": "./dist/index.development.cjs",
+                "default": "./dist/index.cjs"
+            }
+        }
+    }
+}
