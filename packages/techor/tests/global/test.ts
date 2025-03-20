@@ -11,11 +11,11 @@ it('generate iife format', () => {
 })
 
 it('should bundle all deps', () => {
-    expect(readFileSync(join(__dirname, './dist/global.min.js'), 'utf-8')).toContain('typeof(e={foo:"bar"})')
+    expect(readFileSync(join(__dirname, './dist/global.min.js'), 'utf-8')).toContain('typeof(e={})')
 })
 
 it('should be minifined', () => {
-    expect(readFileSync(join(__dirname, './dist/global.min.js'), 'utf-8')).toBe('var e;let o;console.log((o=typeof(e={foo:"bar"}),null!==e&&("object"===o||"function"===o))),globalThis.effect1="created",globalThis.effect2="created";\n')
+    expect(readFileSync(join(__dirname, './dist/global.min.js'), 'utf-8')).toBe('var e;let l;console.log((l=typeof(e={}),null!==e&&("object"===l||"function"===l))),globalThis.effect1="created",globalThis.effect2="created";\n')
 })
 
 it('should not contain @swc/helpers', () => {

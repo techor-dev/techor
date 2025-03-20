@@ -150,15 +150,15 @@ export default async function build() {
                 }
                 (buildOptions.input.plugins as RollupInputPluginOption[]).unshift(
                     ...[
-                        replace({
-                            preventAssignment: true,
-                            'process.env.NODE_ENV': JSON.stringify(extendedBuild.env)
-                        }),
                         swc(extendedSWCOptions),
                         config.build.commonjs && commonjs(config.build.commonjs),
                         config.build.nodeResolve && nodeResolve(config.build.nodeResolve),
                         config.build.esmShim && esmShim(),
                         (config.build.preserveDirectives && !extendedBuild.output.file) && preserveDirectives(config.build.preserveDirectives),
+                        replace({
+                            preventAssignment: true,
+                            'process.env.NODE_ENV': JSON.stringify(extendedBuild.env)
+                        }),
                     ]
                         .filter((existence) => existence)
                 )
@@ -215,8 +215,12 @@ export default async function build() {
                                     case 'import':
                                         handleExports(eachUnknowExports, 'esm')
                                         break
-                                    default:
+                                    case 'development':
                                         handleExports(eachUnknowExports, eachFormat)
+                                        break
+                                    case 'production':
+                                        handleExports(eachUnknowExports, eachFormat)
+                                        break
                                 }
                             }
                         }
