@@ -4,7 +4,7 @@ import { join } from 'node:path'
 import dedent from 'ts-dedent'
 
 beforeAll(() => {
-    execSync('tsx ../../src/bin build', { cwd: __dirname, stdio: 'inherit' })
+    execSync('tsx ../../src/bin build', { cwd: __dirname })
 })
 
 test('main', () => {
