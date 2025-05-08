@@ -2,8 +2,7 @@
     "extends": "../../../../tsconfig.json",
     "compilerOptions": {
         "baseUrl": ".",
-        "outDir": "dist",
-        "target": "ES5"
+        "outDir": "dist"
     },
     "include": [
         "src/**/*"

@@ -67,7 +67,8 @@ export default async function build() {
             if (tsconfigFile === true) {
                 tsconfig = getTsconfig('.')?.config
             } else {
-                tsconfig = getTsconfig(tsconfigFile)?.config
+                tsconfig = getTsconfig('.', tsconfigFile)?.config
+                console.log(tsconfig)
                 if (!tsconfig) {
                     tsconfig = getTsconfig('.')?.config
                 }
