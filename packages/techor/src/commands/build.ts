@@ -25,6 +25,7 @@ import { nodeResolve } from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import swc from '../plugins/swc'
 import preserveDirectives from 'rollup-plugin-preserve-directives'
+import { getTsconfig, TsConfigJson } from 'get-tsconfig'
 
 declare type OutputResult = (BuildOutputOptions & { artifact: (RollupOutputAsset | RollupOutputChunk) })
 declare type BuildOutputOptions = BuildCommonOptions & { output: RollupOutputOptions }
@@ -60,6 +61,18 @@ export default async function build() {
             process.env.NODE_ENV = 'production'
         }
 
+        const tsconfigFile = config.build.swc.tsconfigFile || config.build.tsconfig
+        let tsconfig: TsConfigJson
+        if (tsconfigFile) {
+            if (tsconfigFile === true) {
+                tsconfig = getTsconfig('.')?.config
+            } else {
+                tsconfig = getTsconfig(tsconfigFile)?.config
+                if (!tsconfig) {
+                    tsconfig = getTsconfig('.')?.config
+                }
+            }
+        }
         if (process.env.DEBUG) console.log('[techor] cmdConfig', cmdConfig)
         const pkg: PackageJson = readJSONFileSync('package.json') || {}
         const { dependencies, peerDependencies, optionalDependencies, types } = pkg
@@ -139,18 +152,16 @@ export default async function build() {
                 } as RollupInputOptions, config.build.input)
                 buildOptions.input.input = entries
                 buildOptions.input.external = (config.build.input.external && !forceBundle) && getWideExternal(config.build.input.external)
-                const extendedSWCOptions: Config['build']['swc'] = extend(
-                    config.build.swc, { tsconfigFile: config.build.tsconfig } as Config['build']['swc'])
+                const extendedSWCOptions: Config['build']['swc'] = extend(config.build.swc, { tsconfigFile: config.build.tsconfig } as Config['build']['swc'])
                 if (extendedBuild.minify) {
                     extendedSWCOptions.minify = true
-
                 } else {
                     delete extendedSWCOptions.minify
                     delete extendedSWCOptions.jsc.minify
                 }
                 (buildOptions.input.plugins as RollupInputPluginOption[]).unshift(
                     ...[
-                        swc(extendedSWCOptions),
+                        swc(extendedSWCOptions, tsconfig),
                         config.build.commonjs && commonjs(config.build.commonjs),
                         config.build.nodeResolve && nodeResolve(config.build.nodeResolve),
                         config.build.esmShim && esmShim(),

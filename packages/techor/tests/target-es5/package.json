@@ -1,0 +1,9 @@
+{
+    "name": "@test/target-es5",
+    "version": "1.0.0",
+    "private": true,
+    "main": "dist/index.cjs",
+    "files": [
+        "dist"
+    ]
+}

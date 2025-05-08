@@ -108,6 +108,8 @@ importers:
         specifier: ^4.9.5
         version: 4.9.5
 
+  target-es5: {}
+
   type: {}
 
 packages:

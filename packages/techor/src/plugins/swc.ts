@@ -1,6 +1,6 @@
 import type { Plugin } from 'rollup'
-import { getTsconfig } from 'get-tsconfig'
-import { Options as SWCOptions, transform } from '@swc/core'
+import { getTsconfig, TsConfigJson } from 'get-tsconfig'
+import { JscTarget, Options as SWCOptions, transform } from '@swc/core'
 import extend from '@techor/extend'
 import { FilterPattern, createFilter } from '@rollup/pluginutils'
 
@@ -10,29 +10,30 @@ export type Options = SWCOptions & {
     tsconfigFile?: string | boolean
 }
 
-export default function swc({ tsconfigFile, include, exclude, minify, ...options }: Options = {}): Plugin {
+export default function swc({ tsconfigFile, include, exclude, minify, ...options }: Options = {}, tsconfig: TsConfigJson): Plugin {
     const filter = createFilter(include, exclude)
-    const compilerOptions = tsconfigFile === false ? {} : getTsconfig('.', tsconfigFile === true ? undefined : tsconfigFile)?.config?.compilerOptions || {}
     let swcOptions = {
         jsc: {
-            target: compilerOptions.target,
             parser: {},
             transform: {}
         }
     } as SWCOptions
-    if (compilerOptions.experimentalDecorators) {
+    swcOptions = extend(swcOptions, options)
+    if (tsconfig?.compilerOptions?.experimentalDecorators) {
         swcOptions.jsc.parser.decorators = true
         swcOptions.jsc.transform.legacyDecorator = true
-        swcOptions.jsc.transform.decoratorMetadata = compilerOptions.emitDecoratorMetadata
+        swcOptions.jsc.transform.decoratorMetadata = tsconfig?.compilerOptions.emitDecoratorMetadata
     }
-    if (compilerOptions.jsx) {
+    if (tsconfig?.compilerOptions?.jsx) {
         swcOptions.jsc.transform.react = {
-            pragma: compilerOptions.jsxFactory,
-            pragmaFrag: compilerOptions.jsxFragmentFactory,
-            importSource: compilerOptions.jsxImportSource,
+            pragma: tsconfig?.compilerOptions.jsxFactory,
+            pragmaFrag: tsconfig?.compilerOptions.jsxFragmentFactory,
+            importSource: tsconfig?.compilerOptions.jsxImportSource,
         }
     }
-    swcOptions = extend(swcOptions, options)
+    if (tsconfig?.compilerOptions?.target) {
+        swcOptions.jsc.target = tsconfig?.compilerOptions.target.toLocaleLowerCase() as JscTarget
+    }
     return {
         name: 'techor-swc',
         async transform(code, id) {
