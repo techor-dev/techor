@@ -12,14 +12,15 @@ export default function extend<T extends object>(...sources: (Partial<T> | null 
 
             if (Array.isArray(val)) {
                 target[key] = val.map(item =>
-                    typeof item === 'object' && item !== null
-                        ? extend({}, item)
-                        : item
+                    Array.isArray(item)
+                        ? [...item] // shallow copy nested arrays
+                        : typeof item === 'object' && item !== null
+                            ? extend({}, item)
+                            : item
                 )
             } else if (
                 typeof val === 'object' &&
-                val !== null &&
-                !Array.isArray(val)
+                val !== null
             ) {
                 target[key] =
                     typeof src === 'object' && src !== null && !Array.isArray(src)

@@ -286,3 +286,13 @@ test('symbol', ()=> {
         [D]: 5
     })
 })
+
+test('array', () => {
+    const result = extend(
+        { a: [1, 2, [3, 4]] },
+        { a: [5, 6, [7, 8]] },
+    )
+    expect(result).toEqual({
+        a: [5, 6, [7, 8]]
+    })
+})
