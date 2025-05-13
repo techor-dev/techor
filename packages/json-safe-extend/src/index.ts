@@ -1,4 +1,4 @@
-export default function extend<T extends object>(...sources: Partial<T>[]): T {
+export default function extend<T extends object>(...sources: (Partial<T> | null | undefined | number | boolean)[]): T {
     const target: any = {}
 
     for (const obj of sources) {

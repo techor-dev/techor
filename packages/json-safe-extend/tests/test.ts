@@ -139,7 +139,7 @@ it('doesn\'t change sources', function () {
     const a = { a: [1] }
     const b = { a: [2] }
     const c = { c: 3 }
-    const d = extend({}, a, b, c)
+    const d = extend<any>({}, a, b, c)
 
     expect(a).toEqual({ a: [1] })
     expect(b).toEqual({ a: [2] })
@@ -249,7 +249,7 @@ it('prevent source contamination', () => {
         }
     }
 
-    extend(source, {
+    extend<any>(source, {
         1: {
             4: true
         }
