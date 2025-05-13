@@ -278,3 +278,26 @@ it('prevent source contamination', () => {
         }
     })
 })
+
+test('symbol', ()=> {
+    const C = Symbol('c')
+    const D = Symbol('d')
+    const obj1 = {
+        a: 1,
+        b: 2,
+        [C]: 3
+    }
+    const obj2 = {
+        b: 3,
+        c: 4,
+        [D]: 5
+    }
+    const result = extend(obj1, obj2)
+    expect(result).toEqual({
+        a: 1,
+        b: 3,
+        c: 4,
+        [C]: 3,
+        [D]: 5
+    })
+})
