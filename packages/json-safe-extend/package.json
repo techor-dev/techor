@@ -1,0 +1,54 @@
+{
+    "name": "json-safe-extend",
+    "type": "module",
+    "scripts": {
+        "build:main": "rollup --config rollup.config.mjs",
+        "build:type": "tsc --emitDeclarationOnly --preserveWatchOutput --project tsconfig.prod.json",
+        "build": "pnpm run \"/^build:.*/\"",
+        "dev": "pnpm run \"/^build:.*/\" --watch",
+        "test": "jest",
+        "type-check": "tsc --noEmit",
+        "lint": "eslint"
+    },
+    "license": "MIT",
+    "description": "Deeply extend JSON-safe objects",
+    "author": {
+        "name": "Aron",
+        "email": "i@aron.tw",
+        "url": "http://aron.tw"
+    },
+    "homepage": "https://aron.tw",
+    "bugs": {
+        "url": "https://github.com/techor-dev/techor/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/techor-dev/techor.git",
+        "directory": "packages/json-safe-extend"
+    },
+    "keywords": [
+        "json-safe-extend",
+        "merge",
+        "deeply",
+        "utils"
+    ],
+    "sideEffects": false,
+    "publishConfig": {
+        "access": "public",
+        "provenance": true
+    },
+    "main": "./dist/index.cjs",
+    "esnext": "./dist/index.mjs",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "require": "./dist/index.cjs",
+            "import": "./dist/index.mjs"
+        }
+    },
+    "files": [
+        "dist"
+    ]
+}
