@@ -13,6 +13,7 @@
 <p align="center">
     <a aria-label="GitHub release (latest by date including pre-releases)" href="https://github.com/techor-dev/techor/releases">
         <picture>
+[![Hypercommit](https://img.shields.io/badge/Hypercommit-DB2475)](https://hypercommit.com/techor)
             <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/github/v/release/techor-dev/techor?include_prereleases&color=212022&label=&style=for-the-badge&logo=github&logoColor=fff">
             <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/github/v/release/techor-dev/techor?include_prereleases&color=f6f7f8&label=&style=for-the-badge&logo=github&logoColor=%23000">
             <img alt="NPM Version" src="https://img.shields.io/github/v/release/techor-dev/techor?include_prereleases&color=f6f7f8&label=&style=for-the-badge&logo=github">
